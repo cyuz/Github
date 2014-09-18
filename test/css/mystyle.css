@@ -1,0 +1,35 @@
+.textbox {
+  width:170px;
+  height:50px;
+  position:relative;
+  border-radius:6px;
+  margin-top:4px;
+  font-size:60px;
+}
+
+.box {
+  width:50px;
+  height:50px;
+  position:relative;
+  border-radius:6px;
+  margin-top:4px;
+}
+
+.green{
+  background-color:#00FF00;
+}
+
+.red {
+  background-color:#FF0000;
+}
+
+.blue {
+  background-color:#0000FF;
+}
+
+.orange {
+  background-color:#f38630;
+}
+.grey {
+  background-color:#989898;
+}

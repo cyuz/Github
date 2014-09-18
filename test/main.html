@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="css/mystyle.css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="js/TweenMax.min.js"></script>
+<script src="js/paper-core.min.js"></script>
+<script src="js/Role.js"></script> 
+
+<script>
+
+
+var player = new Player("haha", 2);
+
+
+var giveEnergyOrb = function() {
+    var basicElement = $("input[name=fname]").val()
+    var orb = new Orb(true, basicElement);
+    player.acceptOrb(orb);
+};
+
+var giveDamageOrb = function() {
+    var basicElement = $("input[name=fname]").val()
+    var orb = new Orb(false, basicElement);
+    player.acceptOrb(orb);
+};
+
+
+var onloadComplelete = function() {
+    var role1 = $("#role1_img")[0];
+    TweenLite.to(role1, 1.5, {position:"absolute", x:125, y:200});
+    var orb0 = $("#orb0")[0];
+    TweenLite.to(orb0, 1.5, {position:"absolute", x:100, y:400});
+    var orb1 = $("#orb1")[0];
+    TweenLite.to(orb1, 1.5, {position:"absolute", x:160, y:400});
+    var orb2 = $("#orb2")[0];
+    TweenLite.to(orb2, 1.5, {position:"absolute", x:220, y:400});        
+    //var hitBox = document.getElementById("hitTextBox");
+    var hitBox = $("#hitTextBox")[0];
+    TweenLite.to(hitBox, 1.5, {position:"absolute", x:100, y:140});
+    
+    player.orbIcons[0]=orb0;
+    player.orbIcons[1]=orb1;
+    player.orbIcons[2]=orb2;
+    player.hitIcon = hitBox;
+
+
+    setInterval(function () {player.checkComboExpire()}, 500);    
+    
+    
+}
+
+
+
+
+
+
+</script>
+</head>
+<body onload="onloadComplelete()">
+
+<form id="frm1" name="form1">
+Basic element: <input type="text" name="fname" value="1"><br>
+</form>
+
+<p><button onclick="giveEnergyOrb()">giveEnergyOrb</button></p>
+<p><button onclick="giveDamageOrb()">giveDamageOrb</button></p>
+
+<div id="hitTextBox" class="textbox"></div>
+
+<img id="role1_img" src="pic/mini_pic.jpg" alt="char1">
+
+<div id="orb0" class="box grey"></div>
+<div id="orb1" class="box grey"></div>
+<div id="orb2" class="box grey"></div>
+
+
+</body>
+</html>
