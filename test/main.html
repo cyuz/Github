@@ -27,25 +27,10 @@ var giveDamageOrb = function() {
 
 
 var onloadComplelete = function() {
-    var role1 = $("#role1_img")[0];
-    TweenLite.to(role1, 1.5, {position:"absolute", x:125, y:200});
-    var orb0 = $("#orb0")[0];
-    TweenLite.to(orb0, 1.5, {position:"absolute", x:100, y:400});
-    var orb1 = $("#orb1")[0];
-    TweenLite.to(orb1, 1.5, {position:"absolute", x:160, y:400});
-    var orb2 = $("#orb2")[0];
-    TweenLite.to(orb2, 1.5, {position:"absolute", x:220, y:400});        
-    //var hitBox = document.getElementById("hitTextBox");
-    var hitBox = $("#hitTextBox")[0];
-    TweenLite.to(hitBox, 1.5, {position:"absolute", x:100, y:140});
-    
-    player.orbIcons[0]=orb0;
-    player.orbIcons[1]=orb1;
-    player.orbIcons[2]=orb2;
-    player.hitIcon = hitBox;
 
 
-    setInterval(function () {player.checkComboExpire()}, 500);    
+
+    //setInterval(function () {player.checkComboExpire()}, 500);    
     
     
 }
@@ -65,14 +50,52 @@ Basic element: <input type="text" name="fname" value="1"><br>
 
 <p><button onclick="giveEnergyOrb()">giveEnergyOrb</button></p>
 <p><button onclick="giveDamageOrb()">giveDamageOrb</button></p>
+<div id="player_area" class="playerarea">
+<div id="role_1_div" class="rolebox green">
+<div id="combo_div" class="combobox blue"></div>
+<img id="role_img" src="pic/Edgar_Roni_Figaro_small.png" alt="char1">
+<div id="orbs_1_div" class="orbbox orbpos1 grey"></div>
+<div id="orbs_2_div" class="orbbox orbpos2 grey"></div>
+<div id="orbs_3_div" class="orbbox orbpos3 grey"></div>
+</div>
+<div id="role_2_div" class="rolebox green">
+<div id="combo_div" class="combobox blue"></div>
+<img id="role_img" src="pic/CelesSprite.png" alt ="char2">
+<div id="orbs_1_div" class="orbbox orbpos1 grey"></div>
+<div id="orbs_2_div" class="orbbox orbpos2 grey"></div>
+<div id="orbs_3_div" class="orbbox orbpos3 grey"></div>
+</div>
+<div id="role_3_div" class="rolebox green">
+<div id="combo_div" class="combobox blue"></div>
+<img id="role_img" src="pic/Locke_Cole_small.png" alt ="char2">
+<div id="orbs_1_div" class="orbbox orbpos1 grey"></div>
+<div id="orbs_2_div" class="orbbox orbpos2 grey"></div>
+<div id="orbs_3_div" class="orbbox orbpos3 grey"></div>
+</div>
+<div id="role_4_div" class="rolebox green">
+<div id="combo_div" class="combobox blue"></div>
+<img id="role_img" src="pic/Mog_(Final_Fantasy_VI)_small.png" alt ="char2">
+<div id="orbs_1_div" class="orbbox orbpos1 grey"></div>
+<div id="orbs_2_div" class="orbbox orbpos2 grey"></div>
+<div id="orbs_3_div" class="orbbox orbpos3 grey"></div>
+</div>
+<div id="role_5_div" class="rolebox green">
+<div id="combo_div" class="combobox blue"></div>
+<img id="role_img" src="pic/Shadow_(Final_Fantasy_VI)_small.png" alt ="char2">
+<div id="orbs_1_div" class="orbbox orbpos1 grey"></div>
+<div id="orbs_2_div" class="orbbox orbpos2 grey"></div>
+<div id="orbs_3_div" class="orbbox orbpos3 grey"></div>
+</div>
+<div id="role_6_div" class="rolebox green">
+<div id="combo_div" class="combobox blue"></div>
+<img id="role_img" src="pic/Umaro_small.png" alt ="char2">
+<div id="orbs_1_div" class="orbbox orbpos1 grey"></div>
+<div id="orbs_2_div" class="orbbox orbpos2 grey"></div>
+<div id="orbs_3_div" class="orbbox orbpos3 grey"></div>
+</div>
+</div>
 
-<div id="hitTextBox" class="textbox"></div>
 
-<img id="role1_img" src="pic/mini_pic.jpg" alt="char1">
-
-<div id="orb0" class="box grey"></div>
-<div id="orb1" class="box grey"></div>
-<div id="orb2" class="box grey"></div>
 
 
 </body>
