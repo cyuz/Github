@@ -203,7 +203,17 @@ function Player(name, basicElement)
     
     this.moveAttackOrbToBoss = function()
     {
-        TweenLite.to(this.attackIcon, 1, {bezier:{type:"soft", values:[{left:this.attackIconOffsetLeft, top:(this.attackIconOffsetTop+200)}, {left:"270px", top:"200px"}, {left:"270px", top:"1000px"}]}, ease:Power1.easeInOut, onComplete:endPlayerAttackOrb, onCompleteParams:[this]});
+        var centerPointOffsetLeft = 270;
+        if(this.attackIconOffsetLeft > 270)
+        {
+            centerPointOffsetLeft = this.attackIconOffsetLeft + 100;
+        }
+        else if(this.attackIconOffsetLeft < 270)
+        {
+            centerPointOffsetLeft = this.attackIconOffsetLeft - 100;
+        }
+        
+        TweenLite.to(this.attackIcon, 1, {bezier:{type:"thru", values:[{left:this.attackIconOffsetLeft, top:this.attackIconOffsetTop}, {left:centerPointOffsetLeft, top:500}, {left:"270px", top:"1000px"}]}, ease:Power1.easeInOut, onComplete:endPlayerAttackOrb, onCompleteParams:[this]});
     };
     
     this.endAttackOrb = function()
