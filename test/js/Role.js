@@ -1,3 +1,6 @@
+var Role = function()
+{
+
 function Orb(isEnergyOrb, basicElement)
 {
     this.isEnergyOrb = isEnergyOrb;
@@ -45,9 +48,17 @@ function Player(name, basicElement)
     this.lastHitTime = -1;
     this.orbIcons = new Array(3);
     this.hitIcon = 'undefined';
+    this.attackIcon = 'undefined';
+    this.attackIconOffsetLeft = 'undefined';
+    this.attackIconOffsetTop = 'undefined';
     this.acceptOrb = function(orb){
         if(orb.isEnergyOrb)
         {
+            if(this.energyOrbs.length >= 3)
+            {
+                return 1;
+            }
+        
             var acceptIndex = this.energyOrbs.length;
             if(typeof this.orbIcons[0] != 'undefined')
             {
@@ -94,21 +105,23 @@ function Player(name, basicElement)
         
         this.attack(attackLevel);
         
-        this.cleanOrbs();
         
-        this.energyOrbs.length = 0;
     };
     
     
     this.cleanOrbs = function()
     {
+        console.log("clean orb");
+    
         if(typeof this.orbIcons[0] != 'undefined')
         {
-            for(var i = 0; i < 3; i++)
+            for(var i = 2; i >= 0; i--)
             {
-                TweenLite.to(this.orbIcons[i], 1, {backgroundColor:"#989898"});     
+                TweenLite.to(this.orbIcons[i], 0.1, {backgroundColor:"#989898"});     
             }
         }
+        
+        this.energyOrbs.length = 0;
             
     }
     
@@ -116,8 +129,22 @@ function Player(name, basicElement)
     {
         //attack here
         //alert("attack Level " + attackLevel);
-        this.onAttack();
+        if(typeof this.attackIcon  != 'undefined')
+        {
+            this.startAttackOrb();
+            console.log("Do it");
+            //TweenLite.to(this.attackIcon, 0.1, {backgroundColor:"#FF0000"});
+            //alert(this.attackIcon.offsetLeft +","+ this.attackIcon.offsetTop);
+            //TweenLite.to(this.attackIcon, 1, {bezier:{curviness:1.25, values:[{left:"0px", top:"100px"}, {left:"300px", top:"200px"}, {left:"300px", top:"1000px"}]}, backgroundColor:"#FF0000", ease:Circ.easeInOut, onComplete:cleanPlayerOrbs, onCompleteParams:[this]});
+            //TweenLite.fromTo(this.attackIcon, 1, {left:"35px", top:"35px", backgroundColor:"#ff0000"}, {left:"35px", top:"-100px",  backgroundColor:"#ff0000", ease:Circ.easeInOut, onComplete:cleanPlayerOrbs, onCompleteParams:[this]});
+        }
+        else
+        {
+            this.cleanOrbs();
+            this.onAttack();
+        }
     };
+    
     this.handleDamage = function(orb)
     {
         var d = new Date();
@@ -154,9 +181,73 @@ function Player(name, basicElement)
                 this.hitIcon.innerHTML = "";
             }
         }
-    }
+    };
+    
+    this.bindDisplay = function(mainDiv, attackerDiv)
+    {
+        this.hitIcon = mainDiv.find("#combo_div")[0];
+        this.orbIcons[0] = mainDiv.find("#orbs_1_div")[0];
+        this.orbIcons[1] = mainDiv.find("#orbs_2_div")[0];
+        this.orbIcons[2] = mainDiv.find("#orbs_3_div")[0];
+        this.attackIcon = attackerDiv;    
+    };
+    
+    this.startAttackOrb = function()
+    {
+        
+        this.attackIconOffsetLeft = this.attackIcon.offsetLeft;
+        this.attackIconOffsetTop  = this.attackIcon.offsetTop;
+        
+        TweenLite.to(this.attackIcon, 0.1, {backgroundColor:"#000000", onComplete:movePlayerAttackOrbToBoss, onCompleteParams:[this]});       
+    };
+    
+    this.moveAttackOrbToBoss = function()
+    {
+        TweenLite.to(this.attackIcon, 1, {bezier:{type:"soft", values:[{left:this.attackIconOffsetLeft, top:(this.attackIconOffsetTop+200)}, {left:"270px", top:"200px"}, {left:"270px", top:"1000px"}]}, ease:Power1.easeInOut, onComplete:endPlayerAttackOrb, onCompleteParams:[this]});
+    };
+    
+    this.endAttackOrb = function()
+    {
+        TweenLite.to(this.attackIcon, 0.1, {backgroundColor:"transparent", onComplete:moveBackPlayerAttackOrb, onCompleteParams:[this]});
+    };
+    
+    this.moveBackAttackOrb = function()
+    {
+        TweenLite.to(this.attackIcon, 0.1, {left:"", top:"", onComplete:cleanPlayerOrbs, onCompleteParams:[this]});
+    };
     
 }
 
 Player.prototype = Object.create(Role.prototype);
 Player.prototype.constructor = Player;
+
+function movePlayerAttackOrbToBoss(player)
+{
+    player.moveAttackOrbToBoss();
+}
+
+function endPlayerAttackOrb(player)
+{
+    player.endAttackOrb();
+}
+
+function moveBackPlayerAttackOrb(player)
+{
+    player.moveBackAttackOrb();
+}
+
+
+function cleanPlayerOrbs(player)
+{
+    player.cleanOrbs();
+}
+
+return {
+    "Player":Player,
+    "Orb":Orb
+}
+
+}
+
+
+

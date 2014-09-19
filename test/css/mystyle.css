@@ -68,12 +68,65 @@ img {
   position:absolute;
 }
 
+.attackOrbPos1
+{
+  left:30px;
+  top:35px;
+  position:absolute;
+   z-index: 2;
+}
+
+.attackOrbPos2
+{
+  left:125px;
+  top:35px;
+  position:absolute;
+   z-index: 2;
+}
+
+.attackOrbPos3
+{
+  left:220px;
+  top:35px;
+  position:absolute;
+   z-index: 2;
+}
+
+.attackOrbPos4
+{
+  left:315px;
+  top:35px;
+  position:absolute;
+   z-index: 2;
+}
+
+.attackOrbPos5
+{
+  left:410px;
+  top:35px;
+  position:absolute;
+   z-index: 2;
+}
+
+.attackOrbPos6
+{
+  left:505px;
+  top:35px;
+  position:absolute;
+   z-index: 2;
+}
+
+
 .playerarea {
-  width:620px;
+  width:610px;
   height:100px;
   position:relative;
   border-radius:6px;
   margin-top:4px;
+}
+
+.transparent{
+  background-color:transparent;
 }
 
 .green{
@@ -85,7 +138,7 @@ img {
 }
 
 .blue {
-  background-color:#0000FF;
+  background-color:#33CCCC;
 }
 
 .orange {

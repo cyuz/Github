@@ -9,29 +9,48 @@
 
 <script>
 
+var Role = new Role();
 
-var player = new Player("haha", 2);
+var players = new Array(6);
+players[0] = new Role.Player("char1", 2);
+players[1] = new Role.Player("char2", 2);
+players[2] = new Role.Player("char3", 2);
+players[3] = new Role.Player("char4", 2);
+players[4] = new Role.Player("char5", 2);
+players[5] = new Role.Player("char6", 2);
+
 
 
 var giveEnergyOrb = function() {
-    var basicElement = $("input[name=fname]").val()
-    var orb = new Orb(true, basicElement);
-    player.acceptOrb(orb);
+    var basicElement = $("input[name=basicelement]").val();
+    var posIndex = $("input[name=posindex]").val();
+    var orb = new Role.Orb(true, basicElement);
+    players[posIndex].acceptOrb(orb);
 };
 
 var giveDamageOrb = function() {
-    var basicElement = $("input[name=fname]").val()
-    var orb = new Orb(false, basicElement);
-    player.acceptOrb(orb);
+    var basicElement = $("input[name=basicelement]").val();
+    var posIndex = $("input[name=posindex]").val();
+    var orb = new Role.Orb(false, basicElement);
+    players[posIndex].acceptOrb(orb);
 };
 
 
 var onloadComplelete = function() {
 
+    players[0].bindDisplay($("#role_1_div:first"), $("#attack_1_div")[0]);
+    players[1].bindDisplay($("#role_2_div:first"), $("#attack_2_div")[0]);
+    players[2].bindDisplay($("#role_3_div:first"), $("#attack_3_div")[0]);
+    players[3].bindDisplay($("#role_4_div:first"), $("#attack_4_div")[0]);
+    players[4].bindDisplay($("#role_5_div:first"), $("#attack_5_div")[0]);
+    players[5].bindDisplay($("#role_6_div:first"), $("#attack_6_div")[0]);
 
-
-    //setInterval(function () {player.checkComboExpire()}, 500);    
-    
+    setInterval(function () {players[0].checkComboExpire()}, 500);    
+    setInterval(function () {players[1].checkComboExpire()}, 500);    
+    setInterval(function () {players[2].checkComboExpire()}, 500);    
+    setInterval(function () {players[3].checkComboExpire()}, 500);    
+    setInterval(function () {players[4].checkComboExpire()}, 500);    
+    setInterval(function () {players[5].checkComboExpire()}, 500);    
     
 }
 
@@ -45,7 +64,8 @@ var onloadComplelete = function() {
 <body onload="onloadComplelete()">
 
 <form id="frm1" name="form1">
-Basic element: <input type="text" name="fname" value="1"><br>
+Basic element: <input type="text" name="basicelement" value="1"><br>
+Index: <input type="text" name="posindex" value="0"><br>
 </form>
 
 <p><button onclick="giveEnergyOrb()">giveEnergyOrb</button></p>
@@ -58,6 +78,7 @@ Basic element: <input type="text" name="fname" value="1"><br>
 <div id="orbs_2_div" class="orbbox orbpos2 grey"></div>
 <div id="orbs_3_div" class="orbbox orbpos3 grey"></div>
 </div>
+<div id="attack_1_div" class="orbbox attackOrbPos1 transparent"></div>
 <div id="role_2_div" class="rolebox green">
 <div id="combo_div" class="combobox blue"></div>
 <img id="role_img" src="pic/CelesSprite.png" alt ="char2">
@@ -65,6 +86,7 @@ Basic element: <input type="text" name="fname" value="1"><br>
 <div id="orbs_2_div" class="orbbox orbpos2 grey"></div>
 <div id="orbs_3_div" class="orbbox orbpos3 grey"></div>
 </div>
+<div id="attack_2_div" class="orbbox attackOrbPos2 transparent"></div>
 <div id="role_3_div" class="rolebox green">
 <div id="combo_div" class="combobox blue"></div>
 <img id="role_img" src="pic/Locke_Cole_small.png" alt ="char2">
@@ -72,6 +94,7 @@ Basic element: <input type="text" name="fname" value="1"><br>
 <div id="orbs_2_div" class="orbbox orbpos2 grey"></div>
 <div id="orbs_3_div" class="orbbox orbpos3 grey"></div>
 </div>
+<div id="attack_3_div" class="orbbox attackOrbPos3 transparent"></div>
 <div id="role_4_div" class="rolebox green">
 <div id="combo_div" class="combobox blue"></div>
 <img id="role_img" src="pic/Mog_(Final_Fantasy_VI)_small.png" alt ="char2">
@@ -79,6 +102,7 @@ Basic element: <input type="text" name="fname" value="1"><br>
 <div id="orbs_2_div" class="orbbox orbpos2 grey"></div>
 <div id="orbs_3_div" class="orbbox orbpos3 grey"></div>
 </div>
+<div id="attack_4_div" class="orbbox attackOrbPos4 transparent"></div>
 <div id="role_5_div" class="rolebox green">
 <div id="combo_div" class="combobox blue"></div>
 <img id="role_img" src="pic/Shadow_(Final_Fantasy_VI)_small.png" alt ="char2">
@@ -86,6 +110,7 @@ Basic element: <input type="text" name="fname" value="1"><br>
 <div id="orbs_2_div" class="orbbox orbpos2 grey"></div>
 <div id="orbs_3_div" class="orbbox orbpos3 grey"></div>
 </div>
+<div id="attack_5_div" class="orbbox attackOrbPos5 transparent"></div>
 <div id="role_6_div" class="rolebox green">
 <div id="combo_div" class="combobox blue"></div>
 <img id="role_img" src="pic/Umaro_small.png" alt ="char2">
@@ -93,6 +118,7 @@ Basic element: <input type="text" name="fname" value="1"><br>
 <div id="orbs_2_div" class="orbbox orbpos2 grey"></div>
 <div id="orbs_3_div" class="orbbox orbpos3 grey"></div>
 </div>
+<div id="attack_6_div" class="orbbox attackOrbPos6 transparent"></div>
 </div>
 
 
