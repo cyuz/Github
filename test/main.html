@@ -9,116 +9,59 @@
 
 <script>
 
-var Role = new Role();
-
-var players = new Array(6);
-players[0] = new Role.Player("char1", 2);
-players[1] = new Role.Player("char2", 2);
-players[2] = new Role.Player("char3", 2);
-players[3] = new Role.Player("char4", 2);
-players[4] = new Role.Player("char5", 2);
-players[5] = new Role.Player("char6", 2);
+roleControlUnit = new RoleFunc();
+roleControlUnit.init();
 
 
-
-var giveEnergyOrb = function() {
-    var basicElement = $("input[name=basicelement]").val();
-    var posIndex = $("input[name=posindex]").val();
-    var orb = new Role.Orb(true, basicElement);
-    players[posIndex].acceptOrb(orb);
-};
-
-var giveDamageOrb = function() {
-    var basicElement = $("input[name=basicelement]").val();
-    var posIndex = $("input[name=posindex]").val();
-    var orb = new Role.Orb(false, basicElement);
-    players[posIndex].acceptOrb(orb);
-};
-
-
-var onloadComplelete = function() {
-
-    players[0].bindDisplay($("#role_1_div:first"), $("#attack_1_div")[0]);
-    players[1].bindDisplay($("#role_2_div:first"), $("#attack_2_div")[0]);
-    players[2].bindDisplay($("#role_3_div:first"), $("#attack_3_div")[0]);
-    players[3].bindDisplay($("#role_4_div:first"), $("#attack_4_div")[0]);
-    players[4].bindDisplay($("#role_5_div:first"), $("#attack_5_div")[0]);
-    players[5].bindDisplay($("#role_6_div:first"), $("#attack_6_div")[0]);
-
-    setInterval(function () {players[0].checkComboExpire()}, 500);    
-    setInterval(function () {players[1].checkComboExpire()}, 500);    
-    setInterval(function () {players[2].checkComboExpire()}, 500);    
-    setInterval(function () {players[3].checkComboExpire()}, 500);    
-    setInterval(function () {players[4].checkComboExpire()}, 500);    
-    setInterval(function () {players[5].checkComboExpire()}, 500);    
-    
+function load()
+{
+ 
+    //give the display div, and function to stop/start ball moving
+    roleControlUnit.bind($("#player_area")[0], undefined);
+    //create the role with data corresponding to id
+    roleControlUnit.createRole(0, 1, 2, 3, 4, 5);
+    //set cehck combo expire timer
+    setInterval(function(){roleControlUnit.checkComboExpire()}, 500);
 }
 
-
-
-
+function giveOrb()
+{
+    var posindex = $('select[name="posindex"]').val();
+    var basicelement = $('select[name="basicelement"]').val();
+    //give character orb
+    roleControlUnit.giveOrb(posindex, basicelement);
+}
 
 
 </script>
 </head>
-<body onload="onloadComplelete()">
+<body onload="load()">
 
 <form id="frm1" name="form1">
-Basic element: <input type="text" name="basicelement" value="1"><br>
-Index: <input type="text" name="posindex" value="0"><br>
+    OrbDamage:
+    <select name="basicelement">
+        <option value="0">fire damage</option>
+        <option value="1">wood damage</option>
+        <option value="2">water damage</option>
+        <option value="3">fire energy</option>
+        <option value="4">wood energy</option>
+        <option value="5">water energy</option>        
+    </select>
+    <br>
+    Char Index: 
+    <select name="posindex">
+        <option value="0">0</option>      
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+    </select> 
+    <br>
 </form>
 
-<p><button onclick="giveEnergyOrb()">giveEnergyOrb</button></p>
-<p><button onclick="giveDamageOrb()">giveDamageOrb</button></p>
+<p><button onclick="giveOrb()">giveOrb</button></p>
 <div id="player_area" class="playerarea">
-<div id="role_1_div" class="rolebox green">
-<div id="combo_div" class="combobox blue"></div>
-<img id="role_img" src="pic/Edgar_Roni_Figaro_small.png" alt="char1">
-<div id="orbs_1_div" class="orbbox orbpos1 grey"></div>
-<div id="orbs_2_div" class="orbbox orbpos2 grey"></div>
-<div id="orbs_3_div" class="orbbox orbpos3 grey"></div>
-</div>
-<div id="attack_1_div" class="orbbox attackOrbPos1 transparent"></div>
-<div id="role_2_div" class="rolebox green">
-<div id="combo_div" class="combobox blue"></div>
-<img id="role_img" src="pic/CelesSprite.png" alt ="char2">
-<div id="orbs_1_div" class="orbbox orbpos1 grey"></div>
-<div id="orbs_2_div" class="orbbox orbpos2 grey"></div>
-<div id="orbs_3_div" class="orbbox orbpos3 grey"></div>
-</div>
-<div id="attack_2_div" class="orbbox attackOrbPos2 transparent"></div>
-<div id="role_3_div" class="rolebox green">
-<div id="combo_div" class="combobox blue"></div>
-<img id="role_img" src="pic/Locke_Cole_small.png" alt ="char2">
-<div id="orbs_1_div" class="orbbox orbpos1 grey"></div>
-<div id="orbs_2_div" class="orbbox orbpos2 grey"></div>
-<div id="orbs_3_div" class="orbbox orbpos3 grey"></div>
-</div>
-<div id="attack_3_div" class="orbbox attackOrbPos3 transparent"></div>
-<div id="role_4_div" class="rolebox green">
-<div id="combo_div" class="combobox blue"></div>
-<img id="role_img" src="pic/Mog_(Final_Fantasy_VI)_small.png" alt ="char2">
-<div id="orbs_1_div" class="orbbox orbpos1 grey"></div>
-<div id="orbs_2_div" class="orbbox orbpos2 grey"></div>
-<div id="orbs_3_div" class="orbbox orbpos3 grey"></div>
-</div>
-<div id="attack_4_div" class="orbbox attackOrbPos4 transparent"></div>
-<div id="role_5_div" class="rolebox green">
-<div id="combo_div" class="combobox blue"></div>
-<img id="role_img" src="pic/Shadow_(Final_Fantasy_VI)_small.png" alt ="char2">
-<div id="orbs_1_div" class="orbbox orbpos1 grey"></div>
-<div id="orbs_2_div" class="orbbox orbpos2 grey"></div>
-<div id="orbs_3_div" class="orbbox orbpos3 grey"></div>
-</div>
-<div id="attack_5_div" class="orbbox attackOrbPos5 transparent"></div>
-<div id="role_6_div" class="rolebox green">
-<div id="combo_div" class="combobox blue"></div>
-<img id="role_img" src="pic/Umaro_small.png" alt ="char2">
-<div id="orbs_1_div" class="orbbox orbpos1 grey"></div>
-<div id="orbs_2_div" class="orbbox orbpos2 grey"></div>
-<div id="orbs_3_div" class="orbbox orbpos3 grey"></div>
-</div>
-<div id="attack_6_div" class="orbbox attackOrbPos6 transparent"></div>
 </div>
 
 

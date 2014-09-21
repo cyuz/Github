@@ -50,25 +50,25 @@ img {
   display:inline-block  
 }
 
-.orbpos1{
+.orbpos0{
   left:3px;
   top:70px;
   position:absolute;
 }
 
-.orbpos2{
+.orbpos1{
   left:33px;
   top:70px;
   position:absolute;
 }
 
-.orbpos3{
+.orbpos2{
   left:63px;
   top:70px;
   position:absolute;
 }
 
-.attackOrbPos1
+.attackOrbPos0
 {
   left:30px;
   top:35px;
@@ -76,7 +76,7 @@ img {
    z-index: 2;
 }
 
-.attackOrbPos2
+.attackOrbPos1
 {
   left:125px;
   top:35px;
@@ -84,7 +84,7 @@ img {
    z-index: 2;
 }
 
-.attackOrbPos3
+.attackOrbPos2
 {
   left:220px;
   top:35px;
@@ -92,7 +92,7 @@ img {
    z-index: 2;
 }
 
-.attackOrbPos4
+.attackOrbPos3
 {
   left:315px;
   top:35px;
@@ -100,7 +100,7 @@ img {
    z-index: 2;
 }
 
-.attackOrbPos5
+.attackOrbPos4
 {
   left:410px;
   top:35px;
@@ -108,7 +108,7 @@ img {
    z-index: 2;
 }
 
-.attackOrbPos6
+.attackOrbPos5
 {
   left:505px;
   top:35px;
@@ -118,7 +118,7 @@ img {
 
 
 .playerarea {
-  width:610px;
+  width:600px;
   height:100px;
   position:relative;
   border-radius:6px;
@@ -138,6 +138,28 @@ img {
 }
 
 .blue {
+  background-color:#0000FF;
+}
+
+.bk_green{
+  background-color:#008000;
+}
+
+.bk_red {
+  background-color:#800000;
+}
+
+.bk_blue {
+  background-color:#000080;
+}
+
+.bk_purple{
+  background-color:#6600FF;
+}
+
+
+
+.comboboxcolor {
   background-color:#33CCCC;
 }
 
