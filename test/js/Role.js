@@ -413,7 +413,9 @@ var RoleFunc = function()
         {
             
             this.attackIconOffsetLeft = this.attackIcon.offsetLeft;
-            this.attackIconOffsetTop  = this.attackIcon.offsetTop;
+            this.attackIconOffsetTop  = this.attackIcon.offsetTop;                                                
+            
+            console.log("x:y@" + this.attackIconOffsetLeft + ":" + this.attackIconOffsetTop);
             
             var attackColor = "#000000";
             if(this.basicElement == 1)
@@ -427,13 +429,15 @@ var RoleFunc = function()
             else if(this.basicElement == 3)
             {
                 attackColor = "#0000FF";
-            }            
-            
-            TweenLite.to(this.attackIcon, 0.1, {backgroundColor:attackColor, width:(25 * (attackLevel+1)), height:(25 * (attackLevel+1)), onComplete:movePlayerAttackOrbToBoss, onCompleteParams:[this]});       
-        };
-        
-        this.moveAttackOrbToBoss = function()
-        {
+            }
+
+
+            //create a TimelineLite instance
+            var tl = new TimelineLite();
+
+            //change color and size
+            tl.to(this.attackIcon, 0.1, {backgroundColor:attackColor, width:(25 * (attackLevel+1)), height:(25 * (attackLevel+1))});
+
             var centerPointOffsetLeft = 270;
             if(this.attackIconOffsetLeft > 270)
             {
@@ -444,17 +448,18 @@ var RoleFunc = function()
                 centerPointOffsetLeft = this.attackIconOffsetLeft - 100;
             }
             
-            TweenLite.to(this.attackIcon, 1, {bezier:{type:"thru", values:[{left:this.attackIconOffsetLeft, top:this.attackIconOffsetTop}, {left:centerPointOffsetLeft, top:500}, {left:"270px", top:"1000px"}]}, directionalRotation:"1080_cw", ease:Power1.easeInOut, onComplete:endPlayerAttackOrb, onCompleteParams:[this]});
-        };
-        
-        this.endAttackOrb = function()
-        {
-            TweenLite.to(this.attackIcon, 0.1, {backgroundColor:"transparent", onComplete:moveBackPlayerAttackOrb, onCompleteParams:[this]});
-        };
-        
-        this.moveBackAttackOrb = function()
-        {
-            TweenLite.to(this.attackIcon, 0.1, {left:"", top:"", width:"", height:"", directionalRotation:"", onComplete:cleanPlayerOrbs, onCompleteParams:[this]});
+            //move
+            tl.to(this.attackIcon, 1, {bezier:{type:"thru", values:[{left:this.attackIconOffsetLeft, top:this.attackIconOffsetTop}, {left:centerPointOffsetLeft, top:500}, {left:"270px", top:"1000px"}]}, directionalRotation:"1080_cw", ease:Power1.easeInOut});
+
+            //change color to transparent
+            tl.to(this.attackIcon, 0.1, {backgroundColor:"transparent"});
+
+            //moveback
+            tl.to(this.attackIcon, 0.1, {left:"", top:"", width:"", height:"", directionalRotation:""});
+
+            //then call cleanOrbs
+            tl.call(cleanPlayerOrbs, [this]);
+     
         };
         
     }
