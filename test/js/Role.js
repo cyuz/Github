@@ -264,19 +264,19 @@ var RoleFunc = function()
                 {
                     if(orb.basicElement == 1)
                     {
-                        TweenLite.to(this.orbIcons[acceptIndex], 1, {backgroundColor:"#FF0000"});            
+                        TweenLite.to(this.orbIcons[acceptIndex], 0.1, {backgroundColor:"#FF0000"});            
                     }
                     else if(orb.basicElement == 2)
                     {
-                        TweenLite.to(this.orbIcons[acceptIndex], 1, {backgroundColor:"#00FF00"});          
+                        TweenLite.to(this.orbIcons[acceptIndex], 0.1, {backgroundColor:"#00FF00"});          
                     }
                     else if(orb.basicElement == 3)
                     {
-                        TweenLite.to(this.orbIcons[acceptIndex], 1, {backgroundColor:"#0000FF"});         
+                        TweenLite.to(this.orbIcons[acceptIndex], 0.1, {backgroundColor:"#0000FF"});         
                     }
                     else
                     {
-                        TweenLite.to(this.orbIcons[acceptIndex], 1, {backgroundColor:"#000000"});         
+                        TweenLite.to(this.orbIcons[acceptIndex], 0.1, {backgroundColor:"#000000"});         
                     }
                 }
                 this.energyOrbs.push(orb);                
@@ -312,37 +312,39 @@ var RoleFunc = function()
         
         this.cleanOrbs = function()
         {
-            console.log("clean orb");
         
             if(this.orbIcons[0] != undefined)
             {
                 for(var i = 2; i >= 0; i--)
                 {
-                    TweenLite.to(this.orbIcons[i], 0.1, {backgroundColor:"#989898"});     
+                    TweenLite.to(this.orbIcons[i], 0.5, {backgroundColor:"#989898"});     
                 }
-            }
+            }          
+        
+            console.log("clean orb");          
             
             this.energyOrbs.length = 0;
+            
+            if (window.hasOwnProperty('Game'))
+            {
+                Game.resume();
+            }
                 
         }
         
         this.attack = function(attackLevel)
         {
+           
             //attack here
             //alert("attack Level " + attackLevel);
             if(this.attackIcon  != undefined)
             {
-                this.startAttackOrb(attackLevel);
                 console.log("attack level --" + attackLevel);
+                this.startAttackOrb(attackLevel);                
                 //TweenLite.to(this.attackIcon, 0.1, {backgroundColor:"#FF0000"});
                 //alert(this.attackIcon.offsetLeft +","+ this.attackIcon.offsetTop);
                 //TweenLite.to(this.attackIcon, 1, {bezier:{curviness:1.25, values:[{left:"0px", top:"100px"}, {left:"300px", top:"200px"}, {left:"300px", top:"1000px"}]}, backgroundColor:"#FF0000", ease:Circ.easeInOut, onComplete:cleanPlayerOrbs, onCompleteParams:[this]});
                 //TweenLite.fromTo(this.attackIcon, 1, {left:"35px", top:"35px", backgroundColor:"#ff0000"}, {left:"35px", top:"-100px",  backgroundColor:"#ff0000", ease:Circ.easeInOut, onComplete:cleanPlayerOrbs, onCompleteParams:[this]});
-            }
-            else
-            {
-                this.cleanOrbs();
-                this.onAttack();
             }
         };
         
@@ -442,53 +444,69 @@ var RoleFunc = function()
         this.startAttackOrb = function(attackLevel)
         {
             
-            this.attackIconOffsetLeft = this.attackIcon.offsetLeft;
-            this.attackIconOffsetTop  = this.attackIcon.offsetTop;                                                
-            
-            console.log("x:y@" + this.attackIconOffsetLeft + ":" + this.attackIconOffsetTop);
-            
-            var attackColor = "#000000";
-            if(this.basicElement == 1)
+            if (window.hasOwnProperty('Game'))
             {
-                attackColor = "#FF0000";
-            }
-            else if(this.basicElement == 2)
-            {
-                attackColor = "#00FF00";
-            }
-            else if(this.basicElement == 3)
-            {
-                attackColor = "#0000FF";
-            }
-
-
-            //create a TimelineLite instance
-            var tl = new TimelineLite();
-
-            //change color and size
-            tl.to(this.attackIcon, 0.1, {backgroundColor:attackColor, width:(25 * (attackLevel+1)), height:(25 * (attackLevel+1))});
-
-            var centerPointOffsetLeft = 270;
-            if(this.attackIconOffsetLeft > 270)
-            {
-                centerPointOffsetLeft = this.attackIconOffsetLeft + 100;
-            }
-            else if(this.attackIconOffsetLeft < 270)
-            {
-                centerPointOffsetLeft = this.attackIconOffsetLeft - 100;
+                Game.pause();
             }
             
-            //move
-            tl.to(this.attackIcon, 1, {bezier:{type:"thru", values:[{left:this.attackIconOffsetLeft, top:this.attackIconOffsetTop}, {left:centerPointOffsetLeft, top:500}, {left:"270px", top:"1000px"}]}, directionalRotation:"1080_cw", ease:Power1.easeInOut});
+            if(attackLevel > 0)
+            {
+           
+                this.attackIconOffsetLeft = this.attackIcon.offsetLeft;
+                this.attackIconOffsetTop  = this.attackIcon.offsetTop;                                                
+                
+                
+                var attackColor = "#000000";
+                if(this.basicElement == 1)
+                {
+                    attackColor = "#FF0000";
+                }
+                else if(this.basicElement == 2)
+                {
+                    attackColor = "#00FF00";
+                }
+                else if(this.basicElement == 3)
+                {
+                    attackColor = "#0000FF";
+                }
 
-            //change color to transparent
-            tl.to(this.attackIcon, 0.1, {backgroundColor:"transparent"});
 
-            //moveback
-            tl.to(this.attackIcon, 0.1, {left:"", top:"", width:"", height:"", directionalRotation:""});
+                //create a TimelineLite instance
+                var tl = new TimelineLite();
 
-            //then call cleanOrbs
-            tl.call(cleanPlayerOrbs, [this]);
+                //change color and size
+                tl.to(this.attackIcon, 0.1, {backgroundColor:attackColor, width:(25 * (attackLevel+1)), height:(25 * (attackLevel+1))});
+
+                var centerPointOffsetLeft = 270;
+                if(this.attackIconOffsetLeft > 270)
+                {
+                    centerPointOffsetLeft = this.attackIconOffsetLeft + 100;
+                }
+                else if(this.attackIconOffsetLeft < 270)
+                {
+                    centerPointOffsetLeft = this.attackIconOffsetLeft - 100;
+                }
+                
+                //move
+                tl.to(this.attackIcon, 1, {bezier:{type:"thru", values:[{left:this.attackIconOffsetLeft, top:this.attackIconOffsetTop}, {left:centerPointOffsetLeft, top:"-450px"}, {left:"270px", top:"-900px"}]}, directionalRotation:"1080_cw", ease:Power1.easeInOut});
+
+                //change color to transparent
+                tl.to(this.attackIcon, 0.1, {backgroundColor:"transparent"});
+
+                //moveback
+                tl.to(this.attackIcon, 0.1, {left:"", top:"", width:"", height:"", directionalRotation:""});                                  
+                
+                //then call cleanOrbs
+                tl.call(cleanPlayerOrbs, [this]);
+            }
+            else
+            {
+                //create a TimelineLite instance
+                var tl = new TimelineLite();                             
+                
+                //then call cleanOrbs
+                tl.call(cleanPlayerOrbs, [this]);                
+            }
      
         };
         
