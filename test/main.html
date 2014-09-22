@@ -32,6 +32,16 @@ function giveOrb()
     roleControlUnit.giveOrb(posindex, basicelement);
 }
 
+function getSameElementComboHit()
+{
+    var combo = roleControlUnit.sameElementComboHit;
+    alert("combo:" + combo);
+}
+
+function clearSameElementComboHit()
+{
+    roleControlUnit.sameElementComboHit = 0;
+}
 
 </script>
 </head>
@@ -60,7 +70,11 @@ function giveOrb()
     <br>
 </form>
 
-<p><button onclick="giveOrb()">giveOrb</button></p>
+<p>
+<button onclick="giveOrb()">giveOrb</button></p>
+<button onclick="getSameElementComboHit()">getSameElementComboHit</button></p>
+<button onclick="clearSameElementComboHit()">clearSameElementComboHit</button></p>
+
 <div id="player_area" class="playerarea">
 </div>
 

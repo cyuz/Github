@@ -8,6 +8,8 @@ var RoleFunc = function()
     this.characterDatas = new Array();
     this.maxTotalhp = 0;
     this.currenthp = 0;
+    this.currentShield = 0;
+    this.sameElementComboHit = 0;
     
     function Orb(isEnergyOrb, basicElement, hitCount)
     {
@@ -58,6 +60,8 @@ var RoleFunc = function()
         }
         
         this.maxTotalhp = 0;
+        this.currenthp = 0;
+        this.currentShield = 0;
         
         for (var i = 0; i < arguments.length && i < ROLE_COUNT; i++)
         {
@@ -71,7 +75,7 @@ var RoleFunc = function()
         
         this.hpdiv = createHPDiv(this.charactersDiv);
         
-        updateHP(this.hpdiv, this.currenthp, this.maxTotalhp);
+        updateHP(this.hpdiv, this.currenthp, this.maxTotalhp, this.currentShield);
     }
     
     this.clearRoles = function()
@@ -79,6 +83,7 @@ var RoleFunc = function()
         this.char_roles.length = 0;
         this.maxTotalhp = 0;
         this.currenthp = 0;
+        this.currentShield = 0;
         this.hpdiv = undefined;
         if(this.charactersDiv != undefined)
         {
@@ -241,6 +246,12 @@ var RoleFunc = function()
         this.attackIconOffsetTop = undefined;
         this.roleIcon = undefined;
         this.acceptOrb = function(orb){
+        
+            if(this.basicElement == orb.basicElement)
+            {
+                roleFuncManager.sameElementComboHit++;
+            }        
+        
             if(orb.isEnergyOrb)
             {
                 if(this.energyOrbs.length >= 3)
@@ -268,7 +279,8 @@ var RoleFunc = function()
                         TweenLite.to(this.orbIcons[acceptIndex], 1, {backgroundColor:"#000000"});         
                     }
                 }
-                this.energyOrbs.push(orb);
+                this.energyOrbs.push(orb);                
+                
                 if(this.energyOrbs.length >= 3)
                 {
                     this.consumeEnergyOrbs();
@@ -357,15 +369,33 @@ var RoleFunc = function()
                 
                 //todo compute damage
 
-                roleFuncManager.currenthp -= this.comboHitTimes * 10;
-                
-                if(roleFuncManager.currenthp <= 0)
+                var damage = this.comboHitTimes * 10;
+                if(roleFuncManager.currentShield > 0)
                 {
-                    roleFuncManager.currenthp = 0;
-                    alert("death");
+                    if(roleFuncManager.currentShield >= damage)
+                    {
+                        roleFuncManager.currentShield -= damage;
+                        damage = 0;
+                    }
+                    else
+                    {
+                        damage -= roleFuncManager.currentShield;
+                        roleFuncManager.currentShield = 0;
+                    }
                 }
                 
-                updateHP(roleFuncManager.hpdiv, roleFuncManager.currenthp, roleFuncManager.maxTotalhp);
+                if(damage > 0)
+                {                               
+                    roleFuncManager.currenthp -= this.comboHitTimes * 10;            
+                    if(roleFuncManager.currenthp <= 0)
+                    {
+                        roleFuncManager.currenthp = 0;
+                        alert("death");
+                    }
+                }
+
+                
+                updateHP(roleFuncManager.hpdiv, roleFuncManager.currenthp, roleFuncManager.maxTotalhp, roleFuncManager.currentShield);
 
                 this.lastHitTime = currentTime;  
             }            
@@ -488,10 +518,14 @@ var RoleFunc = function()
         player.cleanOrbs();
     }
     
-    function updateHP(hpdiv, currenthp, maxTotalhp)
+    function updateHP(hpdiv, currenthp, maxTotalhp, shieldValue)
     {
-        hpdiv.innerHTML = currenthp + "/" + maxTotalhp;
+        hpdiv.innerHTML = "hp:" + currenthp + "/" + maxTotalhp + ", shiled:" + shieldValue;
     }
+    
+    
+    
+    
 
 }
 
