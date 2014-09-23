@@ -1,0 +1,50 @@
+.monster {
+	position: relative;
+	width: 640px;
+	height: 230px;
+	border: #000000 solid 2px;
+}
+
+.game {
+	position: relative;
+	left: 80px;
+	width: 500px;
+	height: 600px;
+}
+
+.playerView {
+	position: relative;
+	width: 640px;
+	height: 100px;
+	border: #000000 solid 2px;
+}
+
+.road {
+	background-color: #000000;
+	position: absolute;
+	width: 10px;
+	height: 585px;
+}
+
+.bridge {
+	background-color: #000000;
+	position: absolute;
+	width: 90px;
+	height: 10px;
+	cursor: pointer;
+}
+
+.bridge.hide {
+	display: none;
+}
+
+.ball {
+	position: absolute;
+	background-position: -10px -10px;
+}
+
+.ballColorImg {
+	position: absolute;
+	left: -10px;
+	top: -10px;
+}

@@ -1,0 +1,6 @@
+{
+	"id" : "waterI",
+	"image" : "waterBall.png",
+	"color" : "blue",
+	"energy" : 10
+}

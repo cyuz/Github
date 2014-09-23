@@ -1,0 +1,33 @@
+body {
+	padding: 0;
+	border: 0;
+	margin: 0;
+	overflow: hidden;
+}
+
+.main {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+}
+
+.view {
+	position: absolute;
+	width: 640px;
+	height: 930px;
+	left: -320px;
+	top: -465px;
+}
+
+.monster img {
+	position: absolute;
+	left: 230px;
+}
+
+.playerarea {
+	position: absolute;
+	left: 60px;
+	top: -10px;
+	width: 90px;
+	height: 100px;
+}
