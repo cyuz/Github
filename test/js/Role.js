@@ -10,6 +10,7 @@ var RoleFunc = function()
     this.currenthp = 0;
     this.currentShield = 0;
     this.sameElementComboHit = 0;
+    this.animationCount = 0;
     
     function Orb(isEnergyOrb, basicElement, hitCount)
     {
@@ -18,13 +19,14 @@ var RoleFunc = function()
         this.hitCount = hitCount;
     }
 
-    function CharacterDataInfo(name, basicElement, ap, hp, icon)
+    function CharacterDataInfo(name, basicElement, ap, hp, icon, skillEnergyCost)
     {
         this.name = name;
         this.basicElement = basicElement;
         this.ap = ap;
         this.hp = hp;
         this.icon = icon;
+        this.skillEnergyCost = skillEnergyCost;
     }    
     
     this.init = function()
@@ -36,12 +38,12 @@ var RoleFunc = function()
         this.orbDatas.push(new Orb(true, 2, 1));
         this.orbDatas.push(new Orb(true, 3, 1));
         
-        this.characterDatas.push(new CharacterDataInfo("role_1", 1, 30, 800, "CelesSprite.png"));
-        this.characterDatas.push(new CharacterDataInfo("role_2", 2, 40, 700, "Edgar_Roni_Figaro_small.png"));
-        this.characterDatas.push(new CharacterDataInfo("role_3", 3, 50, 600, "Locke_Cole_small.png"));
-        this.characterDatas.push(new CharacterDataInfo("role_4", 1, 60, 500, "Mog_(Final_Fantasy_VI)_small.png"));
-        this.characterDatas.push(new CharacterDataInfo("role_5", 2, 70, 400, "Shadow_(Final_Fantasy_VI)_small.png"));
-        this.characterDatas.push(new CharacterDataInfo("role_6", 3, 80, 300, "Umaro_small.png"));    
+        this.characterDatas.push(new CharacterDataInfo("role_1", 1, 30, 800, "CelesSprite.png", [100,250,500]));
+        this.characterDatas.push(new CharacterDataInfo("role_2", 2, 40, 700, "Edgar_Roni_Figaro_small.png", [100,250,500]));
+        this.characterDatas.push(new CharacterDataInfo("role_3", 3, 50, 600, "Locke_Cole_small.png", [100,250,500]));
+        this.characterDatas.push(new CharacterDataInfo("role_4", 1, 60, 500, "Mog_(Final_Fantasy_VI)_small.png", [100,250,500]));
+        this.characterDatas.push(new CharacterDataInfo("role_5", 2, 70, 400, "Shadow_(Final_Fantasy_VI)_small.png", [100,250,500]));
+        this.characterDatas.push(new CharacterDataInfo("role_6", 3, 80, 300, "Umaro_small.png", [100,250,500]));    
     }
     
     
@@ -112,10 +114,10 @@ var RoleFunc = function()
         charactersDiv.appendChild(characterdiv);        
         
         var combodiv = document.createElement('div');
-        divIdName = 'combo_div';
+        divIdName = 'energy_div';
         combodiv.setAttribute('id',divIdName);
-        combodiv.className = "combobox";
-        combodiv.className += " comboboxcolor";
+        combodiv.className = "energybox";
+        combodiv.className += " energyboxcolor";
 
         characterdiv.appendChild(combodiv);             
         
@@ -203,6 +205,44 @@ var RoleFunc = function()
         }
     }
     
+    this.conclude = function()
+    {
+        for(var i=0; i<this.char_roles.length;i++)
+        {
+            if(this.char_roles[i] != null)
+            {
+                this.addAnimationCount();
+            }
+        }
+                
+        for(var i=0; i<this.char_roles.length;i++)
+        {
+            if(this.char_roles[i] != null)
+            {
+                this.char_roles[i].startAttack();
+            }
+        }
+    }    
+    
+    this.addAnimationCount = function()
+    {
+        this.animationCount++;
+    }
+    
+    this.removeAnimationCount = function()
+    {
+        this.animationCount--;
+        if(this.animationCount == 0)
+        {
+            if (window.hasOwnProperty('Game'))
+            {
+                 
+                //TODO change global game state;
+                //Game.pause();
+            }
+            
+        }
+    }
     
 
 
@@ -235,118 +275,250 @@ var RoleFunc = function()
         this.hp = characterDataInfo.hp;
         this.ap = characterDataInfo.ap;
         this.icon = characterDataInfo.icon;
-        this.energyOrbs = new Array();
         this.comboHitTimes = 0;
         //-1 means none
         this.lastHitTime = -1;
         this.orbIcons = new Array(3);
-        this.hitIcon = undefined;
+        this.energyIcon = undefined;
         this.attackIcon = undefined;
         this.attackIconOffsetLeft = undefined;
         this.attackIconOffsetTop = undefined;
         this.roleIcon = undefined;
+        this.skillEnergyCost = characterDataInfo.skillEnergyCost;
+        this.energy = 0;
+        this.oldDisplayTotalEnergy = 0;
+        this.oldDisplayStage = 0;
+        this.oldWidth = 0;
+        this.updatetl = new TimelineLite({autoRemoveChildren:true});            
+        
         this.acceptOrb = function(orb){
         
             if(this.basicElement == orb.basicElement)
             {
                 roleFuncManager.sameElementComboHit++;
-            }        
-        
-            if(orb.isEnergyOrb)
-            {
-                if(this.energyOrbs.length >= 3)
-                {
-                    return 1;
-                }
-            
-                var acceptIndex = this.energyOrbs.length;
-                if(this.orbIcons[0] != undefined)
-                {
-                    if(orb.basicElement == 1)
-                    {
-                        TweenLite.to(this.orbIcons[acceptIndex], 0.1, {backgroundColor:"#FF0000"});            
-                    }
-                    else if(orb.basicElement == 2)
-                    {
-                        TweenLite.to(this.orbIcons[acceptIndex], 0.1, {backgroundColor:"#00FF00"});          
-                    }
-                    else if(orb.basicElement == 3)
-                    {
-                        TweenLite.to(this.orbIcons[acceptIndex], 0.1, {backgroundColor:"#0000FF"});         
-                    }
-                    else
-                    {
-                        TweenLite.to(this.orbIcons[acceptIndex], 0.1, {backgroundColor:"#000000"});         
-                    }
-                }
-                this.energyOrbs.push(orb);                
-                
-                if(this.energyOrbs.length >= 3)
-                {
-                    this.consumeEnergyOrbs();
-                }
+                this.changeEnergy(orb.hitCount * 30);
             }
             else
             {
-                this.handleDamage(orb);
+                this.changeEnergy(orb.hitCount * 10);
             }
-        };    
-        this.consumeEnergyOrbs = function()
-        {
-            var orbsLength = this.energyOrbs.length;
-            var attackLevel = 0;
-
-            for(var i = 0; i < orbsLength; i++)
-            {
-                if(this.energyOrbs[i].basicElement == this.basicElement)
-                {
-                    attackLevel++;
-                }  
-            }        
-            
-            this.attack(attackLevel);
-            
-            
         };
         
         
-        this.cleanOrbs = function()
+        this.changeEnergy = function(addValue)
         {
-        
-            if(this.orbIcons[0] != undefined)
-            {
-                for(var i = 2; i >= 0; i--)
-                {
-                    TweenLite.to(this.orbIcons[i], 0.5, {backgroundColor:"#989898"});     
-                }
-            }          
-        
-            console.log("clean orb");          
-            
-            this.energyOrbs.length = 0;
-            
-            if (window.hasOwnProperty('Game'))
-            {
-                Game.resume();
-            }
-                
+            this.energy += addValue;
+            this.updateEnergyDisplay()            
         }
+        
+        
+        this.updateEnergyDisplay = function()
+        {            
+            var currentStageEnergy = 0;
+            var currentStageCeil = 999;
+            var currentStage = 0;
+            var currentStageFloor = 0;
+            for(currentStage = 0; currentStage < this.skillEnergyCost.length; currentStage++)
+            {                                
+                if(this.energy < this.skillEnergyCost[currentStage])
+                {                   
+                    currentStageCeil = this.skillEnergyCost[currentStage];
+                    break;
+                }
+                
+                currentStageFloor = this.skillEnergyCost[currentStage];
+            }
+                    
+            
+            currentStageEnergy = this.energy - currentStageFloor;
+            
+            var scaleWValue = currentStageEnergy / (currentStageCeil - currentStageFloor);
+            if(scaleWValue > 1)
+            {
+                scaleWValue = 1;
+            }
+            var newWidth = scaleWValue * 100;
+            if(this.energy > this.oldDisplayTotalEnergy)
+            {
+                if(this.oldDisplayStage < currentStage)
+                {
+                    
+                    var diff = currentStage - this.oldDisplayStage;                
+                    this.updatetl.fromTo(this.energyIcon, (100 - this.oldWidth) / 100, {width:this.oldWidth}, {width:100});
+                    for(var i = 0; i < (diff -1); i++)
+                    {
+                        this.updatetl.fromTo(this.energyIcon, 1, {width:0}, {width:100});
+                    }
+                    this.updatetl.fromTo(this.energyIcon, 1, {width:0}, {width:newWidth});
+                    for(var i = this.oldDisplayStage; i < currentStage; i++)
+                    {
+                        if(this.basicElement == 1)
+                        {
+                            this.updatetl.to(this.orbIcons[i], 0.1, {backgroundColor:"#FF0000"});
+                        }
+                        else if(this.basicElement == 2)
+                        {
+                            this.updatetl.to(this.orbIcons[i], 0.1, {backgroundColor:"#00FF00"});
+                        }
+                        else if(this.basicElement == 3)
+                        {
+                            this.updatetl.to(this.orbIcons[i], 0.1, {backgroundColor:"#0000FF"});
+                        }                   
+                    }                 
+                    
+                }
+                else
+                {
+                     this.updatetl.to(this.energyIcon, scaleWValue, {width:newWidth});
+                }
+            }
+            else if(this.energy < this.oldDisplayTotalEnergy)
+            {
+                
+                for(var i = this.oldDisplayStage - 1; i >= 0; i--)
+                {
+                    this.updatetl.to(this.orbIcons[i], 0.1, {backgroundColor:"#989898"});
+                }
+                this.updatetl.to(this.energyIcon, 1, {width:0})
+
+                for(var i = 0; i < currentStage; i++)
+                {
+                    this.updatetl.fromTo(this.energyIcon, 1, {width:0}, {width:100});
+                }
+                this.updatetl.fromTo(this.energyIcon, scaleWValue, {width:0}, {width:newWidth});
+                
+                for(var i = 0; i < currentStage; i++)
+                {
+                    if(this.basicElement == 1)
+                    {
+                        this.updatetl.to(this.orbIcons[i], 0.1, {backgroundColor:"#FF0000"});
+                    }
+                    else if(this.basicElement == 2)
+                    {
+                        this.updatetl.to(this.orbIcons[i], 0.1, {backgroundColor:"#00FF00"});
+                    }
+                    else if(this.basicElement == 3)
+                    {
+                        this.updatetl.to(this.orbIcons[i], 0.1, {backgroundColor:"#0000FF"});
+                    }                   
+                }                 
+            }
+            
+
+            
+
+
+            this.oldDisplayStage = currentStage;
+            this.oldDisplayTotalEnergy = this.energy;
+            this.oldWidth = newWidth;
+            
+        }
+        
+        this.consumeAttackEnergy = function(attackLevel)
+        {
+            if(attackLevel)
+            {
+                this.changeEnergy(-this.skillEnergyCost[attackLevel - 1]);
+                
+                this.updateEnergyDisplay();
+            }
+            
+            roleFuncManager.removeAnimationCount();
+        }
+        
+        
+        this.startAttack = function()
+        {
+            var attackLevel = 0;
+            var currentStage = 0;
+            for(currentStage = 0; currentStage < this.skillEnergyCost.length; currentStage++)
+            {              
+                if(this.energy >= this.skillEnergyCost[currentStage])
+                {  
+                    attackLevel = currentStage + 1;
+                }
+            }                   
+            
+            if(attackLevel > 0)
+            {
+                this.attack(attackLevel);                                    
+            }
+            else
+            {
+                roleFuncManager.removeAnimationCount();
+            }
+        };
+        
         
         this.attack = function(attackLevel)
         {
+        
+            console.log("attack level --" + attackLevel);           
            
             //attack here
             //alert("attack Level " + attackLevel);
             if(this.attackIcon  != undefined)
             {
-                console.log("attack level --" + attackLevel);
-                this.startAttackOrb(attackLevel);                
-                //TweenLite.to(this.attackIcon, 0.1, {backgroundColor:"#FF0000"});
-                //alert(this.attackIcon.offsetLeft +","+ this.attackIcon.offsetTop);
-                //TweenLite.to(this.attackIcon, 1, {bezier:{curviness:1.25, values:[{left:"0px", top:"100px"}, {left:"300px", top:"200px"}, {left:"300px", top:"1000px"}]}, backgroundColor:"#FF0000", ease:Circ.easeInOut, onComplete:cleanPlayerOrbs, onCompleteParams:[this]});
-                //TweenLite.fromTo(this.attackIcon, 1, {left:"35px", top:"35px", backgroundColor:"#ff0000"}, {left:"35px", top:"-100px",  backgroundColor:"#ff0000", ease:Circ.easeInOut, onComplete:cleanPlayerOrbs, onCompleteParams:[this]});
+                
+                
+                this.attackIconOffsetLeft = this.attackIcon.offsetLeft;
+                this.attackIconOffsetTop  = this.attackIcon.offsetTop;                                                
+                
+                
+                var attackColor = "#000000";
+                if(this.basicElement == 1)
+                {
+                    attackColor = "#FF0000";
+                }
+                else if(this.basicElement == 2)
+                {
+                    attackColor = "#00FF00";
+                }
+                else if(this.basicElement == 3)
+                {
+                    attackColor = "#0000FF";
+                }
+
+
+                //create a TimelineLite instance
+                var tl = new TimelineLite();
+
+                //change color and size
+                tl.to(this.attackIcon, 0.1, {backgroundColor:attackColor, width:(25 * (attackLevel)), height:(25 * (attackLevel))});
+
+                var centerPointOffsetLeft = 270;
+                if(this.attackIconOffsetLeft > 270)
+                {
+                    centerPointOffsetLeft = this.attackIconOffsetLeft + 100;
+                }
+                else if(this.attackIconOffsetLeft < 270)
+                {
+                    centerPointOffsetLeft = this.attackIconOffsetLeft - 100;
+                }
+                
+                //move
+                tl.to(this.attackIcon, 1, {bezier:{type:"thru", values:[{left:this.attackIconOffsetLeft, top:this.attackIconOffsetTop}, {left:centerPointOffsetLeft, top:"-450px"}, {left:"270px", top:"-900px"}]}, directionalRotation:"1080_cw", ease:Power1.easeInOut});
+
+                //change color to transparent
+                tl.to(this.attackIcon, 0.1, {backgroundColor:"transparent"});
+
+                //moveback
+                tl.to(this.attackIcon, 0.1, {left:"", top:"", width:"", height:"", directionalRotation:""});                                  
+                
+                //then call cleanOrbs
+                tl.call(consumePlayerAttackEnergy, [this, attackLevel]);
+                
+            }
+            else
+            {
+                player.consumeAttackEnergy(attackLevel);
             }
         };
+        
+        var alertComplete = function()
+        {
+            alert("oncomplete");
+        }
         
         this.handleDamage = function(orb)
         {
@@ -361,10 +533,6 @@ var RoleFunc = function()
                 else
                 {
                     this.comboHitTimes = 1;
-                }
-                if(this.hitIcon != undefined)
-                {
-                    this.hitIcon.innerHTML = this.comboHitTimes + "hits";
                 }
                 
                 //alert("combot hit times:" + this.comboHitTimes);
@@ -409,16 +577,12 @@ var RoleFunc = function()
             if(currentTime - this.lastHitTime > 5000)
             {
                 this.comboHitTimes = 0;
-                if(this.hitIcon != undefined)
-                {            
-                    this.hitIcon.innerHTML = "";
-                }
             }
         };
         
         this.bindDisplay = function(mainDiv, attackerDiv)
         {
-            this.hitIcon = mainDiv.querySelector("#combo_div");
+            this.energyIcon = mainDiv.querySelector("#energy_div");
             this.roleIcon = mainDiv.querySelector("#role_img");
             this.orbIcons[0] = mainDiv.querySelector("#orb0_iv");
             this.orbIcons[1] = mainDiv.querySelector("#orb1_iv");
@@ -441,74 +605,7 @@ var RoleFunc = function()
 
         };
         
-        this.startAttackOrb = function(attackLevel)
-        {
-            
-            if (window.hasOwnProperty('Game'))
-            {
-                Game.pause();
-            }
-            
-            if(attackLevel > 0)
-            {
-           
-                this.attackIconOffsetLeft = this.attackIcon.offsetLeft;
-                this.attackIconOffsetTop  = this.attackIcon.offsetTop;                                                
-                
-                
-                var attackColor = "#000000";
-                if(this.basicElement == 1)
-                {
-                    attackColor = "#FF0000";
-                }
-                else if(this.basicElement == 2)
-                {
-                    attackColor = "#00FF00";
-                }
-                else if(this.basicElement == 3)
-                {
-                    attackColor = "#0000FF";
-                }
 
-
-                //create a TimelineLite instance
-                var tl = new TimelineLite();
-
-                //change color and size
-                tl.to(this.attackIcon, 0.1, {backgroundColor:attackColor, width:(25 * (attackLevel+1)), height:(25 * (attackLevel+1))});
-
-                var centerPointOffsetLeft = 270;
-                if(this.attackIconOffsetLeft > 270)
-                {
-                    centerPointOffsetLeft = this.attackIconOffsetLeft + 100;
-                }
-                else if(this.attackIconOffsetLeft < 270)
-                {
-                    centerPointOffsetLeft = this.attackIconOffsetLeft - 100;
-                }
-                
-                //move
-                tl.to(this.attackIcon, 1, {bezier:{type:"thru", values:[{left:this.attackIconOffsetLeft, top:this.attackIconOffsetTop}, {left:centerPointOffsetLeft, top:"-450px"}, {left:"270px", top:"-900px"}]}, directionalRotation:"1080_cw", ease:Power1.easeInOut});
-
-                //change color to transparent
-                tl.to(this.attackIcon, 0.1, {backgroundColor:"transparent"});
-
-                //moveback
-                tl.to(this.attackIcon, 0.1, {left:"", top:"", width:"", height:"", directionalRotation:""});                                  
-                
-                //then call cleanOrbs
-                tl.call(cleanPlayerOrbs, [this]);
-            }
-            else
-            {
-                //create a TimelineLite instance
-                var tl = new TimelineLite();                             
-                
-                //then call cleanOrbs
-                tl.call(cleanPlayerOrbs, [this]);                
-            }
-     
-        };
         
     }
 
@@ -531,9 +628,9 @@ var RoleFunc = function()
     }
 
 
-    function cleanPlayerOrbs(player)
+    function consumePlayerAttackEnergy(player, attackLevel)
     {
-        player.cleanOrbs();
+        player.consumeAttackEnergy(attackLevel);
     }
     
     function updateHP(hpdiv, currenthp, maxTotalhp, shieldValue)

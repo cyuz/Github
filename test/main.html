@@ -43,6 +43,11 @@ function clearSameElementComboHit()
     roleControlUnit.sameElementComboHit = 0;
 }
 
+function conclude()
+{
+    roleControlUnit.conclude();
+}
+
 </script>
 </head>
 <body onload="load()">
@@ -74,6 +79,7 @@ function clearSameElementComboHit()
 <button onclick="giveOrb()">giveOrb</button></p>
 <button onclick="getSameElementComboHit()">getSameElementComboHit</button></p>
 <button onclick="clearSameElementComboHit()">clearSameElementComboHit</button></p>
+<button onclick="conclude()">conclude</button></p>
 
 <div id="player_area" class="playerarea">
 </div>

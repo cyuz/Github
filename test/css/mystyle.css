@@ -31,8 +31,8 @@ img {
   display:inline-block
 }
 
-.combobox {
-  width:90px;
+.energybox {
+  width:0px;
   height:15px;
   left:0px;
   top:0px;
@@ -159,7 +159,7 @@ img {
 
 
 
-.comboboxcolor {
+.energyboxcolor {
   background-color:#33CCCC;
 }
 
