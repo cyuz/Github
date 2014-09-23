@@ -480,7 +480,7 @@ var RoleFunc = function()
                 }
                 
                 //move
-                this.updatetl.to(this.attackIcon, 1, {bezier:{type:"thru", values:[{left:this.attackIconOffsetLeft, top:this.attackIconOffsetTop}, {left:centerPointOffsetLeft, top:"-450px"}, {left:"270px", top:"-900px"}]}, directionalRotation:"1080_cw", ease:Power1.easeInOut});
+                this.updatetl.to(this.attackIcon, 1, {bezier:{type:"thru", values:[{left:this.attackIconOffsetLeft, top:this.attackIconOffsetTop}, {left:centerPointOffsetLeft, top:"-450px"}, {left:"270px", top:"-900px"}]}, directionalRotation:"1080_cw", ease:Power1.easeInOut, onComplete:doDamage, onCompleteParams:[this.basicElement, attackLevel]});
 
                 //change color to transparent
                 this.updatetl.to(this.attackIcon, 0.1, {backgroundColor:"transparent"});
@@ -618,6 +618,12 @@ var RoleFunc = function()
         hpdiv.innerHTML = "hp:" + currenthp + "/" + maxTotalhp + ", shiled:" + shieldValue;
     }
     
+    
+    function doDamage(element, attackLevel)
+    {
+        //TODO, change to skill later
+        //alert(element + ":" + attackLevel);
+    }
     
     
     
