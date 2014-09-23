@@ -26,10 +26,10 @@ var RoleFunc = function()
     {
         this.characterDatas.push(new CharacterDataInfo("role_1", "red", 30, 800, "CelesSprite.png", [100,250,500]));
         this.characterDatas.push(new CharacterDataInfo("role_2", "green", 40, 700, "Edgar_Roni_Figaro_small.png", [100,250,500]));
-        this.characterDatas.push(new CharacterDataInfo("role_3", "blud", 50, 600, "Locke_Cole_small.png", [100,250,500]));
+        this.characterDatas.push(new CharacterDataInfo("role_3", "blue", 50, 600, "Locke_Cole_small.png", [100,250,500]));
         this.characterDatas.push(new CharacterDataInfo("role_4", "red", 60, 500, "Mog_(Final_Fantasy_VI)_small.png", [100,250,500]));
         this.characterDatas.push(new CharacterDataInfo("role_5", "green", 70, 400, "Shadow_(Final_Fantasy_VI)_small.png", [100,250,500]));
-        this.characterDatas.push(new CharacterDataInfo("role_6", "blud", 80, 300, "Umaro_small.png", [100,250,500]));    
+        this.characterDatas.push(new CharacterDataInfo("role_6", "blue", 80, 300, "Umaro_small.png", [100,250,500]));    
     }
     
     
@@ -193,6 +193,7 @@ var RoleFunc = function()
     
     this.conclude = function()
     {
+        //alert("conclude");
         for(var i=0; i<this.char_roles.length;i++)
         {
             if(this.char_roles[i] != null)
@@ -465,11 +466,8 @@ var RoleFunc = function()
                 }
 
 
-                //create a TimelineLite instance
-                var tl = new TimelineLite();
-
                 //change color and size
-                tl.to(this.attackIcon, 0.1, {backgroundColor:attackColor, width:(25 * (attackLevel)), height:(25 * (attackLevel))});
+                this.updatetl.to(this.attackIcon, 0.1, {backgroundColor:attackColor, width:(25 * (attackLevel)), height:(25 * (attackLevel))});
 
                 var centerPointOffsetLeft = 270;
                 if(this.attackIconOffsetLeft > 270)
@@ -482,28 +480,25 @@ var RoleFunc = function()
                 }
                 
                 //move
-                tl.to(this.attackIcon, 1, {bezier:{type:"thru", values:[{left:this.attackIconOffsetLeft, top:this.attackIconOffsetTop}, {left:centerPointOffsetLeft, top:"-450px"}, {left:"270px", top:"-900px"}]}, directionalRotation:"1080_cw", ease:Power1.easeInOut});
+                this.updatetl.to(this.attackIcon, 1, {bezier:{type:"thru", values:[{left:this.attackIconOffsetLeft, top:this.attackIconOffsetTop}, {left:centerPointOffsetLeft, top:"-450px"}, {left:"270px", top:"-900px"}]}, directionalRotation:"1080_cw", ease:Power1.easeInOut});
 
                 //change color to transparent
-                tl.to(this.attackIcon, 0.1, {backgroundColor:"transparent"});
+                this.updatetl.to(this.attackIcon, 0.1, {backgroundColor:"transparent"});
 
                 //moveback
-                tl.to(this.attackIcon, 0.1, {left:"", top:"", width:"", height:"", directionalRotation:""});                                  
+                this.updatetl.to(this.attackIcon, 0.1, {left:"", top:"", width:"", height:"", directionalRotation:""});                                  
                 
                 //then call cleanOrbs
-                tl.call(consumePlayerAttackEnergy, [this, attackLevel]);
+                this.updatetl.call(consumePlayerAttackEnergy, [this, attackLevel]);
                 
             }
             else
             {
-                player.consumeAttackEnergy(attackLevel);
+                //call cleanOrbs
+                this.updatetl.call(consumePlayerAttackEnergy, [this, attackLevel]);
             }
         };
         
-        var alertComplete = function()
-        {
-            alert("oncomplete");
-        }
         
         this.handleDamage = function(orb)
         {
