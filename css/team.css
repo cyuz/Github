@@ -1,0 +1,144 @@
+.playerdata {
+	position: relative;
+	width: 640px;
+	height: 100px;    
+}
+
+.stagedata {
+	position: relative;
+	width: 640px;
+	height: 100px;
+}
+
+.teamdata {
+	position: relative;
+	width: 640px;
+	height: 630px;
+}
+
+.operationMenu {
+	position: relative;
+	width: 640px;
+	height: 100px;
+}
+
+
+.icon_return{
+	position: relative;
+	left: 570px
+}
+
+.selectedRoles{
+	position: absolute;    
+	width: 540px;
+	height: 100px;
+    left: 50px;
+}
+
+.selectedRole{
+	position: relative;    
+	width: 70px;
+	height: 80px;
+    margin: 10px 10px 10px 10px;
+    float: left;
+}
+
+
+.rolearea{
+	position: absolute;    
+	width: 580px;
+	height: 500px;
+    left: 30px;
+    top:100px;
+}
+.role{
+	position: relative;    
+	width: 70px;
+	height: 80px;
+    left: 25px; 
+    margin: 10px 10px 10px 10px;
+    float: left;    
+}
+
+.icon_base{
+	position: relative;
+	left: -5px;
+    top: 60px;
+}
+
+.selectedRole_icon{
+	position: absolute;
+	width: 70px;
+	height: 80px;    
+	left: 0px;
+    top: 0px;
+    z-index: 1;
+}
+
+.stageName{
+	position: absolute;
+	width: 120px;
+    height: 80px;
+    left: 60px;
+    top : 15px;
+    font-size: 50px;
+}
+
+.stageBossImg{
+	position: absolute;
+	width: 200px;
+    height: 80px;
+    left: 350px;
+    top : 10px;
+    font-size: 50px;
+}
+
+.playerLevel{
+	position: absolute;
+	width: 120px;
+    height: 60px;
+    left: 40px;
+    top: 20px;
+    font-size: 50px;
+    text-align: center;
+
+}
+
+.playername{
+	position: absolute;
+	width: 280px;
+    height: 60px;
+    left: 200px;
+    top: 20px;
+    font-size: 50px;
+    text-align: center;
+
+}
+
+.playeresource{
+    background-image:url( 'images/icon_cash.png' );
+	width: 110px;
+    height: 32px;
+    font-size: 20px;
+    text-align: right;
+}
+
+.playercash{
+	position: absolute;
+    left: 500px;
+    top: 10px;
+
+}
+
+.playermoney{
+	position: absolute;
+    left: 500px;
+    top: 60px; 
+
+}
+
+.icon_resource{
+	position: absolute;
+	left: 0px;
+    top: 0px;
+}

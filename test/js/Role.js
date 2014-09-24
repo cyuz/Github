@@ -4,6 +4,7 @@ var RoleFunc = function()
     const ROLE_COUNT = 6;
     
     this.char_roles = new Array(ROLE_COUNT);
+    this.orbDatas = new Array();
     this.characterDatas = new Array();
     this.maxTotalhp = 0;
     this.currenthp = 0;
@@ -11,6 +12,12 @@ var RoleFunc = function()
     this.sameElementComboHit = 0;
     this.animationCount = 0;
     
+    function Orb(isEnergyOrb, basicElement, hitCount)
+    {
+        this.isEnergyOrb = isEnergyOrb;
+        this.basicElement = basicElement;
+        this.hitCount = hitCount;
+    }
 
     function CharacterDataInfo(name, basicElement, ap, hp, icon, skillEnergyCost)
     {
@@ -24,12 +31,19 @@ var RoleFunc = function()
     
     this.init = function()
     {
-        this.characterDatas.push(new CharacterDataInfo("role_1", "red", 30, 800, "CelesSprite.png", [100,250,500]));
-        this.characterDatas.push(new CharacterDataInfo("role_2", "green", 40, 700, "Edgar_Roni_Figaro_small.png", [100,250,500]));
-        this.characterDatas.push(new CharacterDataInfo("role_3", "blue", 50, 600, "Locke_Cole_small.png", [100,250,500]));
-        this.characterDatas.push(new CharacterDataInfo("role_4", "red", 60, 500, "Mog_(Final_Fantasy_VI)_small.png", [100,250,500]));
-        this.characterDatas.push(new CharacterDataInfo("role_5", "green", 70, 400, "Shadow_(Final_Fantasy_VI)_small.png", [100,250,500]));
-        this.characterDatas.push(new CharacterDataInfo("role_6", "blue", 80, 300, "Umaro_small.png", [100,250,500]));    
+        this.orbDatas.push(new Orb(false, 1, 1));
+        this.orbDatas.push(new Orb(false, 2, 1));
+        this.orbDatas.push(new Orb(false, 3, 1));
+        this.orbDatas.push(new Orb(true, 1, 1));
+        this.orbDatas.push(new Orb(true, 2, 1));
+        this.orbDatas.push(new Orb(true, 3, 1));
+        
+        this.characterDatas.push(new CharacterDataInfo("role_1", 1, 30, 800, "CelesSprite.png", [100,250,500]));
+        this.characterDatas.push(new CharacterDataInfo("role_2", 2, 40, 700, "Edgar_Roni_Figaro_small.png", [100,250,500]));
+        this.characterDatas.push(new CharacterDataInfo("role_3", 3, 50, 600, "Locke_Cole_small.png", [100,250,500]));
+        this.characterDatas.push(new CharacterDataInfo("role_4", 1, 60, 500, "Mog_(Final_Fantasy_VI)_small.png", [100,250,500]));
+        this.characterDatas.push(new CharacterDataInfo("role_5", 2, 70, 400, "Shadow_(Final_Fantasy_VI)_small.png", [100,250,500]));
+        this.characterDatas.push(new CharacterDataInfo("role_6", 3, 80, 300, "Umaro_small.png", [100,250,500]));    
     }
     
     
@@ -176,7 +190,7 @@ var RoleFunc = function()
     
     this.giveOrb = function(posIndex, orbIndex)
     {
-        var orb = BallData.getBall(orbIndex);
+        var orb = this.orbDatas[orbIndex];
         this.char_roles[posIndex].acceptOrb(orb);
     }
     
@@ -193,7 +207,6 @@ var RoleFunc = function()
     
     this.conclude = function()
     {
-        //alert("conclude");
         for(var i=0; i<this.char_roles.length;i++)
         {
             if(this.char_roles[i] != null)
@@ -225,7 +238,7 @@ var RoleFunc = function()
             {
                  
                 //TODO change global game state;
-                Game.roundInit();
+                //Game.pause();
             }
             
         }
@@ -237,8 +250,9 @@ var RoleFunc = function()
     {
         this.name = "";
         this.hp = 0;
-
-        this.basicElement = "red";
+        this.ap = 0;
+        //element 0=none,1=fire,2=water,3=forest,4=dark?
+        this.basicElement = 0;
         this.skillKindie = "";
         this.onAttack = function(){
             //todo
@@ -279,14 +293,14 @@ var RoleFunc = function()
         
         this.acceptOrb = function(orb){
         
-            if(this.basicElement == orb.color)
+            if(this.basicElement == orb.basicElement)
             {
                 roleFuncManager.sameElementComboHit++;
-                this.changeEnergy(orb.energy);
+                this.changeEnergy(orb.hitCount * 30);
             }
             else
-            {            
-                this.changeEnergy(orb.energy / 2);
+            {
+                this.changeEnergy(orb.hitCount * 10);
             }
         };
         
@@ -338,15 +352,15 @@ var RoleFunc = function()
                     this.updatetl.fromTo(this.energyIcon, 1, {width:0}, {width:newWidth});
                     for(var i = this.oldDisplayStage; i < currentStage; i++)
                     {
-                        if(this.basicElement == "red")
+                        if(this.basicElement == 1)
                         {
                             this.updatetl.to(this.orbIcons[i], 0.1, {backgroundColor:"#FF0000"});
                         }
-                        else if(this.basicElement == "green")
+                        else if(this.basicElement == 2)
                         {
                             this.updatetl.to(this.orbIcons[i], 0.1, {backgroundColor:"#00FF00"});
                         }
-                        else if(this.basicElement == "blud")
+                        else if(this.basicElement == 3)
                         {
                             this.updatetl.to(this.orbIcons[i], 0.1, {backgroundColor:"#0000FF"});
                         }                   
@@ -375,15 +389,15 @@ var RoleFunc = function()
                 
                 for(var i = 0; i < currentStage; i++)
                 {
-                    if(this.basicElement == "red")
+                    if(this.basicElement == 1)
                     {
                         this.updatetl.to(this.orbIcons[i], 0.1, {backgroundColor:"#FF0000"});
                     }
-                    else if(this.basicElement == "green")
+                    else if(this.basicElement == 2)
                     {
                         this.updatetl.to(this.orbIcons[i], 0.1, {backgroundColor:"#00FF00"});
                     }
-                    else if(this.basicElement == "blud")
+                    else if(this.basicElement == 3)
                     {
                         this.updatetl.to(this.orbIcons[i], 0.1, {backgroundColor:"#0000FF"});
                     }                   
@@ -452,22 +466,25 @@ var RoleFunc = function()
                 
                 
                 var attackColor = "#000000";
-                if(this.basicElement == "red")
+                if(this.basicElement == 1)
                 {
                     attackColor = "#FF0000";
                 }
-                else if(this.basicElement == "green")
+                else if(this.basicElement == 2)
                 {
                     attackColor = "#00FF00";
                 }
-                else if(this.basicElement == "blue")
+                else if(this.basicElement == 3)
                 {
                     attackColor = "#0000FF";
                 }
 
 
+                //create a TimelineLite instance
+                var tl = new TimelineLite();
+
                 //change color and size
-                this.updatetl.to(this.attackIcon, 0.1, {backgroundColor:attackColor, width:(25 * (attackLevel)), height:(25 * (attackLevel))});
+                tl.to(this.attackIcon, 0.1, {backgroundColor:attackColor, width:(25 * (attackLevel)), height:(25 * (attackLevel))});
 
                 var centerPointOffsetLeft = 270;
                 if(this.attackIconOffsetLeft > 270)
@@ -480,25 +497,28 @@ var RoleFunc = function()
                 }
                 
                 //move
-                this.updatetl.to(this.attackIcon, 1, {bezier:{type:"thru", values:[{left:this.attackIconOffsetLeft, top:this.attackIconOffsetTop}, {left:centerPointOffsetLeft, top:"-450px"}, {left:"270px", top:"-900px"}]}, directionalRotation:"1080_cw", ease:Power1.easeInOut, onComplete:doDamage, onCompleteParams:[this.basicElement, attackLevel]});
+                tl.to(this.attackIcon, 1, {bezier:{type:"thru", values:[{left:this.attackIconOffsetLeft, top:this.attackIconOffsetTop}, {left:centerPointOffsetLeft, top:"-450px"}, {left:"270px", top:"-900px"}]}, directionalRotation:"1080_cw", ease:Power1.easeInOut});
 
                 //change color to transparent
-                this.updatetl.to(this.attackIcon, 0.1, {backgroundColor:"transparent"});
+                tl.to(this.attackIcon, 0.1, {backgroundColor:"transparent"});
 
                 //moveback
-                this.updatetl.to(this.attackIcon, 0.1, {left:"", top:"", width:"", height:"", directionalRotation:""});                                  
+                tl.to(this.attackIcon, 0.1, {left:"", top:"", width:"", height:"", directionalRotation:""});                                  
                 
                 //then call cleanOrbs
-                this.updatetl.call(consumePlayerAttackEnergy, [this, attackLevel]);
+                tl.call(consumePlayerAttackEnergy, [this, attackLevel]);
                 
             }
             else
             {
-                //call cleanOrbs
-                this.updatetl.call(consumePlayerAttackEnergy, [this, attackLevel]);
+                player.consumeAttackEnergy(attackLevel);
             }
         };
         
+        var alertComplete = function()
+        {
+            alert("oncomplete");
+        }
         
         this.handleDamage = function(orb)
         {
@@ -570,15 +590,15 @@ var RoleFunc = function()
             this.attackIcon = attackerDiv;
             this.roleIcon.setAttribute('src', "pic/" + this.icon);
             
-            if(this.basicElement == "red")
+            if(this.basicElement == 1)
             {
                 TweenLite.to(mainDiv, 0.1, {backgroundColor:"#800000"});
             }
-            else if(this.basicElement == "green")
+            else if(this.basicElement == 2)
             {
                 TweenLite.to(mainDiv, 0.1, {backgroundColor:"#008000"});
             }
-            else if(this.basicElement == "blue")
+            else if(this.basicElement == 3)
             {
                 TweenLite.to(mainDiv, 0.1, {backgroundColor:"#000080"});
             }            
@@ -618,12 +638,6 @@ var RoleFunc = function()
         hpdiv.innerHTML = "hp:" + currenthp + "/" + maxTotalhp + ", shiled:" + shieldValue;
     }
     
-    
-    function doDamage(element, attackLevel)
-    {
-        //TODO, change to skill later
-        //alert(element + ":" + attackLevel);
-    }
     
     
     
