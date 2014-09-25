@@ -10,97 +10,122 @@
 
         <!-- <script src="http://code.jquery.com/jquery-2.1.1.js"></script> -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="js/TeamManager.js"></script>
+        <script>
+            function allowDrop(ev) {
+                ev.preventDefault();
+            }
+
+            function drag(ev) {
+                ev.dataTransfer.setData("text/html", ev.target.id);
+            }
+
+            function div_drop(ev) {
+                ev.preventDefault();
+                var data = ev.dataTransfer.getData("text/html");
+                if($("#"+ev.target.id)[0].tagName == "DIV")
+                {
+                    var target_img = ev.target.id + "_img";
+                    $("#"+target_img)[0].src = document.getElementById(data).src;
+                }
+                else
+                {
+                    var target_img = ev.target.id;
+                    $("#"+target_img)[0].src = document.getElementById(data).src;
+                }
+                //ev.target.appendChild(document.getElementById(data));
+            }             
+        </script>
 
     </head>
 
     <body>
         <div id="main" class="main">
-            <div id="teamView" class="view red">
-                <div id="playerDataView" class="playerdata blue">
-                    <div id="playerlv" class="playerLevel grey">
-                    lv:99
-                    </div>                
-                    <div id="playername" class="playername grey">
+            <div id="teamView" class="view teamView">
+                <div id ="playerlevel" class="playerlevel transparent_green">
+                    lv
+                </div>
+                <div id ="playername" class="playername transparent_green">
                     name
-                    </div>
-                    <div id="playercash" class="playeresource playercash grey">
-                    <img src="image/icon_cash.png" class="icon_resource">
-                    123456
-                    </div>                    
-                    <div id="playermoney" class="playeresource playermoney grey">
-                     <img src="image/icon_money.png" class="icon_resource">
-                    123456
+                </div>
+                <div id ="playercash" class="playercash playeresource transparent_green">
+                    <img id="iocn_resource" src="image/icon_cash.png" class="icon_resource"/>
+                    <div id ="value" class="resource_value transparent_green">
+                        1234567
                     </div>
                 </div>
-                <div id="stageDataView" class="stagedata green">
-                    <div id="stageName" class="stageName">
-                    stageName
+                <div id ="playermoney" class="playermoney playeresource transparent_green">
+                    <img id="iocn_resource" src="image/icon_money.png" class="icon_resource"/>
+                    <div id ="value" class="resource_value transparent_green">
+                        1234567
                     </div>
-                    <div id="stageBossImg" class="stageBossImg grey">                   
-                    </div>                    
                 </div>
-                <div id="teamDataView" class="teamdata bk_blue">
-                     <div id="selectedRoleView" class="selectedRoles red">
-                        <div id="selected_role_0" class="selectedRole green">                     
-                            <img src="image/icon_base.png" class="icon_base"/>
-                            <div id="selected_role_icon_0" class ="selectedRole_icon orange">                                
-                            </div>   
-                        </div>
-                        <div id="selected_role_1" class="selectedRole green">
-                            <img src="image/icon_base.png" class="icon_base"/>
-                            <div id="selected_role_icon_1" class ="selectedRole_icon orange"></div>
-                            </div>
-                        <div id="selected_role_2" class="selectedRole green">
-                            <img src="image/icon_base.png" class="icon_base"/>   
-                            <div id="selected_role_icon_2" class ="selectedRole_icon orange">
-                            </div>
-                        </div>
-                        <div id="selected_role_3" class="selectedRole green">
-                            <img src="image/icon_base.png" class="icon_base"/>     
-                            <div id="selected_role_icon_3" class ="selectedRole_icon orange">
-                            </div>
-                        </div>
-                        <div id="selected_role_4" class="selectedRole green">
-                            <img src="image/icon_base.png" class="icon_base"/>     
-                            <div id="selected_role_icon_4" class ="selectedRole_icon orange">
-                            </div>
-                        </div>
-                        <div id="selected_role_5" class="selectedRole green">
-                            <img src="image/icon_base.png" class="icon_base"/>     
-                            <div id="selected_role_icon_5" class ="selectedRole_icon orange">
-                            </div>
-                        </div>                        
-                     </div>                     
-                     <div id="roleView" class="rolearea green">                     
-                        <div id="role_0" class="role blue">                        
-                        </div>
-                        <div id="role_1" class="role blue">                        
-                        </div>     
-                        <div id="role_1" class="role blue">                        
-                        </div>   
-                        <div id="role_1" class="role blue">                        
-                        </div>   
-                        <div id="role_1" class="role blue">                        
-                        </div>   
-                        <div id="role_1" class="role blue">                        
-                        </div>   
-                        <div id="role_1" class="role blue">                        
-                        </div>               
-                        <div id="role_1" class="role blue">                        
-                        </div>     
-                        <div id="role_1" class="role blue">                        
-                        </div>     
-                        <div id="role_1" class="role blue">                        
-                        </div>     
-                        <div id="role_1" class="role blue">                        
-                        </div>     
-                        <div id="role_1" class="role blue">                        
-                        </div>                             
-                     </div>
+                <div id="stagedata" class="stagedata transparent_green">          
+                    <div id ="stagename" class="stagename transparent_green">
+                        stagename
+                    </div>            
+                    <div id ="bossimg" class="bossimg transparent_green">
+                    </div>                      
+                </div>
+                <div id ="selected_role_0" class="selected_role selected_role_0 transparent_green" ondrop="div_drop(event)" ondragover="allowDrop(event)">
+                    <img id ="selected_role_0_img" class="icon_role" ondrop="img_drop(event)" ondragover="allowDrop(event)"/>
+                </div>       
+                <div id ="selected_role_1" class="selected_role selected_role_1 transparent_green" ondrop="div_drop(event)" ondragover="allowDrop(event)">
+                    <img id ="selected_role_1_img" class="icon_role"/>
+                </div>
+                <div id ="selected_role_2" class="selected_role selected_role_2 transparent_green" ondrop="div_drop(event)" ondragover="allowDrop(event)">
+                    <img id ="selected_role_2_img" class="icon_role"/>
                 </div> 
-                <div id="operationView" class="operationMenu red">
-                    <img id="icon_return" src="image/icon_return.png" class="icon_return">                    
-                </div>
+                <div id ="selected_role_3" class="selected_role selected_role_3 transparent_green" ondrop="div_drop(event)" ondragover="allowDrop(event)">
+                    <img id ="selected_role_3_img" class="icon_role"/>
+                </div>                 
+                <div id ="selected_role_4" class="selected_role selected_role_4 transparent_green" ondrop="div_drop(event)" ondragover="allowDrop(event)">
+                    <img id ="selected_role_4_img" class="icon_role"/>
+                </div> 
+                <div id ="selected_role_5" class="selected_role selected_role_5 transparent_green" ondrop="div_drop(event)" ondragover="allowDrop(event)">
+                    <img id ="selected_role_5_img" class="icon_role"/>
+                </div>        
+                <div id ="role_area" class="role_area transparent_green">                      
+                    <div class ="role transparent_green">
+                        <img id ="role_1_img" src="image/1.png" class="icon_role" draggable="true" ondragstart="drag(event)"/>
+                    </div>
+                    <div class ="role transparent_green">
+                        <img id ="role_2_img" src="image/2.png" class="icon_role" draggable="true" ondragstart="drag(event)"/>
+                    </div>
+                    <div class ="role transparent_green">
+                        <img id ="role_3_img" src="image/3.png" class="icon_role" draggable="true" ondragstart="drag(event)"/>
+                    </div>
+                    <div class ="role transparent_green">
+                        <img id ="role_4_img" src="image/4.png" class="icon_role" draggable="true" ondragstart="drag(event)"/>
+                    </div>
+                    <div class ="role transparent_green">
+                        <img id ="role_5_img" src="image/5.png" class="icon_role" draggable="true" ondragstart="drag(event)"/>
+                    </div>
+                    <div class ="role transparent_green">
+                        <img id ="role_6_img" src="image/6.png" class="icon_role" draggable="true" ondragstart="drag(event)"/>
+                    </div>                    
+                    <div class ="role transparent_green">
+                        <img id ="role_7_img" src="image/7.png" class="icon_role" draggable="true" ondragstart="drag(event)"/>
+                    </div>   
+                    <div class ="role transparent_green">
+                        <img id ="role_8_img" src="image/8.png" class="icon_role" draggable="true" ondragstart="drag(event)"/>
+                    </div>   
+                    <div class ="role transparent_green">
+                        <img id ="role_9_img" src="image/9.png" class="icon_role" draggable="true" ondragstart="drag(event)"/>
+                    </div>   
+                    <div class ="role transparent_green">
+                        <img id ="role_10_img" src="image/10.png" class="icon_role" draggable="true" ondragstart="drag(event)"/>
+                    </div>   
+                    <div class ="role transparent_green">
+                        <img id ="role_11_img" src="image/11.png" class="icon_role" draggable="true" ondragstart="drag(event)"/>
+                    </div>   
+                    <div class ="role transparent_green">
+                        <img id ="role_12_img" src="image/12.png" class="icon_role" draggable="true" ondragstart="drag(event)"/>
+                    </div>                        
+                </div>       
+                <div id ="menu" class="menu transparent_green">                      
+                    <img id="icon_return" src="image/icon_return.png" class="icon_return"/>
+                </div>                  
             </div>
         </div>
     </body>

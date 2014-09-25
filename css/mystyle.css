@@ -169,3 +169,7 @@ img {
 .grey {
   background-color:#989898;
 }
+
+.transparent_green {
+  background-color:rgba(0,200,0,0.5);
+}
