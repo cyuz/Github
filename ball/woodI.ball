@@ -1,6 +1,7 @@
 {
 	"id" : "woodI",
-	"image" : "forestBall.png",
+	"image" : "ball_g_1.png",
+	"css" : "ballImgSmall",
 	"color" : "green",
 	"energy" : 10
 }

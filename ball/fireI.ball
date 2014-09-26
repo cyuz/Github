@@ -1,6 +1,7 @@
 {
 	"id" : "fireI",
-	"image" : "fireBall.png",
+	"image" : "ball_r_1.png",
+	"css" : "ballImgSmall",
 	"color" : "red",
 	"energy" : 10
 }

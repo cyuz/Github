@@ -12,6 +12,7 @@ body {
 }
 
 .view {
+	background-image: url('../image/bg.jpg');
 	position: absolute;
 	width: 640px;
 	height: 930px;
@@ -26,7 +27,7 @@ body {
 
 .playerarea {
 	position: absolute;
-	left: 60px;
+	left: 50px;
 	top: -10px;
 	width: 90px;
 	height: 100px;

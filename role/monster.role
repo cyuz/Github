@@ -1,0 +1,11 @@
+{
+	"id" : "monster",
+	"name" : "m",
+	"index" : 0,
+	"cardPic" : "",
+	"fightPic" : "boss.png",
+	"hp" : 100,
+	"color" : "red",
+	"skillCost" : [100,300],
+	"skill" : ["skill1","skill2"]
+}

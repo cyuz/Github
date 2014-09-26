@@ -1,0 +1,7 @@
+{
+	"id" : "skill1",
+	"skillName" : "小火球",
+	"imgsrc" : "",
+	"effect" : "damage",
+	"ap" : 123
+}

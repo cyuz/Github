@@ -1,6 +1,7 @@
 {
 	"id" : "waterII",
-	"image" : "",
+	"image" : "ball_b_2.png",
+	"css" : "ballImgMid",
 	"color" : "blue",
 	"energy" : 20
 }

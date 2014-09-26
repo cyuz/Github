@@ -1,6 +1,7 @@
 {
 	"id" : "woodIII",
-	"image" : "",
+	"image" : "ball_g_3.png",
+	"css" : "ballImgBig",
 	"color" : "green",
 	"energy" : 30
 }

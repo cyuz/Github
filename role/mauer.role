@@ -1,0 +1,11 @@
+{
+	"id" : "mauer",
+	"name" : "Mauer",
+	"index" : 0,
+	"cardPic" : "",
+	"fightPic" : "",
+	"hp" : 100,
+	"color" : "red",
+	"skillCost" : [100,300],
+	"skill" : ["skill1","skill2"]
+}

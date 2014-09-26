@@ -8,21 +8,30 @@
         <link rel="stylesheet" type="text/css" href="css/mystyle.css">
 
         <!-- <script src="http://code.jquery.com/jquery-2.1.1.js"></script> -->
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="js/jquery-1.11.1.min.js"></script>
         <script src="js/TweenMax.min.js"></script>
         <script src="js/paper-core.min.js"></script>
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenLite.min.js"></script>
+        <script src="js/easing/EasePack.min.js"></script>
 
+        <script src="js/MissionData.js"></script>
         <script src="js/BallData.js"></script>
+        <script src="js/RoleData.js"></script>
+        <script src="js/SkillData.js"></script>
         <script src="js/Role.js"></script>
+        <script src="js/Monster.js"></script>
         <script src="js/Game.js"></script>
+        <script src="js/Main.js"></script>
     </head>
 
     <body>
         <div id="main" class="main">
+            <div id="missionView" class="view missionView">
+                <img src="image/mission.jpg" />
+            </div>
             <div id="gameView" class="view gameView">
+                <div id="monsterBlood" class="monsterBlood"></div>
                 <div id="monster" class="monster">
-                    <img src="image/boss.png" />
+                    <img id="monsterImg" />
                 </div>
                 <div id="game" class="game"></div>
                 <div id="player_area" class="playerarea"></div>
