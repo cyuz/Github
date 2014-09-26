@@ -30,32 +30,44 @@ var TeamManager = function()
         
         
         selectedRolesDiv[0] = createDiv($("#teamView")[0], "selected_role_0", ["selected_role", "selected_role_0", "transparent_green"]);
-        createImg(selectedRolesDiv[0], "selected_role_0_img", undefined, ["icon_role"]); 
+        var roleImg = createImg(selectedRolesDiv[0], "selected_role_0_img", undefined, ["icon_role"]);
+        roleImg.setAttribute("draggable", true);
+        roleImg.setAttribute("ondragstart", "TeamManager.drag(event)");        
         selectedRolesDiv[0].setAttribute("ondrop", "TeamManager.drop(event)");
         selectedRolesDiv[0].setAttribute("ondragover", "TeamManager.allowDrop(event)");
         
         selectedRolesDiv[1] = createDiv($("#teamView")[0], "selected_role_1", ["selected_role", "selected_role_1", "transparent_green"]);
-        createImg(selectedRolesDiv[1], "selected_role_1_img", undefined, ["icon_role"]);
+        var roleImg = createImg(selectedRolesDiv[1], "selected_role_1_img", undefined, ["icon_role"]);
+        roleImg.setAttribute("draggable", true);
+        roleImg.setAttribute("ondragstart", "TeamManager.drag(event)");        
         selectedRolesDiv[1].setAttribute("ondrop", "TeamManager.drop(event)");
         selectedRolesDiv[1].setAttribute("ondragover", "TeamManager.allowDrop(event)");        
 
         selectedRolesDiv[2] = createDiv($("#teamView")[0], "selected_role_2", ["selected_role", "selected_role_2", "transparent_green"]);
-        createImg(selectedRolesDiv[2], "selected_role_2_img", undefined, ["icon_role"]);
+        var roleImg = createImg(selectedRolesDiv[2], "selected_role_2_img", undefined, ["icon_role"]);
+        roleImg.setAttribute("draggable", true);
+        roleImg.setAttribute("ondragstart", "TeamManager.drag(event)");        
         selectedRolesDiv[2].setAttribute("ondrop", "TeamManager.drop(event)");
         selectedRolesDiv[2].setAttribute("ondragover", "TeamManager.allowDrop(event)");        
     
         selectedRolesDiv[3] = createDiv($("#teamView")[0], "selected_role_3", ["selected_role", "selected_role_3", "transparent_green"]);
-        createImg(selectedRolesDiv[3], "selected_role_3_img", undefined, ["icon_role"]);
+        var roleImg = createImg(selectedRolesDiv[3], "selected_role_3_img", undefined, ["icon_role"]);
+        roleImg.setAttribute("draggable", true);
+        roleImg.setAttribute("ondragstart", "TeamManager.drag(event)");        
         selectedRolesDiv[3].setAttribute("ondrop", "TeamManager.drop(event)");
         selectedRolesDiv[3].setAttribute("ondragover", "TeamManager.allowDrop(event)");        
 
         selectedRolesDiv[4] = createDiv($("#teamView")[0], "selected_role_4", ["selected_role", "selected_role_4", "transparent_green"]);
-        createImg(selectedRolesDiv[4], "selected_role_4_img", undefined, ["icon_role"]);
+        var roleImg = createImg(selectedRolesDiv[4], "selected_role_4_img", undefined, ["icon_role"]);
+        roleImg.setAttribute("draggable", true);
+        roleImg.setAttribute("ondragstart", "TeamManager.drag(event)");        
         selectedRolesDiv[4].setAttribute("ondrop", "TeamManager.drop(event)");
         selectedRolesDiv[4].setAttribute("ondragover", "TeamManager.allowDrop(event)");        
 
         selectedRolesDiv[5] = createDiv($("#teamView")[0], "selected_role_5", ["selected_role", "selected_role_5", "transparent_green"]);
-        createImg(selectedRolesDiv[5], "selected_role_5_img", undefined, ["icon_role"]);
+        var roleImg = createImg(selectedRolesDiv[5], "selected_role_5_img", undefined, ["icon_role"]);
+        roleImg.setAttribute("draggable", true);
+        roleImg.setAttribute("ondragstart", "TeamManager.drag(event)");        
         selectedRolesDiv[5].setAttribute("ondrop", "TeamManager.drop(event)");
         selectedRolesDiv[5].setAttribute("ondragover", "TeamManager.allowDrop(event)");                       
         
@@ -115,36 +127,39 @@ var TeamManager = function()
 
     function drag(ev) {
         ev.dataTransfer.setData("text", ev.target.id);
+        console.log(ev.target.id);
     }
 
     function drop(ev) {
-        ev.preventDefault();
+        ev.preventDefault();   
         var data = ev.dataTransfer.getData("text");
         var srcImg = document.getElementById(data);
-        var tragetImgId = undefined;
+        var targetImgId = undefined;
         if($("#"+ev.target.id)[0].tagName == "DIV")
         {
-            tragetImgId = $("#"+ ev.target.id + "> img")[0].id;
-            $("#"+ ev.target.id + "> img")[0].src = srcImg.src;
-            $("#"+ ev.target.id + "> img")[0].setAttribute("draggable", false);            
+            targetImgId = $("#"+ ev.target.id + "> img")[0].id;
+            $("#"+ ev.target.id + "> img")[0].src = srcImg.src;          
+            $("#"+ ev.target.id + "> img")[0].setAttribute("draggable", false);
         }
         else
         {
-            tragetImgId = $("#"+ ev.target.id)[0].id;
+            targetImgId = $("#"+ ev.target.id)[0].id;
             $("#"+ ev.target.id)[0].src = srcImg.src;
             $("#"+ ev.target.id)[0].setAttribute("draggable", false);
         }
         
-        var oldImgId = selectedRolesArray[tragetImgId];
+        var oldImgId = selectedRolesArray[targetImgId];
         if(oldImgId != undefined)
         {
+            console.log("old:" +oldImgId);
             var oldImg = document.getElementById(oldImgId);
             oldImg.setAttribute("draggable", true);
             oldImg.style.opacity = "1";
         }
         srcImg.setAttribute("draggable", false);
         srcImg.style.opacity = "0.3";
-        selectedRolesArray[tragetImgId] = data;
+        selectedRolesArray[targetImgId] = data;
+        console.log(targetImgId + ":" + data);
     }      
     
     
@@ -241,7 +256,7 @@ var TeamManager = function()
             
             createRoleView(temp[0], roleID);                                               
         }
-        $('#role_area').tinyscrollbar();
+        //$('#role_area').tinyscrollbar();
     }
         
     

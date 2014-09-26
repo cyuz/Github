@@ -40,7 +40,7 @@ var RoleFunc = function()
     {
         if(this.charactersDiv == undefined)
         {
-            alert("not bind to div");
+            console.log("not bind to div");
             return;
         }
         
@@ -75,7 +75,7 @@ var RoleFunc = function()
     {
         if(charactersDiv == undefined)
         {
-            alert("not bind to div");
+            console.log("not bind to div");
             return;
         }
         
@@ -98,6 +98,7 @@ var RoleFunc = function()
         var characterImg = document.createElement('img');
         divIdName = 'role_img';
         characterImg.setAttribute('id',divIdName);        
+        characterImg.className = "role_img";
         characterdiv.appendChild(characterImg);                
         
         return characterdiv;
@@ -116,7 +117,7 @@ var RoleFunc = function()
     
     this.conclude = function()
     {
-        //alert("conclude");
+        //console.log("conclude");
         for(var i=0; i<this.char_roles.length;i++)
         {
             if(this.char_roles[i] != null)
@@ -205,7 +206,7 @@ var RoleFunc = function()
         this.updateEnergyDisplay = function()
         {  
             var width = this.energy / 999 * 100;
-            this.updatetl.to(this.energyIcon, 1, width);            
+            this.updatetl.to(this.energyIcon, 1, {width:width});            
         }
         
         this.consumeAttackEnergy = function(attackLevel)
@@ -240,9 +241,11 @@ var RoleFunc = function()
         this.normalAttack = function(attackLevel)
         {
         
-            console.log("comboHitTimes times --" + this.comboHitTimes);           
-                                                                                 
+            console.log("index: " + this.index + ",comboHitTimes times --" + this.comboHitTimes);           
+                
+            var centerPos = (this.index < 3) ? "0px": "550px";            
             
+            var ballDivArray = new Array();
             
             for(var i=0;i<this.orbQueue.length;i++)
             {
@@ -250,17 +253,13 @@ var RoleFunc = function()
                 
                 var ballDiv = createBalldiv(roleFuncManager.charactersDiv, this.index, orb.color, orb.image);                
                 
-                var centerPos = (this.index < 3) ? "0px": "550px";
-                
-                console.log("index:" + this.index + ", centerPos:" + centerPos);
-                
+                ballDivArray[i] = ballDiv;
                 
                 //move
-                this.updatetl.to(ballDiv, 1, {bezier:{type:"thru", values:[{left:ballDiv.offsetLeft, top:ballDiv.offsetTop}, {left:centerPos, top:"-450px"}, {left:"270px", top:"-900px"}]}, directionalRotation:"1080_cw", ease:Power1.easeInOut, onComplete:removeBallDiv, onCompleteParams:[roleFuncManager.charactersDiv, ballDiv]});
-            
-                //remove
-                
-            }                                      
+                //this.updatetl.to(ballDiv, 1, {bezier:{type:"thru", values:[{left:ballDiv.offsetLeft, top:ballDiv.offsetTop}, {left:centerPos, top:"-450px"}, {left:"270px", top:"-900px"}]}, ease:Power1.easeInOut, onComplete:removeBallDiv, onCompleteParams:[roleFuncManager.charactersDiv, ballDiv]});
+            }                                                            
+
+            this.updatetl.staggerTo(ballDivArray, 1.5, {bezier:{type:"thru", values:[{left:ballDiv.offsetLeft, top:ballDiv.offsetTop}, {left:centerPos, top:"-450px"}, {left:"270px", top:"-900px"}]}, ease:Power1.easeInOut, onComplete:removeBallDivTween, onCompleteParams:[roleFuncManager.charactersDiv, "{self}"]}, 0.5, removeAllBallDiv);
             
             //then call cleanOrbs
             this.updatetl.call(finishNormalAttack, [this]);
@@ -273,7 +272,9 @@ var RoleFunc = function()
             var damage = this.ap * this.comboHitTimes * this.roleFuncManager.sameElementComboHit;
             Monster.getHurt(this.index, this.color, damage);
             this.comboHitTimes = 0;
+            this.orbQueue.length = 0;
             roleFuncManager.removeAnimationCount();
+            console.log("index:" + this.index+",damage:"+damage);
         }
         
         
@@ -297,9 +298,10 @@ var RoleFunc = function()
             }            
 
         };
-        
+       
+     
 
-        
+
     }
 
 
@@ -344,8 +346,25 @@ var RoleFunc = function()
     
     function removeBallDiv(parentdiv, ballDiv)
     {
-        
+        parentdiv.removeChild(ballDiv);
     }
+    
+    function removeBallDivTween(parentdiv, tween)
+    {
+        console.log("ball remove");
+        parentdiv.removeChild(tween.target);
+    }
+    
+    var removeAllBallDiv = function(parentdiv, ballArray)
+    {
+        console.log("all ball remove");
+        for(var i=0;i<ballArray.length;i++)
+        {
+            parentdiv.removeChild(ballArray[i]);
+        }
+    }        
+    
+    
     
     
     
