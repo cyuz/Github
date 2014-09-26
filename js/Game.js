@@ -20,12 +20,12 @@ var Game = function() {
 
 	var roleControlUnit = new RoleFunc();
 
+	var ballProbabilityPolicy = [];
+
 	function init() {
 
 		createRoad();
 		createBridge();
-
-		gameToWait();
 
 		roleControlUnit.init();
 		//give the display div, and function to stop/start ball moving
@@ -34,6 +34,19 @@ var Game = function() {
 		roleControlUnit.createRole(0, 1, 2, 3, 4, 5);
 
 		//speedNormal();
+	}
+
+	function setMission(missionId) {
+		var missionData = MissionData.getData(missionId);
+		ballProbabilityPolicy = [];
+		for (var key in missionData.ballProbabilityPolicy) {
+			var value = missionData.ballProbabilityPolicy[key];
+			for (var index = 0; index < value; index++) {
+				ballProbabilityPolicy.push(key);
+			}
+		}
+
+		Monster.setMonster("monster");
 	}
 
 	function gameToWait() {
@@ -162,19 +175,15 @@ var Game = function() {
 	}
 
 	function getRandomBall() {
-		var color = Math.random() * 3 >> 0;
-		if (color == 0) {
-			return BallData.getBall("fireI");
-		} else if (color == 1) {
-			return BallData.getBall("waterI");
-		} else {
-			return BallData.getBall("woodI");
-		}
+		var missionData = MissionData.getData("fireBoss");
+		var index = Math.random() * ballProbabilityPolicy.length >> 0;
+		var ballId = ballProbabilityPolicy[index];
+		return BallData.getBall(ballId);
 	}
 
 	function setBallData(ball, ballData) {
 		var img = document.createElement("img");
-		img.className = "ballColorImg"
+		img.className = ballData.css;
 		img.src = "image/" + ballData.image;
 		$(ball).data("id", ballData.id);
 		$(ball).append(img);
@@ -274,7 +283,8 @@ var Game = function() {
 		} else if (arriveCount > ROAD_COUNT && arriveCount == (combo + 1) * ROAD_COUNT) {
 			gamePause();
 			roleControlUnit.conclude();
-			//gameToWait();
+
+			Monster.getHurt(Math.random() * 6 >> 0, "red", 1 + Math.random() * 10 >> 0);
 		}
 	}
 
@@ -332,6 +342,7 @@ var Game = function() {
 
 	return {
 		"init" : init,
+		"setMission" : setMission,
 		"pause" : gamePause,
 		"resume" : gameResume,
 		"roundInit" : gameToWait

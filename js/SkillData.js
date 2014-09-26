@@ -1,15 +1,15 @@
-var MissionData = function() {
+var SkillData = function() {
 	var MAX_COUNT = 1;
 	var list = {}
 	var completeCount = 0;
 
 	function init() {
-		loadData("fireBoss.mission");
+		loadData("skill1.skill");
 	}
 
 	function loadData(fileName) {
 		var request = $.ajax({
-			url : "mission/" + fileName,
+			url : "skill/" + fileName,
 			type : "GET"
 		});
 
@@ -21,7 +21,7 @@ var MissionData = function() {
 		list[jsonData["id"]] = jsonData;
 		completeCount++;
 		if (completeCount == MAX_COUNT) {
-			Main.missionReady();
+			Main.skillReady();
 		}
 	}
 

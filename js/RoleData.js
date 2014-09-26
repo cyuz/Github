@@ -1,15 +1,16 @@
-var MissionData = function() {
-	var MAX_COUNT = 1;
+var RoleData = function() {
+	var MAX_COUNT = 2;
 	var list = {}
 	var completeCount = 0;
 
 	function init() {
-		loadData("fireBoss.mission");
+		loadData("mauer.role");
+		loadData("monster.role");
 	}
 
 	function loadData(fileName) {
 		var request = $.ajax({
-			url : "mission/" + fileName,
+			url : "role/" + fileName,
 			type : "GET"
 		});
 
@@ -21,7 +22,7 @@ var MissionData = function() {
 		list[jsonData["id"]] = jsonData;
 		completeCount++;
 		if (completeCount == MAX_COUNT) {
-			Main.missionReady();
+			Main.roleReady();
 		}
 	}
 

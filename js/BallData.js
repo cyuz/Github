@@ -1,6 +1,4 @@
 var BallData = function() {
-	$(document).ready(init);
-
 	var BALL_COUNT = 9;
 	var ballList = {}
 	var completeCount = 0;
@@ -31,7 +29,7 @@ var BallData = function() {
 		ballList[jsonData["id"]] = jsonData;
 		completeCount++;
 		if (completeCount == BALL_COUNT) {
-			Game.init();
+			Main.ballReady();
 		}
 	}
 
@@ -40,6 +38,7 @@ var BallData = function() {
 	}
 
 	return {
+		"init" : init,
 		"getBall" : getBall
 	}
 }();
