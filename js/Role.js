@@ -16,8 +16,11 @@ var RoleFunc = function()
     this.maxTotalhp = 0;
     this.sameElementComboHit = 0;
     this.animationCount = 0;
-    
+    this.bonusAPEffect = 0;
+    this.bonusHPEffect = 0;
+    this.bonusShieldEffect = 0;
 
+    
 
     
     this.init = function()
@@ -53,6 +56,10 @@ var RoleFunc = function()
             this.char_roles[i].bindDisplay(div);
             this.maxTotalhp += characterDataInfo.hp;
         }
+        
+        this.activePasiiveSkillEffect();
+        
+        Monster.setPlayerHp(this.maxTotalhp);
     }
     
     this.clearRoles = function()
@@ -105,8 +112,11 @@ var RoleFunc = function()
         
         
         return characterdiv;
-        
-        
+    }
+    
+    
+    this.activePasiiveSkillEffect = function()
+    {
     }
 
     
@@ -294,9 +304,14 @@ var RoleFunc = function()
         this.getNormalAttackValue = function(ballIndex)
         {
             var orb = this.orbQueue[ballIndex];
-            var damageValue = this.atk * orb.rate * this.roleFuncManager.sameElementComboHit;
-            var healValue = this.heal * orb.rate * this.roleFuncManager.sameElementComboHit;
-            var shieldValue = this.shield * orb.rate * this.roleFuncManager.sameElementComboHit;
+            var rate = 1;
+            if(orb.rate != undefined)
+            {
+                rate = orb.rate;
+            }
+            var damageValue = this.atk * rate * this.roleFuncManager.sameElementComboHit;
+            var healValue = this.heal * rate * this.roleFuncManager.sameElementComboHit;
+            var shieldValue = this.shield * rate * this.roleFuncManager.sameElementComboHit;
             var result = new Array();
             result[0] = damageValue;
             result[1] = healValue;
