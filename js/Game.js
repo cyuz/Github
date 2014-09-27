@@ -31,7 +31,7 @@ var Game = function() {
 		//give the display div, and function to stop/start ball moving
 		roleControlUnit.bind($("#player_area")[0], undefined);
 		//create the role with data corresponding to id
-		roleControlUnit.createRole(0, 1, 2, 3, 4, 5);
+		roleControlUnit.createRole("card001", "card002", "card003", "card004", "card005", "card006");
 
 		//speedNormal();
 	}

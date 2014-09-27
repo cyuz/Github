@@ -18,23 +18,10 @@ var RoleFunc = function()
     this.animationCount = 0;
     
 
-    function CharacterDataInfo(name, basicElement, ap, hp, icon)
-    {
-        this.name = name;
-        this.basicElement = basicElement;
-        this.ap = ap;
-        this.hp = hp;
-        this.icon = icon;
-    }    
+
     
     this.init = function()
     {
-        this.characterDatas.push(new CharacterDataInfo("role_1", "red", 30, 800, "CelesSprite.png"));
-        this.characterDatas.push(new CharacterDataInfo("role_2", "green", 40, 700, "Edgar_Roni_Figaro_small.png"));
-        this.characterDatas.push(new CharacterDataInfo("role_3", "blue", 50, 600, "Locke_Cole_small.png"));
-        this.characterDatas.push(new CharacterDataInfo("role_4", "red", 60, 500, "Mog_(Final_Fantasy_VI)_small.png"));
-        this.characterDatas.push(new CharacterDataInfo("role_5", "green", 70, 400, "Shadow_(Final_Fantasy_VI)_small.png"));
-        this.characterDatas.push(new CharacterDataInfo("role_6", "blue", 80, 300, "Umaro_small.png"));    
     }
     
     
@@ -56,8 +43,9 @@ var RoleFunc = function()
 
         
         for (var i = 0; i < arguments.length && i < ROLE_COUNT; i++)
-        {
-            var characterDataInfo = this.characterDatas[arguments[i]];
+        {            
+            var characterDataInfo = RoleData.getData(arguments[i]);            
+            
             this.char_roles[i] = new Character(i, characterDataInfo, this);
             var div = createCharacterDiv(this.charactersDiv, arguments[i]);
             this.char_roles[i].bindDisplay(div);
@@ -176,13 +164,19 @@ var RoleFunc = function()
 
     function Character(index, characterDataInfo, roleFuncManager)
     {
+        this.id = characterDataInfo.id
         this.index = index;
         this.roleFuncManager = roleFuncManager;
         this.name = characterDataInfo.name;
-        this.color = characterDataInfo.basicElement;
+        this.color = characterDataInfo.color;
         this.hp = characterDataInfo.hp;
-        this.ap = characterDataInfo.ap;
-        this.icon = characterDataInfo.icon;
+        this.atk = characterDataInfo.atk;
+        this.heal = characterDataInfo.heal;
+        this.shield = characterDataInfo.shield;
+        this.race = characterDataInfo.race;
+        this.skill = characterDataInfo.skill;
+        this.pSkill = characterDataInfo.pSkill;                        
+        this.fightPic = characterDataInfo.fightPic;
         this.comboHitTimes = 0;
         //-1 means none
         this.energyIcon = undefined;      
@@ -303,9 +297,9 @@ var RoleFunc = function()
         
         this.getNormalAttackValue = function()
         {
-            var damageValue = this.ap * this.comboHitTimes * this.roleFuncManager.sameElementComboHit;
-            var healValue = this.ap * this.comboHitTimes * this.roleFuncManager.sameElementComboHit;
-            var shieldValue = this.ap * this.comboHitTimes * this.roleFuncManager.sameElementComboHit;
+            var damageValue = this.atk * this.comboHitTimes * this.roleFuncManager.sameElementComboHit;
+            var healValue = this.heal * this.comboHitTimes * this.roleFuncManager.sameElementComboHit;
+            var shieldValue = this.shield * this.comboHitTimes * this.roleFuncManager.sameElementComboHit;
             var result = new Array();
             result[0] = damageValue;
             result[1] = healValue;
@@ -326,7 +320,7 @@ var RoleFunc = function()
         {
             this.energyIcon = mainDiv.querySelector("#energy_div");
             this.roleIcon = mainDiv.querySelector("#role_img");
-            this.roleIcon.setAttribute('src', "pic/" + this.icon);
+            this.roleIcon.setAttribute('src', "image/" + this.fightPic);
             this.rold_bk =  mainDiv.querySelector("#role_img_bk");
                         
             
