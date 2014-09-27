@@ -1,10 +1,15 @@
 var RoleData = function() {
-	var MAX_COUNT = 2;
+	var MAX_COUNT = 7;
 	var list = {}
 	var completeCount = 0;
 
 	function init() {
-		loadData("mauer.role");
+		loadData("card001.role");
+		loadData("card002.role");
+		loadData("card003.role");
+		loadData("card004.role");
+		loadData("card005.role");
+		loadData("card006.role");
 		loadData("monster.role");
 	}
 

@@ -348,5 +348,4 @@ var Game = function() {
 		"roundInit" : gameToWait
 	}
 
-}();
-
+}(); 
