@@ -118,6 +118,11 @@ var RoleFunc = function()
         this.char_roles[posIndex].acceptOrb(orb);
     }
     
+    this.activeSkill = function(posIndex)
+    {
+        this.char_roles[posIndex].activeSkill();
+    }
+    
     this.conclude = function()
     {
         //console.log("conclude");
@@ -288,7 +293,7 @@ var RoleFunc = function()
         
         this.getNormalAttackValue = function(ballIndex)
         {
-            var orb = orbQueue[ballIndex];
+            var orb = this.orbQueue[ballIndex];
             var damageValue = this.atk * orb.rate * this.roleFuncManager.sameElementComboHit;
             var healValue = this.heal * orb.rate * this.roleFuncManager.sameElementComboHit;
             var shieldValue = this.shield * orb.rate * this.roleFuncManager.sameElementComboHit;
@@ -335,7 +340,12 @@ var RoleFunc = function()
                this.energyIcon.src="image/water_energy.png";
             }            
 
-        };           
+        }
+
+        this.activeSkill = function(posIndex)
+        {
+            console.log("active skill");
+        }    
 
     }
 
@@ -388,6 +398,8 @@ var RoleFunc = function()
             parentdiv.removeChild(ballArray[i]);
         }
     }        
+    
+    
     
     
     

@@ -114,11 +114,14 @@ var TeamManager = function()
         {
             console.log("start " + role_0_id + " " + role_1_id + " " + role_2_id + " " + role_3_id + " " + role_4_id + " " + role_5_id);     
             Game.setRole([role_0_id, role_1_id, role_2_id, role_3_id, role_4_id, role_5_id]);
+            Game.roundInit();
+            Main.toGameView();
         }
     }
     
     function back() {
         //alert("return");
+        Main.toMissionView();
     }
     
     function allowDrop(ev) {
@@ -279,9 +282,7 @@ var TeamManager = function()
             var imgId = "role_" + data.id + "_img";
             imgidroleidmap[imgId] = data.id;          
         }
-        
-        
-        setMission("fireBoss");
+                
         
     }
     
