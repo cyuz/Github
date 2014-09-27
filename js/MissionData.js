@@ -1,10 +1,11 @@
 var MissionData = function() {
-	var MAX_COUNT = 1;
+	var MAX_COUNT = 2;
 	var list = {}
 	var completeCount = 0;
 
 	function init() {
-		loadData("fireBoss.mission");
+		loadData("mon001.mission");
+		loadData("mon002.mission");
 	}
 
 	function loadData(fileName) {

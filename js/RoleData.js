@@ -1,5 +1,5 @@
 var RoleData = function() {
-	var MAX_COUNT = 7;
+	var MAX_COUNT = 8;
 	var list = {}
 	var playerList = {}
 	var completeCount = 0;
@@ -12,6 +12,7 @@ var RoleData = function() {
 		loadData("card005.role");
 		loadData("card006.role");
 		loadData("monster.role");
+		loadData("monster2.role");
 	}
 
 	function loadData(fileName) {

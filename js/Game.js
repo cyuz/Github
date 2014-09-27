@@ -15,29 +15,30 @@ var Game = function() {
 
 	var arriveCount = 0;
 	var combo = 0;
+	var skyDownNum = 0;
 
 	var gameState;
 
-	var roleControlUnit = new RoleFunc();
-
 	var ballProbabilityPolicy = [];
+
+	/*
+	 * skill
+	 */
+	var skyDownRate = 1;
 
 	function init() {
 
 		createRoad();
 		createBridge();
 
-		roleControlUnit.init();
-		//give the display div, and function to stop/start ball moving
-		roleControlUnit.bind($("#player_area")[0], undefined);
-		//create the role with data corresponding to id
-		//roleControlUnit.createRole("card001", "card002", "card003", "card004", "card005", "card006");
+		RoleFunc.init();
 
-		//speedNormal();
+		hideTimeBar();
+		hideBonus();
 	}
 
 	function setRole(roleArray) {
-		roleControlUnit.createRole(roleArray[0], roleArray[1], roleArray[2], roleArray[3], roleArray[4], roleArray[5]);
+		RoleFunc.createRole(roleArray[0], roleArray[1], roleArray[2], roleArray[3], roleArray[4], roleArray[5]);
 	}
 
 	function setMission(missionId) {
@@ -50,12 +51,11 @@ var Game = function() {
 			}
 		}
 
-		Monster.setMonster("monster");
+		Monster.setMonster(missionData.mosterLayer);
 	}
 
 	function gameToWait() {
 		arriveCount = 0;
-		roleControlUnit.sameElementComboHit = 0;
 		combo = 0;
 
 		Monster.homing();
@@ -63,6 +63,8 @@ var Game = function() {
 		gameState = STATE_WAIT;
 
 		randomBridge();
+
+		initAllSkill();
 
 		addBall(createEnergyBall(), 0);
 		addBall(createEnergyBall(), 1);
@@ -141,14 +143,27 @@ var Game = function() {
 			$(event.target).addClass('hide');
 			if (gameState == STATE_WAIT) {
 				gameState = STATE_COUNTDOWN;
-				setTimeout(gameShow, 3000);
+				TweenLite.to($("#timerbar"), 3, {
+					width : 0,
+					ease : Linear.easeNone,
+					onComplete : gameShow
+				});
+				$("#timerbarArea").show();
 			}
 		}
 	}
 
 	function gameShow() {
+		hideTimeBar();
 		gameState = STATE_SHOW;
 		speedFaster();
+	}
+
+	function hideTimeBar() {
+		TweenLite.to($("#timerbar"), 0, {
+			width : 547
+		});
+		$("#timerbarArea").hide();
 	}
 
 	function createEnergyBall() {
@@ -274,28 +289,33 @@ var Game = function() {
 		var arriveId = ball.data("id");
 		var basicelement;
 
-		roleControlUnit.giveOrb(arriveRoad, arriveId);
+		RoleFunc.giveOrb(arriveRoad, arriveId);
 
 		ball.remove();
 
 		arriveCount++;
 		if (arriveCount == ROAD_COUNT) {
-			combo = roleControlUnit.sameElementComboHit;
+			combo = RoleFunc.getSameElementComboHit();
 			startSkyDown(combo);
 			if (combo <= 0) {
 				gamePause();
 				Monster.attack();
 				//gameToWait();
 			}
-		} else if (arriveCount > ROAD_COUNT && arriveCount == (combo + 1) * ROAD_COUNT) {
+		} else if (arriveCount > ROAD_COUNT && arriveCount == (skyDownNum + 1) * ROAD_COUNT) {
 			gamePause();
-			roleControlUnit.conclude();
+			RoleFunc.conclude();
 		}
 	}
 
 	function startSkyDown(combo) {
-		for (var i = 0; i < combo; i++) {
+		skyDownNum = combo * skyDownRate;
+
+		for (var i = 0; i < skyDownNum; i++) {
 			setTimeout(skyDown, i * 1000);
+		}
+		if (skyDownNum > 0) {
+			showBonus();
 		}
 	}
 
@@ -343,6 +363,39 @@ var Game = function() {
 		gamePause();
 		gameSpeed = 5;
 		gameStart();
+	}
+
+	function showBonus() {
+		TweenLite.to($("#bouns"), 0.8, {
+			left : 0,
+			ease : Expo.easeOut,
+			onComplete : bonusMoveRight
+		});
+	}
+
+	function bonusMoveRight() {
+		TweenLite.to($("#bouns"), 0.5, {
+			left : 800,
+			ease : Expo.easeIn,
+			onComplete : hideBonus
+		});
+	}
+
+	function hideBonus() {
+		TweenLite.to($("#bouns"), 0, {
+			left : -600
+		});
+	}
+
+	/*
+	 *
+	 */
+	function initAllSkill() {
+		setSkyDownRate(1);
+	}
+
+	function setSkyDownRate(rate) {
+		skyDownRate = rate;
 	}
 
 	return {

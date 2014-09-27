@@ -32,16 +32,16 @@ var Main = function() {
 		TeamManager.init();
 		TeamManager.createTeamRolesFromRoleData();
 
-		$("#missionBlue").data("mission", "fireBoss");
+		$("#missionBlue").data("mission", "mon001");
 		$("#missionBlue").click(goMission);
 
-		$("#missionRed").data("mission", "fireBoss");
+		$("#missionRed").data("mission", "mon001");
 		$("#missionRed").click(goMission);
 
-		$("#missionYellow").data("mission", "fireBoss");
+		$("#missionYellow").data("mission", "mon002");
 		$("#missionYellow").click(goMission);
 
-		$("#missionGreen").data("mission", "fireBoss");
+		$("#missionGreen").data("mission", "mon001");
 		$("#missionGreen").click(goMission);
 
 		//toMissionView();
@@ -61,8 +61,10 @@ var Main = function() {
 		//Game.roundInit();
 	}
 
-	function goMission() {
-		Game.setMission("fireBoss");
+	function goMission(e) {
+		var m = $(e.currentTarget).data("mission");
+		Game.setMission(m);
+		TeamManager.setMission(m);
 		toTeamView();
 	}
 
