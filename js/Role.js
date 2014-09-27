@@ -2,6 +2,14 @@ var RoleFunc = function()
 {
 
     const ROLE_COUNT = 6;
+    const MAX_ENERGY = 300;
+    const ENERGY_SIZE = 70;
+    const LEFT_CENTER_X = "0px";
+    const RIGHT_CENTER_X = "530px";
+    const BALL_FLY_TIME = 1;
+    const BALL_OVERLAP_TIME = 0.5;
+    const FUNCTION_DELAY_TIME = 1;
+    const ENERGY_UPDATE_TIME = 0.5;
     
     this.char_roles = new Array(ROLE_COUNT);
     this.characterDatas = new Array();
@@ -93,11 +101,11 @@ var RoleFunc = function()
         character_bk.className = "role_img_bk";
         characterdiv.appendChild(character_bk);            
         
-        var energydiv = document.createElement('div');
+        var energydiv = document.createElement('img');
         divIdName = 'energy_div';
         energydiv.setAttribute('id',divIdName);
         energydiv.className = "energybox";
-        energydiv.className += " energyboxcolor";
+        //energydiv.className += " energyboxcolor";
 
         characterdiv.appendChild(energydiv);             
         
@@ -203,9 +211,9 @@ var RoleFunc = function()
         this.changeEnergy = function(addValue)
         {
             this.energy += addValue;
-            if(this.energy > 999)
+            if(this.energy > MAX_ENERGY)
             {
-                this.energy = 999;
+                this.energy = MAX_ENERGY;
             }
             this.updateEnergyDisplay()            
         }
@@ -213,8 +221,8 @@ var RoleFunc = function()
         
         this.updateEnergyDisplay = function()
         {  
-            var width = this.energy / 999 * 70;
-            this.updatetl.to(this.energyIcon, 1, {width:width});            
+            var width = this.energy / MAX_ENERGY * ENERGY_SIZE;
+            this.updatetl.to(this.energyIcon, ENERGY_UPDATE_TIME, {width:width});            
         }
         
         this.consumeAttackEnergy = function(attackLevel)
@@ -251,7 +259,7 @@ var RoleFunc = function()
         
             console.log("index: " + this.index + ",comboHitTimes times --" + this.comboHitTimes);           
                 
-            var centerPos = (this.index < 3) ? "0px": "530px";            
+            var centerPos = (this.index < 3) ? LEFT_CENTER_X: RIGHT_CENTER_X;            
             
             //var ballDivArray = new Array();
             
@@ -269,23 +277,23 @@ var RoleFunc = function()
                     doDamage = true;
                 }
                 
-                //move
+                //move                
                 
                 var overLap = "+=0";
                 
                 if(i != 0)
                 {
-                    voerLap = "-=0.5";
+                    voerLap = "-=" + BALL_OVERLAP_TIME;
                 }
                 
-                this.updatetl.to(ballDiv, 1, {bezier:{type:"thru", values:[{left:ballDiv.offsetLeft, top:ballDiv.offsetTop}, {left:centerPos, top:"-450px"}, {left:"270px", top:"-730px"}]}, ease:Power1.easeInOut, onComplete:removeBallDiv, onCompleteParams:[roleFuncManager.charactersDiv, ballDiv, this, doDamage]}, overLap);
+                this.updatetl.to(ballDiv, BALL_FLY_TIME, {bezier:{type:"thru", values:[{left:ballDiv.offsetLeft, top:ballDiv.offsetTop}, {left:centerPos, top:"-450px"}, {left:"270px", top:"-730px"}]}, ease:Power1.easeInOut, onComplete:removeBallDiv, onCompleteParams:[roleFuncManager.charactersDiv, ballDiv, this, doDamage]}, overLap);
             }                                                            
 
             //this.updatetl.staggerTo(ballDivArray, 1.5, {bezier:{type:"thru", values:[{left:ballDiv.offsetLeft, top:ballDiv.offsetTop}, {left:centerPos, top:"-450px"}, {left:"270px", top:"-900px"}]}, ease:Power1.easeInOut, onComplete:removeBallDivTween, onCompleteParams:[roleFuncManager.charactersDiv, "{self}" ,this]}, 0, removeAllBallDiv);
             
             //then call cleanOrbs
             
-            this.updatetl.append(TweenLite.delayedCall(1, finishNormalAttack, [this] ));            
+            this.updatetl.append(TweenLite.delayedCall(FUNCTION_DELAY_TIME, finishNormalAttack, [this] ));            
             
             
                 
@@ -326,22 +334,22 @@ var RoleFunc = function()
             {
                 this.rold_bk.style.backgroundImage = "url(image/fire_bk.png)"; // change it
                 this.rold_bk.style.backgroundSize="cover";
+                this.energyIcon.src="image/fire_energy.png";
             }
             else if(this.color == "green")
             {
                 this.rold_bk.style.backgroundImage = "url(image/forest_bk.png)"; // change it
                 this.rold_bk.style.backgroundSize="cover";
+                this.energyIcon.src="image/forest_energy.png";
             }
             else if(this.color == "blue")
             {
                this.rold_bk.style.backgroundImage = "url(image/water_bk.png)"; // change it
                this.rold_bk.style.backgroundSize="cover";
+               this.energyIcon.src="image/water_energy.png";
             }            
 
-        };
-       
-     
-
+        };           
 
     }
 
