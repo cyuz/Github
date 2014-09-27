@@ -26,9 +26,9 @@
 
 .energybox {
 	width: 0px;
-	height: 15px;
-	left: 0px;
-	top: 0px;
+	height: 10px;
+	left: 5px;
+	top: 80px;
 	position: absolute;
 	border-radius: 6px;
 	margin-top: 4px;
@@ -162,4 +162,14 @@
 	left: 25px;
 	top: 25px;
 	position: absolute;
+}
+
+.role_img_bk{
+    left: 0px;
+	top: 0px;
+	position: absolute;
+	width: 90px;
+	height: 75px;
+	border-radius: 6px;
+	margin-top: 4px;    
 }

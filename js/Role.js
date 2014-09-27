@@ -83,9 +83,15 @@ var RoleFunc = function()
         var divIdName = 'character_'+index_num+'_div';
         characterdiv.setAttribute('id',divIdName);
         characterdiv.className = "rolebox";
-        characterdiv.className += " bk_purple";
+        //characterdiv.className += " bk_purple";
         
         charactersDiv.appendChild(characterdiv);        
+        
+        var character_bk = document.createElement('div');
+        divIdName = 'role_img_bk';
+        character_bk.setAttribute('id',divIdName);        
+        character_bk.className = "role_img_bk";
+        characterdiv.appendChild(character_bk);            
         
         var energydiv = document.createElement('div');
         divIdName = 'energy_div';
@@ -99,7 +105,8 @@ var RoleFunc = function()
         divIdName = 'role_img';
         characterImg.setAttribute('id',divIdName);        
         characterImg.className = "role_img";
-        characterdiv.appendChild(characterImg);                
+        characterdiv.appendChild(characterImg);              
+        
         
         return characterdiv;
         
@@ -206,7 +213,7 @@ var RoleFunc = function()
         
         this.updateEnergyDisplay = function()
         {  
-            var width = this.energy / 999 * 100;
+            var width = this.energy / 999 * 70;
             this.updatetl.to(this.energyIcon, 1, {width:width});            
         }
         
@@ -263,13 +270,24 @@ var RoleFunc = function()
                 }
                 
                 //move
-                this.updatetl.to(ballDiv, 1, {bezier:{type:"thru", values:[{left:ballDiv.offsetLeft, top:ballDiv.offsetTop}, {left:centerPos, top:"-450px"}, {left:"270px", top:"-730px"}]}, ease:Power1.easeInOut, onComplete:removeBallDiv, onCompleteParams:[roleFuncManager.charactersDiv, ballDiv, this, doDamage]});
+                
+                var overLap = "+=0";
+                
+                if(i != 0)
+                {
+                    voerLap = "-=0.5";
+                }
+                
+                this.updatetl.to(ballDiv, 1, {bezier:{type:"thru", values:[{left:ballDiv.offsetLeft, top:ballDiv.offsetTop}, {left:centerPos, top:"-450px"}, {left:"270px", top:"-730px"}]}, ease:Power1.easeInOut, onComplete:removeBallDiv, onCompleteParams:[roleFuncManager.charactersDiv, ballDiv, this, doDamage]}, overLap);
             }                                                            
 
             //this.updatetl.staggerTo(ballDivArray, 1.5, {bezier:{type:"thru", values:[{left:ballDiv.offsetLeft, top:ballDiv.offsetTop}, {left:centerPos, top:"-450px"}, {left:"270px", top:"-900px"}]}, ease:Power1.easeInOut, onComplete:removeBallDivTween, onCompleteParams:[roleFuncManager.charactersDiv, "{self}" ,this]}, 0, removeAllBallDiv);
             
             //then call cleanOrbs
-            this.updatetl.call(finishNormalAttack, [this], "+=10");
+            
+            this.updatetl.append(TweenLite.delayedCall(1, finishNormalAttack, [this] ));            
+            
+            
                 
 
         };
@@ -301,22 +319,23 @@ var RoleFunc = function()
             this.energyIcon = mainDiv.querySelector("#energy_div");
             this.roleIcon = mainDiv.querySelector("#role_img");
             this.roleIcon.setAttribute('src', "pic/" + this.icon);
+            this.rold_bk =  mainDiv.querySelector("#role_img_bk");
                         
             
             if(this.color == "red")
             {
-                mainDiv.style.backgroundImage = "url(image/fire_bk.png)"; // change it
-                mainDiv.style.backgroundSize="cover";
+                this.rold_bk.style.backgroundImage = "url(image/fire_bk.png)"; // change it
+                this.rold_bk.style.backgroundSize="cover";
             }
             else if(this.color == "green")
             {
-                mainDiv.style.backgroundImage = "url(image/forest_bk.png)"; // change it
-                mainDiv.style.backgroundSize="cover";
+                this.rold_bk.style.backgroundImage = "url(image/forest_bk.png)"; // change it
+                this.rold_bk.style.backgroundSize="cover";
             }
             else if(this.color == "blue")
             {
-               mainDiv.style.backgroundImage = "url(image/water_bk.png)"; // change it
-               mainDiv.style.backgroundSize="cover";
+               this.rold_bk.style.backgroundImage = "url(image/water_bk.png)"; // change it
+               this.rold_bk.style.backgroundSize="cover";
             }            
 
         };
@@ -326,21 +345,6 @@ var RoleFunc = function()
 
     }
 
-
-    function movePlayerAttackOrbToBoss(player)
-    {
-        player.moveAttackOrbToBoss();
-    }
-
-    function endPlayerAttackOrb(player)
-    {
-        player.endAttackOrb();
-    }
-
-    function moveBackPlayerAttackOrb(player)
-    {
-        player.moveBackAttackOrb();
-    }
 
     function finishNormalAttack(player)
     {
