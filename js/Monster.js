@@ -3,9 +3,12 @@ var Monster = function() {
 	var maxHp = 0;
 	var curHp = 0;
 	var atk = 0;
+    var atkAdd =0;
+    var atkMul = [1];
 	var color = "";
     var race = "";
-
+    var pSkill = "";
+    
 	var p_maxHp = 0;
 	var p_curHp = 0;
 
@@ -16,6 +19,7 @@ var Monster = function() {
 		color = monster.color;
         race = monster.race;
 		atk = monster.atk;
+        pSkill = monster.pSkill;
 
 		var bossImg = document.getElementById("monsterImg");
 		bossImg.src = "image/" + monster.fightPic;
@@ -49,6 +53,22 @@ var Monster = function() {
 		playPlayerBloodAni(0, 0.5);
 		//attack();
 	}
+    
+    function getFinalAtk()
+    {
+        var atkValue = atk + atkAdd;
+        if(atkValue <= 0)
+        {
+            return 0;
+        }
+            
+        for(var i=0;i<atkMul.length;i++)
+        {
+            atkValue *= atkMul[i];
+        }
+            
+        return  Math.round(atkValue);    
+    }
 
 	function attack() {
 		if (curHp <= 0) {
@@ -66,7 +86,7 @@ var Monster = function() {
 
 		});
 
-		p_curHp -= atk;
+		p_curHp -= getFinalAtk();
 		if (p_curHp < 0) {
 			p_curHp = 0;
 		}
@@ -142,9 +162,42 @@ var Monster = function() {
     
     function takeSkillEffect(effectType, effectOperator, effectValue)
     {
-        
+        switch(effectType)
+        {
+            case "atk":
+                if(effectOperator == "+")
+                {
+                    atkAdd += effectValue;
+                }
+                else if(effectOperator == "-")
+                {
+                    atkAdd -= effectValue;
+                }
+                else if(effectOperator == "*")
+                {
+                    atkMul[atkMul.length] = effectValue;
+                }
+            break;
+        }
     }    
 
+    function roundStart()
+    {
+        clearState();
+        activePasiiveSkillEffect();
+    }
+    
+    function clearState()
+    {
+        var atkAdd =0;
+        var atkMul = [1];    
+    }
+    
+    function activePasiiveSkillEffect()
+    {
+        SkillParser.activeSkill(pSkill, Monster, RoleFunc);
+    }
+    
 	return {
 		"setMonster" : setMonster,
 		"setPlayerHp" : setPlayerHp,
@@ -154,7 +207,8 @@ var Monster = function() {
         "getPlayerHp" : getPlayerHp,
         "getHp" : getHp,
         "filterSkillTarget" : filterSkillTarget,
-        "takeSkillEffect":takeSkillEffect   
+        "takeSkillEffect":takeSkillEffect,
+        "roundStart" : roundStart
 	}
 
 }();

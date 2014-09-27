@@ -163,7 +163,6 @@ var RoleFunc = function()
                 //TODO change global game state;
                 //Game.roundInit();
                 Monster.attack();
-                roundStart();
 
             }
             
@@ -174,7 +173,6 @@ var RoleFunc = function()
     {
         clearState();
         activePasiiveSkillEffect();
-        consumeStateEnergy();
     }
     
     var clearState = function()
@@ -199,17 +197,6 @@ var RoleFunc = function()
         }
     }
 
-    var consumeStateEnergy = function()
-    {
-        for(var i=0; i<char_roles.length;i++)
-        {
-            if(char_roles[i] != null)
-            {
-                char_roles[i].consumeStateEnergy();
-            }
-        }            
-    }
-    
 
     var getComboDamageBonusRate = function()
     {
@@ -283,8 +270,6 @@ var RoleFunc = function()
         this.energyIcon = undefined;      
         this.roleIcon = undefined;        
         this.energy = 0;
-        this.energyAdd = 0;
-        this.energyMul = [1];
         this.orbQueue = new Array();
         this.updatetl = new TimelineLite({autoRemoveChildren:true});    
         
@@ -295,9 +280,7 @@ var RoleFunc = function()
             this.healAdd = 0;
             this.healMul = [1];
             this.shieldAdd = 0;
-            this.shieldMul = [1];
-            this.energyAdd = 0;
-            this.energyMul = [1];          
+            this.shieldMul = [1];        
         }
         
         this.getFinalAtk = function()
@@ -348,30 +331,6 @@ var RoleFunc = function()
             return  Math.round(shieldValue);
         }           
         
-        this.consumeStateEnergy = function()
-        {
-        
-            var energyValue = this.energy + this.energyAdd;
-            if(energyValue > 0)
-            {
-                for(var i=0;i<this.energyMul.length;i++)
-                {
-                    energyValue *= this.energyMul[i];
-                } 
-                
-                energyValue = Math.round(energyValue);
-            }
-            else
-            {
-                //in case < 0
-                energyValue = 0;
-            }
-            
-            var addEnergy = energyValue - this.energy;
-            this.changeEnergy(addEnergy);
-            this.energyAdd = 0;
-            this.energyMul = [1]; 
-        }
         
         this.acceptOrb = function(orb){
         
@@ -395,6 +354,11 @@ var RoleFunc = function()
             if(this.energy > MAX_ENERGY)
             {
                 this.energy = MAX_ENERGY;
+            }
+            
+            if(this.energy < 0)
+            {
+                this.energy = 0;
             }
             this.updateEnergyDisplay()            
         }
@@ -594,22 +558,27 @@ var RoleFunc = function()
                 case "energy":
                     if(effectOperator == "+")
                     {
-                        this.energyAdd += effectValue;
+                        var newValue = this.energy + effectValue;
+                        this.changeEnergy(newValue - this.energy);
                     }
                     else if(effectOperator == "-")
                     {
-                        this.energyAdd -= effectValue;
+                        var newValue = this.energy - effectValue;
+                        this.changeEnergy(newValue - this.energy);
                     }
                     else if(effectOperator == "*")
                     {
-                        this.energyMul[this.energyMul.length] = effectValue;
+                        var newValue = Math.round(this.energy * effectValue);
+                        this.changeEnergy(newValue - this.energy);
                     }                 
-                break;
+                break;               
             }
         }     
 
         this.activeSkill = function()
         {
+            this.changeEnergy(-300);
+            SkillParser.activeSkill(this.skill, RoleFunc, Monster);
         }   
 
     }
