@@ -1,0 +1,15 @@
+﻿{
+	"id" : "card005",
+	"name" : "水1",
+	"index" : 0,
+	"cardPic" : "",
+	"fightPic" : "card005.png",
+	"hp" : 3662,
+	"atk" : 1320,
+	"heal" : 56,
+	"shield" : 320,
+	"color" : "blue",
+	"race" : "1",
+	"skill" : "skill001",
+	"pSkill" : "pskill001"
+}

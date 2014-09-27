@@ -1,0 +1,15 @@
+﻿{
+	"id" : "card001",
+	"name" : "火1",
+	"index" : 0,
+	"cardPic" : "",
+	"fightPic" : "card001.png",
+	"hp" : 3662,
+	"atk" : 1320,
+	"heal" : 56,
+	"shield" : 320,
+	"color" : "red",
+	"race" : "1",
+	"skill" : "skill001",
+	"pSkill" : "pskill001"
+}
