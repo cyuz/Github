@@ -4,6 +4,12 @@
 	height: 230px;
 }
 
+.monsterImg {
+	position: absolute;
+	top: 30px;
+	left: 230px;
+}
+
 .game {
 	position: relative;
 	left: 70px;

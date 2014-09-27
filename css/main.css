@@ -20,11 +20,6 @@ body {
 	top: -465px;
 }
 
-.monster img {
-	position: absolute;
-	left: 230px;
-}
-
 .playerarea {
 	position: absolute;
 	left: 50px;
