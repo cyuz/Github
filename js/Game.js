@@ -31,9 +31,13 @@ var Game = function() {
 		//give the display div, and function to stop/start ball moving
 		roleControlUnit.bind($("#player_area")[0], undefined);
 		//create the role with data corresponding to id
-		roleControlUnit.createRole("card001", "card002", "card003", "card004", "card005", "card006");
+		//roleControlUnit.createRole("card001", "card002", "card003", "card004", "card005", "card006");
 
 		//speedNormal();
+	}
+
+	function setRole(roleArray) {
+		roleControlUnit.createRole(roleArray[0], roleArray[1], roleArray[2], roleArray[3], roleArray[4], roleArray[5]);
 	}
 
 	function setMission(missionId) {
@@ -343,9 +347,10 @@ var Game = function() {
 	return {
 		"init" : init,
 		"setMission" : setMission,
+		"setRole" : setRole,
 		"pause" : gamePause,
 		"resume" : gameResume,
 		"roundInit" : gameToWait
 	}
 
-}(); 
+}();

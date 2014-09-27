@@ -3,7 +3,7 @@ var Monster = function() {
 	var maxHp = 0;
 	var curHp = 0;
 	var color = "";
-	
+
 	var p_maxHp = 0;
 	var p_curHp = 0;
 
@@ -47,24 +47,24 @@ var Monster = function() {
 	function attack() {
 		var bossImg = document.getElementById("monsterImg");
 		TweenMax.to(bossImg, 0.1, {
-			top : $("#monsterImg").position().top + 20,
+			delay : 0.2,
+			top : $("#monsterImg").position().top + 30,
 			repeat : 1,
-			yoyo : true
+			yoyo : true,
+			onComplete : Game.roundInit
 		});
-		
-		Game.roundInit();
 	}
 
 	function homing() {
 		var bossImg = document.getElementById("monsterImg");
 
-		TweenMax.to(bossImg, 0.2, {
+		TweenMax.to(bossImg, 0.1, {
 			left : 230,
 			top : 30,
 		});
 	}
-	
-	function setPlayerHp(hp){
+
+	function setPlayerHp(hp) {
 		p_maxHp = hp;
 		p_curHp = hp;
 	}

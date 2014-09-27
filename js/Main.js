@@ -29,6 +29,8 @@ var Main = function() {
 
 	function gameReady() {
 		Game.init();
+		TeamManager.init();
+		TeamManager.createTeamRolesFromRoleData();
 		Game.setMission("fireBoss");
 		Game.roundInit();
 	}
