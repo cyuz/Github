@@ -36,11 +36,10 @@
 
 .playerBlood {
 	background-color: #9cce91;
-	width: 500px;
 	height: 10px;
 	position: absolute;
-	left: 70px;
-	top: 215px;
+	left: 45px;
+	top: 208px;
 }
 
 .road {
@@ -86,4 +85,23 @@
 	position: absolute;
 	left: -25.5px;
 	top: -25.5px;
+}
+
+.timerbarArea {
+	position: absolute;
+	top: 203px;
+	left: 39px;
+}
+
+.timerbar {
+	position: absolute;
+	top: -2px;
+	left: 10px;
+	overflow: hidden;
+}
+
+.bouns {
+	position: absolute;
+	top: 470px;
+	left: 10px;
 }
