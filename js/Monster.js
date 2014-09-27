@@ -3,6 +3,9 @@ var Monster = function() {
 	var maxHp = 0;
 	var curHp = 0;
 	var color = "";
+	
+	var p_maxHp = 0;
+	var p_curHp = 0;
 
 	function setMonster(id) {
 		var monster = RoleData.getData(id);
@@ -60,9 +63,15 @@ var Monster = function() {
 			top : 30,
 		});
 	}
+	
+	function setPlayerHp(hp){
+		p_maxHp = hp;
+		p_curHp = hp;
+	}
 
 	return {
 		"setMonster" : setMonster,
+		"setPlayerHp" : setPlayerHp,
 		"getHurt" : getHurt,
 		"homing" : homing,
 		"attack" : attack
