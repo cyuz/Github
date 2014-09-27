@@ -31,43 +31,37 @@ var TeamManager = function()
         
         
         selectedRolesDiv[0] = createDiv($("#teamView")[0], "selected_role_0", ["selected_role", "selected_role_0", "transparent_green"]);
-        var roleImg = createImg(selectedRolesDiv[0], "selected_role_0_img", undefined, ["icon_role"]);
-        roleImg.setAttribute("draggable", true);
+        var roleImg = createImg(selectedRolesDiv[0], "selected_role_0_img", undefined, ["selected_icon_role"]);
         roleImg.setAttribute("ondragstart", "TeamManager.drag(event)");        
         selectedRolesDiv[0].setAttribute("ondrop", "TeamManager.drop(event)");
         selectedRolesDiv[0].setAttribute("ondragover", "TeamManager.allowDrop(event)");
         
         selectedRolesDiv[1] = createDiv($("#teamView")[0], "selected_role_1", ["selected_role", "selected_role_1", "transparent_green"]);
-        var roleImg = createImg(selectedRolesDiv[1], "selected_role_1_img", undefined, ["icon_role"]);
-        roleImg.setAttribute("draggable", true);
+        var roleImg = createImg(selectedRolesDiv[1], "selected_role_1_img", undefined, ["selected_icon_role"]);
         roleImg.setAttribute("ondragstart", "TeamManager.drag(event)");        
         selectedRolesDiv[1].setAttribute("ondrop", "TeamManager.drop(event)");
         selectedRolesDiv[1].setAttribute("ondragover", "TeamManager.allowDrop(event)");        
 
         selectedRolesDiv[2] = createDiv($("#teamView")[0], "selected_role_2", ["selected_role", "selected_role_2", "transparent_green"]);
-        var roleImg = createImg(selectedRolesDiv[2], "selected_role_2_img", undefined, ["icon_role"]);
-        roleImg.setAttribute("draggable", true);
+        var roleImg = createImg(selectedRolesDiv[2], "selected_role_2_img", undefined, ["selected_icon_role"]);
         roleImg.setAttribute("ondragstart", "TeamManager.drag(event)");        
         selectedRolesDiv[2].setAttribute("ondrop", "TeamManager.drop(event)");
         selectedRolesDiv[2].setAttribute("ondragover", "TeamManager.allowDrop(event)");        
     
         selectedRolesDiv[3] = createDiv($("#teamView")[0], "selected_role_3", ["selected_role", "selected_role_3", "transparent_green"]);
-        var roleImg = createImg(selectedRolesDiv[3], "selected_role_3_img", undefined, ["icon_role"]);
-        roleImg.setAttribute("draggable", true);
+        var roleImg = createImg(selectedRolesDiv[3], "selected_role_3_img", undefined, ["selected_icon_role"]);
         roleImg.setAttribute("ondragstart", "TeamManager.drag(event)");        
         selectedRolesDiv[3].setAttribute("ondrop", "TeamManager.drop(event)");
         selectedRolesDiv[3].setAttribute("ondragover", "TeamManager.allowDrop(event)");        
 
         selectedRolesDiv[4] = createDiv($("#teamView")[0], "selected_role_4", ["selected_role", "selected_role_4", "transparent_green"]);
-        var roleImg = createImg(selectedRolesDiv[4], "selected_role_4_img", undefined, ["icon_role"]);
-        roleImg.setAttribute("draggable", true);
+        var roleImg = createImg(selectedRolesDiv[4], "selected_role_4_img", undefined, ["selected_icon_role"]);
         roleImg.setAttribute("ondragstart", "TeamManager.drag(event)");        
         selectedRolesDiv[4].setAttribute("ondrop", "TeamManager.drop(event)");
         selectedRolesDiv[4].setAttribute("ondragover", "TeamManager.allowDrop(event)");        
 
         selectedRolesDiv[5] = createDiv($("#teamView")[0], "selected_role_5", ["selected_role", "selected_role_5", "transparent_green"]);
-        var roleImg = createImg(selectedRolesDiv[5], "selected_role_5_img", undefined, ["icon_role"]);
-        roleImg.setAttribute("draggable", true);
+        var roleImg = createImg(selectedRolesDiv[5], "selected_role_5_img", undefined, ["selected_icon_role"]);
         roleImg.setAttribute("ondragstart", "TeamManager.drag(event)");        
         selectedRolesDiv[5].setAttribute("ondrop", "TeamManager.drop(event)");
         selectedRolesDiv[5].setAttribute("ondragover", "TeamManager.allowDrop(event)");                       
@@ -163,7 +157,7 @@ var TeamManager = function()
             oldImg.style.opacity = "1";
         }
         srcImg.setAttribute("draggable", false);
-        srcImg.style.opacity = "0.3";
+        srcImg.style.opacity = "0.5";
         selectedRolesArray[targetImgId] = data;
         console.log(targetImgId + ":" + data);
     }      
