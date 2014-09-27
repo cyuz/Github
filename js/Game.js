@@ -284,7 +284,8 @@ var Game = function() {
 			startSkyDown(combo);
 			if (combo <= 0) {
 				gamePause();
-				gameToWait();
+				Monster.attack();
+				//gameToWait();
 			}
 		} else if (arriveCount > ROAD_COUNT && arriveCount == (combo + 1) * ROAD_COUNT) {
 			gamePause();
