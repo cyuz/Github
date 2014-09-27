@@ -64,8 +64,8 @@
 .attackOrbPos0 {
 	left: 15px;
 	top: -15px;
-    height: 30px;
-    width: 30px;
+	height: 30px;
+	width: 30px;
 	position: absolute;
 	z-index: 2;
 }
@@ -73,8 +73,8 @@
 .attackOrbPos1 {
 	left: 110px;
 	top: -15px;
-    height: 30px;
-    width: 30px;    
+	height: 30px;
+	width: 30px;
 	position: absolute;
 	z-index: 2;
 }
@@ -82,8 +82,8 @@
 .attackOrbPos2 {
 	left: 205px;
 	top: -15px;
-    height: 30px;
-    width: 30px;    
+	height: 30px;
+	width: 30px;
 	position: absolute;
 	z-index: 2;
 }
@@ -91,8 +91,8 @@
 .attackOrbPos3 {
 	left: 300px;
 	top: -15px;
-    height: 30px;
-    width: 30px;    
+	height: 30px;
+	width: 30px;
 	position: absolute;
 	z-index: 2;
 }
@@ -100,8 +100,8 @@
 .attackOrbPos4 {
 	left: 395px;
 	top: -15px;
-    height: 30px;
-    width: 30px;    
+	height: 30px;
+	width: 30px;
 	position: absolute;
 	z-index: 2;
 }
@@ -109,8 +109,8 @@
 .attackOrbPos5 {
 	left: 490px;
 	top: -15px;
-    height: 30px;
-    width: 30px;    
+	height: 30px;
+	width: 30px;
 	position: absolute;
 	z-index: 2;
 }
@@ -166,63 +166,63 @@
 	background-color: #989898;
 }
 
-.transparent_green {
-  //background-color:rgba(0,200,0,0.5);
+.transparent_green {//
+	background-color: rgba(0,200,0,0.5);
 }
 
-.role_img{
+.role_img {
 	left: 0px;
 	top: 0px;
 	position: absolute;
 }
 
-.role_img_bk{
-    left: 0px;
+.role_img_bk {
+	left: 0px;
 	top: 0px;
 	position: absolute;
 	width: 90px;
 	height: 75px;
 	border-radius: 6px;
-	margin-top: 4px;    
+	margin-top: 4px;
 }
 
-.orb_icon{
-    position: absolute;
-    margin: auto;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+.orb_icon {
+	position: absolute;
+	margin: auto;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
 }
 
-.combotHit{
-    position: absolute;
-	top: 145px;
-    left: 410px;
-    width: 200px;
-    height: 60px;
-    background-color: #989898;
-    background-image:url("../image/combo_bk.png");
-    background-size: cover;
-
+.combotHit {
+	position: absolute;
+	top: 135px;
+	left: 410px;
+	width: 200px;
+	height: 60px;
+	/* background-color: #989898; */
+	background-image: url("../image/combo_bk.png");
+	background-size: cover;
 }
 
-.combotHitValue{
-    position: absolute;
-	top: 0px;
-    left: 0px;
-    width: 45%;
-    height: 60px;
-    font-size: 60px;    
-    text-align: right;
+.combotHitValue {
+	position: absolute;
+	top: 10px;
+	left: 15px;
+	width: 45%;
+	height: 60px;
+	font-size: 40px;
+	text-align: right;
 }
 
-.combotHitRate{
-    position: absolute;
-	top: 0px;
-    left: 45%;
-    width: 55%;
-    height: 30px;
-    font-size: 30px;    
+.combotHitRate {
+	position: absolute;
+	top: 10px;
+	left: 80PX;
+	width: 100px;
+	height: 30px;
+	font-size: 20px;
+	text-align: right;
 }
 }
