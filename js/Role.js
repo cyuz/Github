@@ -11,66 +11,62 @@ var RoleFunc = function()
     const ENERGY_UPDATE_TIME = 0.5;
     const COMBO_DAMAGE_RATE = 0.25;
     
-    this.char_roles = new Array(ROLE_COUNT);
-    this.characterDatas = new Array();
-    this.maxTotalhp = 0;
-    this.sameElementComboHit = 0;
-    this.animationCount = 0;
-    this.bonusAPEffect = 0;
-    this.bonusHPEffect = 0;
-    this.bonusShieldEffect = 0;
-
+    var char_roles = new Array(ROLE_COUNT);
+    var characterDatas = new Array();
+    var maxTotalhp = 0;
+    var sameElementComboHit = 0;
+    var animationCount = 0;
+    var bonusAPEffect = 0;
+    var bonusHPEffect = 0;
+    var bonusShieldEffect = 0;
+    var charactersDiv = undefined;
     
 
     
-    this.init = function()
+    var init = function()
     {
+        charactersDiv = $("#gameView > #player_area")[0]
+        updateComboHit();    
     }
+
     
-    
-    this.bind = function(charactersDiv)
+    var createRole = function()
     {
-        this.charactersDiv = charactersDiv;
-        this.updateComboHit();
-    }
-    
-    this.createRole = function()
-    {
-        if(this.charactersDiv == undefined)
+        if(charactersDiv == undefined)
         {
             console.log("not bind to div");
             return;
         }
         
         
-        this.clearRoles();
+        clearRoles();
         
-        this.maxTotalhp = 0;
+        maxTotalhp = 0;
 
         
         for (var i = 0; i < arguments.length && i < ROLE_COUNT; i++)
         {            
             var characterDataInfo = RoleData.getData(arguments[i]);            
             
-            this.char_roles[i] = new Character(i, characterDataInfo, this);
-            var div = createCharacterDiv(this.charactersDiv, arguments[i]);
-            this.char_roles[i].bindDisplay(div);
-            this.maxTotalhp += characterDataInfo.hp;
+            char_roles[i] = new Character(i, characterDataInfo);
+            var div = createCharacterDiv(charactersDiv, arguments[i]);
+            char_roles[i].bindDisplay(div);
+            maxTotalhp += characterDataInfo.hp;
         }
         
-        this.activePasiiveSkillEffect();
+        activePasiiveSkillEffect();
         
-        Monster.setPlayerHp(this.maxTotalhp);
+        Monster.setPlayerHp(maxTotalhp);
     }
     
-    this.clearRoles = function()
+    var clearRoles = function()
     {
-        this.char_roles.length = 0;
-        this.maxTotalhp = 0;
-        if(this.charactersDiv != undefined)
+        char_roles.length = 0;
+        maxTotalhp = 0;
+        if(charactersDiv != undefined)
         {                    
-            while (this.charactersDiv.firstChild) {
-                this.charactersDiv.removeChild(this.charactersDiv.firstChild);
+            while (charactersDiv.firstChild) {
+                charactersDiv.removeChild(charactersDiv.firstChild);
              }     
         }
     }
@@ -116,56 +112,56 @@ var RoleFunc = function()
     }
     
     
-    this.activePasiiveSkillEffect = function()
+    var activePasiiveSkillEffect = function()
     {
     }
 
     
 
     
-    this.giveOrb = function(posIndex, orbIndex)
+    var giveOrb = function(posIndex, orbIndex)
     {
         var orb = BallData.getBall(orbIndex);
-        this.char_roles[posIndex].acceptOrb(orb);
+        char_roles[posIndex].acceptOrb(orb);
     }
     
-    this.activeSkill = function(posIndex)
+    var activeSkill = function(posIndex)
     {
-        this.char_roles[posIndex].activeSkill();
+        char_roles[posIndex].activeSkill();
     }
     
-    this.conclude = function()
+    var conclude = function()
     {
         //console.log("conclude");
-        for(var i=0; i<this.char_roles.length;i++)
+        for(var i=0; i<char_roles.length;i++)
         {
-            if(this.char_roles[i] != null)
+            if(char_roles[i] != null)
             {
-                this.addAnimationCount();
+                addAnimationCount();
             }
         }
                 
-        for(var i=0; i<this.char_roles.length;i++)
+        for(var i=0; i<char_roles.length;i++)
         {
-            if(this.char_roles[i] != null)
+            if(char_roles[i] != null)
             {
-                this.char_roles[i].startAttack();
+                char_roles[i].startAttack();
             }
         }
     }    
     
-    this.addAnimationCount = function()
+    var addAnimationCount = function()
     {
-        this.animationCount++;
+        animationCount++;
     }
     
-    this.removeAnimationCount = function()
+    var removeAnimationCount = function()
     {        
-        this.animationCount--;
-        if(this.animationCount == 0)
+        animationCount--;
+        if(animationCount == 0)
         {
         
-            this.clearSameElementComboHit();
+            clearSameElementComboHit();
             if (window.hasOwnProperty('Game'))
             {
                  
@@ -178,52 +174,56 @@ var RoleFunc = function()
     }
     
 
-    this.getComboDamageBonusRate = function()
+    var getComboDamageBonusRate = function()
     {
-        if(this.sameElementComboHit <= 0)
+        if(sameElementComboHit <= 0)
         {
             return 0;
         }
-        return (this.sameElementComboHit - 1) * COMBO_DAMAGE_RATE;
+        return (sameElementComboHit - 1) * COMBO_DAMAGE_RATE;
     }
     
-    this.getComboDamageRate = function()
+    var getComboDamageRate = function()
     {
-        if(this.sameElementComboHit <= 0)
+        if(sameElementComboHit <= 0)
         {
             return 0;
         }
         else
         {
-            return this.getComboDamageBonusRate() + 1;
+            return getComboDamageBonusRate() + 1;
         }
     }
     
-    this.addSameElementComboHit = function(addValue)
+    var addSameElementComboHit = function(addValue)
     {
-        this.sameElementComboHit += addValue;
-        this.updateComboHit();
+        sameElementComboHit += addValue;
+        updateComboHit();
     }
 
-    this.clearSameElementComboHit = function()
+    var clearSameElementComboHit = function()
     {
-        this.sameElementComboHit = 0;
-        this.updateComboHit();
+        sameElementComboHit = 0;
+        updateComboHit();
     }
     
-    this.updateComboHit = function()
+    var getSameElementComboHit = function()
     {
-        $("#combotHit > #combotHitValue")[0].innerHTML = this.sameElementComboHit;
-        var bonusRate = "+" + (this.getComboDamageBonusRate() * 100) + "%";
+        return sameElementComboHit;
+    }
+    
+    var updateComboHit = function()
+    {
+        $("#combotHit > #combotHitValue")[0].innerHTML = sameElementComboHit;
+        var bonusRate = "+" + (getComboDamageBonusRate() * 100) + "%";
         $("#combotHit > #combotHitRate")[0].innerHTML = bonusRate;
     }
     
 
-    function Character(index, characterDataInfo, roleFuncManager)
+    function Character(index, characterDataInfo)
     {
         this.id = characterDataInfo.id
         this.index = index;
-        this.roleFuncManager = roleFuncManager;
         this.name = characterDataInfo.name;
         this.color = characterDataInfo.color;
         this.hp = characterDataInfo.hp;
@@ -248,8 +248,7 @@ var RoleFunc = function()
             if(this.color == orb.color)
             {
                 this.comboHitTimes++;
-                roleFuncManager.sameElementComboHit++;
-                roleFuncManager.addSameElementComboHit(1);
+                addSameElementComboHit(1);
                 this.orbQueue.push(orb);
                 this.changeEnergy(orb.energy * 2);                
             }
@@ -286,7 +285,7 @@ var RoleFunc = function()
                 this.updateEnergyDisplay();
             }
             
-            roleFuncManager.removeAnimationCount();
+            removeAnimationCount();
         }
         
         
@@ -300,7 +299,7 @@ var RoleFunc = function()
             }            
             else
             {
-                roleFuncManager.removeAnimationCount();
+                removeAnimationCount();
             } 
            
             
@@ -321,7 +320,7 @@ var RoleFunc = function()
             {
                 var orb = this.orbQueue[i];
                 
-                var ballDiv = createBalldiv(roleFuncManager.charactersDiv, this.index, orb.color, orb.image);                
+                var ballDiv = createBalldiv(charactersDiv, this.index, orb.color, orb.image);                
                 
                 //ballDivArray[i] = ballDiv;
                 console.log("index: " + this.index + " attack once");  
@@ -329,21 +328,21 @@ var RoleFunc = function()
                 {
                     this.updatetl.to(this.roleIcon, 0.1, {x:0,y:-5}, "mylabel");
                     this.updatetl.to(this.roleIcon, 0.1, {x:0,y:0});                 
-                    this.updatetl.to(ballDiv, BALL_FLY_TIME, {bezier:{type:"thru", values:[{left:ballDiv.offsetLeft, top:ballDiv.offsetTop}, {left:centerPos, top:"-450px"}, {left:"270px", top:"-730px"}]}, ease:Power1.easeInOut, onComplete:removeBallDiv, onCompleteParams:[roleFuncManager.charactersDiv, ballDiv, this, i]}, "-=0.1")                
+                    this.updatetl.to(ballDiv, BALL_FLY_TIME, {bezier:{type:"thru", values:[{left:ballDiv.offsetLeft, top:ballDiv.offsetTop}, {left:centerPos, top:"-450px"}, {left:"270px", top:"-730px"}]}, ease:Power1.easeInOut, onComplete:removeBallDiv, onCompleteParams:[charactersDiv, ballDiv, this, i]}, "-=0.1")                
                 }
                 else
                 {
                     var overlap = "mylabel+="+(i*0.2);
                     this.updatetl.to(this.roleIcon, 0.1, {x:0,y:-5}, overlap);
                     this.updatetl.to(this.roleIcon, 0.1, {x:0,y:0});                 
-                    this.updatetl.to(ballDiv, BALL_FLY_TIME, {bezier:{type:"thru", values:[{left:ballDiv.offsetLeft, top:ballDiv.offsetTop}, {left:centerPos, top:"-450px"}, {left:"270px", top:"-730px"}]}, ease:Power1.easeInOut, onComplete:removeBallDiv, onCompleteParams:[roleFuncManager.charactersDiv, ballDiv, this, i]}, "-=0.8");                
+                    this.updatetl.to(ballDiv, BALL_FLY_TIME, {bezier:{type:"thru", values:[{left:ballDiv.offsetLeft, top:ballDiv.offsetTop}, {left:centerPos, top:"-450px"}, {left:"270px", top:"-730px"}]}, ease:Power1.easeInOut, onComplete:removeBallDiv, onCompleteParams:[charactersDiv, ballDiv, this, i]}, "-=0.8");                
                 }
                 
                 
 
             }                                                            
 
-            //this.updatetl.staggerTo(ballDivArray, 1.5, {bezier:{type:"thru", values:[{left:ballDiv.offsetLeft, top:ballDiv.offsetTop}, {left:centerPos, top:"-450px"}, {left:"270px", top:"-900px"}]}, ease:Power1.easeInOut, onComplete:removeBallDivTween, onCompleteParams:[roleFuncManager.charactersDiv, "{self}" ,this]}, 0, removeAllBallDiv);
+            //this.updatetl.staggerTo(ballDivArray, 1.5, {bezier:{type:"thru", values:[{left:ballDiv.offsetLeft, top:ballDiv.offsetTop}, {left:centerPos, top:"-450px"}, {left:"270px", top:"-900px"}]}, ease:Power1.easeInOut, onComplete:removeBallDivTween, onCompleteParams:[charactersDiv, "{self}" ,this]}, 0, removeAllBallDiv);
             
             //then call cleanOrbs
             
@@ -363,7 +362,7 @@ var RoleFunc = function()
             {
                 rate = orb.rate;
             }
-            var comboDagameRate = this.roleFuncManager.getComboDamageRate();
+            var comboDagameRate = getComboDamageRate();
             
             var damageValue = this.atk * rate * comboDagameRate;
             var healValue = this.heal * rate * comboDagameRate;
@@ -380,7 +379,7 @@ var RoleFunc = function()
             console.log("index:" + this.index + ", attack done");
             this.comboHitTimes = 0;
             this.orbQueue.length = 0;
-            roleFuncManager.removeAnimationCount();
+            removeAnimationCount();
         }
         
         
@@ -474,11 +473,18 @@ var RoleFunc = function()
     
     
     
-    
+	return {
+		"init" : init,
+		"createRole" : createRole,
+        "clearRoles" : clearRoles,
+        "giveOrb": giveOrb,
+        "conclude": conclude,
+        "getSameElementComboHit": getSameElementComboHit
+	}    
     
     
 
-}
+}();
 
 
 
