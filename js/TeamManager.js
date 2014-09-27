@@ -105,12 +105,29 @@ var TeamManager = function()
         var role_4_id = imgidroleidmap[selectedRolesArray["selected_role_4_img"]];
         var role_5_id = imgidroleidmap[selectedRolesArray["selected_role_5_img"]];
     
+        var err = 0;
     
-        alert("start " + role_0_id + " " + role_1_id + " " + role_2_id + " " + role_3_id + " " + role_4_id + " " + role_5_id);       
+        if(role_0_id == undefined || role_1_id == undefined || role_2_id == undefined || role_3_id == undefined || role_4_id == undefined || role_5_id == undefined)
+        {
+            err = 1;
+        }
+    
+        //alert("start " + role_0_id + " " + role_1_id + " " + role_2_id + " " + role_3_id + " " + role_4_id + " " + role_5_id);       
+        
+        var result = new Array();
+        result["err"] = err;
+        result["0"] = role_0_id,
+        result["1"] = role_1_id,
+        result["2"] = role_2_id,
+        result["3"] = role_3_id,
+        result["4"] = role_4_id,
+        result["5"] = role_5_id        
+        
+        return result;
     }
     
     function back() {
-        alert("return");
+        //alert("return");
     }
     
     function allowDrop(ev) {
