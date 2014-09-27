@@ -149,7 +149,8 @@ var RoleFunc = function()
             {
                  
                 //TODO change global game state;
-                Game.roundInit();
+                //Game.roundInit();
+                Onster.attack();
             }
             
         }
@@ -268,7 +269,7 @@ var RoleFunc = function()
             //this.updatetl.staggerTo(ballDivArray, 1.5, {bezier:{type:"thru", values:[{left:ballDiv.offsetLeft, top:ballDiv.offsetTop}, {left:centerPos, top:"-450px"}, {left:"270px", top:"-900px"}]}, ease:Power1.easeInOut, onComplete:removeBallDivTween, onCompleteParams:[roleFuncManager.charactersDiv, "{self}" ,this]}, 0, removeAllBallDiv);
             
             //then call cleanOrbs
-            this.updatetl.call(finishNormalAttack, [this]);
+            this.updatetl.call(finishNormalAttack, [this], "+=10");
                 
 
         };
@@ -288,6 +289,7 @@ var RoleFunc = function()
         
         this.finishNormalAttack = function()
         {
+            console.log("index:" + this.index + ", attack done");
             this.comboHitTimes = 0;
             this.orbQueue.length = 0;
             roleFuncManager.removeAnimationCount();
@@ -299,18 +301,22 @@ var RoleFunc = function()
             this.energyIcon = mainDiv.querySelector("#energy_div");
             this.roleIcon = mainDiv.querySelector("#role_img");
             this.roleIcon.setAttribute('src', "pic/" + this.icon);
+                        
             
             if(this.color == "red")
             {
-                TweenLite.to(mainDiv, 0.1, {backgroundColor:"#800000"});
+                mainDiv.style.backgroundImage = "url(image/fire_bk.png)"; // change it
+                mainDiv.style.backgroundSize="cover";
             }
             else if(this.color == "green")
             {
-                TweenLite.to(mainDiv, 0.1, {backgroundColor:"#008000"});
+                mainDiv.style.backgroundImage = "url(image/forest_bk.png)"; // change it
+                mainDiv.style.backgroundSize="cover";
             }
             else if(this.color == "blue")
             {
-                TweenLite.to(mainDiv, 0.1, {backgroundColor:"#000080"});
+               mainDiv.style.backgroundImage = "url(image/water_bk.png)"; // change it
+               mainDiv.style.backgroundSize="cover";
             }            
 
         };
