@@ -48,6 +48,8 @@ var Monster = function() {
 			repeat : 1,
 			yoyo : true
 		});
+		
+		Game.roundInit();
 	}
 
 	function homing() {
@@ -57,8 +59,6 @@ var Monster = function() {
 			left : 230,
 			top : 30,
 		});
-		
-		Game.roundInit();
 	}
 
 	return {
