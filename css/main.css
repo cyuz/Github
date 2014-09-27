@@ -20,10 +20,47 @@ body {
 	top: -465px;
 }
 
+.teamView {
+	background-image: url("../image/team_background.png");
+}
+
 .playerarea {
 	position: absolute;
 	left: 50px;
 	top: -10px;
 	width: 90px;
 	height: 100px;
+}
+
+.missionPic {
+	opacity: 0;
+	cursor: pointer;
+}
+
+.missionPic:hover {
+	opacity: 1;
+}
+
+.missionBlue {
+	position: absolute;
+	left: 85px;
+	top: 504px;
+}
+
+.missionRed {
+	position: absolute;
+	left: 76px;
+	top: 341px;
+}
+
+.missionYellow {
+	position: absolute;
+	left: 302px;
+	top: 501px;
+}
+
+.missionGreen {
+	position: absolute;
+	left: 314px;
+	top: 333px;
 }

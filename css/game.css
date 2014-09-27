@@ -10,6 +10,14 @@
 	left: 230px;
 }
 
+.monsterImg.dead {
+	filter: grayscale(100%);
+	-webkit-filter: grayscale(100%);
+	-moz-filter: grayscale(100%);
+	-ms-filter: grayscale(100%);
+	-o-filter: grayscale(100%);
+}
+
 .game {
 	position: relative;
 	left: 70px;
@@ -24,6 +32,15 @@
 	position: absolute;
 	left: 140px;
 	top: 15px;
+}
+
+.playerBlood {
+	background-color: #9cce91;
+	width: 500px;
+	height: 10px;
+	position: absolute;
+	left: 70px;
+	top: 215px;
 }
 
 .road {
