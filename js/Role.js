@@ -150,7 +150,7 @@ var RoleFunc = function()
                  
                 //TODO change global game state;
                 //Game.roundInit();
-                Onster.attack();
+                Monster.attack();
             }
             
         }
