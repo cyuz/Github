@@ -2,6 +2,7 @@ var TeamManager = function()
 {
     var selectedRolesArray = new Array();
     var selectedRolesDiv = new Array(6);
+    var imgidroleidmap = new Array();
     
     function init()
     {                        
@@ -79,32 +80,14 @@ var TeamManager = function()
         temp = createDiv(temp, undefined, ["thumb"]);
         temp = createDiv(temp, undefined, ["end"]);
         temp = createDiv(teamRolesViewDiv, undefined, ["viewport"]);        
-        temp = createDiv(temp, undefined, ["overview"]);
-        
-/*
-        createRoleView(temp, "1");
-        createRoleView(temp, "2");
-        createRoleView(temp, "3");
-        createRoleView(temp, "4");
-        createRoleView(temp, "5");
-        createRoleView(temp, "6");
-        createRoleView(temp, "7");
-        createRoleView(temp, "8");
-        createRoleView(temp, "9");
-        createRoleView(temp, "10");
-        createRoleView(temp, "11");
-        createRoleView(temp, "12");            
-                        
-        $('#role_area').tinyscrollbar();
-        */
+        temp = createDiv(temp, undefined, ["overview"]);        
 
         
        
         var menuDiv = createDiv($("#teamView")[0], "menu", ["menu", "transparent_green"]);
-        temp = createDiv(menuDiv, "btn_start", ["btn_start", "transparent_green"]);
-        temp.innerHTML = "START";
+        temp = createImg(menuDiv, "btn_start", "image/icon_go.png", ["btn_start", "transparent_green"]);
         temp.onclick = TeamManager.start;
-        temp = createImg(menuDiv, "btn_return", "image/icon_return.png", ["btn_return"]);       
+        temp = createImg(menuDiv, "btn_return", "image/icon_return.png", ["btn_return", "transparent_green"]);       
         temp.onclick = TeamManager.back;
         
         
@@ -114,7 +97,16 @@ var TeamManager = function()
     }
     
     function start() {
-        alert("start");
+    
+        var role_0_id = imgidroleidmap[selectedRolesArray["selected_role_0_img"]];
+        var role_1_id = imgidroleidmap[selectedRolesArray["selected_role_1_img"]];
+        var role_2_id = imgidroleidmap[selectedRolesArray["selected_role_2_img"]];
+        var role_3_id = imgidroleidmap[selectedRolesArray["selected_role_3_img"]];
+        var role_4_id = imgidroleidmap[selectedRolesArray["selected_role_4_img"]];
+        var role_5_id = imgidroleidmap[selectedRolesArray["selected_role_5_img"]];
+    
+    
+        alert("start " + role_0_id + " " + role_1_id + " " + role_2_id + " " + role_3_id + " " + role_4_id + " " + role_5_id);       
     }
     
     function back() {
@@ -135,18 +127,21 @@ var TeamManager = function()
         var data = ev.dataTransfer.getData("text");
         var srcImg = document.getElementById(data);
         var targetImgId = undefined;
+        
         if($("#"+ev.target.id)[0].tagName == "DIV")
         {
             targetImgId = $("#"+ ev.target.id + "> img")[0].id;
-            $("#"+ ev.target.id + "> img")[0].src = srcImg.src;          
-            $("#"+ ev.target.id + "> img")[0].setAttribute("draggable", false);
-        }
-        else
+            $("#"+ ev.target.id + "> img")[0].src = srcImg.src;
+            $("#"+ ev.target.id + "> img")[0].setAttribute("draggable", false);            
+        }           
+        else        
         {
             targetImgId = $("#"+ ev.target.id)[0].id;
             $("#"+ ev.target.id)[0].src = srcImg.src;
-            $("#"+ ev.target.id)[0].setAttribute("draggable", false);
+            $("#"+ ev.target.id)[0].setAttribute("draggable", false);               
         }
+        
+        
         
         var oldImgId = selectedRolesArray[targetImgId];
         if(oldImgId != undefined)
@@ -163,17 +158,19 @@ var TeamManager = function()
     }      
     
     
-    function createRoleView(parentdiv, roleId)
+    function createRoleView(parentdiv, data)
     {
-    
-        var roleViewDiv = createDiv(parentdiv, undefined, ["role", "transparent_green"]);
+
         var imgId = undefined;
         var imgSrc = undefined;
-        if(roleId != undefined)
+        if(data != undefined)
         {
-            imgId = "role_" + roleId + "_img";
-            imgSrc = "image/" + roleId + ".png";
+            imgId = "role_" + data.id + "_img";
+            imgSrc = "image/" + data.fightPic;
         }
+            
+        var roleViewDiv = createDiv(parentdiv, undefined, ["role", "transparent_green"]);
+
         var roleImg = createImg(roleViewDiv, imgId, imgSrc, ["icon_role"]);
         roleImg.setAttribute("draggable", true);
         roleImg.setAttribute("ondragstart", "TeamManager.drag(event)");
@@ -249,14 +246,43 @@ var TeamManager = function()
         var temp = $(".viewport > .overview");
         
         temp.empty();
+        imgidroleidmap.length = 0;
         
         for(var i=0;i<role_array.length;i++)
         {
-            var roleID = role_array[i];
+            var data = RoleData.getData(role_array[i]);
             
-            createRoleView(temp[0], roleID);                                               
+            createRoleView(temp[0], data);   
+            
+            var imgId = "role_" + data.id + "_img";
+            imgidroleidmap[imgId] = data.id;
         }
+        
+        
+        
+        
+        
         //$('#role_area').tinyscrollbar();
+    } 
+
+    function createTeamRolesFromRoleData()
+    {
+        var temp = $(".viewport > .overview");
+        
+        temp.empty();
+        imgidroleidmap.length = 0;
+
+        var role_array = RoleData.playerList;
+        for (var entry in role_array) {
+
+            var data = role_array[entry];
+        
+            createRoleView(temp[0], data);   
+            
+            var imgId = "role_" + data.id + "_img";
+            imgidroleidmap[imgId] = data.id;          
+        }
+        
     }
         
     
@@ -268,7 +294,8 @@ var TeamManager = function()
         "drop" : drop,
         "start" : start,
         "back" : back,
-        "createTeamRoles" : createTeamRoles
+        "createTeamRoles" : createTeamRoles,
+        "createTeamRolesFromRoleData" : createTeamRolesFromRoleData
     }
     
 }();
