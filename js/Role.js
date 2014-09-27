@@ -163,6 +163,8 @@ var RoleFunc = function()
                 //TODO change global game state;
                 //Game.roundInit();
                 Monster.attack();
+                roundStart();
+
             }
             
         }
@@ -265,13 +267,13 @@ var RoleFunc = function()
         this.hp = characterDataInfo.hp;
         this.atk = characterDataInfo.atk;
         this.atkAdd = 0;
-        this.atkMul = new Array(1);
+        this.atkMul = [1];
         this.heal = characterDataInfo.heal;
         this.healAdd = 0;
-        this.healMul = new Array(1);        
+        this.healMul = [1];       
         this.shield = characterDataInfo.shield;
         this.shieldAdd = 0;
-        this.shieldMul = new Array(1);
+        this.shieldMul = [1];
         this.race = characterDataInfo.race;
         this.skill = characterDataInfo.skill;
         this.pSkill = characterDataInfo.pSkill;                        
@@ -282,23 +284,23 @@ var RoleFunc = function()
         this.roleIcon = undefined;        
         this.energy = 0;
         this.energyAdd = 0;
-        this.energyMul = new Array(1);
+        this.energyMul = [1];
         this.orbQueue = new Array();
         this.updatetl = new TimelineLite({autoRemoveChildren:true});    
         
-        this.clearState()
+        this.clearState = function()
         {
             this.atkAdd = 0;
-            this.atkMul = new Array(1);
+            this.atkMul = [1];
             this.healAdd = 0;
-            this.healMul = new Array(1); 
+            this.healMul = [1];
             this.shieldAdd = 0;
-            this.shieldMul = new Array(1);
+            this.shieldMul = [1];
             this.energyAdd = 0;
-            this.energyMul = new Array(1);           
+            this.energyMul = [1];          
         }
         
-        this.getFinalAtk()
+        this.getFinalAtk = function()
         {
             var atkValue = this.atk + this.atkAdd;
             if(atkValue <= 0)
@@ -314,7 +316,7 @@ var RoleFunc = function()
             return  Math.round(atkValue);
         }        
         
-        this.getFinalHeal()
+        this.getFinalHeal = function()
         {
             var healValue = this.heal + this.healAdd;
             if(healValue <= 0)
@@ -330,7 +332,7 @@ var RoleFunc = function()
             return  Math.round(healValue);
         }   
 
-        this.getFinalShield()
+        this.getFinalShield = function()
         {
             var shieldValue = this.shield + this.shieldAdd;
             if(shieldValue <= 0)
@@ -346,7 +348,7 @@ var RoleFunc = function()
             return  Math.round(shieldValue);
         }           
         
-        this.consumeStateEnergy()
+        this.consumeStateEnergy = function()
         {
         
             var energyValue = this.energy + this.energyAdd;
@@ -368,7 +370,7 @@ var RoleFunc = function()
             var addEnergy = energyValue - this.energy;
             this.changeEnergy(addEnergy);
             this.energyAdd = 0;
-            this.energyMul = new Array(1);              
+            this.energyMul = [1]; 
         }
         
         this.acceptOrb = function(orb){
@@ -543,7 +545,7 @@ var RoleFunc = function()
         }
  
         
-        this.takeSkillEffect(effectType, effectOperator, effectValue)
+        this.takeSkillEffect = function(effectType, effectOperator, effectValue)
         {
             switch(effectType)
             {
@@ -558,7 +560,7 @@ var RoleFunc = function()
                     }
                     else if(effectOperator == "*")
                     {
-                        this.atkMul += effectValue;
+                        this.atkMul[this.atkMul.length] = effectValue;
                     }
                 break;
                 case "heal":
@@ -572,7 +574,7 @@ var RoleFunc = function()
                     }
                     else if(effectOperator == "*")
                     {
-                        this.healMul += effectValue;
+                        this.healMul[this.healMul.length] = effectValue;
                     }                  
                 break;
                 case "shield":
@@ -586,7 +588,7 @@ var RoleFunc = function()
                     }
                     else if(effectOperator == "*")
                     {
-                        this.shieldMul -= effectValue;
+                        this.shieldMul[this.shieldMul.length] = effectValue;
                     }                 
                 break;
                 case "energy":
@@ -600,13 +602,13 @@ var RoleFunc = function()
                     }
                     else if(effectOperator == "*")
                     {
-                        this.energyMul -= effectValue;
+                        this.energyMul[this.energyMul.length] = effectValue;
                     }                 
                 break;
             }
         }     
 
-        this.activeSkill()
+        this.activeSkill = function()
         {
         }   
 
