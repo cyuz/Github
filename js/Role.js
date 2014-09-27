@@ -7,9 +7,9 @@ var RoleFunc = function()
     const LEFT_CENTER_X = "0px";
     const RIGHT_CENTER_X = "530px";
     const BALL_FLY_TIME = 1;
-    const BALL_OVERLAP_TIME = 0.5;
     const FUNCTION_DELAY_TIME = 1;
     const ENERGY_UPDATE_TIME = 0.5;
+    const COMBO_DAMAGE_RATE = 0.25;
     
     this.char_roles = new Array(ROLE_COUNT);
     this.characterDatas = new Array();
@@ -30,7 +30,8 @@ var RoleFunc = function()
     
     this.bind = function(charactersDiv)
     {
-        this.charactersDiv = charactersDiv;                      
+        this.charactersDiv = charactersDiv;
+        this.updateComboHit();
     }
     
     this.createRole = function()
@@ -163,6 +164,8 @@ var RoleFunc = function()
         this.animationCount--;
         if(this.animationCount == 0)
         {
+        
+            this.clearSameElementComboHit();
             if (window.hasOwnProperty('Game'))
             {
                  
@@ -175,7 +178,46 @@ var RoleFunc = function()
     }
     
 
+    this.getComboDamageBonusRate = function()
+    {
+        if(this.sameElementComboHit <= 0)
+        {
+            return 0;
+        }
+        return (this.sameElementComboHit - 1) * COMBO_DAMAGE_RATE;
+    }
+    
+    this.getComboDamageRate = function()
+    {
+        if(this.sameElementComboHit <= 0)
+        {
+            return 0;
+        }
+        else
+        {
+            return this.getComboDamageBonusRate() + 1;
+        }
+    }
+    
+    this.addSameElementComboHit = function(addValue)
+    {
+        this.sameElementComboHit += addValue;
+        this.updateComboHit();
+    }
 
+    this.clearSameElementComboHit = function()
+    {
+        this.sameElementComboHit = 0;
+        this.updateComboHit();
+    }
+    
+    this.updateComboHit = function()
+    {
+        $("#combotHit > #combotHitValue")[0].innerHTML = this.sameElementComboHit;
+        var bonusRate = "+" + (this.getComboDamageBonusRate() * 100) + "%";
+        $("#combotHit > #combotHitRate")[0].innerHTML = bonusRate;
+    }
+    
 
     function Character(index, characterDataInfo, roleFuncManager)
     {
@@ -207,6 +249,7 @@ var RoleFunc = function()
             {
                 this.comboHitTimes++;
                 roleFuncManager.sameElementComboHit++;
+                roleFuncManager.addSameElementComboHit(1);
                 this.orbQueue.push(orb);
                 this.changeEnergy(orb.energy * 2);                
             }
@@ -253,7 +296,7 @@ var RoleFunc = function()
         
             if(this.comboHitTimes > 0)
             {
-                this.normalAttack(this.comboHitTimes);                                    
+                this.normalAttack();                                    
             }            
             else
             {
@@ -263,7 +306,7 @@ var RoleFunc = function()
             
         }
         
-        this.normalAttack = function(attackLevel)
+        this.normalAttack = function()
         {
         
             console.log("index: " + this.index + ",comboHitTimes times --" + this.comboHitTimes);           
@@ -272,6 +315,8 @@ var RoleFunc = function()
             
             //var ballDivArray = new Array();
             
+           
+            
             for(var i=0;i<this.orbQueue.length;i++)
             {
                 var orb = this.orbQueue[i];
@@ -279,14 +324,23 @@ var RoleFunc = function()
                 var ballDiv = createBalldiv(roleFuncManager.charactersDiv, this.index, orb.color, orb.image);                
                 
                 //ballDivArray[i] = ballDiv;
-                var overLap = "+=0";
-                
-                if(i != 0)
+                console.log("index: " + this.index + " attack once");  
+                if(i ==0)
                 {
-                    voerLap = "-=" + BALL_OVERLAP_TIME;
+                    this.updatetl.to(this.roleIcon, 0.1, {x:0,y:-5}, "mylabel");
+                    this.updatetl.to(this.roleIcon, 0.1, {x:0,y:0});                 
+                    this.updatetl.to(ballDiv, BALL_FLY_TIME, {bezier:{type:"thru", values:[{left:ballDiv.offsetLeft, top:ballDiv.offsetTop}, {left:centerPos, top:"-450px"}, {left:"270px", top:"-730px"}]}, ease:Power1.easeInOut, onComplete:removeBallDiv, onCompleteParams:[roleFuncManager.charactersDiv, ballDiv, this, i]}, "-=0.1")                
+                }
+                else
+                {
+                    var overlap = "mylabel+="+(i*0.2);
+                    this.updatetl.to(this.roleIcon, 0.1, {x:0,y:-5}, overlap);
+                    this.updatetl.to(this.roleIcon, 0.1, {x:0,y:0});                 
+                    this.updatetl.to(ballDiv, BALL_FLY_TIME, {bezier:{type:"thru", values:[{left:ballDiv.offsetLeft, top:ballDiv.offsetTop}, {left:centerPos, top:"-450px"}, {left:"270px", top:"-730px"}]}, ease:Power1.easeInOut, onComplete:removeBallDiv, onCompleteParams:[roleFuncManager.charactersDiv, ballDiv, this, i]}, "-=0.8");                
                 }
                 
-                this.updatetl.to(ballDiv, BALL_FLY_TIME, {bezier:{type:"thru", values:[{left:ballDiv.offsetLeft, top:ballDiv.offsetTop}, {left:centerPos, top:"-450px"}, {left:"270px", top:"-730px"}]}, ease:Power1.easeInOut, onComplete:removeBallDiv, onCompleteParams:[roleFuncManager.charactersDiv, ballDiv, this, i]}, overLap);
+                
+
             }                                                            
 
             //this.updatetl.staggerTo(ballDivArray, 1.5, {bezier:{type:"thru", values:[{left:ballDiv.offsetLeft, top:ballDiv.offsetTop}, {left:centerPos, top:"-450px"}, {left:"270px", top:"-900px"}]}, ease:Power1.easeInOut, onComplete:removeBallDivTween, onCompleteParams:[roleFuncManager.charactersDiv, "{self}" ,this]}, 0, removeAllBallDiv);
@@ -309,9 +363,11 @@ var RoleFunc = function()
             {
                 rate = orb.rate;
             }
-            var damageValue = this.atk * rate * this.roleFuncManager.sameElementComboHit;
-            var healValue = this.heal * rate * this.roleFuncManager.sameElementComboHit;
-            var shieldValue = this.shield * rate * this.roleFuncManager.sameElementComboHit;
+            var comboDagameRate = this.roleFuncManager.getComboDamageRate();
+            
+            var damageValue = this.atk * rate * comboDagameRate;
+            var healValue = this.heal * rate * comboDagameRate;
+            var shieldValue = this.shield * rate * comboDagameRate;
             var result = new Array();
             result[0] = damageValue;
             result[1] = healValue;
@@ -381,6 +437,7 @@ var RoleFunc = function()
         balldiv.className = "attackOrbPos" + index;        
         var newimg = document.createElement("img");
         newimg.src = "image/" + imgSrc;
+        newimg.className = "orb_icon";
         balldiv.appendChild(newimg);
         
         
