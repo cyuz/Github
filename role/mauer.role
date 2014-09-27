@@ -5,7 +5,11 @@
 	"cardPic" : "",
 	"fightPic" : "",
 	"hp" : 100,
+	"atk" : 10,
+	"heal" : 10,
+	"shield" : 10,
 	"color" : "red",
-	"skillCost" : [100,300],
-	"skill" : ["skill1","skill2"]
+	"race" : "",
+	"skill" : "",
+	"pSkill" : "",
 }

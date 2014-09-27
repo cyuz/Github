@@ -1,0 +1,15 @@
+﻿{
+	"id" : "mon001",
+	"name" : "火1",
+	"index" : 0,
+	"cardPic" : "",
+	"fightPic" : "",
+	"hp" : 36620,
+	"atk" : 3320,
+	"heal" : 56,
+	"shield" : 320,
+	"color" : "red",
+	"race" : "1",
+	"skill" : "",
+	"pSkill" : "pskill001"
+}

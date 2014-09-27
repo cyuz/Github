@@ -1,0 +1,17 @@
+﻿{
+	"id" : "mon001",
+	"name" : "火盃的考驗",
+	"des" : "關卡說明",
+	"mosterLayer" : "monster",
+	"ballProbabilityPolicy" : {
+		"fireI":30,
+		"fireII":10,
+		"fireIII":5,
+		"waterI":30,
+		"waterII":10,
+		"waterIII":5,
+		"woodI":30,
+		"woodII":10,
+		"woodIII":5
+	}
+}
