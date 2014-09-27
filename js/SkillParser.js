@@ -73,8 +73,8 @@ var SkillParser = function() {
         
         if(data.target_type == "all")
         {
-            var temp = targets.concat(attacker.filterSkillTarget(data.target_color, data.target_race));
-            var temp2 = defender.concat(attacker.filterSkillTarget(data.target_color, data.target_race));
+            var temp = attacker.filterSkillTarget(data.target_color, data.target_race);
+            var temp2 = defender.filterSkillTarget(data.target_color, data.target_race);
             return temp.concat(temp2);
         }
         else if(data.target_type == "self")
@@ -83,7 +83,7 @@ var SkillParser = function() {
         }
         else if(data.target_type == "enemy")
         {
-            return targets.concat(attacker.filterSkillTarget(data.target_color, data.target_race));
+            return defender.filterSkillTarget(data.target_color, data.target_race);
         }
         
     }
