@@ -26,7 +26,7 @@ var RoleData = function() {
 	function loadComplete(data) {
 		var jsonData = jQuery.parseJSON(data);
 		list[jsonData["id"]] = jsonData;
-		if (!jsonData[isMonster]){
+		if (!jsonData["isMonster"]) {
 			playerList[jsonData["id"]] = jsonData;
 		}
 		completeCount++;
@@ -34,8 +34,8 @@ var RoleData = function() {
 			Main.roleReady();
 		}
 	}
-	
-	function playerList(){
+
+	function playerList() {
 		return playerList;
 	}
 
