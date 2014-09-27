@@ -159,13 +159,19 @@
 
 .menu{
 	position: absolute;
-	left: 530px;
+	left: 50px;
     top: 860px;
-    width: 70px;
+    width:520px;
     height: 70px;    
 }
 
-.icon_return{
+.btn_start{
+	position: absolute; 
+	left: 440px;
+    top: -50px;    
+}
+
+.btn_return{
 	position: absolute; 
 	left: 0px;
     top: 0px;    
