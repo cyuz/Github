@@ -54,6 +54,8 @@ var Game = function() {
 		roleControlUnit.sameElementComboHit = 0;
 		combo = 0;
 
+		Monster.homing();
+
 		gameState = STATE_WAIT;
 
 		randomBridge();
@@ -283,8 +285,6 @@ var Game = function() {
 		} else if (arriveCount > ROAD_COUNT && arriveCount == (combo + 1) * ROAD_COUNT) {
 			gamePause();
 			roleControlUnit.conclude();
-
-			Monster.getHurt(Math.random() * 6 >> 0, "red", 1 + Math.random() * 10 >> 0);
 		}
 	}
 
