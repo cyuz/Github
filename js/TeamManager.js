@@ -24,7 +24,7 @@ var TeamManager = function()
         var moneyResourceDiv = createDiv(playerMoneyDiv, "value", ["resource_value", "transparent_green"]);        
         moneyResourceDiv.innerHTML = 1234567;        
         
-        var stageDataDiv = createDiv($("#teamView")[0], "playermoney", ["stagedata", "transparent_green"]);
+        var stageDataDiv = createDiv($("#teamView")[0], "stageDataDiv", ["stagedata", "transparent_green"]);
         
         createDiv(stageDataDiv, "stagename", ["stagename", "transparent_green"]); 
         createImg(stageDataDiv, "bossimg", undefined, ["bossimg", "transparent_green"]); 
@@ -112,6 +112,7 @@ var TeamManager = function()
         }
         else
         {
+            console.log("start " + role_0_id + " " + role_1_id + " " + role_2_id + " " + role_3_id + " " + role_4_id + " " + role_5_id);     
             Game.setRole([role_0_id, role_1_id, role_2_id, role_3_id, role_4_id, role_5_id]);
         }
     }
@@ -228,25 +229,14 @@ var TeamManager = function()
         return newdiv;
     }
     
-    function setLevel(playerLevel)
+    function updatePlayerData()
     {
-        $("#playerlevel")[0].innerHTML = "LV " + playerLevel;
+//        $("#playerlevel")[0].innerHTML = "LV " + playerLevel;
+//        $("#playername")[0].innerHTML = playername;
+//        $("#playercash > #value")[0].innerHTML = playerCash;
+//        $("#playerMoney > #value")[0].innerHTML = playerMoney;
     }
-    
-    function setName(playername)
-    {
-        $("#playername")[0].innerHTML = playername;
-    }
-    
-    function setCash(playerCash)
-    {
-        $("#playercash > #value")[0].innerHTML = playerCash;
-    }
-    
-    function setMoney(playerMoney)
-    {
-        $("#playerMoney > #value")[0].innerHTML = playerMoney;
-    }
+
     
     function createTeamRoles(role_array)
     {
@@ -269,12 +259,12 @@ var TeamManager = function()
         
         
         
-        //$('#role_area').tinyscrollbar();
+        $('#role_area').tinyscrollbar();
     } 
 
     function createTeamRolesFromRoleData()
     {
-        var temp = $(".viewport > .overview");
+        var temp = $("#teamView > #role_area > .viewport > .overview");
         
         temp.empty();
         imgidroleidmap.length = 0;
@@ -290,6 +280,21 @@ var TeamManager = function()
             imgidroleidmap[imgId] = data.id;          
         }
         
+        
+        setMission("fireBoss");
+        
+    }
+    
+    function setMission(missionID)
+    {
+    
+    
+        var stageNameDiv = $("#teamView > #stageDataDiv > #stagename")[0];
+        var stageBossImg = $("#teamView > #stageDataDiv > #bossimg")[0];   
+        
+        var missionData = MissionData.getData(missionID);
+    
+        stageNameDiv.innerHTML = missionData.name;
     }
         
     
@@ -301,8 +306,9 @@ var TeamManager = function()
         "drop" : drop,
         "start" : start,
         "back" : back,
-        "createTeamRoles" : createTeamRoles,
-        "createTeamRolesFromRoleData" : createTeamRolesFromRoleData
+        "createTeamRoles" : createTeamRoles,        
+        "createTeamRolesFromRoleData" : createTeamRolesFromRoleData,
+        "setMission" : setMission
     }
     
 }();
