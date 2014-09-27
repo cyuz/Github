@@ -8,8 +8,8 @@
     "condition_value" : 2,
     "effect_type" : "atk",
     "effect_operator" : "+",
-    "effect_value" : 50,
-    "target_type" : "self",
+    "effect_value" : 30,
+    "target_type" : "all",
     "target_color" : "all",
     "target_race" : "all"
 }

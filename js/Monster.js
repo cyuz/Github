@@ -11,6 +11,7 @@ var Monster = function() {
     
 	var p_maxHp = 0;
 	var p_curHp = 0;
+    var updatetl = new TimelineLite({autoRemoveChildren:true}); 
 
 	function setMonster(id) {
 		var monster = RoleData.getData(id);
@@ -168,14 +169,24 @@ var Monster = function() {
                 if(effectOperator == "+")
                 {
                     atkAdd += effectValue;
+                    addBuffIcon("atk_up.png");
                 }
                 else if(effectOperator == "-")
                 {
                     atkAdd -= effectValue;
+                    addBuffIcon("atk_up.png");
                 }
                 else if(effectOperator == "*")
                 {
                     atkMul[atkMul.length] = effectValue;
+                    if(effectValue > 1)
+                    {
+                        addBuffIcon("atk_up.png");
+                    }
+                    else
+                    {
+                        addBuffIcon("atk_down.png");
+                    };
                 }
             break;
         }
@@ -196,6 +207,32 @@ var Monster = function() {
     function activePasiiveSkillEffect()
     {
         SkillParser.activeSkill(pSkill, Monster, RoleFunc);
+    }
+    
+    function addBuffIcon(buffImg)
+    {
+        var buffdiv = createBuffdiv(buffImg);                
+        updatetl.to(buffdiv, 0.5, {x:0, y:-30, ease:Power1.easeInOut, onComplete:removeBuffdiv, onCompleteParams:[buffdiv]});
+    }
+    
+    function createBuffdiv(imgSrc)
+    {
+        var buffdiv = document.createElement("div");
+        buffdiv.className = "monster_buff_icon";        
+        var newimg = document.createElement("img");
+        newimg.src = "image/" + imgSrc;
+        newimg.className = "buff_icon";
+        buffdiv.appendChild(newimg);
+        
+        $("#gameView > #monster")[0].appendChild(buffdiv);
+        
+        return buffdiv;    
+    }    
+    
+    
+    function removeBuffdiv(buffdiv)
+    {
+        $("#gameView > #monster")[0].removeChild(buffdiv);
     }
     
 	return {

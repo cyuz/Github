@@ -450,6 +450,12 @@ var RoleFunc = function()
         };
         
         
+        this.addBuffIcon = function(buffImg)
+        {
+            var buffDiv = createBuffdiv(charactersDiv, this.index, buffImg);                
+            this.updatetl.to(buffDiv, 0.5, {x:0,y:-30, ease:Power1.easeInOut, onComplete:removeBuffdiv, onCompleteParams:[charactersDiv, buffDiv]});
+        }
+        
         this.getNormalAttackValue = function(ballIndex)
         {
             var orb = this.orbQueue[ballIndex];
@@ -517,42 +523,72 @@ var RoleFunc = function()
                     if(effectOperator == "+")
                     {
                         this.atkAdd += effectValue;
+                        this.addBuffIcon("atk_up.png");
                     }
                     else if(effectOperator == "-")
                     {
-                       this.atkAdd -= effectValue;
+                        this.atkAdd -= effectValue;
+                        this.addBuffIcon("atk_down.png");
                     }
                     else if(effectOperator == "*")
                     {
                         this.atkMul[this.atkMul.length] = effectValue;
+                        if(effectValue > 1)
+                        {
+                            this.addBuffIcon("atk_up.png");
+                        }
+                        else
+                        {
+                            this.addBuffIcon("atk_down.png");
+                        }
                     }
                 break;
                 case "heal":
                     if(effectOperator == "+")
                     {
                         this.healAdd += effectValue;
+                        this.addBuffIcon("heal_up.png");
                     }
                     else if(effectOperator == "-")
                     {
                         this.healAdd -= effectValue;
+                        this.addBuffIcon("heal_down.png");
                     }
                     else if(effectOperator == "*")
                     {
                         this.healMul[this.healMul.length] = effectValue;
+                        if(effectValue > 1)
+                        {
+                            this.addBuffIcon("heal_up.png");
+                        }
+                        else
+                        {
+                            this.addBuffIcon("heal_down.png");
+                        }                        
                     }                  
                 break;
                 case "shield":
                     if(effectOperator == "+")
                     {
                         this.shieldAdd += effectValue;
+                        this.addBuffIcon("shield_up.png");
                     }
                     else if(effectOperator == "-")
                     {
                         this.shieldAdd -= effectValue;
+                        this.addBuffIcon("shield_down.png");
                     }
                     else if(effectOperator == "*")
                     {
                         this.shieldMul[this.shieldMul.length] = effectValue;
+                        if(effectValue > 1)
+                        {
+                            this.addBuffIcon("shield_up.png");
+                        }
+                        else
+                        {
+                            this.addBuffIcon("shield_down.png");
+                        }                        
                     }                 
                 break;
                 case "energy":
@@ -560,16 +596,26 @@ var RoleFunc = function()
                     {
                         var newValue = this.energy + effectValue;
                         this.changeEnergy(newValue - this.energy);
+                        this.addBuffIcon("energy_up.png");
                     }
                     else if(effectOperator == "-")
                     {
                         var newValue = this.energy - effectValue;
                         this.changeEnergy(newValue - this.energy);
+                        this.addBuffIcon("energy_down.jpg");
                     }
                     else if(effectOperator == "*")
                     {
                         var newValue = Math.round(this.energy * effectValue);
                         this.changeEnergy(newValue - this.energy);
+                        if(effectValue > 1)
+                        {
+                            this.addBuffIcon("energy_up.png");
+                        }
+                        else
+                        {
+                            this.addBuffIcon("energy_down.jpg");
+                        }                         
                     }                 
                 break;               
             }
@@ -579,7 +625,8 @@ var RoleFunc = function()
         {
             this.changeEnergy(-300);
             SkillParser.activeSkill(this.skill, RoleFunc, Monster);
-        }   
+        }
+
 
     }
 
@@ -607,7 +654,7 @@ var RoleFunc = function()
         parentdiv.appendChild(balldiv);
         
         return balldiv;
-    }
+    }      
     
     function removeBallDiv(parentdiv, ballDiv, player, ballIndex)
     {            
@@ -633,6 +680,26 @@ var RoleFunc = function()
             parentdiv.removeChild(ballArray[i]);
         }
     }        
+    
+    function createBuffdiv(parentdiv, index, imgSrc)
+    {
+        var buffdiv = document.createElement("div");
+        buffdiv.className = "attackOrbPos" + index;        
+        var newimg = document.createElement("img");
+        newimg.src = "image/" + imgSrc;
+        newimg.className = "buff_icon";
+        buffdiv.appendChild(newimg);
+        
+        
+        parentdiv.appendChild(buffdiv);
+        
+        return buffdiv;    
+    }
+    
+    function removeBuffdiv(parentdiv, buffDiv)
+    {
+        parentdiv.removeChild(buffDiv);
+    }
     
     
     var getHp = function()
