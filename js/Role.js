@@ -178,17 +178,17 @@ var RoleFunc = function()
         
         this.acceptOrb = function(orb){
         
-           // if(this.color == orb.color)
+            if(this.color == orb.color)
             {
                 this.comboHitTimes++;
                 roleFuncManager.sameElementComboHit++;
                 this.orbQueue.push(orb);
                 this.changeEnergy(orb.energy * 2);                
             }
-            //else
-            //{            
-//                this.changeEnergy(orb.energy);
-  //          }
+            else
+            {            
+                this.changeEnergy(orb.energy);
+            }
         };
         
         
