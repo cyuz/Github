@@ -1,0 +1,15 @@
+{
+	"id" : "skill1",
+	"skillName" : "小火球",
+	"imgsrc" : "",
+    "desc" : "",
+    "condition_type" : "enemyhp" | "selfhp" | "race"=value | "color" = "fire"|"water"|"forest" | "selfcolor" | "all"
+    "condition_operator" : ">" | "<" | "="
+    "condition_value" : value
+    "effect_type" : "atk" | "shield" | "heal"
+    "effect_operator" : "+" | "-" | "*"
+    "effect_value" : value
+    "target_type" : "self" | "enemy" | "all"
+    "target_color" : value | "all"
+    "target_race" : value | "all"
+}

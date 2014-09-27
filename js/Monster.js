@@ -4,6 +4,7 @@ var Monster = function() {
 	var curHp = 0;
 	var atk = 0;
 	var color = "";
+    var race = "";
 
 	var p_maxHp = 0;
 	var p_curHp = 0;
@@ -13,6 +14,7 @@ var Monster = function() {
 		maxHp = monster.hp;
 		curHp = monster.hp;
 		color = monster.color;
+        race = monster.race;
 		atk = monster.atk;
 
 		var bossImg = document.getElementById("monsterImg");
@@ -114,13 +116,45 @@ var Monster = function() {
 		p_curHp = hp;
 		playPlayerBloodAni(0, 0);
 	}
+    
+    function getPlayerHp() {
+        return p_curHp;
+    }
+    
+    function getHp()
+    {
+        return curHp;
+    }
+    
+    function filterSkillTarget(targetColor, targetRace)
+    {
+        var targets = new Array();
+        if(targetColor == color || targetColor == "all")
+        {
+            if(targetRace == race || targetRace == "all")
+            {
+                targets[0] = Monster;
+            }
+        }
+        
+        return targets;
+    }
+    
+    function takeSkillEffect(effectType, effectOperator, effectValue)
+    {
+        
+    }    
 
 	return {
 		"setMonster" : setMonster,
 		"setPlayerHp" : setPlayerHp,
 		"getHurt" : getHurt,
 		"homing" : homing,
-		"attack" : attack
+		"attack" : attack,
+        "getPlayerHp" : getPlayerHp,
+        "getHp" : getHp,
+        "filterSkillTarget" : filterSkillTarget,
+        "takeSkillEffect":takeSkillEffect   
 	}
 
 }();

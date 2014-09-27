@@ -1,10 +1,11 @@
 var SkillData = function() {
-	var MAX_COUNT = 1;
+	var MAX_COUNT = 2;
 	var list = {}
 	var completeCount = 0;
 
 	function init() {
 		loadData("skill1.skill");
+        loadData("pskill001.skill");
 	}
 
 	function loadData(fileName) {

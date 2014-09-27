@@ -52,9 +52,7 @@ var RoleFunc = function()
             var div = createCharacterDiv(charactersDiv, arguments[i]);
             char_roles[i].bindDisplay(div);
             maxTotalhp += characterDataInfo.hp;
-        }
-        
-        activePasiiveSkillEffect();
+        }        
         
         Monster.setPlayerHp(maxTotalhp);
     }
@@ -110,17 +108,13 @@ var RoleFunc = function()
         
         return characterdiv;
     }
-    
-    
-    var activePasiiveSkillEffect = function()
-    {
-    }
+        
 
     
 
     
     var giveOrb = function(posIndex, orbIndex)
-    {
+    {        
         var orb = BallData.getBall(orbIndex);
         char_roles[posIndex].acceptOrb(orb);
     }
@@ -131,7 +125,8 @@ var RoleFunc = function()
     }
     
     var conclude = function()
-    {
+    {    
+    
         //console.log("conclude");
         for(var i=0; i<char_roles.length;i++)
         {
@@ -171,6 +166,46 @@ var RoleFunc = function()
             }
             
         }
+    }
+    
+    var roundStart = function()
+    {
+        clearState();
+        activePasiiveSkillEffect();
+        consumeStateEnergy();
+    }
+    
+    var clearState = function()
+    {
+        for(var i=0; i<char_roles.length;i++)
+        {
+            if(char_roles[i] != null)
+            {
+                char_roles[i].clearState();
+            }
+        }
+    }
+    
+    var activePasiiveSkillEffect = function()
+    {
+        for(var i=0; i<char_roles.length;i++)
+        {
+            if(char_roles[i] != null)
+            {
+                SkillParser.activeSkill(char_roles[i].pSkill, RoleFunc, Monster);
+            }
+        }
+    }
+
+    var consumeStateEnergy = function()
+    {
+        for(var i=0; i<char_roles.length;i++)
+        {
+            if(char_roles[i] != null)
+            {
+                char_roles[i].consumeStateEnergy();
+            }
+        }            
     }
     
 
@@ -218,6 +253,7 @@ var RoleFunc = function()
         var bonusRate = "+" + (getComboDamageBonusRate() * 100) + "%";
         $("#combotHit > #combotHitRate")[0].innerHTML = bonusRate;
     }
+        
     
 
     function Character(index, characterDataInfo)
@@ -228,8 +264,14 @@ var RoleFunc = function()
         this.color = characterDataInfo.color;
         this.hp = characterDataInfo.hp;
         this.atk = characterDataInfo.atk;
+        this.atkAdd = 0;
+        this.atkMul = new Array(1);
         this.heal = characterDataInfo.heal;
+        this.healAdd = 0;
+        this.healMul = new Array(1);        
         this.shield = characterDataInfo.shield;
+        this.shieldAdd = 0;
+        this.shieldMul = new Array(1);
         this.race = characterDataInfo.race;
         this.skill = characterDataInfo.skill;
         this.pSkill = characterDataInfo.pSkill;                        
@@ -239,9 +281,95 @@ var RoleFunc = function()
         this.energyIcon = undefined;      
         this.roleIcon = undefined;        
         this.energy = 0;
+        this.energyAdd = 0;
+        this.energyMul = new Array(1);
         this.orbQueue = new Array();
         this.updatetl = new TimelineLite({autoRemoveChildren:true});    
         
+        this.clearState()
+        {
+            this.atkAdd = 0;
+            this.atkMul = new Array(1);
+            this.healAdd = 0;
+            this.healMul = new Array(1); 
+            this.shieldAdd = 0;
+            this.shieldMul = new Array(1);
+            this.energyAdd = 0;
+            this.energyMul = new Array(1);           
+        }
+        
+        this.getFinalAtk()
+        {
+            var atkValue = this.atk + this.atkAdd;
+            if(atkValue <= 0)
+            {
+                return 0;
+            }
+            
+            for(var i=0;i<this.atkMul.length;i++)
+            {
+                atkValue *= this.atkMul[i];
+            }
+            
+            return  Math.round(atkValue);
+        }        
+        
+        this.getFinalHeal()
+        {
+            var healValue = this.heal + this.healAdd;
+            if(healValue <= 0)
+            {
+                return 0;
+            }
+            
+            for(var i=0;i<this.healMul.length;i++)
+            {
+                healValue *= this.healMul[i];
+            }
+            
+            return  Math.round(healValue);
+        }   
+
+        this.getFinalShield()
+        {
+            var shieldValue = this.shield + this.shieldAdd;
+            if(shieldValue <= 0)
+            {
+                return 0;
+            }
+            
+            for(var i=0;i<this.shieldMul.length;i++)
+            {
+                shieldValue *= this.shieldMul[i];
+            }
+            
+            return  Math.round(shieldValue);
+        }           
+        
+        this.consumeStateEnergy()
+        {
+        
+            var energyValue = this.energy + this.energyAdd;
+            if(energyValue > 0)
+            {
+                for(var i=0;i<this.energyMul.length;i++)
+                {
+                    energyValue *= this.energyMul[i];
+                } 
+                
+                energyValue = Math.round(energyValue);
+            }
+            else
+            {
+                //in case < 0
+                energyValue = 0;
+            }
+            
+            var addEnergy = energyValue - this.energy;
+            this.changeEnergy(addEnergy);
+            this.energyAdd = 0;
+            this.energyMul = new Array(1);              
+        }
         
         this.acceptOrb = function(orb){
         
@@ -287,6 +415,8 @@ var RoleFunc = function()
             
             removeAnimationCount();
         }
+        
+
         
         
         
@@ -364,9 +494,9 @@ var RoleFunc = function()
             }
             var comboDagameRate = getComboDamageRate();
             
-            var damageValue = this.atk * rate * comboDagameRate;
-            var healValue = this.heal * rate * comboDagameRate;
-            var shieldValue = this.shield * rate * comboDagameRate;
+            var damageValue =  Math.round(this.getFinalAtk() * rate * comboDagameRate);
+            var healValue =  Math.round(this.getFinalHeal() * rate * comboDagameRate);
+            var shieldValue =  Math.round(this.getFinalShield() * rate * comboDagameRate);
             var result = new Array();
             result[0] = damageValue;
             result[1] = healValue;
@@ -411,11 +541,74 @@ var RoleFunc = function()
             }            
 
         }
-
-        this.activeSkill = function(posIndex)
+ 
+        
+        this.takeSkillEffect(effectType, effectOperator, effectValue)
         {
-            console.log("active skill");
-        }    
+            switch(effectType)
+            {
+                case "atk":
+                    if(effectOperator == "+")
+                    {
+                        this.atkAdd += effectValue;
+                    }
+                    else if(effectOperator == "-")
+                    {
+                       this.atkAdd -= effectValue;
+                    }
+                    else if(effectOperator == "*")
+                    {
+                        this.atkMul += effectValue;
+                    }
+                break;
+                case "heal":
+                    if(effectOperator == "+")
+                    {
+                        this.healAdd += effectValue;
+                    }
+                    else if(effectOperator == "-")
+                    {
+                        this.healAdd -= effectValue;
+                    }
+                    else if(effectOperator == "*")
+                    {
+                        this.healMul += effectValue;
+                    }                  
+                break;
+                case "shield":
+                    if(effectOperator == "+")
+                    {
+                        this.shieldAdd += effectValue;
+                    }
+                    else if(effectOperator == "-")
+                    {
+                        this.shieldAdd -= effectValue;
+                    }
+                    else if(effectOperator == "*")
+                    {
+                        this.shieldMul -= effectValue;
+                    }                 
+                break;
+                case "energy":
+                    if(effectOperator == "+")
+                    {
+                        this.energyAdd += effectValue;
+                    }
+                    else if(effectOperator == "-")
+                    {
+                        this.energyAdd -= effectValue;
+                    }
+                    else if(effectOperator == "*")
+                    {
+                        this.energyMul -= effectValue;
+                    }                 
+                break;
+            }
+        }     
+
+        this.activeSkill()
+        {
+        }   
 
     }
 
@@ -471,6 +664,59 @@ var RoleFunc = function()
     }        
     
     
+    var getHp = function()
+    {
+        return Monster.getPlayerHp();
+    }
+    
+    var getColorCount = function(targetColor)
+    {
+        var count = 0;
+        for(var i=0;i<char_roles.length;i++)
+        {
+            if(char_roles[i].color == targetColor)
+            {
+                count++;
+            }
+        }
+        
+        return count;
+    }
+    
+    var getRaceCount = function(targetRace)
+    {
+        var count = 0;
+        for(var i=0;i<char_roles.length;i++)
+        {
+            if(char_roles[i].race == targetRace)
+            {
+                count++;
+            }
+        }
+        
+        return count;        
+    }
+    
+    
+    function filterSkillTarget(targetColor, targetRace)
+    {
+        var targets = new Array();
+        for(var i=0;i<char_roles.length;i++)
+        {
+            if(char_roles[i].color == targetColor || targetColor == "all")
+            {
+                if(char_roles[i].race == targetRace || targetRace == "all")
+                {
+                    targets[targets.length] = char_roles[i];
+                }
+            }
+        }        
+
+        
+        return targets;
+    }
+    
+
     
     
 	return {
@@ -479,7 +725,12 @@ var RoleFunc = function()
         "clearRoles" : clearRoles,
         "giveOrb": giveOrb,
         "conclude": conclude,
-        "getSameElementComboHit": getSameElementComboHit
+        "getSameElementComboHit": getSameElementComboHit,
+        "getColorCount": getColorCount,
+        "getRaceCount": getRaceCount,
+        "getHp": getHp,
+        "filterSkillTarget": filterSkillTarget,
+        "roundStart" : roundStart
 	}    
     
     
