@@ -3,5 +3,6 @@
 	"image" : "ball_b_2.png",
 	"css" : "ballImgMid",
 	"color" : "blue",
-	"energy" : 20
+	"energy" : 20,
+	"rate" : 1.25
 }
