@@ -25,10 +25,9 @@ var RoleFunc = function()
     }
     
     
-    this.bind = function(charactersDiv, globalActionFunc)
+    this.bind = function(charactersDiv)
     {
-        this.charactersDiv = charactersDiv;
-        this.globalActionFunc = globalActionFunc;                        
+        this.charactersDiv = charactersDiv;                      
     }
     
     this.createRole = function()
@@ -61,12 +60,10 @@ var RoleFunc = function()
         this.char_roles.length = 0;
         this.maxTotalhp = 0;
         if(this.charactersDiv != undefined)
-        {
-            //todo : memory leak?
-            while(charactersDiv.firstChild)
-            {
-                charactersDiv.removeChild(charactersDiv.firstChild);
-            }
+        {                    
+            while (this.charactersDiv.firstChild) {
+                this.charactersDiv.removeChild(this.charactersDiv.firstChild);
+             }     
         }
     }
     
