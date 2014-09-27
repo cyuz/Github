@@ -1,6 +1,7 @@
 var RoleData = function() {
 	var MAX_COUNT = 7;
 	var list = {}
+	var playerList = {}
 	var completeCount = 0;
 
 	function init() {
@@ -25,10 +26,17 @@ var RoleData = function() {
 	function loadComplete(data) {
 		var jsonData = jQuery.parseJSON(data);
 		list[jsonData["id"]] = jsonData;
+		if (!jsonData[isMonster]){
+			playerList[jsonData["id"]] = jsonData;
+		}
 		completeCount++;
 		if (completeCount == MAX_COUNT) {
 			Main.roleReady();
 		}
+	}
+	
+	function playerList(){
+		return playerList;
 	}
 
 	function getData(id) {
@@ -37,6 +45,7 @@ var RoleData = function() {
 
 	return {
 		"init" : init,
+		"playerList" : playerList,
 		"getData" : getData
 	}
 }();

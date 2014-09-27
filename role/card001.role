@@ -1,6 +1,7 @@
 ﻿{
 	"id" : "card001",
 	"name" : "火1",
+	"isMonster" : false,
 	"index" : 0,
 	"cardPic" : "",
 	"fightPic" : "card001.png",
