@@ -3,24 +3,27 @@ var Monster = function() {
 	var maxHp = 0;
 	var curHp = 0;
 	var atk = 0;
-    var atkAdd =0;
-    var atkMul = [1];
+	var atkAdd = 0;
+	var atkMul = [1];
 	var color = "";
-    var race = "";
-    var pSkill = "";
-    
+	var race = "";
+	var pSkill = "";
+
 	var p_maxHp = 0;
 	var p_curHp = 0;
-    var updatetl = new TimelineLite({autoRemoveChildren:true}); 
+	var p_shield = 0;
+	var updatetl = new TimelineLite({
+		autoRemoveChildren : true
+	});
 
 	function setMonster(id) {
 		var monster = RoleData.getData(id);
 		maxHp = monster.hp;
 		curHp = monster.hp;
 		color = monster.color;
-        race = monster.race;
+		race = monster.race;
 		atk = monster.atk;
-        pSkill = monster.pSkill;
+		pSkill = monster.pSkill;
 
 		var bossImg = document.getElementById("monsterImg");
 		bossImg.src = "image/" + monster.fightPic;
@@ -52,24 +55,27 @@ var Monster = function() {
 			p_curHp = p_maxHp;
 		}
 		playPlayerBloodAni(0, 0.5);
+
+		p_shield += shield;
+		if (p_shield > p_maxHp * 2) {
+			p_shield = p_maxHp * 2;
+		}
+		playPlayerShieldAni(0, 0.5);
 		//attack();
 	}
-    
-    function getFinalAtk()
-    {
-        var atkValue = atk + atkAdd;
-        if(atkValue <= 0)
-        {
-            return 0;
-        }
-            
-        for(var i=0;i<atkMul.length;i++)
-        {
-            atkValue *= atkMul[i];
-        }
-            
-        return  Math.round(atkValue);    
-    }
+
+	function getFinalAtk() {
+		var atkValue = atk + atkAdd;
+		if (atkValue <= 0) {
+			return 0;
+		}
+
+		for (var i = 0; i < atkMul.length; i++) {
+			atkValue *= atkMul[i];
+		}
+
+		return Math.round(atkValue);
+	}
 
 	function attack() {
 		if (curHp <= 0) {
@@ -87,13 +93,24 @@ var Monster = function() {
 
 		});
 
-		p_curHp -= getFinalAtk();
-		if (p_curHp < 0) {
-			p_curHp = 0;
+		var remainShield = p_shield - getFinalAtk();
+		var bloodDelay = 0;
+		if (remainShield < 0) {
+			if (p_shield > 0) {
+				bloodDelay = 0.3;
+			}
+			p_shield = 0;
+
+			p_curHp += remainShield;
+			if (p_curHp < 0) {
+				p_curHp = 0;
+			}
+		} else {
+			p_shield = remainShield;
 		}
 
-		playPlayerBloodAni(0.3, 0.5, checkPlayerHp);
-
+		playPlayerShieldAni(0.3, 0.3);
+		playPlayerBloodAni(0.3 + bloodDelay, 0.3, checkPlayerHp);
 	}
 
 	function playMonsterBloodAni(during) {
@@ -114,12 +131,24 @@ var Monster = function() {
 		});
 	}
 
+	function playPlayerShieldAni(delay, during, callback) {
+		var curWidth = p_shield / (p_maxHp * 2) * 550;
+		var shield = document.getElementById("shield");
+		TweenLite.to(shield, during, {
+			delay : delay,
+			width : curWidth,
+			onComplete : callback
+		});
+	}
+
 	function checkPlayerHp() {
 		if (p_curHp <= 0) {
 			alert("defeat");
 			Main.toMissionView();
 			return;
 		}
+		p_shield = 0;
+		playPlayerShieldAni(0, 0);
 		Game.roundInit();
 	}
 
@@ -136,116 +165,103 @@ var Monster = function() {
 		p_maxHp = hp;
 		p_curHp = hp;
 		playPlayerBloodAni(0, 0);
+		p_shield = 0;
+		playPlayerShieldAni(0, 0);
 	}
-    
-    function getPlayerHp() {
-        return p_curHp;
-    }
-    
-    function getHp()
-    {
-        return curHp;
-    }
-    
-    function filterSkillTarget(targetColor, targetRace)
-    {
-        var targets = new Array();
-        if(targetColor == color || targetColor == "all")
-        {
-            if(targetRace == race || targetRace == "all")
-            {
-                targets[0] = Monster;
-            }
-        }
-        
-        return targets;
-    }
-    
-    function takeSkillEffect(effectType, effectOperator, effectValue)
-    {
-        switch(effectType)
-        {
-            case "atk":
-                if(effectOperator == "+")
-                {
-                    atkAdd += effectValue;
-                    addBuffIcon("atk_up.png");
-                }
-                else if(effectOperator == "-")
-                {
-                    atkAdd -= effectValue;
-                    addBuffIcon("atk_up.png");
-                }
-                else if(effectOperator == "*")
-                {
-                    atkMul[atkMul.length] = effectValue;
-                    if(effectValue > 1)
-                    {
-                        addBuffIcon("atk_up.png");
-                    }
-                    else
-                    {
-                        addBuffIcon("atk_down.png");
-                    };
-                }
-            break;
-        }
-    }    
 
-    function roundStart()
-    {
-        clearState();
-        activePasiiveSkillEffect();
-    }
-    
-    function clearState()
-    {
-        var atkAdd =0;
-        var atkMul = [1];    
-    }
-    
-    function activePasiiveSkillEffect()
-    {
-        SkillParser.activeSkill(pSkill, Monster, RoleFunc);
-    }
-    
-    function addBuffIcon(buffImg)
-    {
-        var buffdiv = createBuffdiv(buffImg);                
-        updatetl.to(buffdiv, 0.5, {x:0, y:-30, ease:Power1.easeInOut, onComplete:removeBuffdiv, onCompleteParams:[buffdiv]});
-    }
-    
-    function createBuffdiv(imgSrc)
-    {
-        var buffdiv = document.createElement("div");
-        buffdiv.className = "monster_buff_icon";        
-        var newimg = document.createElement("img");
-        newimg.src = "image/" + imgSrc;
-        newimg.className = "buff_icon";
-        buffdiv.appendChild(newimg);
-        
-        $("#gameView > #monster")[0].appendChild(buffdiv);
-        
-        return buffdiv;    
-    }    
-    
-    
-    function removeBuffdiv(buffdiv)
-    {
-        $("#gameView > #monster")[0].removeChild(buffdiv);
-    }
-    
+	function getPlayerHp() {
+		return p_curHp;
+	}
+
+	function getHp() {
+		return curHp;
+	}
+
+	function filterSkillTarget(targetColor, targetRace) {
+		var targets = new Array();
+		if (targetColor == color || targetColor == "all") {
+			if (targetRace == race || targetRace == "all") {
+				targets[0] = Monster;
+			}
+		}
+
+		return targets;
+	}
+
+	function takeSkillEffect(effectType, effectOperator, effectValue) {
+		switch(effectType) {
+			case "atk":
+				if (effectOperator == "+") {
+					atkAdd += effectValue;
+					addBuffIcon("atk_up.png");
+				} else if (effectOperator == "-") {
+					atkAdd -= effectValue;
+					addBuffIcon("atk_up.png");
+				} else if (effectOperator == "*") {
+					atkMul[atkMul.length] = effectValue;
+					if (effectValue > 1) {
+						addBuffIcon("atk_up.png");
+					} else {
+						addBuffIcon("atk_down.png");
+					};
+				}
+				break;
+		}
+	}
+
+	function roundStart() {
+		clearState();
+		activePasiiveSkillEffect();
+	}
+
+	function clearState() {
+		var atkAdd = 0;
+		var atkMul = [1];
+	}
+
+	function activePasiiveSkillEffect() {
+		SkillParser.activeSkill(pSkill, Monster, RoleFunc);
+	}
+
+	function addBuffIcon(buffImg) {
+		var buffdiv = createBuffdiv(buffImg);
+		updatetl.to(buffdiv, 0.5, {
+			x : 0,
+			y : -30,
+			ease : Power1.easeInOut,
+			onComplete : removeBuffdiv,
+			onCompleteParams : [buffdiv]
+		});
+	}
+
+	function createBuffdiv(imgSrc) {
+		var buffdiv = document.createElement("div");
+		buffdiv.className = "monster_buff_icon";
+		var newimg = document.createElement("img");
+		newimg.src = "image/" + imgSrc;
+		newimg.className = "buff_icon";
+		buffdiv.appendChild(newimg);
+
+		$("#gameView > #monster")[0].appendChild(buffdiv);
+
+		return buffdiv;
+	}
+
+	function removeBuffdiv(buffdiv) {
+		$("#gameView > #monster")[0].removeChild(buffdiv);
+	}
+
 	return {
 		"setMonster" : setMonster,
 		"setPlayerHp" : setPlayerHp,
 		"getHurt" : getHurt,
 		"homing" : homing,
 		"attack" : attack,
-        "getPlayerHp" : getPlayerHp,
-        "getHp" : getHp,
-        "filterSkillTarget" : filterSkillTarget,
-        "takeSkillEffect":takeSkillEffect,
-        "roundStart" : roundStart
+		"getPlayerHp" : getPlayerHp,
+		"getHp" : getHp,
+		"filterSkillTarget" : filterSkillTarget,
+		"takeSkillEffect" : takeSkillEffect,
+		"roundStart" : roundStart
 	}
 
 }();
