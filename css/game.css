@@ -121,3 +121,40 @@
 	left: 280px;
     visibility:  hidden;    
 }
+
+.resultView {
+	background-image: url("../image/cardTipsBg.png");
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 640px;
+	height: 930px;
+}
+
+.victory {
+	position: absolute;
+	top: 220px;
+}
+
+.defeat {
+	position: absolute;
+	top: 220px;
+}
+
+.confirmBtn {
+	position: absolute;
+	height: 30px;
+	width: 75px;
+	top: 465px;
+	left: 447px;
+	cursor: pointer;
+}
+
+.resultText {
+	color: #FF0000;
+	position: absolute;
+	height: 40px;
+	width: 450px;
+	top: 480px;
+	left: 110px;
+}
