@@ -120,6 +120,15 @@ var RoleFunc = function()
         char_roles[posIndex].acceptOrb(orb);
     }
     
+    var askActivePlayerSkill = function(posIndex)
+    {
+        if(char_roles[posIndex].energy > SKILL_COST)
+        {
+            UseSkill.show("use skill", char_roles[posIndex].activeMainSkill());
+        }
+    }   
+                        
+    
     var activePlayerSkill = function(posIndex)
     {
         char_roles[posIndex].activeMainSkill();
@@ -519,7 +528,7 @@ var RoleFunc = function()
             this.roleIcon.onclick = (function() {
                 var temp2 = temp;
                 return function() { 
-                    activePlayerSkill(temp2);
+                    askActivePlayerSkill(temp2);
                 }
             })();            
             
