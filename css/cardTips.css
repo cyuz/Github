@@ -1,0 +1,79 @@
+.cardTipsName {
+	color: #FFFFFF;
+	font-size: 24px;
+	font-weight: bold;
+	text-align: center;
+	width: 350px;
+	position: absolute;
+	left: 120px;
+	top: 40px;
+}
+
+.cardTipsRace {
+	color: #112d6a;
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+	width: 140px;
+	position: absolute;
+	left: 339px;
+	top: 125px;
+}
+
+.cardTipsHp {
+	color: #FFFFFF;
+	position: absolute;
+	left: 371px;
+	top: 186px;
+}
+
+.cardTipsATK {
+	color: #FFFFFF;
+	position: absolute;
+	left: 371px;
+	top: 227px;
+}
+
+.cardTipsHealth {
+	color: #FFFFFF;
+	position: absolute;
+	left: 371px;
+	top: 267px;
+}
+
+.cardTipsShield {
+	color: #FFFFFF;
+	position: absolute;
+	left: 371px;
+	top: 309px;
+}
+
+.cardTipsColorImg {
+	background-repeat: no-repeat;
+	width: 155px;
+	height: 155px;
+	position: absolute;
+	left: -25px;
+	top: -19px;
+}
+
+.cardTipsColorImg.cardTipsColorImgred {
+	background-image: url("../image/cardTipsColor_r.png");
+}
+
+.cardTipsColorImg.cardTipsColorImgblue {
+	background-image: url("../image/cardTipsColor_b.png");
+}
+
+.cardTipsColorImg.cardTipsColorImggreen {
+	background-image: url("../image/cardTipsColor_g.png");
+}
+
+.cardTipsRoleImg {
+	background-repeat: no-repeat;
+	width: 140px;
+	height: 140px;
+	position: absolute;
+	left: 87px;
+	top: 189px;
+}

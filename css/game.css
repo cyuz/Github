@@ -106,6 +106,13 @@
 	left: 10px;
 }
 
+.shield {
+	position: absolute;
+	top: 204px;
+	left: 45px;
+	overflow: hidden;
+}
+
 .monster_buff_icon{
     position: absolute; 
 	height: 30px;

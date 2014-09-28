@@ -13,7 +13,6 @@ body {
 }
 
 .view {
-	background-image: url('../image/bg.jpg');
 	position: absolute;
 	width: 640px;
 	height: 930px;
@@ -22,8 +21,17 @@ body {
 	overflow: hidden;
 }
 
+.gameView {
+	background-image: url('../image/bg.jpg');
+}
+
 .teamView {
 	background-image: url("../image/team_background.png");
+}
+
+.cardTipsView {
+	z-index: 99;
+	background-image: url("../image/cardTipsBg.png");
 }
 
 .playerarea {
@@ -65,4 +73,10 @@ body {
 	position: absolute;
 	left: 314px;
 	top: 333px;
+}
+
+.cardTips {
+	position: absolute;
+	left: 60px;
+	top: 130px;
 }
