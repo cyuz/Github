@@ -10,12 +10,6 @@ var Main = function() {
 	}
 
 	function ballReady() {
-		Game.init();
-		Game.setMission("fireBoss");
-		Game.roundInit();
-	}
-
-	function ballReady() {
 		RoleData.init();
 	}
 
@@ -31,6 +25,8 @@ var Main = function() {
 		Game.init();
 		TeamManager.init();
 		TeamManager.createTeamRolesFromRoleData();
+
+		CardTips.init();
 
 		$("#missionBlue").data("mission", "mon001");
 		$("#missionBlue").click(goMission);

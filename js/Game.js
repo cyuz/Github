@@ -72,6 +72,9 @@ var Game = function() {
 		addBall(createEnergyBall(), 3);
 		addBall(createEnergyBall(), 4);
 		addBall(createEnergyBall(), 5);
+
+		Monster.roundStart();
+		RoleFunc.roundStart();
 	}
 
 	function createRoad() {
