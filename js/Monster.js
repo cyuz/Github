@@ -291,7 +291,7 @@ var Monster = function() {
 		return buffdiv;
 	}
     
-	function addSkillIcon(skillImg, text, skillID, targets) {        
+	function addSkillIcon(skillImg, text, skillID) {        
         skillEffectCount++;
 		var skillDiv = createSkillDiv(skillImg, text);
 		updatetl.fromTo(skillDiv, 0.5, {x:-30}, {
@@ -299,7 +299,7 @@ var Monster = function() {
             x:60,
 			ease:Expo.easeIn,
 			onComplete : removeChildSkillDiv,
-			onCompleteParams : [skillDiv, skillID, targets]
+			onCompleteParams : [skillDiv, skillID]
 		}, "-=0.25"
         );
 	}    
@@ -324,12 +324,8 @@ var Monster = function() {
 		return buffdiv;
 	}    
 
-    function removeChildSkillDiv(childdiv, skillID, targets) {
-        skillEffectCount--;
-        if(targets.length != 0)
-        {
-            SkillParser.takeSkillEffect(skillID, targets);
-        }           
+    function removeChildSkillDiv(childdiv, skillID) {
+        skillEffectCount--;          
         if(skillEffectCount == 0)
         {
             if(waitSkillEffect)
@@ -345,9 +341,9 @@ var Monster = function() {
 		$("#gameView > #monster")[0].removeChild(childdiv);
 	}
 
-    function skillAnimationAndDoEffect(skillID, targets)
+    function skillAnimation(skillID)
     {
-        addSkillIcon("skill_text.png", "", skillID, targets);                        
+        addSkillIcon("skill_text.png", "", skillID);                        
     }
     
 	return {
@@ -361,7 +357,7 @@ var Monster = function() {
 		"filterSkillTarget" : filterSkillTarget,
 		"takeSkillEffect" : takeSkillEffect,
 		"roundStart" : roundStart,
-        "skillAnimationAndDoEffect" : skillAnimationAndDoEffect
+        "skillAnimation" : skillAnimation
 	}
 
 }();

@@ -134,12 +134,17 @@ var SkillParser = function() {
         }
     }
     
+    
     function activeSkill(skillID, attacker, defender, unit)
     {
         if(SkillParser.checkSkillCondition(skillID, attacker, defender))
         {
             var targets = SkillParser.getSkillTargets(skillID, attacker, defender, unit);
-            unit.skillAnimationAndDoEffect(skillID, targets);            
+            unit.skillAnimation(skillID, targets);
+            if(targets.length != 0)
+            {
+                SkillParser.takeSkillEffect(skillID, targets);
+            }   
         }    
     }
     

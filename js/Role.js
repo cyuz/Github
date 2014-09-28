@@ -3,7 +3,7 @@ var RoleFunc = function()
 
     const ROLE_COUNT = 6;
     const MAX_ENERGY = 300;
-    const SKILL_COST = 300;
+    const SKILL_COST = 50;
     const ENERGY_SIZE = 70;
     const LEFT_CENTER_X = "0px";
     const RIGHT_CENTER_X = "530px";
@@ -461,16 +461,16 @@ var RoleFunc = function()
             this.texttl.to(buffDiv, 0.5, {visibility:"visible", x:0,y:-30, ease:Expo.easeIn, onComplete:removeDiv, onCompleteParams:[this.mainDiv, buffDiv]}, "-=0.25");
         }
         
-        this.addSkillAnimation = function(skillImg, text, skillID, targets)
+        this.addSkillAnimation = function(skillImg, text, skillID)
         {            
             var skillDiv = createSkilldiv(this.mainDiv, skillImg, text);                
-            this.skilltl.fromTo(skillDiv, 0.5, {x:-10}, {visibility:"visible", x:30, ease:Expo.easeIn, onComplete:removeSkillDiv, onCompleteParams:[this.mainDiv, skillDiv, skillID, targets]});
+            this.skilltl.fromTo(skillDiv, 0.5, {x:-10}, {visibility:"visible", x:30, ease:Expo.easeIn, onComplete:removeSkillDiv, onCompleteParams:[this.mainDiv, skillDiv, skillID]});
         }
         
-        this.addMainSkillAnimation = function(skillImg, text, skillID, targets)
+        this.addMainSkillAnimation = function(skillImg, text, skillID)
         { 
             var skillDiv = createMainSkilldiv($("#gameView")[0], skillImg, text);         
-            this.skilltl.fromTo(skillDiv, 1, {x:0}, {visibility:"visible", x:400, ease:Expo.easeIn, onComplete:removeSkillDiv, onCompleteParams:[$("#gameView")[0], skillDiv, skillID, targets]});
+            this.skilltl.fromTo(skillDiv, 1, {x:0}, {visibility:"visible", x:400, ease:Expo.easeIn, onComplete:removeSkillDiv, onCompleteParams:[$("#gameView")[0], skillDiv, skillID]});
         }        
         
 
@@ -631,16 +631,16 @@ var RoleFunc = function()
             }
         }
 
-        this.skillAnimationAndDoEffect = function(skillID, targets)
+        this.skillAnimation = function(skillID)
         {
             this.skilltl.to(this.roleIcon, 0.1, {x:0, y:-5});             
             if(this.skill == skillID)
             {
-                this.addMainSkillAnimation("main_skill_text.png", "", skillID, targets); 
+                this.addMainSkillAnimation("main_skill_text.png", "", skillID); 
             }
             else
             {
-                this.addSkillAnimation("skill_text.png", "", skillID, targets);                               
+                this.addSkillAnimation("skill_text.png", "", skillID);                               
             }
             this.skilltl.to(this.roleIcon, 0.1, {x:0, y:0});    
         }
@@ -755,14 +755,8 @@ var RoleFunc = function()
         return skilldiv;     
     }    
     
-    function removeSkillDiv(parentdiv, childDiv, skillID, targets)
-    {
-    
-        if(targets.length != 0)
-        {
-            SkillParser.takeSkillEffect(skillID, targets);
-        }      
-    
+    function removeSkillDiv(parentdiv, childDiv, skillID)
+    {        
         removeDiv(parentdiv, childDiv);
     }
     
