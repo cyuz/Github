@@ -275,6 +275,7 @@ var RoleFunc = function()
         this.updatetl = new TimelineLite({autoRemoveChildren:true});    
         this.energytl = new TimelineLite({autoRemoveChildren:true});    
         this.texttl = new TimelineLite({autoRemoveChildren:true});
+        this.skilltl = new TimelineLite({autoRemoveChildren:true});
         
         this.clearState = function()
         {
@@ -456,13 +457,13 @@ var RoleFunc = function()
         this.addBuffIcon = function(buffImg, text)
         {
             var buffDiv = createBuffdiv(this.mainDiv, buffImg, text);                
-            this.texttl.to(buffDiv, 1, {visibility:"visible", x:0,y:-30, ease:Power1.easeInOut, onComplete:removeDiv, onCompleteParams:[this.mainDiv, buffDiv]}, "-=0.5");
+            this.texttl.to(buffDiv, 0.5, {visibility:"visible", x:0,y:-30, ease:Power1.easeInOut, onComplete:removeDiv, onCompleteParams:[this.mainDiv, buffDiv]}, "-=0.25");
         }
         
-        this.addSkillIcon = function(skillImg, text)
+        this.addSkillIcon = function(skillImg, text, skillID, targets)
         {
             var skillDiv = createSkilldiv(this.mainDiv, skillImg, text);                
-            this.updatetl.to(skillDiv, 1, {visibility:"visible", scaleX:2, scaleY:2, ease:Power1.easeInOut, onComplete:removeDiv, onCompleteParams:[this.mainDiv, skillDiv]});
+            this.skilltl.fromTo(skillDiv, 0.5, {x:-10}, {visibility:"visible", x:30, ease:Expo.easeIn, onComplete:removeSkillDiv, onCompleteParams:[this.mainDiv, skillDiv, skillID, targets]});
         }
         
         
@@ -604,11 +605,11 @@ var RoleFunc = function()
             SkillParser.activeSkill(this.skill, RoleFunc, Monster, this);
         }
 
-        this.skillAnimation = function(skillID)
+        this.skillAnimationAndDoEffect = function(skillID, targets)
         {
-            this.addSkillIcon("skill_text.png", "");
-            this.updatetl.to(this.roleIcon, 0.1, {x:0, y:-5});                        
-            this.updatetl.to(this.roleIcon, 0.1, {x:0, y:0});    
+            this.skilltl.to(this.roleIcon, 0.1, {x:0, y:-5});             
+            this.addSkillIcon("skill_text.png", "", skillID, targets);                               
+            this.skilltl.to(this.roleIcon, 0.1, {x:0, y:0});    
         }
 
     }    
@@ -701,6 +702,17 @@ var RoleFunc = function()
         parentdiv.appendChild(skilldiv);
         
         return skilldiv;     
+    }
+    
+    function removeSkillDiv(parentdiv, childDiv, skillID, targets)
+    {
+    
+        if(targets.length != 0)
+        {
+            SkillParser.takeSkillEffect(skillID, targets);
+        }      
+    
+        removeDiv(parentdiv, childDiv);
     }
     
     function removeDiv(parentdiv, childDiv)

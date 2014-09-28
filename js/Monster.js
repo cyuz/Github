@@ -12,7 +12,7 @@ var Monster = function() {
 	var p_maxHp = 0;
 	var p_curHp = 0;
 	var p_shield = 0;
-
+    
 	var curColorMap;
 	var colorMapping = {
 		"red" : {
@@ -31,7 +31,11 @@ var Monster = function() {
 			"green" : 1
 		}
 	}
+    
+    var skillEffectCount = 0;
 
+    var waitSkillEffect = false;
+    
 	var updatetl = new TimelineLite({
 		autoRemoveChildren : true
 	});
@@ -106,6 +110,13 @@ var Monster = function() {
 	}
 
 	function attack() {
+    
+        if(skillEffectCount > 0)
+        {
+            waitSkillEffect = true;
+            return;
+        }
+    
 		if (curHp <= 0) {
 			Result.showVictory();
 			return;
@@ -249,14 +260,14 @@ var Monster = function() {
 
 	function addBuffIcon(buffImg, text) {
 		var buffdiv = createBuffdiv(buffImg, text);
-		updatetl.to(buffdiv, 1, {
+		updatetl.to(buffdiv, 0.5, {
             visibility:"visible", 
 			x : 0,
 			y : -30,
 			ease : Power1.easeInOut,
 			onComplete : removeChildDiv,
 			onCompleteParams : [buffdiv]
-		}, "-=0.5"
+		}, "-=0.25"
         );
 	}
 
@@ -280,15 +291,16 @@ var Monster = function() {
 		return buffdiv;
 	}
     
-	function addSkillIcon(skillImg, text) {
+	function addSkillIcon(skillImg, text, skillID, targets) {        
+        skillEffectCount++;
 		var skillDiv = createSkillDiv(skillImg, text);
-		updatetl.to(skillDiv, 1, {
+		updatetl.fromTo(skillDiv, 0.5, {x:-30}, {
             visibility:"visible", 
-            scaleX:2, scaleY:2,
-			ease : Power1.easeInOut,
-			onComplete : removeChildDiv,
-			onCompleteParams : [skillDiv]
-		}, "-=0.5"
+            x:60,
+			ease:Expo.easeIn,
+			onComplete : removeChildSkillDiv,
+			onCompleteParams : [skillDiv, skillID, targets]
+		}, "-=0.25"
         );
 	}    
     
@@ -312,13 +324,30 @@ var Monster = function() {
 		return buffdiv;
 	}    
 
+    function removeChildSkillDiv(childdiv, skillID, targets) {
+        skillEffectCount--;
+        if(targets.length != 0)
+        {
+            SkillParser.takeSkillEffect(skillID, targets);
+        }           
+        if(skillEffectCount == 0)
+        {
+            if(waitSkillEffect)
+            {
+                waitSkillEffect = false;
+                attack();
+            }
+        }
+        removeChildDiv(childdiv);
+   }
+    
 	function removeChildDiv(childdiv) {
 		$("#gameView > #monster")[0].removeChild(childdiv);
 	}
 
-    function skillAnimation(skillID)
+    function skillAnimationAndDoEffect(skillID, targets)
     {
-        addSkillIcon("skill_text.png", "");
+        addSkillIcon("skill_text.png", "", skillID, targets);                        
     }
     
 	return {
@@ -332,7 +361,7 @@ var Monster = function() {
 		"filterSkillTarget" : filterSkillTarget,
 		"takeSkillEffect" : takeSkillEffect,
 		"roundStart" : roundStart,
-        "skillAnimation" : skillAnimation
+        "skillAnimationAndDoEffect" : skillAnimationAndDoEffect
 	}
 
 }();
