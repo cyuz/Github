@@ -32,12 +32,13 @@ body {
 }
 
 .teamView {
-	background-image: url("../image/team_background.png");
+	background-image: url("../image/teamViewBg.png");
 }
 
 .cardTipsView {
 	z-index: 99;
 	background-image: url("../image/cardTipsBg.png");
+	cursor: pointer;
 }
 
 .playerarea {
@@ -85,4 +86,10 @@ body {
 	position: absolute;
 	left: 60px;
 	top: 130px;
+}
+
+.guide {
+	position: absolute;
+	left: 320px;
+	top: -450px;
 }

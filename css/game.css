@@ -2,6 +2,7 @@
 	position: relative;
 	width: 640px;
 	height: 230px;
+	cursor: pointer;
 }
 
 .monsterImg {
@@ -113,13 +114,13 @@
 	overflow: hidden;
 }
 
-.monster_buff_icon{
-    position: absolute; 
+.monster_buff_icon {
+	position: absolute;
 	height: 30px;
 	width: 70px;
 	top: 30px;
 	left: 280px;
-    visibility:  hidden;    
+	visibility: hidden;
 }
 
 .resultView {
@@ -159,11 +160,54 @@
 	left: 110px;
 }
 
-.monster_skill_icon{
-    position: absolute; 
+.monster_skill_icon {
+	position: absolute;
 	height: 30px;
 	width: 70px;
 	top: 200px;
 	left: 280px;
-    visibility: hidden;    
+	visibility: hidden;
+}
+
+.useSkillConfirm {
+	background-image: url("../image/cardTipsBg.png");
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 640px;
+	height: 930px;
+}
+
+.useSkillConfirmImg {
+	position: absolute;
+	left: 170px;
+	top: 350px;
+}
+
+.useSkillTxt {
+	color: #FFFFFF;
+	position: absolute;
+	left: 197px;
+	top: 373px;
+	width: 245px;
+	height: 60px;
+	text-align: center;
+}
+
+.useSkillOK {
+	width: 96px;
+	height: 37px;
+	position: absolute;
+	left: 198px;
+	top: 474px;
+	cursor: pointer;
+}
+
+.useSkillNO {
+	width: 96px;
+	height: 37px;
+	position: absolute;
+	left: 346px;
+	top: 474px;
+	cursor: pointer;
 }
