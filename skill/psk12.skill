@@ -1,0 +1,15 @@
+﻿{
+	"id" : "psk12",
+	"skillName" : "psk12",
+	"imgsrc" : "",
+    "desc" : "隊伍內有木屬性隊員三位或以上時，木屬性隊員護盾2倍",
+    "condition_type" : "green",
+    "condition_operator" : ">=",
+    "condition_value" : 3,
+    "effect_type" : "shield",
+    "effect_operator" : "*",
+    "effect_value" : 2,
+    "target_type" : "self",
+    "target_color" : "green",
+    "target_race" : "all"
+}

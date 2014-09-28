@@ -1,0 +1,16 @@
+﻿{
+	"id" : "b3",
+	"name" : "寒冰龍王",
+	"isMonster" : true,
+	"index" : 0,
+	"cardPic" : "bm3.png",
+	"fightPic" : "b3.png",
+	"hp" : 800000,
+	"atk" : 13000,
+	"heal" : 0,
+	"shield" : 0,
+	"color" : "blue",
+	"race" : "3",
+	"skill" : "bsk3",
+	"pSkill" : "bpsk3"
+}

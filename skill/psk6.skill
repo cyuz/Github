@@ -1,0 +1,15 @@
+﻿{
+	"id" : "psk6",
+	"skillName" : "psk6",
+	"imgsrc" : "",
+    "desc" : "水屬性隊員護盾降至50%",
+    "condition_type" : "all",
+    "condition_operator" : "",
+    "condition_value" : "",
+    "effect_type" : "shield",
+    "effect_operator" : "*",
+    "effect_value" : 0.5,
+    "target_type" : "self",
+    "target_color" : "blue",
+    "target_race" : "all"
+}

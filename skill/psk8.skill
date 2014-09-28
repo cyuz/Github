@@ -1,0 +1,15 @@
+﻿{
+	"id" : "psk8",
+	"skillName" : "psk8",
+	"imgsrc" : "",
+    "desc" : "水屬性隊員為兩位或以上時，全體隊員護盾減少80",
+    "condition_type" : "blue",
+    "condition_operator" : ">=",
+    "condition_value" : 2,
+    "effect_type" : "shield",
+    "effect_operator" : "-",
+    "effect_value" : 80,
+    "target_type" : "self",
+    "target_color" : "all",
+    "target_race" : "all"
+}

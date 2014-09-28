@@ -1,0 +1,15 @@
+﻿{
+	"id" : "psk9",
+	"skillName" : "psk9",
+	"imgsrc" : "",
+    "desc" : "血量高於12000時，每回合減少自身能量60",
+    "condition_type" : "selfhp",
+    "condition_operator" : ">=",
+    "condition_value" : 12000,
+    "effect_type" : "energy",
+    "effect_operator" : "-",
+    "effect_value" : 60,
+    "target_type" : "itself",
+    "target_color" : "all",
+    "target_race" : "all"
+}

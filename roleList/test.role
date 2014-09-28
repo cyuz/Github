@@ -1,0 +1,13 @@
+{
+	"name":"name",
+	"des":"des",
+	"index":3,
+	"isPlayer":false,
+	"cardPic":"img",
+	"fightPic":"img",
+	"damage":3,
+	"hp":2,
+	"color":2,
+	"race":2,
+	"skill":["s1", "s2", "s3"]
+}

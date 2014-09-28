@@ -1,0 +1,15 @@
+﻿{
+	"id" : "sk29",
+	"skillName" : "sk29",
+	"imgsrc" : "",
+    "desc" : "增加格鬥類隊員攻擊力3000一回合",
+    "condition_type" : "all",
+    "condition_operator" : "",
+    "condition_value" : "",
+    "effect_type" : "atk",
+    "effect_operator" : "+",
+    "effect_value" : 3000,
+    "target_type" : "self",
+    "target_color" : "all",
+    "target_race" : "1"
+}

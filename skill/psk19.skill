@@ -1,0 +1,15 @@
+﻿{
+	"id" : "psk19",
+	"skillName" : "psk19",
+	"imgsrc" : "",
+    "desc" : "血量少於8000時，敵人攻擊力降至60%",
+    "condition_type" : "selfhp",
+    "condition_operator" : "<",
+    "condition_value" : 8000,
+    "effect_type" : "atk",
+    "effect_operator" : "*",
+    "effect_value" : 0.6,
+    "target_type" : "enemy",
+    "target_color" : "all",
+    "target_race" : "all"
+}

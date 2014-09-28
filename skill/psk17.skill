@@ -1,0 +1,15 @@
+﻿{
+	"id" : "psk17",
+	"skillName" : "psk17",
+	"imgsrc" : "",
+    "desc" : "隊伍內有超能類隊員4位或以上時，超能類隊員護盾2倍",
+    "condition_type" : "3",
+    "condition_operator" : ">=",
+    "condition_value" : 4,
+    "effect_type" : "shield",
+    "effect_operator" : "*",
+    "effect_value" : 2,
+    "target_type" : "self",
+    "target_color" : "all",
+    "target_race" : "3"
+}

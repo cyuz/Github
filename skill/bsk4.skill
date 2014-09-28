@@ -1,0 +1,15 @@
+﻿{
+	"id" : "bsk4",
+	"skillName" : "bsk4",
+	"imgsrc" : "",
+    "desc" : "每受到一次攻擊，減少玩家攻擊力20",
+    "condition_type" : "all",
+    "condition_operator" : "",
+    "condition_value" : "",
+    "effect_type" : "atk",
+    "effect_operator" : "-",
+    "effect_value" : 20,
+    "target_type" : "enemy",
+    "target_color" : "all",
+    "target_race" : "all"
+}

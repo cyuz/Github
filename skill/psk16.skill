@@ -1,0 +1,15 @@
+﻿{
+	"id" : "psk16",
+	"skillName" : "psk16",
+	"imgsrc" : "",
+    "desc" : "超能類隊員護盾1.5倍",
+    "condition_type" : "all",
+    "condition_operator" : "",
+    "condition_value" : "",
+    "effect_type" : "shield",
+    "effect_operator" : "*",
+    "effect_value" : 1.5,
+    "target_type" : "self",
+    "target_color" : "all",
+    "target_race" : "3"
+}

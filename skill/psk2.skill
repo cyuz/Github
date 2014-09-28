@@ -1,0 +1,15 @@
+﻿{
+	"id" : "psk2",
+	"skillName" : "psk2",
+	"imgsrc" : "",
+    "desc" : "敵方血量高於500,000時，火屬性隊員攻擊力6倍",
+    "condition_type" : "enemyhp",
+    "condition_operator" : ">=",
+    "condition_value" : 500000,
+    "effect_type" : "atk",
+    "effect_operator" : "*",
+    "effect_value" : 6,
+    "target_type" : "self",
+    "target_color" : "red",
+    "target_race" : "all"
+}

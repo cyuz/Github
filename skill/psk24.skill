@@ -1,0 +1,15 @@
+﻿{
+	"id" : "psk24",
+	"skillName" : "psk24",
+	"imgsrc" : "",
+    "desc" : "血量小於10000時，魔法類隊員恢復力1.5倍",
+    "condition_type" : "selfhp",
+    "condition_operator" : "<",
+    "condition_value" : 10000,
+    "effect_type" : "heal",
+    "effect_operator" : "*",
+    "effect_value" : 1.5,
+    "target_type" : "self",
+    "target_color" : "all",
+    "target_race" : "2"
+}

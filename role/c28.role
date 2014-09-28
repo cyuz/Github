@@ -1,0 +1,16 @@
+﻿{
+	"id" : "c28",
+	"name" : "c28",
+	"isMonster" : false,
+	"index" : 27,
+	"cardPic" : "c28.png",
+	"fightPic" : "c28.png",
+	"hp" : 6033,
+	"atk" : 1304,
+	"heal" : 75,
+	"shield" : 136,
+	"color" : "green",
+	"race" : "1",
+	"skill" : "sk28",
+	"pSkill" : "psk28"
+}

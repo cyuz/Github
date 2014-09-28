@@ -1,0 +1,16 @@
+﻿{
+	"id" : "c7",
+	"name" : "c7",
+	"isMonster" : false,
+	"index" : 6,
+	"cardPic" : "c7.png",
+	"fightPic" : "c7.png",
+	"hp" : 3935,
+	"atk" : 1062,
+	"heal" : 264,
+	"shield" : 25,
+	"color" : "blue",
+	"race" : "1",
+	"skill" : "sk7",
+	"pSkill" : "psk7"
+}

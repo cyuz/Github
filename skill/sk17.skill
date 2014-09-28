@@ -1,0 +1,15 @@
+﻿{
+	"id" : "sk17",
+	"skillName" : "sk17",
+	"imgsrc" : "",
+    "desc" : "超能類隊員攻擊力增加1000一回合",
+    "condition_type" : "all",
+    "condition_operator" : "",
+    "condition_value" : "",
+    "effect_type" : "atk",
+    "effect_operator" : "+",
+    "effect_value" : 1000,
+    "target_type" : "self",
+    "target_color" : "all",
+    "target_race" : "3"
+}

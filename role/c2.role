@@ -1,0 +1,16 @@
+﻿{
+	"id" : "c2",
+	"name" : "金龍!!",
+	"isMonster" : false,
+	"index" : 1,
+	"cardPic" : "c2.png",
+	"fightPic" : "c2.png",
+	"hp" : 2412,
+	"atk" : 1633,
+	"heal" : 160,
+	"shield" : 178,
+	"color" : "red",
+	"race" : "1",
+	"skill" : "sk2",
+	"pSkill" : "psk2"
+}

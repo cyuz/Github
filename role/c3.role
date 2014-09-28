@@ -1,0 +1,16 @@
+﻿{
+	"id" : "c3",
+	"name" : "c3",
+	"isMonster" : false,
+	"index" : 2,
+	"cardPic" : "c3.png",
+	"fightPic" : "c3.png",
+	"hp" : 2217,
+	"atk" : 1430,
+	"heal" : 80,
+	"shield" : 343,
+	"color" : "red",
+	"race" : "3",
+	"skill" : "sk3",
+	"pSkill" : "psk3"
+}

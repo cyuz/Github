@@ -257,6 +257,8 @@ var TeamManager = function() {
 		stageNameDiv.innerHTML = missionData.name;
 		monster = RoleData.getData(missionData.mosterLayer);
 		stageBossImg.src = "image/" + monster.cardPic;
+		/*missionData.
+		 stageBossImg.src =*/
 	}
 
 	function showMonster() {

@@ -1,0 +1,16 @@
+﻿{
+	"id" : "c32",
+	"name" : "c32",
+	"isMonster" : false,
+	"index" : 31,
+	"cardPic" : "c32.png",
+	"fightPic" : "c32.png",
+	"hp" : 3801,
+	"atk" : 1926,
+	"heal" : 67,
+	"shield" : 115,
+	"color" : "red",
+	"race" : "1",
+	"skill" : "sk32",
+	"pSkill" : "psk32"
+}

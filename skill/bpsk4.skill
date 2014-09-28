@@ -1,0 +1,15 @@
+﻿{
+	"id" : "bpsk4",
+	"skillName" : "bpsk4",
+	"imgsrc" : "",
+    "desc" : "玩家血量低於12000時，玩家全體隊員攻擊力降至70%",
+    "condition_type" : "enemyhp",
+    "condition_operator" : "<",
+    "condition_value" : "12000",
+    "effect_type" : "atk",
+    "effect_operator" : "*",
+    "effect_value" : 0.7,
+    "target_type" : "enemy",
+    "target_color" : "all",
+    "target_race" : "all"
+}

@@ -1,0 +1,15 @@
+﻿{
+	"id" : "psk31",
+	"skillName" : "psk31",
+	"imgsrc" : "",
+    "desc" : "血量高於15000時，全體隊員和敵人攻擊力2倍",
+    "condition_type" : "enemyhp",
+    "condition_operator" : ">=",
+    "condition_value" : 15000,
+    "effect_type" : "atk",
+    "effect_operator" : "*",
+    "effect_value" : 2,
+    "target_type" : "all",
+    "target_color" : "all",
+    "target_race" : "all"
+}

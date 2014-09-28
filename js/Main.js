@@ -28,16 +28,16 @@ var Main = function() {
 
 		CardTips.init();
 
-		$("#missionBlue").data("mission", "monster001");
+		$("#missionBlue").data("mission", "mon003");
 		$("#missionBlue").click(goMission);
 
-		$("#missionRed").data("mission", "monster002");
+		$("#missionRed").data("mission", "mon001");
 		$("#missionRed").click(goMission);
 
-		$("#missionYellow").data("mission", "monster003");
+		$("#missionYellow").data("mission", "mon004");
 		$("#missionYellow").click(goMission);
 
-		$("#missionGreen").data("mission", "monster004");
+		$("#missionGreen").data("mission", "mon002");
 		$("#missionGreen").click(goMission);
 
 		//toMissionView();

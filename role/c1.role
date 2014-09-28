@@ -1,0 +1,16 @@
+﻿{
+	"id" : "c1",
+	"name" : "c1",
+	"isMonster" : false,
+	"index" : 0,
+	"cardPic" : "c1.png",
+	"fightPic" : "c1.png",
+	"hp" : 3662,
+	"atk" : 1911,
+	"heal" : 199,
+	"shield" : 49,
+	"color" : "red",
+	"race" : "2",
+	"skill" : "sk1",
+	"pSkill" : "psk1"
+}
