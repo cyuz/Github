@@ -1,4 +1,5 @@
 var Monster = function() {
+	var monster;
 	var maxHp = 0;
 	var curHp = 0;
 	var atk = 0;
@@ -6,7 +7,7 @@ var Monster = function() {
 	var atkMul = [1];
 	var color = "";
 	var race = "";
-    var skill = "";
+	var skill = "";
 	var pSkill = "";
 
 	var p_maxHp = 0;
@@ -41,21 +42,26 @@ var Monster = function() {
 	});
 
 	function setMonster(id) {
-		var monster = RoleData.getData(id);
+		monster = RoleData.getData(id);
 		maxHp = monster.hp;
 		curHp = monster.hp;
 		color = monster.color;
 		race = monster.race;
 		atk = monster.atk;
-        skill = monster.skill;
+		skill = monster.skill;
 		pSkill = monster.pSkill;
 
 		curColorMap = colorMapping[monster.color];
 
 		var bossImg = document.getElementById("monsterImg");
+		bossImg.onclick = showTips;
 		bossImg.src = "image/" + monster.fightPic;
 
 		playMonsterBloodAni(0);
+	}
+
+	function showTips() {
+		CardTips.setRole(monster.id);
 	}
 
 	function getHurt(site, color, damage, health, shield) {

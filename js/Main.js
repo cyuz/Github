@@ -28,26 +28,26 @@ var Main = function() {
 
 		CardTips.init();
 
-		$("#missionBlue").data("mission", "mon001");
+		$("#missionBlue").data("mission", "monster001");
 		$("#missionBlue").click(goMission);
 
-		$("#missionRed").data("mission", "mon001");
+		$("#missionRed").data("mission", "monster002");
 		$("#missionRed").click(goMission);
 
-		$("#missionYellow").data("mission", "mon002");
+		$("#missionYellow").data("mission", "monster003");
 		$("#missionYellow").click(goMission);
 
-		$("#missionGreen").data("mission", "mon001");
+		$("#missionGreen").data("mission", "monster004");
 		$("#missionGreen").click(goMission);
 
 		//toMissionView();
-		TweenMax.to($("#teamView"), 0, {
+		TweenMax.to([$("#teamView"), $("#guideTeam")], 0, {
 			css : {
 				alpha : 0,
 				display : 'none'
 			}
 		});
-		TweenMax.to($("#gameView"), 0, {
+		TweenMax.to([$("#gameView"), $("#guideGame")], 0, {
 			css : {
 				alpha : 0,
 				display : 'none'
@@ -65,19 +65,19 @@ var Main = function() {
 	}
 
 	function toMissionView() {
-		TweenMax.to($("#missionView"), 0.5, {
+		TweenMax.to([$("#missionView"), $("#guideMission")], 0.5, {
 			css : {
 				alpha : 1,
 				display : 'inline'
 			}
 		});
-		TweenMax.to($("#teamView"), 0.5, {
+		TweenMax.to([$("#teamView"), $("#guideTeam")], 0.5, {
 			css : {
 				alpha : 0,
 				display : 'none'
 			}
 		});
-		TweenMax.to($("#gameView"), 0.5, {
+		TweenMax.to([$("#gameView"), $("#guideGame")], 0.5, {
 			css : {
 				alpha : 0,
 				display : 'none'
@@ -86,19 +86,19 @@ var Main = function() {
 	}
 
 	function toTeamView() {
-		TweenMax.to($("#missionView"), 0.5, {
+		TweenMax.to([$("#missionView"), $("#guideMission")], 0.5, {
 			css : {
 				alpha : 0,
 				display : 'none'
 			}
 		});
-		TweenMax.to($("#teamView"), 0.5, {
+		TweenMax.to([$("#teamView"), $("#guideTeam")], 0.5, {
 			css : {
 				alpha : 1,
 				display : 'inline'
 			}
 		});
-		TweenMax.to($("#gameView"), 0.5, {
+		TweenMax.to([$("#gameView"), $("#guideGame")], 0.5, {
 			css : {
 				alpha : 0,
 				display : 'none'
@@ -107,19 +107,19 @@ var Main = function() {
 	}
 
 	function toGameView() {
-		TweenMax.to($("#missionView"), 0.5, {
+		TweenMax.to([$("#missionView"), $("#guideMission")], 0.5, {
 			css : {
 				alpha : 0,
 				display : 'none'
 			}
 		});
-		TweenMax.to($("#teamView"), 0.5, {
+		TweenMax.to([$("#teamView"), $("#guideTeam")], 0.5, {
 			css : {
 				alpha : 0,
 				display : 'none'
 			}
 		});
-		TweenMax.to($("#gameView"), 0.5, {
+		TweenMax.to([$("#gameView"), $("#guideGame")], 0.5, {
 			css : {
 				alpha : 1,
 				display : 'inline'

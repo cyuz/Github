@@ -3,29 +3,33 @@ var TeamManager = function() {
 	var selectedRolesDiv = new Array(6);
 	var imgidroleidmap = new Array();
 
+	var monster;
+
 	function init() {
 		var plyaerLevelDiv = createDiv($("#teamView")[0], "playerlevel", ["playerlevel", "transparent_green"]);
-		plyaerLevelDiv.innerHTML = "LV 99";
+		//plyaerLevelDiv.innerHTML = "LV 99";
 
 		var playerNameDiv = createDiv($("#teamView")[0], "playername", ["playername", "transparent_green"]);
-		playerNameDiv.innerHTML = "小智";
+		//playerNameDiv.innerHTML = "小智";
 
 		var playerCashDiv = createDiv($("#teamView")[0], "playercash", ["playercash", "playeresource", "transparent_green"]);
 
 		createImg(playerCashDiv, "iocn_resource", "image/icon_cash.png", ["icon_resource"]);
 		var cashResourceDiv = createDiv(playerCashDiv, "value", ["resource_value", "transparent_green"]);
-		cashResourceDiv.innerHTML = 1234567;
+		//cashResourceDiv.innerHTML = 1234567;
 
 		var playerMoneyDiv = createDiv($("#teamView")[0], "playermoney", ["playermoney", "playeresource", "transparent_green"]);
 
 		createImg(playerMoneyDiv, "iocn_resource", "image/icon_money.png", ["icon_resource"]);
 		var moneyResourceDiv = createDiv(playerMoneyDiv, "value", ["resource_value", "transparent_green"]);
-		moneyResourceDiv.innerHTML = 1234567;
+		//moneyResourceDiv.innerHTML = 1234567;
 
 		var stageDataDiv = createDiv($("#teamView")[0], "stageDataDiv", ["stagedata", "transparent_green"]);
 
 		createDiv(stageDataDiv, "stagename", ["stagename", "transparent_green"]);
-		createImg(stageDataDiv, "bossimg", undefined, ["bossimg", "transparent_green"]);
+		var bossimgDiv = createDiv(stageDataDiv, "bossimgDiv", ["bossimgDiv"]);
+		bossimgDiv.onclick = showMonster;
+		createImg(bossimgDiv, "bossimg", undefined, ["bossimg", "transparent_green"]);
 
 		selectedRolesDiv[0] = createDiv($("#teamView")[0], "selected_role_0", ["selected_role", "selected_role_0", "transparent_green"]);
 		var roleImg = createImg(selectedRolesDiv[0], "selected_role_0_img", undefined, ["selected_icon_role"]);
@@ -246,11 +250,17 @@ var TeamManager = function() {
 	function setMission(missionID) {
 
 		var stageNameDiv = $("#teamView > #stageDataDiv > #stagename")[0];
-		var stageBossImg = $("#teamView > #stageDataDiv > #bossimg")[0];
+		var stageBossImg = $("#teamView > #stageDataDiv > #bossimgDiv > #bossimg")[0];
 
 		var missionData = MissionData.getData(missionID);
 
 		stageNameDiv.innerHTML = missionData.name;
+		monster = RoleData.getData(missionData.mosterLayer);
+		stageBossImg.src = "image/" + monster.cardPic;
+	}
+
+	function showMonster() {
+		CardTips.setRole(monster.id);
 	}
 
 	return {

@@ -1,18 +1,24 @@
 var RoleData = function() {
-	var MAX_COUNT = 8;
+	var MAX_COUNT = 14;
 	var list = {}
 	var playerList = {}
 	var completeCount = 0;
 
 	function init() {
-		loadData("card001.role");
-		loadData("card002.role");
-		loadData("card003.role");
-		loadData("card004.role");
-		loadData("card005.role");
-		loadData("card006.role");
-		loadData("monster.role");
-		loadData("monster2.role");
+		loadData("c1.role");
+		loadData("c2.role");
+		loadData("c3.role");
+		loadData("c4.role");
+		loadData("c5.role");
+		loadData("c6.role");
+		loadData("c7.role");
+		loadData("c8.role");
+		loadData("c9.role");
+		loadData("c10.role");
+		loadData("monster001.role");
+		loadData("monster002.role");
+		loadData("monster003.role");
+		loadData("monster004.role");
         loadData("c1.role");
         loadData("c2.role");
         loadData("c3.role");

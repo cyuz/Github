@@ -37,6 +37,7 @@ var Game = function() {
 		hideBonus();
 
 		Result.init();
+		UseSkill.init();
 	}
 
 	function setRole(roleArray) {
