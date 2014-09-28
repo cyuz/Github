@@ -3,13 +3,13 @@
 	"skillName" : "小火球",
 	"imgsrc" : "",
     "desc" : "",
-    "condition_type" : "enemyhp" | "selfhp" | "race"=value | "color" = "fire"|"water"|"forest" | "selfcolor" | "all"
+    "condition_type" : "enemyhp" | "selfhp" | "race"=("1" | "2" | "3") | "color" = ("red"|"green"|"blue") | "all"
     "condition_operator" : ">" | "<" | "="
     "condition_value" : value
-    "effect_type" : "atk" | "shield" | "heal"
+    "effect_type" : "atk" | "shield" | "heal" | "energy"
     "effect_operator" : "+" | "-" | "*"
     "effect_value" : value
-    "target_type" : "self" | "enemy" | "all"
+    "target_type" : "self" | "enemy" | "all" | "itself"
     "target_color" : value | "all"
     "target_race" : value | "all"
 }
