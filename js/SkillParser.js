@@ -6,6 +6,7 @@ var SkillParser = function() {
         var data = SkillData.getData(skillID);
         if(data == undefined)
         {
+            console.log("skill:" +skillID + " not exist");            
             return false;
         }
         
@@ -68,6 +69,7 @@ var SkillParser = function() {
         var data = SkillData.getData(skillID);
         if(data == undefined)
         {
+            console.log("skill:" +skillID + " not exist");
             return targets;
         }
         
@@ -98,6 +100,7 @@ var SkillParser = function() {
         var data = SkillData.getData(skillID);
         if(data == undefined)
         {
+            console.log("skill:" +skillID + " not exist");
             return false;
         }
 
@@ -121,6 +124,7 @@ var SkillParser = function() {
         var data = SkillData.getData(skillID);
         if(data == undefined)
         {
+            console.log("skill:" +skillID + " not exist");
             return;
         }
         

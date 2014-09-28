@@ -3,6 +3,7 @@ var RoleFunc = function()
 
     const ROLE_COUNT = 6;
     const MAX_ENERGY = 300;
+    const SKILL_COST = 300;
     const ENERGY_SIZE = 70;
     const LEFT_CENTER_X = "0px";
     const RIGHT_CENTER_X = "530px";
@@ -119,9 +120,9 @@ var RoleFunc = function()
         char_roles[posIndex].acceptOrb(orb);
     }
     
-    var activeSkill = function(posIndex)
+    var activePlayerSkill = function(posIndex)
     {
-        char_roles[posIndex].activeSkill();
+        char_roles[posIndex].activeMainSkill();
     }
     
     var conclude = function()
@@ -513,7 +514,17 @@ var RoleFunc = function()
             this.roleIcon = mainDiv.querySelector("#role_img");
             this.roleIcon.setAttribute('src', "image/" + this.fightPic);
             this.rold_bk =  mainDiv.querySelector("#role_img_bk");
-                        
+          
+            var temp = this.index;
+            this.roleIcon.onclick = (function() {
+                var temp2 = temp;
+                return function() { 
+                    activePlayerSkill(temp2);
+                }
+            })();            
+            
+
+            
             
             if(this.color == "red")
             {
@@ -607,20 +618,27 @@ var RoleFunc = function()
             }
         }     
 
-        this.activeSkill = function()
+        this.activeMainSkill = function()
         {
-            this.changeEnergy(-300);
-            SkillParser.activeSkill(this.skill, RoleFunc, Monster, this);
+            if(this.energy >= SKILL_COST)
+            {
+                this.changeEnergy(-SKILL_COST);
+                SkillParser.activeSkill(this.skill, RoleFunc, Monster, this);
+            }
+            else
+            {
+                console.log("energy not enough");
+            }
         }
 
         this.skillAnimationAndDoEffect = function(skillID, targets)
         {
             this.skilltl.to(this.roleIcon, 0.1, {x:0, y:-5});             
-            //if(this.skill == skillID)
+            if(this.skill == skillID)
             {
                 this.addMainSkillAnimation("main_skill_text.png", "", skillID, targets); 
             }
-            //else
+            else
             {
                 this.addSkillAnimation("skill_text.png", "", skillID, targets);                               
             }

@@ -7,7 +7,6 @@ var SkillData = function() {
 		loadData("skill1.skill");
         loadData("pskill001.skill");
         
-        /*
         loadData("sk1.skill");                
         loadData("sk2.skill");
         
@@ -74,7 +73,7 @@ var SkillData = function() {
         loadData("psk30.skill");
         loadData("psk31.skill");
         loadData("psk32.skill");     
-*/        
+       
 	}
 
 	function loadData(fileName) {
