@@ -243,8 +243,8 @@
     height: 30px
 }
 
-.buffPos0 {
-	left: 15px;
+.buff_pos {
+	left: 0px;
 	top: -15px;
 	height: 30px;
 	width: 70px;
@@ -253,9 +253,9 @@
     visibility:  hidden;
 }
 
-.buffPos1 {
-	left: 110px;
-	top: -15px;
+.skill_pos {
+	left: 3px;
+	top: 60px;
 	height: 30px;
 	width: 70px;
 	position: absolute;
@@ -263,44 +263,5 @@
     visibility:  hidden;
 }
 
-.buffPos2 {
-	left: 205px;
-	top: -15px;
-	height: 30px;
-	width: 70px;
-	position: absolute;
-	z-index: 2;
-    visibility:  hidden;
-}
-
-.buffPos3 {
-	left: 300px;
-	top: -15px;
-	height: 30px;
-	width: 70px;
-	position: absolute;
-	z-index: 2;
-    visibility:  hidden;
-}
-
-.buffPos4 {
-	left: 395px;
-	top: -15px;
-	height: 30px;
-	width: 70px;
-	position: absolute;
-	z-index: 2;
-    visibility:  hidden;
-}
-
-.buffPos5 {
-	left: 490px;
-	top: -15px;
-	height: 30px;
-	width: 70px;
-	position: absolute;
-	z-index: 2;
-    visibility:  hidden;
-}
 
 

@@ -6,6 +6,7 @@ var Monster = function() {
 	var atkMul = [1];
 	var color = "";
 	var race = "";
+    var skill = "";
 	var pSkill = "";
 
 	var p_maxHp = 0;
@@ -42,6 +43,7 @@ var Monster = function() {
 		color = monster.color;
 		race = monster.race;
 		atk = monster.atk;
+        skill = monster.skill;
 		pSkill = monster.pSkill;
 
 		curColorMap = colorMapping[monster.color];
@@ -64,6 +66,8 @@ var Monster = function() {
 			repeat : 1,
 			yoyo : true
 		});
+        
+        activeSkillEffect();
 
 		var colorCoefficient = curColorMap[color];
 		damage *= colorCoefficient;
@@ -85,7 +89,7 @@ var Monster = function() {
 			p_shield = p_maxHp * 2;
 		}
 		playPlayerShieldAni(0, 0.5);
-		//attack();
+		//attack();        
 	}
 
 	function getFinalAtk() {
@@ -238,6 +242,10 @@ var Monster = function() {
 	function activePasiiveSkillEffect() {
 		SkillParser.activeSkill(pSkill, Monster, RoleFunc, Monster);
 	}
+    
+	function activeSkillEffect() {
+		SkillParser.activeSkill(skill, Monster, RoleFunc, Monster);
+	}    
 
 	function addBuffIcon(buffImg, text) {
 		var buffdiv = createBuffdiv(buffImg, text);
@@ -246,7 +254,7 @@ var Monster = function() {
 			x : 0,
 			y : -30,
 			ease : Power1.easeInOut,
-			onComplete : removeBuffdiv,
+			onComplete : removeChildDiv,
 			onCompleteParams : [buffdiv]
 		}, "-=0.5"
         );
@@ -271,11 +279,48 @@ var Monster = function() {
 
 		return buffdiv;
 	}
+    
+	function addSkillIcon(skillImg, text) {
+		var skillDiv = createSkillDiv(skillImg, text);
+		updatetl.to(skillDiv, 1, {
+            visibility:"visible", 
+            scaleX:2, scaleY:2,
+			ease : Power1.easeInOut,
+			onComplete : removeChildDiv,
+			onCompleteParams : [skillDiv]
+		}, "-=0.5"
+        );
+	}    
+    
+	function createSkillDiv(imgSrc ,text) {
+		var buffdiv = document.createElement("div");
+		buffdiv.className = "monster_skill_icon";
+        buffdiv.style.backgroundImage = "url(image/" + imgSrc + ")";
+        buffdiv.style.backgroundSize = "cover";
+        
+        //var newimg = document.createElement("img");
+        //newimg.src = "image/" + imgSrc;
+        //newimg.className = "buff_icon";
+        //buffdiv.appendChild(newimg);
+        var newtext = document.createElement("div");
+        newtext.className = "buff_text";
+        newtext.innerHTML = text;
+        buffdiv.appendChild(newtext); 
 
-	function removeBuffdiv(buffdiv) {
-		$("#gameView > #monster")[0].removeChild(buffdiv);
+		$("#gameView > #monster")[0].appendChild(buffdiv);
+
+		return buffdiv;
+	}    
+
+	function removeChildDiv(childdiv) {
+		$("#gameView > #monster")[0].removeChild(childdiv);
 	}
 
+    function skillAnimation(skillID)
+    {
+        addSkillIcon("skill_text.png", "");
+    }
+    
 	return {
 		"setMonster" : setMonster,
 		"setPlayerHp" : setPlayerHp,
@@ -286,7 +331,8 @@ var Monster = function() {
 		"getHp" : getHp,
 		"filterSkillTarget" : filterSkillTarget,
 		"takeSkillEffect" : takeSkillEffect,
-		"roundStart" : roundStart
+		"roundStart" : roundStart,
+        "skillAnimation" : skillAnimation
 	}
 
 }();

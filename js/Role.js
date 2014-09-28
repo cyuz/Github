@@ -268,10 +268,13 @@ var RoleFunc = function()
         this.comboHitTimes = 0;
         //-1 means none
         this.energyIcon = undefined;      
-        this.roleIcon = undefined;        
+        this.roleIcon = undefined;
+        this.mainDiv = undefined;
         this.energy = 0;
         this.orbQueue = new Array();
         this.updatetl = new TimelineLite({autoRemoveChildren:true});    
+        this.energytl = new TimelineLite({autoRemoveChildren:true});    
+        this.texttl = new TimelineLite({autoRemoveChildren:true});
         
         this.clearState = function()
         {
@@ -367,7 +370,7 @@ var RoleFunc = function()
         this.updateEnergyDisplay = function()
         {  
             var width = this.energy / MAX_ENERGY * ENERGY_SIZE;
-            this.updatetl.to(this.energyIcon, ENERGY_UPDATE_TIME, {width:width});            
+            this.energytl.to(this.energyIcon, ENERGY_UPDATE_TIME, {width:width});            
         }
         
         this.consumeAttackEnergy = function(attackLevel)
@@ -452,9 +455,18 @@ var RoleFunc = function()
         
         this.addBuffIcon = function(buffImg, text)
         {
-            var buffDiv = createBuffdiv(charactersDiv, this.index, buffImg, text);                
-            this.updatetl.to(buffDiv, 1, {visibility:"visible", x:0,y:-30, ease:Power1.easeInOut, onComplete:removeBuffdiv, onCompleteParams:[charactersDiv, buffDiv]}, "-=0.5");
+            var buffDiv = createBuffdiv(this.mainDiv, buffImg, text);                
+            this.texttl.to(buffDiv, 1, {visibility:"visible", x:0,y:-30, ease:Power1.easeInOut, onComplete:removeDiv, onCompleteParams:[this.mainDiv, buffDiv]}, "-=0.5");
         }
+        
+        this.addSkillIcon = function(skillImg, text)
+        {
+            var skillDiv = createSkilldiv(this.mainDiv, skillImg, text);                
+            this.updatetl.to(skillDiv, 1, {visibility:"visible", scaleX:2, scaleY:2, ease:Power1.easeInOut, onComplete:removeDiv, onCompleteParams:[this.mainDiv, skillDiv]});
+        }
+        
+        
+        
         
         this.getNormalAttackValue = function(ballIndex)
         {
@@ -487,6 +499,7 @@ var RoleFunc = function()
         
         this.bindDisplay = function(mainDiv)
         {
+            this.mainDiv  = mainDiv;
             this.energyIcon = mainDiv.querySelector("#energy_div");
             this.roleIcon = mainDiv.querySelector("#role_img");
             this.roleIcon.setAttribute('src', "image/" + this.fightPic);
@@ -591,9 +604,14 @@ var RoleFunc = function()
             SkillParser.activeSkill(this.skill, RoleFunc, Monster, this);
         }
 
+        this.skillAnimation = function(skillID)
+        {
+            this.addSkillIcon("skill_text.png", "");
+            this.updatetl.to(this.roleIcon, 0.1, {x:0, y:-5});                        
+            this.updatetl.to(this.roleIcon, 0.1, {x:0, y:0});    
+        }
 
-    }
-
+    }    
 
     function finishNormalAttack(player)
     {
@@ -645,10 +663,10 @@ var RoleFunc = function()
         }
     }        
     
-    function createBuffdiv(parentdiv, index, imgSrc, text)
+    function createBuffdiv(parentdiv, imgSrc, text)
     {
         var buffdiv = document.createElement("div");
-        buffdiv.className = "buffPos" + index;        
+        buffdiv.className = "buff_pos";        
         buffdiv.style.backgroundImage = "url(image/" + imgSrc + ")";
         buffdiv.style.backgroundSize = "cover";
         
@@ -667,9 +685,27 @@ var RoleFunc = function()
         return buffdiv;    
     }
     
-    function removeBuffdiv(parentdiv, buffDiv)
+    function createSkilldiv(parentdiv, imgSrc, text)
     {
-        parentdiv.removeChild(buffDiv);
+        var skilldiv = document.createElement("div");
+        skilldiv.className = "skill_pos"        
+        skilldiv.style.backgroundImage = "url(image/" + imgSrc + ")";
+        skilldiv.style.backgroundSize = "cover";
+        
+        var newtext = document.createElement("div");
+        newtext.className = "buff_text";
+        newtext.innerHTML = text;
+        skilldiv.appendChild(newtext);                
+        
+        
+        parentdiv.appendChild(skilldiv);
+        
+        return skilldiv;     
+    }
+    
+    function removeDiv(parentdiv, childDiv)
+    {
+        parentdiv.removeChild(childDiv);
     }
     
     
@@ -739,7 +775,7 @@ var RoleFunc = function()
         "getRaceCount": getRaceCount,
         "getHp": getHp,
         "filterSkillTarget": filterSkillTarget,
-        "roundStart" : roundStart
+        "roundStart" : roundStart,        
 	}    
     
     

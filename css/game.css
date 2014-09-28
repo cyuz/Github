@@ -158,3 +158,12 @@
 	top: 480px;
 	left: 110px;
 }
+
+.monster_skill_icon{
+    position: absolute; 
+	height: 30px;
+	width: 70px;
+	top: 200px;
+	left: 280px;
+    visibility: hidden;    
+}
