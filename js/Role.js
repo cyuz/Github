@@ -457,14 +457,22 @@ var RoleFunc = function()
         this.addBuffIcon = function(buffImg, text)
         {
             var buffDiv = createBuffdiv(this.mainDiv, buffImg, text);                
-            this.texttl.to(buffDiv, 0.5, {visibility:"visible", x:0,y:-30, ease:Power1.easeInOut, onComplete:removeDiv, onCompleteParams:[this.mainDiv, buffDiv]}, "-=0.25");
+            this.texttl.to(buffDiv, 0.5, {visibility:"visible", x:0,y:-30, ease:Expo.easeIn, onComplete:removeDiv, onCompleteParams:[this.mainDiv, buffDiv]}, "-=0.25");
         }
         
-        this.addSkillIcon = function(skillImg, text, skillID, targets)
-        {
+        this.addSkillAnimation = function(skillImg, text, skillID, targets)
+        {            
             var skillDiv = createSkilldiv(this.mainDiv, skillImg, text);                
             this.skilltl.fromTo(skillDiv, 0.5, {x:-10}, {visibility:"visible", x:30, ease:Expo.easeIn, onComplete:removeSkillDiv, onCompleteParams:[this.mainDiv, skillDiv, skillID, targets]});
         }
+        
+        this.addMainSkillAnimation = function(skillImg, text, skillID, targets)
+        { 
+            var skillDiv = createMainSkilldiv($("#gameView")[0], skillImg, text);         
+            this.skilltl.fromTo(skillDiv, 1, {x:0}, {visibility:"visible", x:400, ease:Expo.easeIn, onComplete:removeSkillDiv, onCompleteParams:[$("#gameView")[0], skillDiv, skillID, targets]});
+        }        
+        
+
         
         
         
@@ -608,7 +616,14 @@ var RoleFunc = function()
         this.skillAnimationAndDoEffect = function(skillID, targets)
         {
             this.skilltl.to(this.roleIcon, 0.1, {x:0, y:-5});             
-            this.addSkillIcon("skill_text.png", "", skillID, targets);                               
+            //if(this.skill == skillID)
+            {
+                this.addMainSkillAnimation("main_skill_text.png", "", skillID, targets); 
+            }
+            //else
+            {
+                this.addSkillAnimation("skill_text.png", "", skillID, targets);                               
+            }
             this.skilltl.to(this.roleIcon, 0.1, {x:0, y:0});    
         }
 
@@ -703,6 +718,24 @@ var RoleFunc = function()
         
         return skilldiv;     
     }
+    
+    function createMainSkilldiv(parentdiv, imgSrc, text)
+    {
+        var skilldiv = document.createElement("div");
+        skilldiv.className = "main_skill_pos"        
+        skilldiv.style.backgroundImage = "url(image/" + imgSrc + ")";
+        skilldiv.style.backgroundSize = "cover";
+        
+        var newtext = document.createElement("div");
+        newtext.className = "buff_text";
+        newtext.innerHTML = text;
+        skilldiv.appendChild(newtext);                
+        
+        
+        parentdiv.appendChild(skilldiv);
+        
+        return skilldiv;     
+    }    
     
     function removeSkillDiv(parentdiv, childDiv, skillID, targets)
     {
