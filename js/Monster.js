@@ -193,18 +193,12 @@ var Monster = function() {
 			case "atk":
 				if (effectOperator == "+") {
 					atkAdd += effectValue;
-					addBuffIcon("atk_up.png");
 				} else if (effectOperator == "-") {
 					atkAdd -= effectValue;
-					addBuffIcon("atk_up.png");
 				} else if (effectOperator == "*") {
 					atkMul[atkMul.length] = effectValue;
-					if (effectValue > 1) {
-						addBuffIcon("atk_up.png");
-					} else {
-						addBuffIcon("atk_down.png");
-					};
 				}
+                addBuffIcon("atk_buff_text.png", effectOperator + effectValue);
 				break;
 		}
 	}
@@ -220,27 +214,36 @@ var Monster = function() {
 	}
 
 	function activePasiiveSkillEffect() {
-		SkillParser.activeSkill(pSkill, Monster, RoleFunc);
+		SkillParser.activeSkill(pSkill, Monster, RoleFunc, Monster);
 	}
 
-	function addBuffIcon(buffImg) {
-		var buffdiv = createBuffdiv(buffImg);
-		updatetl.to(buffdiv, 0.5, {
+	function addBuffIcon(buffImg, text) {
+		var buffdiv = createBuffdiv(buffImg, text);
+		updatetl.to(buffdiv, 1, {
+            visibility:"visible", 
 			x : 0,
 			y : -30,
 			ease : Power1.easeInOut,
 			onComplete : removeBuffdiv,
 			onCompleteParams : [buffdiv]
-		});
+		}, "-=0.5"
+        );
 	}
 
-	function createBuffdiv(imgSrc) {
+	function createBuffdiv(imgSrc ,text) {
 		var buffdiv = document.createElement("div");
 		buffdiv.className = "monster_buff_icon";
-		var newimg = document.createElement("img");
-		newimg.src = "image/" + imgSrc;
-		newimg.className = "buff_icon";
-		buffdiv.appendChild(newimg);
+        buffdiv.style.backgroundImage = "url(image/" + imgSrc + ")";
+        buffdiv.style.backgroundSize = "cover";
+        
+        //var newimg = document.createElement("img");
+        //newimg.src = "image/" + imgSrc;
+        //newimg.className = "buff_icon";
+        //buffdiv.appendChild(newimg);
+        var newtext = document.createElement("div");
+        newtext.className = "buff_text";
+        newtext.innerHTML = text;
+        buffdiv.appendChild(newtext); 
 
 		$("#gameView > #monster")[0].appendChild(buffdiv);
 

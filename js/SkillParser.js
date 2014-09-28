@@ -62,16 +62,20 @@ var SkillParser = function() {
         return valueComparator(RoleFunc.getRaceCount(targetRace), operator, targetValue);
     }
     
-    function getSkillTargets(skillID, attacker, defender)
+    function getSkillTargets(skillID, attacker, defender, unit)
     {
         var targets = new Array();
         var data = SkillData.getData(skillID);
         if(data == undefined)
         {
             return targets;
-        }                
+        }
         
-        if(data.target_type == "all")
+        if(data.target_type == "itself")
+        {
+            return [unit];
+        }
+        else if(data.target_type == "all")
         {
             var temp = attacker.filterSkillTarget(data.target_color, data.target_race);
             var temp2 = defender.filterSkillTarget(data.target_color, data.target_race);
@@ -126,11 +130,11 @@ var SkillParser = function() {
         }
     }
     
-    function activeSkill(skillID, attacker, defender)
+    function activeSkill(skillID, attacker, defender, unit)
     {
         if(SkillParser.checkSkillCondition(skillID, attacker, defender))
         {
-            var targets = SkillParser.getSkillTargets(skillID, attacker, defender);
+            var targets = SkillParser.getSkillTargets(skillID, attacker, defender, unit);
             if(targets.length != 0)
             {
                 SkillParser.takeSkillEffect(skillID, targets);

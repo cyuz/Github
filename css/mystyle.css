@@ -68,6 +68,7 @@
 	width: 30px;
 	position: absolute;
 	z-index: 2;
+    visibility:  hidden;    
 }
 
 .attackOrbPos1 {
@@ -77,6 +78,7 @@
 	width: 30px;
 	position: absolute;
 	z-index: 2;
+    visibility:  hidden;    
 }
 
 .attackOrbPos2 {
@@ -86,6 +88,7 @@
 	width: 30px;
 	position: absolute;
 	z-index: 2;
+    visibility:  hidden;    
 }
 
 .attackOrbPos3 {
@@ -95,6 +98,7 @@
 	width: 30px;
 	position: absolute;
 	z-index: 2;
+    visibility:  hidden;    
 }
 
 .attackOrbPos4 {
@@ -104,6 +108,7 @@
 	width: 30px;
 	position: absolute;
 	z-index: 2;
+    visibility:  hidden;    
 }
 
 .attackOrbPos5 {
@@ -113,6 +118,7 @@
 	width: 30px;
 	position: absolute;
 	z-index: 2;
+    visibility:  hidden;
 }
 
 .playerarea {
@@ -229,6 +235,72 @@
 .buff_icon{
     max-width:100%;
     max-height:100%;
+}
+
+.buff_text{
+    position: absolute;
+    left: 40px;
+    height: 30px
+}
+
+.buffPos0 {
+	left: 15px;
+	top: -15px;
+	height: 30px;
+	width: 70px;
+	position: absolute;
+	z-index: 2;
+    visibility:  hidden;
+}
+
+.buffPos1 {
+	left: 110px;
+	top: -15px;
+	height: 30px;
+	width: 70px;
+	position: absolute;
+	z-index: 2;
+    visibility:  hidden;
+}
+
+.buffPos2 {
+	left: 205px;
+	top: -15px;
+	height: 30px;
+	width: 70px;
+	position: absolute;
+	z-index: 2;
+    visibility:  hidden;
+}
+
+.buffPos3 {
+	left: 300px;
+	top: -15px;
+	height: 30px;
+	width: 70px;
+	position: absolute;
+	z-index: 2;
+    visibility:  hidden;
+}
+
+.buffPos4 {
+	left: 395px;
+	top: -15px;
+	height: 30px;
+	width: 70px;
+	position: absolute;
+	z-index: 2;
+    visibility:  hidden;
+}
+
+.buffPos5 {
+	left: 490px;
+	top: -15px;
+	height: 30px;
+	width: 70px;
+	position: absolute;
+	z-index: 2;
+    visibility:  hidden;
 }
 
 

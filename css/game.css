@@ -116,7 +116,8 @@
 .monster_buff_icon{
     position: absolute; 
 	height: 30px;
-	width: 30px;
+	width: 70px;
 	top: 30px;
-	left: 280px;    
+	left: 280px;
+    visibility:  hidden;    
 }

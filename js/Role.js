@@ -192,7 +192,7 @@ var RoleFunc = function()
         {
             if(char_roles[i] != null)
             {
-                SkillParser.activeSkill(char_roles[i].pSkill, RoleFunc, Monster);
+                SkillParser.activeSkill(char_roles[i].pSkill, RoleFunc, Monster, char_roles[i]);
             }
         }
     }
@@ -424,14 +424,14 @@ var RoleFunc = function()
                 {
                     this.updatetl.to(this.roleIcon, 0.1, {x:0,y:-5}, "mylabel");
                     this.updatetl.to(this.roleIcon, 0.1, {x:0,y:0});                 
-                    this.updatetl.to(ballDiv, BALL_FLY_TIME, {bezier:{type:"thru", values:[{left:ballDiv.offsetLeft, top:ballDiv.offsetTop}, {left:centerPos, top:"-450px"}, {left:"270px", top:"-730px"}]}, ease:Power1.easeInOut, onComplete:removeBallDiv, onCompleteParams:[charactersDiv, ballDiv, this, i]}, "-=0.1")                
+                    this.updatetl.to(ballDiv, BALL_FLY_TIME, {visibility:"visible", bezier:{type:"thru", values:[{left:ballDiv.offsetLeft, top:ballDiv.offsetTop}, {left:centerPos, top:"-450px"}, {left:"270px", top:"-730px"}]}, ease:Power1.easeInOut, onComplete:removeBallDiv, onCompleteParams:[charactersDiv, ballDiv, this, i]}, "-=0.1")                
                 }
                 else
                 {
                     var overlap = "mylabel+="+(i*0.2);
                     this.updatetl.to(this.roleIcon, 0.1, {x:0,y:-5}, overlap);
                     this.updatetl.to(this.roleIcon, 0.1, {x:0,y:0});                 
-                    this.updatetl.to(ballDiv, BALL_FLY_TIME, {bezier:{type:"thru", values:[{left:ballDiv.offsetLeft, top:ballDiv.offsetTop}, {left:centerPos, top:"-450px"}, {left:"270px", top:"-730px"}]}, ease:Power1.easeInOut, onComplete:removeBallDiv, onCompleteParams:[charactersDiv, ballDiv, this, i]}, "-=0.8");                
+                    this.updatetl.to(ballDiv, BALL_FLY_TIME, {visibility:"visible", bezier:{type:"thru", values:[{left:ballDiv.offsetLeft, top:ballDiv.offsetTop}, {left:centerPos, top:"-450px"}, {left:"270px", top:"-730px"}]}, ease:Power1.easeInOut, onComplete:removeBallDiv, onCompleteParams:[charactersDiv, ballDiv, this, i]}, "-=0.8");                
                 }
                 
                 
@@ -450,10 +450,10 @@ var RoleFunc = function()
         };
         
         
-        this.addBuffIcon = function(buffImg)
+        this.addBuffIcon = function(buffImg, text)
         {
-            var buffDiv = createBuffdiv(charactersDiv, this.index, buffImg);                
-            this.updatetl.to(buffDiv, 0.5, {x:0,y:-30, ease:Power1.easeInOut, onComplete:removeBuffdiv, onCompleteParams:[charactersDiv, buffDiv]});
+            var buffDiv = createBuffdiv(charactersDiv, this.index, buffImg, text);                
+            this.updatetl.to(buffDiv, 1, {visibility:"visible", x:0,y:-30, ease:Power1.easeInOut, onComplete:removeBuffdiv, onCompleteParams:[charactersDiv, buffDiv]}, "-=0.5");
         }
         
         this.getNormalAttackValue = function(ballIndex)
@@ -523,100 +523,64 @@ var RoleFunc = function()
                     if(effectOperator == "+")
                     {
                         this.atkAdd += effectValue;
-                        this.addBuffIcon("atk_up.png");
                     }
                     else if(effectOperator == "-")
                     {
                         this.atkAdd -= effectValue;
-                        this.addBuffIcon("atk_down.png");
                     }
                     else if(effectOperator == "*")
                     {
                         this.atkMul[this.atkMul.length] = effectValue;
-                        if(effectValue > 1)
-                        {
-                            this.addBuffIcon("atk_up.png");
-                        }
-                        else
-                        {
-                            this.addBuffIcon("atk_down.png");
-                        }
                     }
+                    this.addBuffIcon("atk_buff_text.png", effectOperator + effectValue);
                 break;
                 case "heal":
                     if(effectOperator == "+")
                     {
                         this.healAdd += effectValue;
-                        this.addBuffIcon("heal_up.png");
                     }
                     else if(effectOperator == "-")
                     {
                         this.healAdd -= effectValue;
-                        this.addBuffIcon("heal_down.png");
                     }
                     else if(effectOperator == "*")
                     {
                         this.healMul[this.healMul.length] = effectValue;
-                        if(effectValue > 1)
-                        {
-                            this.addBuffIcon("heal_up.png");
-                        }
-                        else
-                        {
-                            this.addBuffIcon("heal_down.png");
-                        }                        
-                    }                  
+                    }
+                    this.addBuffIcon("heal_buff_text.png", effectOperator + effectValue);            
                 break;
                 case "shield":
                     if(effectOperator == "+")
                     {
                         this.shieldAdd += effectValue;
-                        this.addBuffIcon("shield_up.png");
                     }
                     else if(effectOperator == "-")
                     {
                         this.shieldAdd -= effectValue;
-                        this.addBuffIcon("shield_down.png");
                     }
                     else if(effectOperator == "*")
                     {
                         this.shieldMul[this.shieldMul.length] = effectValue;
-                        if(effectValue > 1)
-                        {
-                            this.addBuffIcon("shield_up.png");
-                        }
-                        else
-                        {
-                            this.addBuffIcon("shield_down.png");
-                        }                        
                     }                 
+                    this.addBuffIcon("shield_buff_text.png", effectOperator + effectValue);
                 break;
                 case "energy":
                     if(effectOperator == "+")
                     {
                         var newValue = this.energy + effectValue;
                         this.changeEnergy(newValue - this.energy);
-                        this.addBuffIcon("energy_up.png");
                     }
                     else if(effectOperator == "-")
                     {
                         var newValue = this.energy - effectValue;
                         this.changeEnergy(newValue - this.energy);
-                        this.addBuffIcon("energy_down.jpg");
                     }
                     else if(effectOperator == "*")
                     {
                         var newValue = Math.round(this.energy * effectValue);
                         this.changeEnergy(newValue - this.energy);
-                        if(effectValue > 1)
-                        {
-                            this.addBuffIcon("energy_up.png");
-                        }
-                        else
-                        {
-                            this.addBuffIcon("energy_down.jpg");
-                        }                         
                     }                 
+                    this.addBuffIcon("energy_buff_text.png", effectOperator + effectValue);
                 break;               
             }
         }     
@@ -624,7 +588,7 @@ var RoleFunc = function()
         this.activeSkill = function()
         {
             this.changeEnergy(-300);
-            SkillParser.activeSkill(this.skill, RoleFunc, Monster);
+            SkillParser.activeSkill(this.skill, RoleFunc, Monster, this);
         }
 
 
@@ -681,14 +645,21 @@ var RoleFunc = function()
         }
     }        
     
-    function createBuffdiv(parentdiv, index, imgSrc)
+    function createBuffdiv(parentdiv, index, imgSrc, text)
     {
         var buffdiv = document.createElement("div");
-        buffdiv.className = "attackOrbPos" + index;        
-        var newimg = document.createElement("img");
-        newimg.src = "image/" + imgSrc;
-        newimg.className = "buff_icon";
-        buffdiv.appendChild(newimg);
+        buffdiv.className = "buffPos" + index;        
+        buffdiv.style.backgroundImage = "url(image/" + imgSrc + ")";
+        buffdiv.style.backgroundSize = "cover";
+        
+        //var newimg = document.createElement("img");
+        //newimg.src = "image/" + imgSrc;
+        //newimg.className = "buff_icon";
+        //buffdiv.appendChild(newimg);
+        var newtext = document.createElement("div");
+        newtext.className = "buff_text";
+        newtext.innerHTML = text;
+        buffdiv.appendChild(newtext);                
         
         
         parentdiv.appendChild(buffdiv);
