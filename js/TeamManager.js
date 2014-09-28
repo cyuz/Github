@@ -160,8 +160,8 @@ var TeamManager = function() {
 		return roleViewDiv;
 	}
 
-	function showTips() {
-		CardTips.setRole("card004");
+	function showTips(e) {
+		CardTips.setRole(imgidroleidmap[e.target.id]);
 	}
 
 	function createImg(parentdiv, imgId, imgSrc, divClass) {
@@ -265,4 +265,4 @@ var TeamManager = function() {
 		"setMission" : setMission
 	}
 
-}(); 
+}();

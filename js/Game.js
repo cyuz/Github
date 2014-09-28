@@ -35,6 +35,8 @@ var Game = function() {
 
 		hideTimeBar();
 		hideBonus();
+
+		Result.init();
 	}
 
 	function setRole(roleArray) {
@@ -52,6 +54,7 @@ var Game = function() {
 		}
 
 		Monster.setMonster(missionData.mosterLayer);
+		Result.setMonster(missionData.mosterLayer);
 	}
 
 	function gameToWait() {

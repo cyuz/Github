@@ -1,5 +1,4 @@
 var Monster = function() {
-
 	var maxHp = 0;
 	var curHp = 0;
 	var atk = 0;
@@ -12,6 +11,26 @@ var Monster = function() {
 	var p_maxHp = 0;
 	var p_curHp = 0;
 	var p_shield = 0;
+
+	var curColorMap;
+	var colorMapping = {
+		"red" : {
+			"red" : 1,
+			"blue" : 1.5,
+			"green" : 0.5
+		},
+		"blue" : {
+			"red" : 0.5,
+			"blue" : 1,
+			"green" : 1.5
+		},
+		"green" : {
+			"red" : 1.5,
+			"blue" : 0.5,
+			"green" : 1
+		}
+	}
+
 	var updatetl = new TimelineLite({
 		autoRemoveChildren : true
 	});
@@ -24,6 +43,8 @@ var Monster = function() {
 		race = monster.race;
 		atk = monster.atk;
 		pSkill = monster.pSkill;
+
+		curColorMap = colorMapping[monster.color];
 
 		var bossImg = document.getElementById("monsterImg");
 		bossImg.src = "image/" + monster.fightPic;
@@ -43,6 +64,9 @@ var Monster = function() {
 			repeat : 1,
 			yoyo : true
 		});
+
+		var colorCoefficient = curColorMap[color];
+		damage *= colorCoefficient;
 
 		curHp -= damage;
 		if (curHp < 0) {
@@ -79,8 +103,7 @@ var Monster = function() {
 
 	function attack() {
 		if (curHp <= 0) {
-			alert("victory");
-			Main.toMissionView();
+			Result.showVictory();
 			return;
 		}
 
@@ -143,8 +166,7 @@ var Monster = function() {
 
 	function checkPlayerHp() {
 		if (p_curHp <= 0) {
-			alert("defeat");
-			Main.toMissionView();
+			Result.showDefeat();
 			return;
 		}
 		p_shield = 0;
