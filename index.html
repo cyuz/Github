@@ -8,6 +8,7 @@
         <link rel="stylesheet" type="text/css" href="css/game.css">
         <link rel="stylesheet" type="text/css" href="css/tinyscrollbar.css">
         <link rel="stylesheet" type="text/css" href="css/mystyle.css">
+        <link rel="stylesheet" type="text/css" href="css/cardTips.css">
 
         <!-- <script src="http://code.jquery.com/jquery-2.1.1.js"></script> -->
         <script src="js/jquery-1.11.1.min.js"></script>
@@ -21,6 +22,7 @@
         <script src="js/BallData.js"></script>
         <script src="js/RoleData.js"></script>
         <script src="js/SkillData.js"></script>
+        <script src="js/CardTips.js"></script>
         <script src="js/TeamManager.js"></script>
         <script src="js/Role.js"></script>
         <script src="js/Monster.js"></script>
@@ -31,6 +33,11 @@
 
     <body>
         <div id="main" class="main">
+            <div id="cardTipsView" class="view cardTipsView">
+                <div id="cardTips" class="cardTips">
+                    <img src="image/cardTips.png" />
+                </div>
+            </div>
             <div id="missionView" class="view missionView">
                 <img src="image/mission.jpg" />
                 <img id="missionBlue" class="missionBlue missionPic" src="image/m_b.png" />
@@ -42,10 +49,13 @@
             <div id="gameView" class="view gameView">
                 <div id="monsterBlood" class="monsterBlood"></div>
                 <div id="combotHit" class="combotHit">
-                     <div id="combotHitValue" class="combotHitValue"></div>
-                     <div id="combotHitRate" class="combotHitRate"></div>
-                </div>               
+                    <div id="combotHitValue" class="combotHitValue"></div>
+                    <div id="combotHitRate" class="combotHitRate"></div>
+                </div>
                 <div id="playerBlood" class="playerBlood"></div>
+                <div id="shield" class="shield">
+                    <img src="image/shield.png" />
+                </div>
                 <div id="timerbarArea" class="timerbarArea">
                     <img src="image/timebarBg.png" />
                     <div id="timerbar" class="timerbar">
