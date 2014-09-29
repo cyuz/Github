@@ -244,6 +244,8 @@ var TeamManager = function() {
 			var imgId = "role_" + data.id + "_img";
 			imgidroleidmap[imgId] = data.id;
 		}
+        
+        $('#role_area').tinyscrollbar();
 
 	}
 
