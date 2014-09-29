@@ -6,6 +6,7 @@ var SkillParser = function() {
         var data = SkillData.getData(skillID);
         if(data == undefined)
         {
+            console.log("skill:" +skillID + " not exist");            
             return false;
         }
         
@@ -68,6 +69,7 @@ var SkillParser = function() {
         var data = SkillData.getData(skillID);
         if(data == undefined)
         {
+            console.log("skill:" +skillID + " not exist");
             return targets;
         }
         
@@ -98,6 +100,7 @@ var SkillParser = function() {
         var data = SkillData.getData(skillID);
         if(data == undefined)
         {
+            console.log("skill:" +skillID + " not exist");
             return false;
         }
 
@@ -121,6 +124,7 @@ var SkillParser = function() {
         var data = SkillData.getData(skillID);
         if(data == undefined)
         {
+            console.log("skill:" +skillID + " not exist");
             return;
         }
         
@@ -130,16 +134,17 @@ var SkillParser = function() {
         }
     }
     
+    
     function activeSkill(skillID, attacker, defender, unit)
     {
         if(SkillParser.checkSkillCondition(skillID, attacker, defender))
         {
-            unit.skillAnimation(skillID);
             var targets = SkillParser.getSkillTargets(skillID, attacker, defender, unit);
+            unit.skillAnimation(skillID, targets);
             if(targets.length != 0)
             {
                 SkillParser.takeSkillEffect(skillID, targets);
-            }
+            }   
         }    
     }
     

@@ -1,8 +1,8 @@
 ﻿{
 	"id" : "mon002",
-	"name" : "野外大戰三十回",
-	"des" : "",
-	"mosterLayer" : "b2",
+	"name" : "靠盃的考驗",
+	"des" : "關卡說明",
+	"mosterLayer" : "monster2",
 	"ballProbabilityPolicy" : {
 		"fireI":30,
 		"fireII":10,

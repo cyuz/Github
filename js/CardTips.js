@@ -7,10 +7,6 @@ var CardTips = function() {
 	var cardTipsHealth;
 	var cardTipsShield;
 	var cardTipsColorImg;
-	var skillName;
-	var skillDes;
-	var pSkillName;
-	var pSkillDes;
 
 	function init() {
 		var cardTips = document.getElementById("cardTips");
@@ -46,22 +42,6 @@ var CardTips = function() {
 		cardTipsRoleImg.className = "cardTipsRoleImg";
 		cardTips.appendChild(cardTipsRoleImg);
 
-		skillName = document.createElement("div");
-		skillName.className = "skillName";
-		cardTips.appendChild(skillName);
-
-		skillDes = document.createElement("div");
-		skillDes.className = "skillDes";
-		cardTips.appendChild(skillDes);
-
-		pSkillName = document.createElement("div");
-		pSkillName.className = "pSkillName";
-		cardTips.appendChild(pSkillName);
-
-		pSkillDes = document.createElement("div");
-		pSkillDes.className = "pSkillDes";
-		cardTips.appendChild(pSkillDes);
-
 		hideCradTipsView(0);
 		$("#cardTipsView").click(hideTips);
 	}
@@ -81,14 +61,6 @@ var CardTips = function() {
 		cardTipsHealth.innerHTML = role.heal;
 		cardTipsShield.innerHTML = role.shield;
 		cardTipsColorImg.className = "cardTipsColorImg cardTipsColorImg" + role.color;
-
-		var skill = SkillData.getData(role.skill);
-		skillName.innerHTML = skill.skillName;
-		skillDes.innerHTML = skill.desc;
-
-		var pSkill = SkillData.getData(role.pSkill);
-		pSkillName.innerHTML = pSkill.skillName;
-		pSkillDes.innerHTML = pSkill.desc;
 
 		cardTipsRoleImg.src = "./image/" + role.fightPic;
 

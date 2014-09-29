@@ -1,8 +1,8 @@
 ﻿{
 	"id" : "mon001",
-	"name" : "外族入侵你家園",
-	"des" : "",
-	"mosterLayer" : "b1",
+	"name" : "火盃的考驗",
+	"des" : "關卡說明",
+	"mosterLayer" : "monster",
 	"ballProbabilityPolicy" : {
 		"fireI":30,
 		"fireII":10,
