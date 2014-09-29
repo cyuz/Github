@@ -124,6 +124,7 @@ var RoleFunc = function()
     {
         if(char_roles[posIndex].energy > SKILL_COST)
         {
+            var desc = SkillParser.getSkillDesc(char_roles[posIndex].skill);
             var callBack = undefined;
             switch(posIndex)
             {
@@ -146,7 +147,7 @@ var RoleFunc = function()
                     callBack = activePlayer5Skill;
                 break;                
             }
-            UseSkill.show("use skill", callBack);
+            UseSkill.show(desc, callBack);
         }
     }
     

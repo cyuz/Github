@@ -143,11 +143,25 @@ var SkillParser = function() {
         }    
     }
     
+    function getSkillDesc(skillID)
+    {
+        var data = SkillData.getData(skillID);
+        if(data == undefined)
+        {
+            return "使用技能";
+        }
+        else
+        {
+            return data.desc;
+        }
+    }
+    
 	return {
 		"checkSkillCondition" : checkSkillCondition,
         "getSkillTargets" : getSkillTargets,
         "takeSkillEffect" : takeSkillEffect,
-        "activeSkill" : activeSkill
+        "activeSkill" : activeSkill,
+        "getSkillDesc" : getSkillDesc
     }
 
 
