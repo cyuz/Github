@@ -266,8 +266,8 @@
 .main_skill_pos {
 	left: 70px;
 	top: 470px;
-	height: 60px;
-	width: 140px;
+	height: 57px;
+	width: 190px;
 	position: absolute;
 	z-index: 2;
     visibility:  hidden;

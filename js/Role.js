@@ -124,9 +124,61 @@ var RoleFunc = function()
     {
         if(char_roles[posIndex].energy > SKILL_COST)
         {
-            UseSkill.show("use skill", char_roles[posIndex].activeMainSkill);
+            var callBack = undefined;
+            switch(posIndex)
+            {
+                case 0:
+                    callBack = activePlayer0Skill;
+                break;
+                case 1:
+                    callBack = activePlayer1Skill;
+                break;
+                case 2:
+                    callBack = activePlayer2Skill;
+                break;
+                case 3:
+                    callBack = activePlayer3Skill;
+                break;
+                case 4:
+                    callBack = activePlayer4Skill;
+                break;
+                case 5:
+                    callBack = activePlayer5Skill;
+                break;                
+            }
+            UseSkill.show("use skill", callBack);
         }
-    }   
+    }
+    
+    var activePlayer0Skill = function()
+    {
+        char_roles[0].activeMainSkill();
+    }
+    
+    var activePlayer1Skill = function()
+    {
+        char_roles[1].activeMainSkill();
+    }
+
+    var activePlayer2Skill = function()
+    {
+        char_roles[2].activeMainSkill();
+    }
+
+    var activePlayer3Skill = function()
+    {
+        char_roles[3].activeMainSkill();
+    }
+
+    var activePlayer4Skill = function()
+    {
+        char_roles[4].activeMainSkill();
+    }
+
+    var activePlayer5Skill = function()
+    {
+        char_roles[5].activeMainSkill();
+    }    
                         
     
     var activePlayerSkill = function(posIndex)
