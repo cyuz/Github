@@ -1,0 +1,15 @@
+﻿{
+	"id" : "psk26",
+	"skillName" : "psk26",
+	"imgsrc" : "",
+    "desc" : "隊伍內有魔法類隊員四位或以上時，全體隊員攻擊力1.5倍",
+    "condition_type" : "2",
+    "condition_operator" : ">=",
+    "condition_value" : 4,
+    "effect_type" : "atk",
+    "effect_operator" : "*",
+    "effect_value" : 1.5,
+    "target_type" : "self",
+    "target_color" : "all",
+    "target_race" : "all"
+}

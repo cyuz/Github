@@ -1,0 +1,16 @@
+﻿{
+	"id" : "c4",
+	"name" : "c4",
+	"isMonster" : false,
+	"index" : 3,
+	"cardPic" : "c4.png",
+	"fightPic" : "c4.png",
+	"hp" : 4100,
+	"atk" : 2530,
+	"heal" : 91,
+	"shield" : 176,
+	"color" : "red",
+	"race" : "1",
+	"skill" : "sk4",
+	"pSkill" : "psk4"
+}

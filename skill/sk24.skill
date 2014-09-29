@@ -1,0 +1,15 @@
+﻿{
+	"id" : "sk24",
+	"skillName" : "sk24",
+	"imgsrc" : "",
+    "desc" : "魔法類隊員回復力增加200一回合",
+    "condition_type" : "all",
+    "condition_operator" : "",
+    "condition_value" : "",
+    "effect_type" : "heal",
+    "effect_operator" : "+",
+    "effect_value" : 200,
+    "target_type" : "self",
+    "target_color" : "all",
+    "target_race" : "2"
+}

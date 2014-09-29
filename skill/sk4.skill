@@ -1,0 +1,15 @@
+﻿{
+	"id" : "sk4",
+	"skillName" : "sk4",
+	"imgsrc" : "",
+    "desc" : "一回合內，火屬性隊員攻擊力10倍",
+    "condition_type" : "all",
+    "condition_operator" : "",
+    "condition_value" : "",
+    "effect_type" : "atk",
+    "effect_operator" : "*",
+    "effect_value" : 10,
+    "target_type" : "self",
+    "target_color" : "red",
+    "target_race" : "all"
+}

@@ -1,0 +1,15 @@
+﻿{
+	"id" : "sk19",
+	"skillName" : "sk19",
+	"imgsrc" : "",
+    "desc" : "自身護盾增加600一回合",
+    "condition_type" : "all",
+    "condition_operator" : "",
+    "condition_value" : "",
+    "effect_type" : "shield",
+    "effect_operator" : "+",
+    "effect_value" : 600,
+    "target_type" : "itself",
+    "target_color" : "all",
+    "target_race" : "all"
+}

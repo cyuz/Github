@@ -1,0 +1,15 @@
+﻿{
+	"id" : "psk23",
+	"skillName" : "psk23",
+	"imgsrc" : "",
+    "desc" : "魔法類隊員減少攻擊力200",
+    "condition_type" : "all",
+    "condition_operator" : "",
+    "condition_value" : "",
+    "effect_type" : "atk",
+    "effect_operator" : "-",
+    "effect_value" : 200,
+    "target_type" : "self",
+    "target_color" : "all",
+    "target_race" : "2"
+}

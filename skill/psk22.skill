@@ -1,0 +1,15 @@
+﻿{
+	"id" : "psk22",
+	"skillName" : "psk22",
+	"imgsrc" : "",
+    "desc" : "魔法類隊員攻擊力1.2倍",
+    "condition_type" : "all",
+    "condition_operator" : "",
+    "condition_value" : "",
+    "effect_type" : "atk",
+    "effect_operator" : "*",
+    "effect_value" : 1.2,
+    "target_type" : "self",
+    "target_color" : "all",
+    "target_race" : "2"
+}

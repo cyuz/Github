@@ -1,0 +1,15 @@
+﻿{
+	"id" : "psk7",
+	"skillName" : "psk7",
+	"imgsrc" : "",
+    "desc" : "木屬性隊員一位或以下時，水屬性隊員回復力2倍",
+    "condition_type" : "green",
+    "condition_operator" : "<",
+    "condition_value" : 2,
+    "effect_type" : "heal",
+    "effect_operator" : "*",
+    "effect_value" : 2,
+    "target_type" : "self",
+    "target_color" : "blue",
+    "target_race" : "all"
+}

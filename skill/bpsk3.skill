@@ -1,0 +1,15 @@
+﻿{
+	"id" : "bpsk3",
+	"skillName" : "bpsk3",
+	"imgsrc" : "",
+    "desc" : "玩家血量高於10000時，玩家全體隊員護盾減少100",
+    "condition_type" : "enemyhp",
+    "condition_operator" : ">=",
+    "condition_value" : "10000",
+    "effect_type" : "shield",
+    "effect_operator" : "-",
+    "effect_value" : 100,
+    "target_type" : "enemy",
+    "target_color" : "all",
+    "target_race" : "all"
+}

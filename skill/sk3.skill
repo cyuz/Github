@@ -1,0 +1,15 @@
+﻿{
+	"id" : "sk3",
+	"skillName" : "sk3",
+	"imgsrc" : "",
+    "desc" : "一回合內，護盾2倍",
+    "condition_type" : "all",
+    "condition_operator" : "",
+    "condition_value" : "",
+    "effect_type" : "shield",
+    "effect_operator" : "*",
+    "effect_value" : 2,
+    "target_type" : "self",
+    "target_color" : "all",
+    "target_race" : "all"
+}

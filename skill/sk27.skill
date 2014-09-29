@@ -1,0 +1,15 @@
+﻿{
+	"id" : "sk27",
+	"skillName" : "sk27",
+	"imgsrc" : "",
+    "desc" : "增加自身回復力300一回合",
+    "condition_type" : "all",
+    "condition_operator" : "",
+    "condition_value" : "",
+    "effect_type" : "heal",
+    "effect_operator" : "+",
+    "effect_value" : 300,
+    "target_type" : "itself",
+    "target_color" : "all",
+    "target_race" : "all"
+}

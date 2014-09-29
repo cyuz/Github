@@ -1,0 +1,16 @@
+﻿{
+	"id" : "c27",
+	"name" : "c27",
+	"isMonster" : false,
+	"index" : 26,
+	"cardPic" : "c27.png",
+	"fightPic" : "c27.png",
+	"hp" : 3046,
+	"atk" : 1241,
+	"heal" : 176,
+	"shield" : 26,
+	"color" : "red",
+	"race" : "2",
+	"skill" : "sk27",
+	"pSkill" : "psk27"
+}

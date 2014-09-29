@@ -1,0 +1,15 @@
+﻿{
+	"id" : "psk30",
+	"skillName" : "psk30",
+	"imgsrc" : "",
+    "desc" : "血量15000以上時，格鬥類隊員增加400攻擊力",
+    "condition_type" : "selfhp",
+    "condition_operator" : ">=",
+    "condition_value" : 15000,
+    "effect_type" : "atk",
+    "effect_operator" : "+",
+    "effect_value" : 400,
+    "target_type" : "self",
+    "target_color" : "all",
+    "target_race" : "1"
+}

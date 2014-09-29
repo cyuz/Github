@@ -1,0 +1,15 @@
+﻿{
+	"id" : "psk3",
+	"skillName" : "psk3",
+	"imgsrc" : "",
+    "desc" : "血量低於4000時，火屬性隊員護盾增加300",
+    "condition_type" : "selfhp",
+    "condition_operator" : "<",
+    "condition_value" : 4000,
+    "effect_type" : "shield",
+    "effect_operator" : "+",
+    "effect_value" : 300,
+    "target_type" : "self",
+    "target_color" : "red",
+    "target_race" : "all"
+}

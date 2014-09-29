@@ -1,0 +1,15 @@
+﻿{
+	"id" : "psk29",
+	"skillName" : "psk29",
+	"imgsrc" : "",
+    "desc" : "格鬥類隊員回復力減少100",
+    "condition_type" : "all",
+    "condition_operator" : "",
+    "condition_value" : "",
+    "effect_type" : "heal",
+    "effect_operator" : "-",
+    "effect_value" : 100,
+    "target_type" : "self",
+    "target_color" : "all",
+    "target_race" : "1"
+}

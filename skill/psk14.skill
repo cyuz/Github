@@ -1,0 +1,15 @@
+﻿{
+	"id" : "psk14",
+	"skillName" : "psk14",
+	"imgsrc" : "",
+    "desc" : "血量低於10000時，每回合全體隊員增加60能量",
+    "condition_type" : "selfhp",
+    "condition_operator" : "<",
+    "condition_value" : 10000,
+    "effect_type" : "energy",
+    "effect_operator" : "+",
+    "effect_value" : 60,
+    "target_type" : "self",
+    "target_color" : "all",
+    "target_race" : "all"
+}

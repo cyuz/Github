@@ -1,0 +1,16 @@
+﻿{
+	"id" : "c8",
+	"name" : "c8",
+	"isMonster" : false,
+	"index" : 7,
+	"cardPic" : "c8.png",
+	"fightPic" : "c8.png",
+	"hp" : 3102,
+	"atk" : 1134,
+	"heal" : 289,
+	"shield" : 43,
+	"color" : "blue",
+	"race" : "2",
+	"skill" : "sk8",
+	"pSkill" : "psk8"
+}

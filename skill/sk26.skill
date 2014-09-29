@@ -1,0 +1,15 @@
+﻿{
+	"id" : "sk26",
+	"skillName" : "sk26",
+	"imgsrc" : "",
+    "desc" : "增加自身攻擊力300一回合",
+    "condition_type" : "all",
+    "condition_operator" : "",
+    "condition_value" : "",
+    "effect_type" : "atk",
+    "effect_operator" : "+",
+    "effect_value" : 300,
+    "target_type" : "itself",
+    "target_color" : "all",
+    "target_race" : "all"
+}

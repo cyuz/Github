@@ -1,0 +1,15 @@
+﻿{
+	"id" : "psk20",
+	"skillName" : "psk20",
+	"imgsrc" : "",
+    "desc" : "血量低於10000時，每回合增加自身70能量",
+    "condition_type" : "selfhp",
+    "condition_operator" : "<",
+    "condition_value" : 10000,
+    "effect_type" : "energy",
+    "effect_operator" : "+",
+    "effect_value" : 70,
+    "target_type" : "itself",
+    "target_color" : "all",
+    "target_race" : "all"
+}

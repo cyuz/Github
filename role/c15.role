@@ -1,0 +1,16 @@
+﻿{
+	"id" : "c15",
+	"name" : "c15",
+	"isMonster" : false,
+	"index" : 14,
+	"cardPic" : "c15.png",
+	"fightPic" : "c15.png",
+	"hp" : 4315,
+	"atk" : 786,
+	"heal" : 12,
+	"shield" : 463,
+	"color" : "green",
+	"race" : "3",
+	"skill" : "sk15",
+	"pSkill" : "psk15"
+}

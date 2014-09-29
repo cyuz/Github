@@ -1,0 +1,15 @@
+﻿{
+	"id" : "sk32",
+	"skillName" : "sk32",
+	"imgsrc" : "",
+    "desc" : "增加自身攻擊力1500一回合",
+    "condition_type" : "all",
+    "condition_operator" : "",
+    "condition_value" : "",
+    "effect_type" : "atk",
+    "effect_operator" : "+",
+    "effect_value" : 1500,
+    "target_type" : "itself",
+    "target_color" : "all",
+    "target_race" : "all"
+}
