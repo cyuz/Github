@@ -124,7 +124,7 @@ var RoleFunc = function()
     {
         if(char_roles[posIndex].energy > SKILL_COST)
         {
-            UseSkill.show("use skill", char_roles[posIndex].activeMainSkill());
+            UseSkill.show("use skill", char_roles[posIndex].activeMainSkill);
         }
     }   
                         
