@@ -165,23 +165,9 @@ var Monster = function() {
 		var colorCoefficient = curColorMap[color];
 		damage *= colorCoefficient;
 
-		curHp -= damage;
-		if (curHp < 0) {
-			curHp = 0;
-		}
-		playMonsterBloodAni(0.5);
+        changeMonsterHp(-damage);
 
-		p_curHp += health;
-		if (p_curHp > p_maxHp) {
-			p_curHp = p_maxHp;
-		}
-		playPlayerBloodAni(0, 0.5);
-
-		p_shield += shield;
-		if (p_shield > p_maxHp * 2) {
-			p_shield = p_maxHp * 2;
-		}
-		playPlayerShieldAni(0, 0.5);
+        healPlayerHp(health, shield);
 	}
 
 	function getFinalAtk() {
@@ -217,7 +203,27 @@ var Monster = function() {
 
 		});
 
-		var remainShield = p_shield - getFinalAtk();
+        damagePlayerHp(getFinalAtk());
+	}
+    
+    function healPlayerHp(health, shield)
+    {
+		p_curHp += health;
+		if (p_curHp > p_maxHp) {
+			p_curHp = p_maxHp;
+		}
+		playPlayerBloodAni(0, 0.5);
+
+		p_shield += shield;
+		if (p_shield > p_maxHp * 2) {
+			p_shield = p_maxHp * 2;
+		}
+		playPlayerShieldAni(0, 0.5);  
+    }
+    
+    function damagePlayerHp(damage)
+    {
+		var remainShield = p_shield - damage;
 		var bloodDelay = 0;
 		if (remainShield < 0) {
 			if (p_shield > 0) {
@@ -234,8 +240,21 @@ var Monster = function() {
 		}
 
 		playPlayerShieldAni(0.3, 0.3);
-		playPlayerBloodAni(0.3 + bloodDelay, 0.3, checkPlayerHp);
-	}
+		playPlayerBloodAni(0.3 + bloodDelay, 0.3, checkPlayerHp);     
+    }
+    
+    function changeMonsterHp(changeValue)
+    {
+		curHp += changeValue;
+		if (curHp > maxHp) {
+			curHp = maxHp;
+		}
+        if(curHp < 0)
+        {
+            curHp = 0;
+        }
+		playMonsterBloodAni(0.5);     
+    }    
 
 	function checkMonsterIsLive() {
 		if (curHp <= 0) {
@@ -309,7 +328,7 @@ var Monster = function() {
 		return curHp;
 	}
 
-	function filterSkillTarget(targetColor, targetRace) {
+	function filterSkillTarget(effectType, targetColor, targetRace) {
 		var targets = new Array();
 		if (targetColor == color || targetColor == "all") {
 			if (targetRace == race || targetRace == "all") {
@@ -331,6 +350,16 @@ var Monster = function() {
 				}
 				addBuffIcon("atk_buff_text.png", effectOperator + effectValue);
 				break;
+			case "hp":
+				if (effectOperator == "+") {
+					changeMonsterHp(effectValue);
+				} else if (effectOperator == "-") {
+					changeMonsterHp(-effectValue);
+				} else if (effectOperator == "*") {
+                    var newValue = Math.round(curHp * effectValue);                    
+                    changeMonsterHp(newValue - curHp);                
+				}
+				break;                 
 		}
 	}
 
@@ -450,6 +479,8 @@ var Monster = function() {
 		"roundStart" : roundStart,
 		"skillAnimation" : skillAnimation,
 		"checkMonsterIsLive" : checkMonsterIsLive
+        "healPlayerHp" : healPlayerHp,
+        "damagePlayerHp" : damagePlayerHp        
 	}
 
 }();

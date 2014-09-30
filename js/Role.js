@@ -2,7 +2,7 @@ var RoleFunc = function() {
 
 	const ROLE_COUNT = 6;
 	const MAX_ENERGY = 500;
-	const SKILL_COST = 10;
+	const SKILL_COST = 0;
 	const ENERGY_SIZE = 70;
 	const LEFT_CENTER_X = "0px";
 	const RIGHT_CENTER_X = "530px";
@@ -587,6 +587,8 @@ var RoleFunc = function() {
 					}
 					this.addBuffIcon("energy_buff_text.png", effectOperator + effectValue);
 					break;
+                case "hp":
+					break;                    
 			}
 		}
 
@@ -741,18 +743,49 @@ var RoleFunc = function() {
 
 		return count;
 	}
-	function filterSkillTarget(targetColor, targetRace) {
+	function filterSkillTarget(effectType, targetColor, targetRace) {
 		var targets = new Array();
-		for (var i = 0; i < char_roles.length; i++) {
-			if (char_roles[i].color == targetColor || targetColor == "all") {
-				if (char_roles[i].race == targetRace || targetRace == "all") {
-					targets[targets.length] = char_roles[i];
-				}
-			}
-		}
+        if(effectType == "hp")
+        {
+            targets[0] = this; 
+        }
+        else
+        {
+            for (var i = 0; i < char_roles.length; i++) {
+                if (char_roles[i].color == targetColor || targetColor == "all") {
+                    if (char_roles[i].race == targetRace || targetRace == "all") {
+                        targets[targets.length] = char_roles[i];
+                    }
+                }
+            }
+        }
 
 		return targets;
 	}
+    
+    function takeSkillEffect(effectType, effectOperator, effectValue) {
+        switch(effectType) {
+            case "hp":
+                if (effectOperator == "+") {
+                    Monster.healPlayerHp(effectValue, 0);
+                } else if (effectOperator == "-") {
+                    Monster.damagePlayerHp(effectValue);
+                } else if (effectOperator == "*") {
+                    var newValue = Math.round(Monster.getPlayerHp() * effectValue);
+                    var diffValue = newValue - Monster.getPlayerHp();
+                    if(diffValue > 0)
+                    {
+                        Monster.healPlayerHp(diffValue, 0);
+                    }
+                    else
+                    if(diffValue <= 0)
+                    {
+                        Monster.damagePlayerHp(diffValue);
+                    }
+                }
+                break;                    
+        }
+    }    
 
 	return {
 		"init" : init,
@@ -766,6 +799,7 @@ var RoleFunc = function() {
 		"getHp" : getHp,
 		"filterSkillTarget" : filterSkillTarget,
 		"roundStart" : roundStart,
+        "takeSkillEffect" : takeSkillEffect,
 	}
 
 }();

@@ -77,17 +77,17 @@ var SkillParser = function() {
         }
         else if(data.target_type == "all")
         {
-            var temp = attacker.filterSkillTarget(data.target_color, data.target_race);
-            var temp2 = defender.filterSkillTarget(data.target_color, data.target_race);
+            var temp = attacker.filterSkillTarget(data.effect_type, data.target_color, data.target_race);
+            var temp2 = defender.filterSkillTarget(data.effect_type, data.target_color, data.target_race);
             return temp.concat(temp2);
         }
         else if(data.target_type == "self")
         {
-            return attacker.filterSkillTarget(data.target_color, data.target_race);
+            return attacker.filterSkillTarget(data.effect_type, data.target_color, data.target_race);
         }
         else if(data.target_type == "enemy")
         {
-            return defender.filterSkillTarget(data.target_color, data.target_race);
+            return defender.filterSkillTarget(data.effect_type, data.target_color, data.target_race);
         }
         
     }
