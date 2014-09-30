@@ -1,16 +1,16 @@
 ﻿{
 	"id" : "b4",
-	"name" : "c1",
+	"name" : "頑皮比斯",
 	"isMonster" : true,
 	"index" : 0,
 	"cardPic" : "bm4.png",
 	"fightPic" : "b4.png",
-	"hp" : 3662,
-	"atk" : 1911,
-	"heal" : 199,
-	"shield" : 49,
+	"hp" : 350000,
+	"atk" : 21000,
+	"heal" : 0,
+	"shield" : 0,
 	"color" : "red",
-	"race" : "2",
-	"skill" : "sk1",
-	"pSkill" : "psk1"
+	"race" : "3",
+	"skill" : "bsk4",
+	"pSkill" : "bpsk4"
 }

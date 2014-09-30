@@ -6,7 +6,7 @@
 	"cardPic" : "bm2.png",
 	"fightPic" : "b2.png",
 	"hp" : 600000,
-	"atk" : 18000,
+	"atk" : 10000,
 	"heal" : 0,
 	"shield" : 0,
 	"color" : "green",

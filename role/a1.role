@@ -1,0 +1,16 @@
+﻿{
+	"id" : "a1",
+	"name" : "a1",
+	"isMonster" : true,
+	"index" : 0,
+	"cardPic" : "",
+	"fightPic" : "a1.png",
+	"hp" : 200000,
+	"atk" : 10000,
+	"heal" : 0,
+	"shield" : 0,
+	"color" : "green",
+	"race" : "1",
+	"skill" : "bsk1",
+	"pSkill" : "bpsk1"
+}

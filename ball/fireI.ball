@@ -3,6 +3,6 @@
 	"image" : "ball_r_1.png",
 	"css" : "ballImgSmall",
 	"color" : "red",
-	"energy" : 10,
+	"energy" : 20,
 	"rate" : 1
 }

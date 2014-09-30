@@ -2,7 +2,7 @@
 	"id" : "sk15",
 	"skillName" : "sk15",
 	"imgsrc" : "",
-    "desc" : "木屬性超能類隊員增加300能量",
+    "desc" : "水屬性超能類隊員增加300能量",
     "condition_type" : "all",
     "condition_operator" : "",
     "condition_value" : "",
@@ -10,6 +10,6 @@
     "effect_operator" : "+",
     "effect_value" : 300,
     "target_type" : "self",
-    "target_color" : "green",
-    "target_race" : "3"
+    "target_color" : "blue",
+    "target_race" : "all"
 }

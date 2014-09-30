@@ -1,97 +1,107 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Title of the document</title>
-        <link rel="stylesheet" type="text/css" href="css/main.css">
-        <link rel="stylesheet" type="text/css" href="css/team.css">
-        <link rel="stylesheet" type="text/css" href="css/game.css">
-        <link rel="stylesheet" type="text/css" href="css/tinyscrollbar.css">
-        <link rel="stylesheet" type="text/css" href="css/mystyle.css">
-        <link rel="stylesheet" type="text/css" href="css/cardTips.css">
+	<head>
+		<meta charset="UTF-8">
+		<title>Title of the document</title>
+		<link rel="stylesheet" type="text/css" href="css/main.css">
+		<link rel="stylesheet" type="text/css" href="css/team.css">
+		<link rel="stylesheet" type="text/css" href="css/game.css">
+		<link rel="stylesheet" type="text/css" href="css/tinyscrollbar.css">
+		<link rel="stylesheet" type="text/css" href="css/mystyle.css">
+		<link rel="stylesheet" type="text/css" href="css/cardTips.css">
 
-        <!-- <script src="http://code.jquery.com/jquery-2.1.1.js"></script> -->
-        <script src="js/jquery-1.11.1.min.js"></script>
-        <script src="js/TweenMax.min.js"></script>
-        <script src="js/paper-core.min.js"></script>
-        <script src="js/easing/EasePack.min.js"></script>
-        <script src="js/jquery.tinyscrollbar.js"></script>
-        <script src="js/jquery.tinyscrollbar.min.js"></script>
+		<!-- <script src="http://code.jquery.com/jquery-2.1.1.js"></script> -->
+		<script src="js/jquery-1.11.1.min.js"></script>
+		<script src="js/TweenMax.min.js"></script>
+		<script src="js/paper-core.min.js"></script>
+		<script src="js/easing/EasePack.min.js"></script>
+		<script src="js/jquery.tinyscrollbar.js"></script>
+		<script src="js/jquery.tinyscrollbar.min.js"></script>
 
-        <script src="js/MissionData.js"></script>
-        <script src="js/BallData.js"></script>
-        <script src="js/RoleData.js"></script>
-        <script src="js/SkillData.js"></script>
-        <script src="js/CardTips.js"></script>
-        <script src="js/TeamManager.js"></script>
-        <script src="js/Role.js"></script>
-        <script src="js/Monster.js"></script>
-        <script src="js/Game.js"></script>
-        <script src="js/Result.js"></script>
-        <script src="js/UseSkill.js"></script>
-        <script src="js/Main.js"></script>
-        <script src="js/SkillParser.js"></script>
-    </head>
+		<script src="js/MissionData.js"></script>
+		<script src="js/BallData.js"></script>
+		<script src="js/RoleData.js"></script>
+		<script src="js/SkillData.js"></script>
+		<script src="js/CardTips.js"></script>
+		<script src="js/TeamManager.js"></script>
+		<script src="js/Role.js"></script>
+		<script src="js/Monster.js"></script>
+		<script src="js/Game.js"></script>
+		<script src="js/Result.js"></script>
+		<script src="js/UseSkill.js"></script>
+		<script src="js/SkillEffect.js"></script>
+		<script src="js/Main.js"></script>
+		<script src="js/SkillParser.js"></script>
+	</head>
 
-    <body>
-        <div id="main" class="main">
-            <div id="cardTipsView" class="view cardTipsView">
-                <div id="cardTips" class="cardTips">
-                    <img src="image/cardTips.png" />
-                </div>
-            </div>
-            <div id="missionView" class="view missionView">
-                <img src="image/mission.jpg" />
-                <img id="missionBlue" class="missionBlue missionPic" src="image/m_b.png" />
-                <img id="missionRed" class="missionRed missionPic" src="image/m_r.png" />
-                <img id="missionYellow" class="missionYellow missionPic" src="image/m_y.png" />
-                <img id="missionGreen" class="missionGreen missionPic" src="image/m_g.png" />
-            </div>
-            <div id="teamView" class="view teamView"></div>
-            <div id="gameView" class="view gameView">
-                <div id="monsterBlood" class="monsterBlood"></div>
-                <div id="combotHit" class="combotHit">
-                    <div id="combotHitValue" class="combotHitValue"></div>
-                    <div id="combotHitRate" class="combotHitRate"></div>
-                </div>
-                <div id="playerBlood" class="playerBlood"></div>
-                <div id="shield" class="shield">
-                    <img src="image/shield.png" />
-                </div>
-                <div id="timerbarArea" class="timerbarArea">
-                    <img src="image/timebarBg.png" />
-                    <div id="timerbar" class="timerbar">
-                        <img src="image/timebar.png" />
-                    </div>
-                </div>
-                <div id="monster" class="monster">
-                    <img id="monsterImg" class="monsterImg" />
-                </div>
-                <div id="game" class="game"></div>
-                <div id="player_area" class="playerarea"></div>
-                <div id="bouns" class="bouns">
-                    <img src="image/bonus.png" />
-                </div>
-                <div id="resultView" class="resultView">
-                    <div id="victory" class="victory">
-                        <img src="image/victory.png" />
-                    </div>
-                    <div id="defeat" class="defeat">
-                        <img src="image/defeat.png" />
-                    </div>
-                    <div id="resultText" class="resultText"></div>
-                    <div id="confirmBtn" class="confirmBtn"></div>
-                </div>
-                <div id="useSkillConfirm" class="useSkillConfirm">
-                    <img class="useSkillConfirmImg" src="image/useSkillConfirm.png" />
-                    <div id="useSkillTxt" class="useSkillTxt"></div>
-                    <div id="useSkillOK" class="useSkillOK"></div>
-                    <div id="useSkillNO" class="useSkillNO"></div>
-                </div>
-            </div>
-            <img id="guideGame" class="guideGame guide" src="image/guideGame.jpg" />
-            <img id="guideMission" class="guideMission guide" src="image/guideMission.jpg" />
-            <img id="guideTeam" class="guideTeam guide" src="image/guideTeam.jpg" />
-        </div>
-    </body>
+	<body>
+		<div id="main" class="main">
+			<div id="cardTipsView" class="view cardTipsView">
+				<div id="cardTips" class="cardTips">
+					<img src="image/cardTips.png" />
+				</div>
+			</div>
+			<div id="missionView" class="view missionView">
+				<img src="image/mission.jpg" />
+				<img id="missionBlue" class="missionBlue missionPic" src="image/m_b.png" />
+				<img id="missionRed" class="missionRed missionPic" src="image/m_r.png" />
+				<img id="missionYellow" class="missionYellow missionPic" src="image/m_y.png" />
+				<img id="missionGreen" class="missionGreen missionPic" src="image/m_g.png" />
+			</div>
+			<div id="teamView" class="view teamView"></div>
+			<div id="gameView" class="view gameView">
+				<div id="monsterBlood" class="monsterBlood"></div>
+				<div id="combotHit" class="combotHit">
+					<div id="combotHitValue" class="combotHitValue"></div>
+					<div id="combotHitRate" class="combotHitRate"></div>
+				</div>
+				<div id="playerBlood" class="playerBlood"></div>
+				<div id="playerBloodTips" class="playerBloodTips"></div>
+				<div id="shield" class="shield">
+					<img src="image/shield.png" />
+				</div>
+				<div id="timerbarArea" class="timerbarArea">
+					<img src="image/timebarBg.png" />
+					<div id="timerbar" class="timerbar">
+						<img src="image/timebar.png" />
+					</div>
+				</div>
+				<div id="monster" class="monster">
+					<img id="monsterImg" class="monsterImg" />
+				</div>
+				<div id="game" class="game"></div>
+				<div id="player_area" class="playerarea"></div>
+				<div id="bouns" class="bouns">
+					<img src="image/bonus.png" />
+				</div>
+				<div id="resultView" class="resultView">
+					<div id="victory" class="victory">
+						<img src="image/victory.png" />
+					</div>
+					<div id="defeat" class="defeat">
+						<img src="image/defeat.png" />
+					</div>
+					<div id="resultText" class="resultText"></div>
+					<div id="confirmBtn" class="confirmBtn"></div>
+				</div>
+				<div id="useSkillConfirm" class="useSkillConfirm">
+					<img class="useSkillConfirmImg" src="image/useSkillConfirm.png" />
+					<div id="useSkillTxt" class="useSkillTxt"></div>
+					<div id="useSkillOK" class="useSkillOK"></div>
+					<div id="useSkillNO" class="useSkillNO"></div>
+				</div>
+				<div id="skillEffect" class="skillEffect">
+					<img class="skillEffectBg" src="image/skillEffectBg.png" />
+					<div id="skillEffectRole" class="skillEffectRole">
+						<img id="skillEffectRoleImg" class="skillEffectRoleImg" src="image/c1.png" />
+					</div>
+					<img class="skillEffectCover" src="image/skillEffectCover.png" />
+
+				</div>
+			</div>
+			<img id="guideGame" class="guideGame guide" src="image/guideGame.jpg" />
+			<img id="guideMission" class="guideMission guide" src="image/guideMission.jpg" />
+			<img id="guideTeam" class="guideTeam guide" src="image/guideTeam.jpg" />
+		</div>
+	</body>
 </html>

@@ -2,7 +2,7 @@
 	"id" : "mon001",
 	"name" : "外族入侵你家園",
 	"des" : "",
-	"mosterLayer" : "b1",
+	"mosterLayer" : ["a3","a8","b1"],
 	"ballProbabilityPolicy" : {
 		"fireI":30,
 		"fireII":10,

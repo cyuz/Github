@@ -2,7 +2,7 @@
 	"id" : "mon004",
 	"name" : "中路單挑",
 	"des" : "",
-	"mosterLayer" : "b4",
+	"mosterLayer" : ["a1","a2","a3","b1"],
 	"ballProbabilityPolicy" : {
 		"fireI":30,
 		"fireII":10,

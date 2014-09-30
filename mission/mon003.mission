@@ -2,7 +2,7 @@
 	"id" : "mon003",
 	"name" : "寒冰的考驗",
 	"des" : "",
-	"mosterLayer" : "b3",
+	"mosterLayer" : ["a2","a6","a7","b1"],
 	"ballProbabilityPolicy" : {
 		"fireI":30,
 		"fireII":10,
