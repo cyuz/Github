@@ -166,13 +166,14 @@ var TeamManager = function() {
 			oldImg.style.opacity = "1";
 		}
 		//srcImg.setAttribute("draggable", false);
-         $("#"+srcImg.id).draggable('enable');
+         $("#"+srcImg.id).draggable('disable');
 		srcImg.style.opacity = "0.5";
 		selectedRolesArray[targetImgId] = srcImg.id;
 		console.log(targetImgId + ":" + srcImg.id);        
     }
     
 	function drop(ev) {
+    //jscript version
 		ev.preventDefault();
 		var data = ev.dataTransfer.getData("text");
 		var srcImg = document.getElementById(data);
@@ -192,12 +193,10 @@ var TeamManager = function() {
 		if (oldImgId != undefined) {
 			console.log("old:" + oldImgId);
 			var oldImg = document.getElementById(oldImgId);
-			//oldImg.setAttribute("draggable", true);
-            oldImg.draggable('enable');
+			oldImg.setAttribute("draggable", true);
 			oldImg.style.opacity = "1";
 		}
-		//srcImg.setAttribute("draggable", false);
-        srcImg.draggable('disable');
+		srcImg.setAttribute("draggable", false);
 		srcImg.style.opacity = "0.5";
 		selectedRolesArray[targetImgId] = data;
 		console.log(targetImgId + ":" + data);
@@ -215,7 +214,7 @@ var TeamManager = function() {
 		var roleViewDiv = createDiv(parentdiv, undefined, ["role", "transparent_green"]);
 
 		var roleImg = createImg(roleViewDiv, imgId, imgSrc, ["icon_role"]);
-		//roleImg.setAttribute("draggable", true);
+		roleImg.setAttribute("draggable", false);
         $("#"+imgId).draggable(
             {
                 helper: function() { return $(this).clone().appendTo('body').show(); }
