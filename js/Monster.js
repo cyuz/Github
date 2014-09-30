@@ -478,7 +478,7 @@ var Monster = function() {
 		"takeSkillEffect" : takeSkillEffect,
 		"roundStart" : roundStart,
 		"skillAnimation" : skillAnimation,
-		"checkMonsterIsLive" : checkMonsterIsLive
+		"checkMonsterIsLive" : checkMonsterIsLive,
         "healPlayerHp" : healPlayerHp,
         "damagePlayerHp" : damagePlayerHp        
 	}
