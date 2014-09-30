@@ -1,213 +1,220 @@
 .monster {
-	position: relative;
-	width: 640px;
-	height: 230px;
-	cursor: pointer;
+	position:relative;
+	width:640px;
+	height:230px;
 }
-
 .monsterImg {
-	position: absolute;
-	top: 30px;
-	left: 230px;
+	position:absolute;
+	top:30px;
+	left:230px;
+	cursor:pointer;
 }
-
 .monsterImg.dead {
-	filter: grayscale(100%);
-	-webkit-filter: grayscale(100%);
-	-moz-filter: grayscale(100%);
-	-ms-filter: grayscale(100%);
-	-o-filter: grayscale(100%);
+	filter:grayscale(100%);
+	-webkit-filter:grayscale(100%);
+	-moz-filter:grayscale(100%);
+	-ms-filter:grayscale(100%);
+	-o-filter:grayscale(100%);
 }
-
 .game {
-	position: relative;
-	left: 70px;
-	width: 500px;
-	height: 600px;
+	position:relative;
+	left:70px;
+	width:500px;
+	height:600px;
 }
-
 .monsterBlood {
-	background-color: #e50049;
-	width: 350px;
-	height: 10px;
-	position: absolute;
-	left: 140px;
-	top: 15px;
+	background-color:#e50049;
+	width:350px;
+	height:10px;
+	position:absolute;
+	left:140px;
+	top:15px;
+	z-index:50;
 }
-
 .playerBlood {
-	background-color: #9cce91;
-	height: 10px;
-	position: absolute;
-	left: 45px;
-	top: 208px;
+	background-color:#9cce91;
+	height:10px;
+	position:absolute;
+	left:45px;
+	top:208px;
+	z-index:50;
 }
-
 .road {
-	background-color: #131a3d;
-	position: absolute;
-	width: 10px;
-	height: 585px;
+	background-color:#131a3d;
+	position:absolute;
+	width:10px;
+	height:585px;
 }
-
 .bridge {
-	background-color: #131a3d;
-	position: absolute;
-	width: 90px;
-	height: 10px;
-	cursor: pointer;
-	border-color: #FFFFFF;
-	border-style: solid;
-	border-width: 1px 0px 1px 0px;
+	background-color:#131a3d;
+	position:absolute;
+	width:90px;
+	height:10px;
+	cursor:pointer;
+	border-color:#FFFFFF;
+	border-style:solid;
+	border-width:1px 0px 1px 0px;
 }
-
 .bridge.hide {
-	display: none;
+	display:none;
 }
-
 .ball {
-	position: absolute;
-	background-position: -10px -10px;
+	position:absolute;
+	background-position:-10px -10px;
 }
-
 .ballImgSmall {
-	position: absolute;
-	left: -12.5px;
-	top: -12.5px;
+	position:absolute;
+	left:-12.5px;
+	top:-12.5px;
 }
-
 .ballImgMid {
-	position: absolute;
-	left: -18.5px;
-	top: -18.5px;
+	position:absolute;
+	left:-18.5px;
+	top:-18.5px;
 }
-
 .ballImgBig {
-	position: absolute;
-	left: -25.5px;
-	top: -25.5px;
+	position:absolute;
+	left:-25.5px;
+	top:-25.5px;
 }
-
 .timerbarArea {
-	position: absolute;
-	top: 203px;
-	left: 39px;
+	position:absolute;
+	top:203px;
+	left:39px;
 }
-
 .timerbar {
-	position: absolute;
-	top: -2px;
-	left: 10px;
-	overflow: hidden;
+	position:absolute;
+	top:-2px;
+	left:10px;
+	overflow:hidden;
 }
-
 .bouns {
-	position: absolute;
-	top: 470px;
-	left: 10px;
+	position:absolute;
+	top:470px;
+	left:10px;
 }
-
 .shield {
-	position: absolute;
-	top: 204px;
-	left: 45px;
-	overflow: hidden;
+	position:absolute;
+	top:204px;
+	left:45px;
+	overflow:hidden;
 }
-
 .monster_buff_icon {
-	position: absolute;
-	height: 30px;
-	width: 70px;
-	top: 30px;
-	left: 280px;
-	visibility: hidden;
+	position:absolute;
+	height:30px;
+	width:70px;
+	top:30px;
+	left:280px;
+	visibility:hidden;
 }
-
 .resultView {
-	background-image: url("../image/cardTipsBg.png");
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	width: 640px;
-	height: 930px;
+	background-image:url("../image/cardTipsBg.png");
+	position:absolute;
+	top:0px;
+	left:0px;
+	width:640px;
+	height:930px;
 }
-
 .victory {
-	position: absolute;
-	top: 220px;
+	position:absolute;
+	top:220px;
 }
-
 .defeat {
-	position: absolute;
-	top: 220px;
+	position:absolute;
+	top:220px;
 }
-
 .confirmBtn {
-	position: absolute;
-	height: 30px;
-	width: 75px;
-	top: 465px;
-	left: 447px;
-	cursor: pointer;
+	position:absolute;
+	height:30px;
+	width:75px;
+	top:465px;
+	left:447px;
+	cursor:pointer;
 }
-
 .resultText {
-	color: #FF0000;
-	position: absolute;
-	height: 40px;
-	width: 272px;
-	top: 480px;
-	left: 110px;
+	color:#FF0000;
+	position:absolute;
+	height:40px;
+	width:272px;
+	top:480px;
+	left:110px;
 }
-
 .monster_skill_icon {
-	position: absolute;
-	height: 30px;
-	width: 70px;
-	top: 200px;
-	left: 280px;
-	visibility: hidden;
+	position:absolute;
+	height:30px;
+	width:70px;
+	top:200px;
+	left:280px;
+	visibility:hidden;
 }
-
 .useSkillConfirm {
-	background-image: url("../image/cardTipsBg.png");
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	width: 640px;
-	height: 930px;
+	background-image:url("../image/cardTipsBg.png");
+	position:absolute;
+	top:0px;
+	left:0px;
+	width:640px;
+	height:930px;
 }
-
 .useSkillConfirmImg {
-	position: absolute;
-	left: 170px;
-	top: 350px;
+	position:absolute;
+	left:170px;
+	top:350px;
 }
-
 .useSkillTxt {
-	color: #FFFFFF;
-	position: absolute;
-	left: 197px;
-	top: 373px;
-	width: 245px;
-	height: 60px;
-	text-align: center;
+	color:#FFFFFF;
+	position:absolute;
+	left:197px;
+	top:385px;
+	width:245px;
+	height:60px;
+	text-align:center;
 }
-
 .useSkillOK {
-	width: 96px;
-	height: 37px;
-	position: absolute;
-	left: 198px;
-	top: 474px;
-	cursor: pointer;
+	width:96px;
+	height:37px;
+	position:absolute;
+	left:198px;
+	top:474px;
+	cursor:pointer;
 }
-
 .useSkillNO {
-	width: 96px;
-	height: 37px;
-	position: absolute;
-	left: 346px;
-	top: 474px;
-	cursor: pointer;
+	width:96px;
+	height:37px;
+	position:absolute;
+	left:346px;
+	top:474px;
+	cursor:pointer;
+}
+.skillEffect {
+	background-image:url("../image/cardTipsBg.png");
+	position:absolute;
+	top:0px;
+	left:0px;
+	width:640px;
+	height:930px;
+}
+.skillEffectBg {
+	position:absolute;
+	top:300px;
+	left:0px;
+}
+.skillEffectRole {
+	position:absolute;
+	top:300px;
+	left:0px;
+}
+.skillEffectRoleImg {
+	width:140px;
+	height:140px;
+	position:absolute;
+	top:25px;
+}
+.skillEffectCover {
+	position:absolute;
+	top:300px;
+	left:0px;
+}
+.playerBloodTips {
+	position:absolute;
+	background-image:url("../image/cardTipsBg.png");
 }
