@@ -244,8 +244,8 @@ var TeamManager = function() {
 			var imgId = "role_" + data.id + "_img";
 			imgidroleidmap[imgId] = data.id;
 		}
-        
-        $('#role_area').tinyscrollbar();
+
+		$('#role_area').tinyscrollbar();
 
 	}
 
@@ -257,7 +257,7 @@ var TeamManager = function() {
 		var missionData = MissionData.getData(missionID);
 
 		stageNameDiv.innerHTML = missionData.name;
-		monster = RoleData.getData(missionData.mosterLayer);
+		monster = RoleData.getData(missionData.mosterLayer[missionData.mosterLayer.length - 1]);
 		stageBossImg.src = "image/" + monster.cardPic;
 		/*missionData.
 		 stageBossImg.src =*/

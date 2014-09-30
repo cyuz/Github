@@ -48,8 +48,8 @@ var Result = function() {
 		Main.toMissionView();
 	}
 
-	function setMonster(id) {
-		var monster = RoleData.getData(id);
+	function setMonster(layer) {
+		var monster = RoleData.getData(layer[layer.length - 1]);
 		monsterName = monster.name;
 	}
 

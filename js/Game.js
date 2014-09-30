@@ -38,6 +38,7 @@ var Game = function() {
 
 		Result.init();
 		UseSkill.init();
+		SkillEffect.init();
 	}
 
 	function setRole(roleArray) {

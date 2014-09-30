@@ -1,5 +1,5 @@
 var RoleData = function() {
-	var MAX_COUNT = 14;
+	var MAX_COUNT = 44;
 	var list = {}
 	var playerList = {}
 	var completeCount = 0;
@@ -34,13 +34,21 @@ var RoleData = function() {
 		loadData("c27.role");
 		loadData("c28.role");
 		loadData("c29.role");
-		loadData("c30.role");        
+		loadData("c30.role");
 		loadData("c31.role");
-		loadData("c32.role"); 
+		loadData("c32.role");
 		loadData("b1.role");
 		loadData("b2.role");
 		loadData("b3.role");
-		loadData("b4.role");        
+		loadData("b4.role");
+		loadData("a1.role");
+		loadData("a2.role");
+		loadData("a3.role");
+		loadData("a4.role");
+		loadData("a5.role");
+		loadData("a6.role");
+		loadData("a7.role");
+		loadData("a8.role");
 	}
 
 	function loadData(fileName) {
