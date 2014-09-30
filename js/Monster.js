@@ -18,17 +18,17 @@ var Monster = function() {
 	var colorMapping = {
 		"red" : {
 			"red" : 1,
-			"blue" : 1.5,
-			"green" : 0.5
+			"blue" : 1.25,
+			"green" : 0.75
 		},
 		"blue" : {
-			"red" : 0.5,
+			"red" : 0.75,
 			"blue" : 1,
-			"green" : 1.5
+			"green" : 1.25
 		},
 		"green" : {
-			"red" : 1.5,
-			"blue" : 0.5,
+			"red" : 1.25,
+			"blue" : 0.75,
 			"green" : 1
 		}
 	}
@@ -75,23 +75,36 @@ var Monster = function() {
 		var bossImg = document.getElementById("monsterImg");
 		bossImg.onclick = showTips;
 
-		$("#playerBlood").hover(showPlayerBlood, hidePlayerBlood);
-		$("#monsterBlood").hover(showPlayerBlood, hidePlayerBlood);
+		$("#monsterBloodDiv").hover(showMonsterBlood, hidePlayerBlood);
+		$("#playerBloodDiv").hover(showPlayerBlood, hidePlayerBlood);
+
+		p_shield = 0;
+		playPlayerShieldAni(0, 0.3);
 
 		changeMonsterPic();
 	}
 
 	function showPlayerBlood(e) {
-		$("#playerBloodTips").text = p_curHp + "/" + p_maxHp;
-		TweenMax.to($("#playerBlood"), 0, {
+		$("#playerBloodTips").text(p_curHp + "/" + p_maxHp);
+		showBloodTips(e.pageY - 45, e.pageX);
+	}
+
+	function showMonsterBlood(e) {
+		$("#playerBloodTips").text(curHp + "/" + maxHp);
+		showBloodTips(e.pageY + 20, e.pageX);
+	}
+
+	function showBloodTips(t, l) {
+		TweenMax.to($("#playerBloodTips"), 0, {
+			top : t,
+			left : l,
 			opacity : 1,
 			display : "inline",
 		});
 	}
 
 	function hidePlayerBlood(e) {
-		$("#playerBloodTips").text = p_curHp + "/" + p_maxHp;
-		TweenMax.to($("#playerBlood"), 0, {
+		TweenMax.to($("#playerBloodTips"), 0, {
 			opacity : 0,
 			display : "none",
 		});
@@ -191,8 +204,7 @@ var Monster = function() {
 			return;
 		}
 
-		if (curHp <= 0) {
-			nextLayer();
+		if (!checkMonsterIsLive()) {
 			return;
 		}
 
@@ -223,6 +235,15 @@ var Monster = function() {
 
 		playPlayerShieldAni(0.3, 0.3);
 		playPlayerBloodAni(0.3 + bloodDelay, 0.3, checkPlayerHp);
+	}
+
+	function checkMonsterIsLive() {
+		if (curHp <= 0) {
+			nextLayer();
+			return false;
+		} else {
+			return true
+		}
 	}
 
 	function playMonsterBloodAni(during) {
@@ -427,7 +448,8 @@ var Monster = function() {
 		"filterSkillTarget" : filterSkillTarget,
 		"takeSkillEffect" : takeSkillEffect,
 		"roundStart" : roundStart,
-		"skillAnimation" : skillAnimation
+		"skillAnimation" : skillAnimation,
+		"checkMonsterIsLive" : checkMonsterIsLive
 	}
 
 }();
