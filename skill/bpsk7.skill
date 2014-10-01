@@ -1,0 +1,15 @@
+﻿{
+	"id" : "bpsk7",
+	"skillName" : "<b>砲灰也能出頭天<b/>",
+	"imgsrc" : "",
+    "desc" : "降低玩家全體隊員護盾30",
+    "condition_type" : "all",
+    "condition_operator" : "",
+    "condition_value" : "",
+    "effect_type" : "shield",
+    "effect_operator" : "-",
+    "effect_value" : 30,
+    "target_type" : "enemy",
+    "target_color" : "all",
+    "target_race" : "all"
+}
