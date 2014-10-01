@@ -1,275 +1,240 @@
 .textbox {
-	width: 170px;
-	height: 50px;
-	position: relative;
-	border-radius: 6px;
-	margin-top: 4px;
-	font-size: 60px;
+	width:170px;
+	height:50px;
+	position:relative;
+	border-radius:6px;
+	margin-top:4px;
+	font-size:60px;
 }
-
 .box {
-	width: 50px;
-	height: 50px;
-	position: relative;
-	border-radius: 6px;
-	margin-top: 4px;
+	width:50px;
+	height:50px;
+	position:relative;
+	border-radius:6px;
+	margin-top:4px;
 }
-
 .rolebox {
-	width: 90px;
-	height: 100px;
-	position: relative;
-	border-radius: 6px;
-	margin-top: 4px;
-	display: inline-block
+	width:90px;
+	height:100px;
+	position:relative;
+	border-radius:6px;
+	margin-top:4px;
+	display:inline-block
 }
-
 .energybox {
-	width: 0px;
-	height: 10px;
-	left: 5px;
-	top: 80px;
-	position: absolute;
-	border-radius: 6px;
-	margin-top: 4px;
+	width:0px;
+	height:10px;
+	left:5px;
+	top:80px;
+	position:absolute;
+	border-radius:6px;
+	margin-top:4px;
 }
-
 .orbbox {
-	width: 25px;
-	height: 25px;
-	position: absolute;
-	border-radius: 6px;
-	margin-top: 4px;
-	display: inline-block
+	width:25px;
+	height:25px;
+	position:absolute;
+	border-radius:6px;
+	margin-top:4px;
+	display:inline-block
 }
-
 .orbpos0 {
-	left: 3px;
-	top: 70px;
-	position: absolute;
+	left:3px;
+	top:70px;
+	position:absolute;
 }
-
 .orbpos1 {
-	left: 33px;
-	top: 70px;
-	position: absolute;
+	left:33px;
+	top:70px;
+	position:absolute;
 }
-
 .orbpos2 {
-	left: 63px;
-	top: 70px;
-	position: absolute;
+	left:63px;
+	top:70px;
+	position:absolute;
 }
-
 .attackOrbPos0 {
-	left: 15px;
-	top: -15px;
-	height: 30px;
-	width: 30px;
-	position: absolute;
-	z-index: 2;
-    visibility:  hidden;    
+	left:15px;
+	top:-15px;
+	height:30px;
+	width:30px;
+	position:absolute;
+	z-index:99;
+	visibility:hidden;
 }
-
 .attackOrbPos1 {
-	left: 110px;
-	top: -15px;
-	height: 30px;
-	width: 30px;
-	position: absolute;
-	z-index: 2;
-    visibility:  hidden;    
+	left:110px;
+	top:-15px;
+	height:30px;
+	width:30px;
+	position:absolute;
+	z-index:99;
+	visibility:hidden;
 }
-
 .attackOrbPos2 {
-	left: 205px;
-	top: -15px;
-	height: 30px;
-	width: 30px;
-	position: absolute;
-	z-index: 2;
-    visibility:  hidden;    
+	left:205px;
+	top:-15px;
+	height:30px;
+	width:30px;
+	position:absolute;
+	z-index:99;
+	visibility:hidden;
 }
-
 .attackOrbPos3 {
-	left: 300px;
-	top: -15px;
-	height: 30px;
-	width: 30px;
-	position: absolute;
-	z-index: 2;
-    visibility:  hidden;    
+	left:300px;
+	top:-15px;
+	height:30px;
+	width:30px;
+	position:absolute;
+	z-index:99;
+	visibility:hidden;
 }
-
 .attackOrbPos4 {
-	left: 395px;
-	top: -15px;
-	height: 30px;
-	width: 30px;
-	position: absolute;
-	z-index: 2;
-    visibility:  hidden;    
+	left:395px;
+	top:-15px;
+	height:30px;
+	width:30px;
+	position:absolute;
+	z-index:99;
+	visibility:hidden;
 }
-
 .attackOrbPos5 {
-	left: 490px;
-	top: -15px;
-	height: 30px;
-	width: 30px;
-	position: absolute;
-	z-index: 2;
-    visibility:  hidden;
+	left:490px;
+	top:-15px;
+	height:30px;
+	width:30px;
+	position:absolute;
+	z-index:99;
+	visibility:hidden;
 }
-
 .playerarea {
-	width: 600px;
-	height: 100px;
-	position: relative;
-	border-radius: 6px;
-	margin-top: 4px;
+	width:600px;
+	height:100px;
+	position:relative;
+	border-radius:6px;
+	margin-top:4px;
 }
-
 .transparent {
-	background-color: transparent;
+	background-color:transparent;
 }
-
 .green {
-	background-color: #00FF00;
+	background-color:#00FF00;
 }
-
 .red {
-	background-color: #FF0000;
+	background-color:#FF0000;
 }
-
 .blue {
-	background-color: #0000FF;
+	background-color:#0000FF;
 }
-
 .bk_green {
-	background-color: #008000;
+	background-color:#008000;
 }
-
 .bk_red {
-	background-color: #800000;
+	background-color:#800000;
 }
-
 .bk_blue {
-	background-color: #000080;
+	background-color:#000080;
 }
-
 .bk_purple {
-	background-color: #6600FF;
+	background-color:#6600FF;
 }
-
 .energyboxcolor {
-	background-color: #33CCCC;
+	background-color:#33CCCC;
 }
-
 .orange {
-	background-color: #f38630;
+	background-color:#f38630;
 }
 .grey {
-	background-color: #989898;
+	background-color:#989898;
 }
+.transparent_green {
 
-.transparent_green {//
-	background-color: rgba(0,200,0,0.5);
+	/*background-color:rgba(0,200,0,0.5);*/
+
 }
-
 .role_img {
-	left: 0px;
-	top: 0px;
-	position: absolute;
+	left:0px;
+	top:0px;
+	position:absolute;
 }
-
 .role_img_bk {
-	left: 0px;
-	top: 0px;
-	position: absolute;
-	width: 90px;
-	height: 75px;
-	border-radius: 6px;
-	margin-top: 4px;
+	left:0px;
+	top:0px;
+	position:absolute;
+	width:90px;
+	height:75px;
+	border-radius:6px;
+	margin-top:4px;
 }
-
 .orb_icon {
-	position: absolute;
-	margin: auto;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
+	position:absolute;
+	margin:auto;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
 }
-
 .combotHit {
-	position: absolute;
-	top: 135px;
-	left: 410px;
-	width: 200px;
-	height: 60px;
+	position:absolute;
+	top:135px;
+	left:410px;
+	width:200px;
+	height:60px;
 	/* background-color: #989898; */
-	background-image: url("../image/combo_bk.png");
-	background-size: cover;
+	background-image:url("../image/combo_bk.png");
+	background-size:cover;
 }
-
 .combotHitValue {
-	position: absolute;
-	top: 15px;
-	left: 15px;
-	width: 45%;
-	height: 60px;
-	font-size: 40px;
-	text-align: right;
+	position:absolute;
+	top:15px;
+	left:15px;
+	width:45%;
+	height:60px;
+	font-size:40px;
+	text-align:right;
 }
-
 .combotHitRate {
-	position: absolute;
-	top: 10px;
-	left: 80PX;
-	width: 100px;
-	height: 30px;
-	font-size: 20px;
-	text-align: right;
+	position:absolute;
+	top:10px;
+	left:80PX;
+	width:100px;
+	height:30px;
+	font-size:20px;
+	text-align:right;
 }
-
-.buff_icon{
-    max-width:100%;
-    max-height:100%;
+.buff_icon {
+	max-width:100%;
+	max-height:100%;
 }
-
-.buff_text{
-    position: absolute;
-    left: 40px;
-    height: 30px
+.buff_text {
+	position:absolute;
+	left:40px;
+	height:30px
 }
-
 .buff_pos {
-	left: 0px;
-	top: -15px;
-	height: 30px;
-	width: 70px;
-	position: absolute;
-	z-index: 2;
-    visibility:  hidden;
+	left:0px;
+	top:-15px;
+	height:30px;
+	width:70px;
+	position:absolute;
+	z-index:2;
+	visibility:hidden;
 }
-
 .skill_pos {
-	left: 3px;
-	top: 60px;
-	height: 30px;
-	width: 70px;
-	position: absolute;
-	z-index: 2;
-    visibility:  hidden;
+	left:3px;
+	top:60px;
+	height:30px;
+	width:70px;
+	position:absolute;
+	z-index:2;
+	visibility:hidden;
 }
-
 .main_skill_pos {
-	left: 70px;
-	top: 470px;
-	height: 57px;
-	width: 190px;
-	position: absolute;
-	z-index: 2;
-    visibility:  hidden;
+	left:70px;
+	top:470px;
+	height:57px;
+	width:190px;
+	position:absolute;
+	z-index:2;
+	visibility:hidden;
 }
-

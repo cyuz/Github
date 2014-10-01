@@ -1,6 +1,6 @@
 ﻿{
 	"id" : "psk14",
-	"skillName" : "psk14",
+	"skillName" : "極限魔能",
 	"imgsrc" : "",
     "desc" : "血量低於10000時，每回合全體隊員增加60能量",
     "condition_type" : "selfhp",

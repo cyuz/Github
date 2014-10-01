@@ -1,6 +1,6 @@
 ﻿{
 	"id" : "bsk2",
-	"skillName" : "bsk2",
+	"skillName" : "大地之氣",
 	"imgsrc" : "",
     "desc" : "每受到一次攻擊，增加玩家全體隊員回復力5",
     "condition_type" : "all",

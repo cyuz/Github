@@ -1,6 +1,6 @@
 ﻿{
 	"id" : "psk18",
-	"skillName" : "psk18",
+	"skillName" : "實驗失敗效應",
 	"imgsrc" : "",
     "desc" : "超能類隊員減少恢復力200",
     "condition_type" : "all",

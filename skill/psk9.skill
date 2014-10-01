@@ -1,15 +1,15 @@
 ﻿{
 	"id" : "psk9",
-	"skillName" : "psk9",
+	"skillName" : "硬霸",
 	"imgsrc" : "",
-    "desc" : "血量高於12000時，每回合減少自身能量60",
+    "desc" : "血量低於12000時，水屬性隊員減少300攻擊力",
     "condition_type" : "selfhp",
-    "condition_operator" : ">=",
+    "condition_operator" : "<",
     "condition_value" : 12000,
-    "effect_type" : "energy",
+    "effect_type" : "atk",
     "effect_operator" : "-",
-    "effect_value" : 60,
-    "target_type" : "itself",
-    "target_color" : "all",
+    "effect_value" : 300,
+    "target_type" : "self",
+    "target_color" : "blue",
     "target_race" : "all"
 }

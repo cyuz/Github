@@ -1,244 +1,218 @@
 .playerlevel {
-	position: absolute;
-	width: 130px;
-	height: 52px;
-	left: 25px;
-	top: 30px;
-	font-size: 45px;
-	text-align: center;
+	position:absolute;
+	width:130px;
+	height:52px;
+	left:25px;
+	top:30px;
+	font-size:45px;
+	text-align:center;
 }
-
 .playername {
-	position: absolute;
-	width: 245px;
-	height: 40px;
-	left: 193px;
-	top: 33px;
-	font-size: 35px;
-	text-align: center;
+	position:absolute;
+	width:245px;
+	height:40px;
+	left:193px;
+	top:33px;
+	font-size:35px;
+	text-align:center;
 }
-
 .playeresource {
-	width: 142px;
-	height: 30px;
-	font-size: 20px;
-	text-align: right;
+	width:142px;
+	height:30px;
+	font-size:20px;
+	text-align:right;
 }
-
 .playercash {
-	position: absolute;
-	left: 477px;
-	top: 12px;
+	position:absolute;
+	left:477px;
+	top:12px;
 }
-
 .playermoney {
-	position: absolute;
-	left: 477px;
-	top: 65px;
+	position:absolute;
+	left:477px;
+	top:65px;
 }
-
 .icon_resource {
-	position: absolute;
-	left: 0px;
-	top: 0px;
+	position:absolute;
+	left:0px;
+	top:0px;
 }
-
 .resource_value {
-	position: absolute;
-	left: 0px;
-	top: 0px;
-	width: 142px;
-	height: 30px;
+	position:absolute;
+	left:0px;
+	top:0px;
+	width:142px;
+	height:30px;
 }
-
 .stagedata {
-	position: absolute;
-	width: 570px;
-	height: 97px;
-	left: 33px;
-	top: 133px;
+	position:absolute;
+	width:570px;
+	height:97px;
+	left:33px;
+	top:133px;
 }
-
 .stagename {
-	position: absolute;
-	left: 19px;
-	top: 12px;
-	width: 570px;
-	height: 97px;
-	font-size: 50px;
-	color: #FFFFFF;
+	position:absolute;
+	left:19px;
+	top:12px;
+	width:570px;
+	height:97px;
+	font-size:50px;
+	color:#FFFFFF;
 }
-
 .bossimgDiv {
-	width: 175px;
-	height: 97px;
-	overflow: hidden;
-	position: absolute;
-	left: 400px;
-	cursor: pointer;
+	width:175px;
+	height:97px;
+	overflow:hidden;
+	position:absolute;
+	left:400px;
+	cursor:pointer;
 }
-
 .bossimg {
-	position: absolute;
-	top: 0px;
+	position:absolute;
+	top:0px;
 }
-
 .selected_role {
-	width: 70px;
-	height: 80px;
+	width:70px;
+	height:80px;
 }
-
 .selected_role_0 {
-	position: absolute;
-	left: 27px;
-	top: 300px;
+	position:absolute;
+	left:27px;
+	top:300px;
 }
-
 .selected_role_1 {
-	position: absolute;
-	left: 127px;
-	top: 300px;
+	position:absolute;
+	left:127px;
+	top:300px;
 }
-
 .selected_role_2 {
-	position: absolute;
-	left: 227px;
-	top: 300px;
+	position:absolute;
+	left:227px;
+	top:300px;
 }
-
 .selected_role_3 {
-	position: absolute;
-	left: 327px;
-	top: 300px;
+	position:absolute;
+	left:327px;
+	top:300px;
 }
-
 .selected_role_4 {
-	position: absolute;
-	left: 427px;
-	top: 300px;
+	position:absolute;
+	left:427px;
+	top:300px;
 }
-
 .selected_role_5 {
-	position: absolute;
-	left: 530px;
-	top: 300px;
+	position:absolute;
+	left:530px;
+	top:300px;
 }
-
 .role_area {
-	position: absolute;
-	left: 55px;
-	top: 400px;
-	width: 510px;
-	height: 420px;
-    margin: 20px 0 10px;
+	position:absolute;
+	left:55px;
+	top:400px;
+	width:510px;
+	height:420px;
+	margin:20px 0 10px;
 }
-
 .role_area .viewport {
-	width: 490px;
-	height: 400px;
-	overflow: hidden;
-	position: relative;
+	width:490px;
+	height:400px;
+	overflow:hidden;
+	position:relative;
 }
 .role_area .overview {
-	list-style: none;
-	position: absolute;
-	left: 0;
-	top: 0;
-	padding: 0;
-	margin: 0;
+	list-style:none;
+	position:absolute;
+	left:0;
+	top:0;
+	padding:0;
+	margin:0;
 }
 .role_area .scrollbar {
-	background: transparent url(../image/bg-scrollbar-track-y.png) no-repeat 0 0;
-	position: relative;
-	background-position: 0 0;
-	float: right;
-	width: 15px;
+	background:transparent url(../image/bg-scrollbar-track-y.png) no-repeat 0 0;
+	position:relative;
+	background-position:0 0;
+	float:right;
+	width:15px;
 }
 .role_area .track {
-	background: transparent url(../image/bg-scrollbar-trackend-y.png) no-repeat 0 100%;
-	height: 100%;
-	width: 13px;
-	position: relative;
-	padding: 0 1px;
+	background:transparent url(../image/bg-scrollbar-trackend-y.png) no-repeat 0 100%;
+	height:100%;
+	width:13px;
+	position:relative;
+	padding:0 1px;
 }
 .role_area .thumb {
-	background: transparent url(../image/bg-scrollbar-thumb-y.png) no-repeat 50% 100%;
-	height: 20px;
-	width: 25px;
-	cursor: pointer;
-	overflow: hidden;
-	position: absolute;
-	top: 0;
-	left: -5px;
+	background:transparent url(../image/bg-scrollbar-thumb-y.png) no-repeat 50% 100%;
+	height:20px;
+	width:25px;
+	cursor:pointer;
+	overflow:hidden;
+	position:absolute;
+	top:0;
+	left:-5px;
 }
 .role_area .thumb .end {
-	background: transparent url(../image/bg-scrollbar-thumb-y.png) no-repeat 50% 0;
-	overflow: hidden;
-	height: 5px;
-	width: 25px;
+	background:transparent url(../image/bg-scrollbar-thumb-y.png) no-repeat 50% 0;
+	overflow:hidden;
+	height:5px;
+	width:25px;
 }
 #role_area .disable {
-	display: none;
+	display:none;
 }
-
 .role {
-	position: relative;
-	left: 10px;
-	width: 80px;
-	height: 80px;
-	margin: 5px;
-	background-image: url("../image/icon_face_border.png");
-	background-size: cover;
-	float: left;
+	position:relative;
+	left:10px;
+	width:80px;
+	height:80px;
+	margin:5px;
+	background-image:url("../image/icon_face_border.png");
+	background-size:cover;
+	float:left;
 }
-
 .selected_icon_role {
-	position: absolute;
-	left: 0px;
-	top: 0px;
-	max-width: 100%;
-	max-height: 100%;
+	position:absolute;
+	left:0px;
+	top:0px;
+	max-width:100%;
+	max-height:100%;
 }
-
 .icon_role {
-	position: absolute;
-	left: 0px;
-	top: 0px;
-	max-width: 100%;
-	max-height: 100%;
-	cursor: pointer;
+	position:absolute;
+	left:0px;
+	top:0px;
+	max-width:100%;
+	max-height:100%;
+	cursor:pointer;
 }
-
 .icon_role:hover {
-	opacity: 0.5 !important;;
+	opacity:0.5 !important;;
 }
-
 .menu {
-	position: absolute;
-	left: 50px;
-	top: 860px;
-	width: 520px;
-	height: 70px;
+	position:absolute;
+	left:50px;
+	top:860px;
+	width:520px;
+	height:70px;
 }
-
 .btn_start {
-	position: absolute;
-	left: 440px;
-	top: -50px;
-	cursor: pointer;
+	position:absolute;
+	left:440px;
+	top:-50px;
+	z-index:20;
+	cursor:pointer;
 }
-
 .btn_return {
-	position: absolute;
-	left: 0px;
-	top: 0px;
-	cursor: pointer;
+	position:absolute;
+	left:0px;
+	top:0px;
+	cursor:pointer;
 }
-
 .noSelect {
-	user-select: none;
-	-o-user-select: none;
-	-moz-user-select: none;
-	-khtml-user-select: none;
-	-webkit-user-select: none;
+	user-select:none;
+	-o-user-select:none;
+	-moz-user-select:none;
+	-khtml-user-select:none;
+	-webkit-user-select:none;
 }

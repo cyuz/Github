@@ -1,6 +1,6 @@
 ﻿{
 	"id" : "bsk4",
-	"skillName" : "bsk4",
+	"skillName" : "煙霧陷阱",
 	"imgsrc" : "",
     "desc" : "每受到一次攻擊，減少玩家回復力10",
     "condition_type" : "all",

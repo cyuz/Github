@@ -1,6 +1,6 @@
 ﻿{
 	"id" : "psk2",
-	"skillName" : "psk2",
+	"skillName" : "十萬？五十萬也沒問題！",
 	"imgsrc" : "",
     "desc" : "敵方血量高於500,000時，火屬性隊員攻擊力6倍",
     "condition_type" : "enemyhp",

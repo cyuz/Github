@@ -1,6 +1,6 @@
 ﻿{
 	"id" : "sk1",
-	"skillName" : "sk1",
+	"skillName" : "迅風之捷",
 	"imgsrc" : "",
     "desc" : "一回合內，全體隊員攻擊力2倍",
     "condition_type" : "all",

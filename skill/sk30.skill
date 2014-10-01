@@ -1,6 +1,6 @@
 ﻿{
 	"id" : "sk30",
-	"skillName" : "sk30",
+	"skillName" : "衝一發",
 	"imgsrc" : "",
     "desc" : "增加格鬥類成員回復力200一回合",
     "condition_type" : "all",

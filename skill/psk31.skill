@@ -1,8 +1,8 @@
 ﻿{
 	"id" : "psk31",
-	"skillName" : "psk31",
+	"skillName" : "綠馬馬力夯",
 	"imgsrc" : "",
-    "desc" : "血量高於15000時，全體隊員和敵人攻擊力2倍",
+    "desc" : "血量低於3000時，全體隊員和敵人攻擊力10倍",
     "condition_type" : "enemyhp",
     "condition_operator" : ">=",
     "condition_value" : 15000,

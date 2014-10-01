@@ -1,6 +1,6 @@
 ﻿{
 	"id" : "sk9",
-	"skillName" : "sk9",
+	"skillName" : "甩尾",
 	"imgsrc" : "",
     "desc" : "增加水屬性魔法類隊員攻擊力6000一回合",
     "condition_type" : "all",

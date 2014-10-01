@@ -1,6 +1,6 @@
 ﻿{
 	"id" : "psk28",
-	"skillName" : "psk28",
+	"skillName" : "來打架啦",
 	"imgsrc" : "",
     "desc" : "隊伍內有格鬥類隊員5位或以上時，全體攻擊力2倍",
     "condition_type" : "1",

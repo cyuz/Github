@@ -1,6 +1,6 @@
 ﻿{
 	"id" : "psk6",
-	"skillName" : "psk6",
+	"skillName" : "轉守為攻",
 	"imgsrc" : "",
     "desc" : "水屬性隊員護盾降至50%",
     "condition_type" : "all",

@@ -1,6 +1,6 @@
 ﻿{
 	"id" : "sk20",
-	"skillName" : "sk20",
+	"skillName" : "奇蹟降臨",
 	"imgsrc" : "",
     "desc" : "一回合內，超能類隊員攻擊力4倍",
     "condition_type" : "all",

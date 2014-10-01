@@ -1,15 +1,15 @@
 ﻿{
 	"id" : "psk4",
-	"skillName" : "psk4",
+	"skillName" : "花好月圓時",
 	"imgsrc" : "",
-    "desc" : "血量高於12000時，全體隊員回復力降至50%",
-    "condition_type" : "selfhp",
+    "desc" : "隊伍內有火屬性隊員三位或以上時，火屬性隊員回復力降至50%",
+    "condition_type" : "red",
     "condition_operator" : ">=",
-    "condition_value" : 12000,
+    "condition_value" : 3,
     "effect_type" : "heal",
     "effect_operator" : "*",
     "effect_value" : 0.5,
     "target_type" : "self",
-    "target_color" : "all",
+    "target_color" : "red",
     "target_race" : "all"
 }

@@ -1,6 +1,6 @@
 ﻿{
 	"id" : "bpsk3",
-	"skillName" : "bpsk3",
+	"skillName" : "<b>凍傷<b/>",
 	"imgsrc" : "",
     "desc" : "玩家血量高於10000時，玩家全體隊員護盾減少100",
     "condition_type" : "enemyhp",

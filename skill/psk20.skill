@@ -1,6 +1,6 @@
 ﻿{
 	"id" : "psk20",
-	"skillName" : "psk20",
+	"skillName" : "等待奇蹟",
 	"imgsrc" : "",
     "desc" : "血量低於10000時，每回合增加自身70能量",
     "condition_type" : "selfhp",

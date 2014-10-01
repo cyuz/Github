@@ -1,6 +1,6 @@
 ﻿{
 	"id" : "psk15",
-	"skillName" : "psk15",
+	"skillName" : "護身大法",
 	"imgsrc" : "",
     "desc" : "血量高於15000時，木屬性超能類隊員增加200護盾",
     "condition_type" : "selfhp",

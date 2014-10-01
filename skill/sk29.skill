@@ -1,6 +1,6 @@
 ﻿{
 	"id" : "sk29",
-	"skillName" : "sk29",
+	"skillName" : "狂爆",
 	"imgsrc" : "",
     "desc" : "增加格鬥類隊員攻擊力3000一回合",
     "condition_type" : "all",

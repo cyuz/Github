@@ -1,6 +1,6 @@
 ﻿{
 	"id" : "psk24",
-	"skillName" : "psk24",
+	"skillName" : "我也是看新聞才知道",
 	"imgsrc" : "",
     "desc" : "血量小於10000時，魔法類隊員恢復力1.5倍",
     "condition_type" : "selfhp",

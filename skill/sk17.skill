@@ -1,6 +1,6 @@
 ﻿{
 	"id" : "sk17",
-	"skillName" : "sk17",
+	"skillName" : "只許超能放火",
 	"imgsrc" : "",
     "desc" : "超能類隊員攻擊力增加1000一回合",
     "condition_type" : "all",

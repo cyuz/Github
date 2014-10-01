@@ -1,6 +1,6 @@
 ﻿{
 	"id" : "psk12",
-	"skillName" : "psk12",
+	"skillName" : "你看看有木有",
 	"imgsrc" : "",
     "desc" : "隊伍內有木屬性隊員三位或以上時，木屬性隊員護盾2倍",
     "condition_type" : "green",

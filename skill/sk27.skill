@@ -1,6 +1,6 @@
 ﻿{
 	"id" : "sk27",
-	"skillName" : "sk27",
+	"skillName" : "身高300+",
 	"imgsrc" : "",
     "desc" : "增加自身回復力300一回合",
     "condition_type" : "all",

@@ -1,6 +1,6 @@
 ﻿{
 	"id" : "sk18",
-	"skillName" : "sk18",
+	"skillName" : "超能突變",
 	"imgsrc" : "",
     "desc" : "超能類隊員增加恢復力500一回合",
     "condition_type" : "all",

@@ -2,7 +2,7 @@
 	"id" : "mon002",
 	"name" : "野外大戰三十回",
 	"des" : "",
-	"mosterLayer" : ["a1","a4","a5","b1"],
+	"mosterLayer" : ["a1","a4","a5","b2"],
 	"ballProbabilityPolicy" : {
 		"fireI":30,
 		"fireII":10,

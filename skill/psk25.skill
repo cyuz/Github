@@ -1,6 +1,6 @@
 ﻿{
 	"id" : "psk25",
-	"skillName" : "psk25",
+	"skillName" : "你好別亂來",
 	"imgsrc" : "",
     "desc" : "血量高於15000時，敵人攻擊力降至80%",
     "condition_type" : "selfhp",

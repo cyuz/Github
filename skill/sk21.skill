@@ -1,6 +1,6 @@
 ﻿{
 	"id" : "sk21",
-	"skillName" : "sk21",
+	"skillName" : "蜷曲防禦",
 	"imgsrc" : "",
     "desc" : "增加自身護盾500一回合",
     "condition_type" : "all",

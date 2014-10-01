@@ -1,6 +1,6 @@
 ﻿{
 	"id" : "bpsk1",
-	"skillName" : "bpsk1",
+	"skillName" : "<b>卡卜勒強化<b/>",
 	"imgsrc" : "",
     "desc" : "血量低於50%時，攻擊力2倍",
     "condition_type" : "selfhp",

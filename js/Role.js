@@ -2,7 +2,7 @@ var RoleFunc = function() {
 
 	const ROLE_COUNT = 6;
 	const MAX_ENERGY = 500;
-	const SKILL_COST = 0;
+	const SKILL_COST = 2;
 	const ENERGY_SIZE = 70;
 	const LEFT_CENTER_X = "0px";
 	const RIGHT_CENTER_X = "530px";
@@ -317,6 +317,7 @@ var RoleFunc = function() {
 				addSameElementComboHit(1);
 				this.orbQueue.push(orb);
 				this.changeEnergy(orb.energy * 2);
+				SoundHandler.eatBall();
 			} else {
 				this.changeEnergy(orb.energy);
 			}
@@ -587,8 +588,8 @@ var RoleFunc = function() {
 					}
 					this.addBuffIcon("energy_buff_text.png", effectOperator + effectValue);
 					break;
-                case "hp":
-					break;                    
+				case "hp":
+					break;
 			}
 		}
 
@@ -608,9 +609,9 @@ var RoleFunc = function() {
 				y : -5
 			});
 			if (this.skill == skillID) {
-				this.addMainSkillAnimation("main_skill_text.png", "", skillID);
+				//this.addMainSkillAnimation("main_skill_text.png", "", skillID);
 			} else {
-				this.addSkillAnimation("skill_text.png", "", skillID);
+				//this.addSkillAnimation("skill_text.png", "", skillID);
 			}
 			this.skilltl.to(this.roleIcon, 0.1, {
 				x : 0,
@@ -745,47 +746,40 @@ var RoleFunc = function() {
 	}
 	function filterSkillTarget(effectType, targetColor, targetRace) {
 		var targets = new Array();
-        if(effectType == "hp")
-        {
-            targets[0] = this; 
-        }
-        else
-        {
-            for (var i = 0; i < char_roles.length; i++) {
-                if (char_roles[i].color == targetColor || targetColor == "all") {
-                    if (char_roles[i].race == targetRace || targetRace == "all") {
-                        targets[targets.length] = char_roles[i];
-                    }
-                }
-            }
-        }
+		if (effectType == "hp") {
+			targets[0] = this;
+		} else {
+			for (var i = 0; i < char_roles.length; i++) {
+				if (char_roles[i].color == targetColor || targetColor == "all") {
+					if (char_roles[i].race == targetRace || targetRace == "all") {
+						targets[targets.length] = char_roles[i];
+					}
+				}
+			}
+		}
 
 		return targets;
 	}
-    
-    function takeSkillEffect(effectType, effectOperator, effectValue) {
-        switch(effectType) {
-            case "hp":
-                if (effectOperator == "+") {
-                    Monster.healPlayerHp(effectValue, 0);
-                } else if (effectOperator == "-") {
-                    Monster.damagePlayerHp(effectValue);
-                } else if (effectOperator == "*") {
-                    var newValue = Math.round(Monster.getPlayerHp() * effectValue);
-                    var diffValue = newValue - Monster.getPlayerHp();
-                    if(diffValue > 0)
-                    {
-                        Monster.healPlayerHp(diffValue, 0);
-                    }
-                    else
-                    if(diffValue <= 0)
-                    {
-                        Monster.damagePlayerHp(diffValue);
-                    }
-                }
-                break;                    
-        }
-    }    
+
+	function takeSkillEffect(effectType, effectOperator, effectValue) {
+		switch(effectType) {
+			case "hp":
+				if (effectOperator == "+") {
+					Monster.healPlayerHp(effectValue, 0);
+				} else if (effectOperator == "-") {
+					Monster.damagePlayerHp(effectValue);
+				} else if (effectOperator == "*") {
+					var newValue = Math.round(Monster.getPlayerHp() * effectValue);
+					var diffValue = newValue - Monster.getPlayerHp();
+					if (diffValue > 0) {
+						Monster.healPlayerHp(diffValue, 0);
+					} else if (diffValue <= 0) {
+						Monster.damagePlayerHp(diffValue);
+					}
+				}
+				break;
+		}
+	}
 
 	return {
 		"init" : init,
@@ -799,7 +793,7 @@ var RoleFunc = function() {
 		"getHp" : getHp,
 		"filterSkillTarget" : filterSkillTarget,
 		"roundStart" : roundStart,
-        "takeSkillEffect" : takeSkillEffect,
+		"takeSkillEffect" : takeSkillEffect,
 	}
 
 }();

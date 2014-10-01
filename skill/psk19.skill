@@ -1,6 +1,6 @@
 ﻿{
 	"id" : "psk19",
-	"skillName" : "psk19",
+	"skillName" : "迷茫毒藥",
 	"imgsrc" : "",
     "desc" : "血量少於8000時，敵人攻擊力降至60%",
     "condition_type" : "selfhp",

@@ -159,6 +159,8 @@ var Monster = function() {
 			repeat : 1,
 			yoyo : true
 		});
+		
+		SoundHandler.hit();
 
 		activeSkillEffect();
 
@@ -196,12 +198,14 @@ var Monster = function() {
 
 		var bossImg = document.getElementById("monsterImg");
 		TweenMax.to(bossImg, 0.1, {
-			delay : 0.2,
-			top : 100,
+			//delay : 0.2,
+			top : 75,
 			repeat : 1,
 			yoyo : true,
 
 		});
+		
+		SoundHandler.monsterHit();
 
         damagePlayerHp(getFinalAtk());
 	}

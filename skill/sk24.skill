@@ -1,6 +1,6 @@
 ﻿{
 	"id" : "sk24",
-	"skillName" : "sk24",
+	"skillName" : "謝謝指教",
 	"imgsrc" : "",
     "desc" : "魔法類隊員回復力增加200一回合",
     "condition_type" : "all",

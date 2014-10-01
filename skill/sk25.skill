@@ -1,6 +1,6 @@
 ﻿{
 	"id" : "sk25",
-	"skillName" : "sk25",
+	"skillName" : "大家有話好好說",
 	"imgsrc" : "",
     "desc" : "一回合內，全體隊員和敵人攻擊力降至25%",
     "condition_type" : "all",

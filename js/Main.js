@@ -22,6 +22,7 @@ var Main = function() {
 	}
 
 	function gameReady() {
+		SoundHandler.init();
 		Game.init();
 		TeamManager.init();
 		TeamManager.createTeamRolesFromRoleData();
@@ -83,6 +84,8 @@ var Main = function() {
 				display : 'none'
 			}
 		});
+		SoundHandler.stopfightSound();
+		SoundHandler.playGeneralSound();
 	}
 
 	function toTeamView() {
@@ -125,6 +128,8 @@ var Main = function() {
 				display : 'inline'
 			}
 		});
+		SoundHandler.playfightSound();
+		SoundHandler.stopGeneralSound();
 	}
 
 	return {

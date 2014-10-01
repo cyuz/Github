@@ -1,6 +1,6 @@
 ﻿{
 	"id" : "psk22",
-	"skillName" : "psk22",
+	"skillName" : "薪的力量",
 	"imgsrc" : "",
     "desc" : "魔法類隊員攻擊力1.2倍",
     "condition_type" : "all",

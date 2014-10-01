@@ -1,6 +1,6 @@
 ﻿{
 	"id" : "psk30",
-	"skillName" : "psk30",
+	"skillName" : "年年有餘",
 	"imgsrc" : "",
     "desc" : "血量15000以上時，格鬥類隊員增加400攻擊力",
     "condition_type" : "selfhp",

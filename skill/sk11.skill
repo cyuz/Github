@@ -1,6 +1,6 @@
 ﻿{
 	"id" : "sk11",
-	"skillName" : "sk11",
+	"skillName" : "泰山壓頂",
 	"imgsrc" : "",
     "desc" : "一回合內，木屬性隊員力攻擊15倍",
     "condition_type" : "all",

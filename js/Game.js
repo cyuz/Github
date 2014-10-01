@@ -19,6 +19,8 @@ var Game = function() {
 
 	var gameState;
 
+	var gameSpeed = 10;
+
 	var ballProbabilityPolicy = [];
 
 	/*
@@ -209,7 +211,7 @@ var Game = function() {
 	function gameShow() {
 		hideTimeBar();
 		gameState = STATE_SHOW;
-		speedFaster();
+		speedNormal();
 	}
 
 	function hideTimeBar() {
@@ -271,18 +273,18 @@ var Game = function() {
     
 
 	function ballRun() {
-		$(".down").css('top', '+=3px');
-		$(".left").css('left', '+=3px');
-		$(".right").css('left', '-=3px');
+		$(".down").css('top', '+=15px');
+		$(".left").css('left', '+=15px');
+		$(".right").css('left', '-=15px');
 		var balls = $('.ball');
 		balls.each(function(i, v) {
 			var ball = $(this);
 			var nowCount = ball.data("count") + 1;
 			var maxCount;
 			if (ball.hasClass('down')) {
-				maxCount = 15;
+				maxCount = 3;
 			} else {
-				maxCount = 30;
+				maxCount = 6;
 			}
 
 			if (nowCount >= maxCount) {
@@ -407,21 +409,9 @@ var Game = function() {
 		}
 	}
 
-	function speedFaster() {
-		gamePause();
-		gameSpeed = 1;
-		gameStart();
-	}
-
-	function speedSlower() {
-		gamePause();
-		gameSpeed = 50;
-		gameStart();
-	}
-
 	function speedNormal() {
 		gamePause();
-		gameSpeed = 5;
+		gameSpeed = 20;
 		gameStart();
 	}
 

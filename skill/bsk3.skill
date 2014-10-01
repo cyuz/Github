@@ -1,6 +1,6 @@
 ﻿{
 	"id" : "bsk3",
-	"skillName" : "bsk3",
+	"skillName" : "冰冷結晶",
 	"imgsrc" : "",
     "desc" : "每受到一次攻擊，減少玩家全體隊員護盾10",
     "condition_type" : "all",

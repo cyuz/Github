@@ -1,6 +1,6 @@
 ﻿{
 	"id" : "psk7",
-	"skillName" : "psk7",
+	"skillName" : "水靈轉換",
 	"imgsrc" : "",
     "desc" : "木屬性隊員一位或以下時，水屬性隊員回復力2倍",
     "condition_type" : "green",

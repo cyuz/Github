@@ -1,6 +1,6 @@
 ﻿{
 	"id" : "sk23",
-	"skillName" : "sk23",
+	"skillName" : "蓄力施放",
 	"imgsrc" : "",
     "desc" : "一回合內，魔法類隊員攻擊力15倍",
     "condition_type" : "all",

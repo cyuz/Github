@@ -1,6 +1,6 @@
 ﻿{
 	"id" : "sk14",
-	"skillName" : "sk14",
+	"skillName" : "酷比汪汪",
 	"imgsrc" : "",
     "desc" : "一回合內，敵人攻擊力降至40%",
     "condition_type" : "all",

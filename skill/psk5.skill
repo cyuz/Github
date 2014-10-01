@@ -1,14 +1,14 @@
 ﻿{
 	"id" : "psk5",
-	"skillName" : "psk5",
+	"skillName" : "野蠻之力",
 	"imgsrc" : "",
-    "desc" : "血量高於16000時，全體隊員能量每回合減少30",
+    "desc" : "血量高於10000時，全體隊員能量每回合減少50",
     "condition_type" : "selfhp",
     "condition_operator" : ">=",
-    "condition_value" : 16000,
+    "condition_value" : 10000,
     "effect_type" : "energy",
     "effect_operator" : "-",
-    "effect_value" : 30,
+    "effect_value" : 50,
     "target_type" : "self",
     "target_color" : "all",
     "target_race" : "all"

@@ -1,15 +1,15 @@
 ﻿{
 	"id" : "psk11",
-	"skillName" : "psk11",
+	"skillName" : "大肚緩衝",
 	"imgsrc" : "",
-    "desc" : "血量低於20000時，全體隊員攻擊力降至80%",
+    "desc" : "血量低於8000時，敵人與全體隊員攻擊力降至80%",
     "condition_type" : "selfhp",
     "condition_operator" : "<",
-    "condition_value" : 20000,
+    "condition_value" : 8000,
     "effect_type" : "atk",
     "effect_operator" : "*",
     "effect_value" : 0.8,
-    "target_type" : "self",
+    "target_type" : "all",
     "target_color" : "all",
     "target_race" : "all"
 }

@@ -6,7 +6,7 @@
 	"cardPic" : "c3.png",
 	"fightPic" : "c3.png",
 	"hp" : 2217,
-	"atk" : 1430,
+	"atk" : 1530,
 	"heal" : 80,
 	"shield" : 343,
 	"color" : "red",

@@ -13,23 +13,38 @@ var SkillEffect = function() {
 			display : "none"
 		});
 		TweenMax.to($("#skillEffectRoleImg"), 0, {
-			left : 600,
+			left : 650,
+		});
+
+		TweenMax.to($("#skillEffectTxt"), 0, {
+			top : 475,
+			opacity : 0,
+			display : "none"
 		});
 	}
 
 	function showView(id) {
 		var role = RoleData.getData(id);
 		$("#skillEffectRoleImg").attr("src", "image/" + role.fightPic);
+		var skill = SkillData.getData(role.skill);
+		$("#skillEffectTxt").text(skill.skillName);
 
 		TweenMax.to($("#skillEffect"), 0.2, {
 			opacity : 1,
 			display : "inline",
 		});
+
 		TweenMax.to($("#skillEffectRoleImg"), 0.6, {
 			delay : 0.1,
 			left : 250,
 			ease : Expo.easeOut,
 			onComplete : roleMoveLeft
+		});
+
+		TweenMax.to($("#skillEffectTxt"), 0.3, {
+			top : 455,
+			opacity : 1,
+			display : "inline"
 		});
 	}
 

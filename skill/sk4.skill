@@ -1,6 +1,6 @@
 ﻿{
 	"id" : "sk4",
-	"skillName" : "sk4",
+	"skillName" : "金剛之力",
 	"imgsrc" : "",
     "desc" : "一回合內，火屬性隊員攻擊力10倍",
     "condition_type" : "all",

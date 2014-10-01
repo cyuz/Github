@@ -1,6 +1,6 @@
 ﻿{
 	"id" : "sk10",
-	"skillName" : "sk10",
+	"skillName" : "超夢充能",
 	"imgsrc" : "",
     "desc" : "水屬性隊員增加100能量",
     "condition_type" : "all",

@@ -1,14 +1,14 @@
 ﻿{
 	"id" : "psk32",
-	"skillName" : "psk32",
+	"skillName" : "我不是小盆友我超強",
 	"imgsrc" : "",
-    "desc" : "隊伍內有木屬性隊員3位或以上時，自身攻擊力1.5倍",
+    "desc" : "隊伍內有木屬性隊員3位或以上時，自身攻擊力2倍",
     "condition_type" : "green",
     "condition_operator" : ">=",
     "condition_value" : 3,
     "effect_type" : "atk",
     "effect_operator" : "*",
-    "effect_value" : 1.5,
+    "effect_value" : 2,
     "target_type" : "itself",
     "target_color" : "all",
     "target_race" : "all"

@@ -1,6 +1,6 @@
 ﻿{
 	"id" : "sk16",
-	"skillName" : "sk16",
+	"skillName" : "盾盾相互",
 	"imgsrc" : "",
     "desc" : "增加全體隊員護盾200一回合",
     "condition_type" : "all",

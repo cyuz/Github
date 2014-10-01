@@ -1,6 +1,6 @@
 ﻿{
 	"id" : "psk17",
-	"skillName" : "psk17",
+	"skillName" : "輻射大突變",
 	"imgsrc" : "",
     "desc" : "隊伍內有超能類隊員4位或以上時，超能類隊員護盾2倍",
     "condition_type" : "3",

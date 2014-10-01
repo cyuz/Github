@@ -1,6 +1,6 @@
 ﻿{
 	"id" : "psk23",
-	"skillName" : "psk23",
+	"skillName" : "蓄力",
 	"imgsrc" : "",
     "desc" : "魔法類隊員減少攻擊力200",
     "condition_type" : "all",

@@ -1,6 +1,6 @@
 ﻿{
 	"id" : "sk7",
-	"skillName" : "sk7",
+	"skillName" : "大伙一起上",
 	"imgsrc" : "",
     "desc" : "增加水屬性魔法類隊員攻擊力2000一回合",
     "condition_type" : "all",

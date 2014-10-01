@@ -1,6 +1,6 @@
 ﻿{
 	"id" : "bpsk4",
-	"skillName" : "bpsk4",
+	"skillName" : "<b>烏煙瘴氣<b/>",
 	"imgsrc" : "",
     "desc" : "玩家血量高於2000時，玩家全體隊員護盾降至30%",
     "condition_type" : "enemyhp",

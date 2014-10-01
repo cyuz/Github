@@ -1,6 +1,6 @@
 ﻿{
 	"id" : "sk12",
-	"skillName" : "sk12",
+	"skillName" : "安全第一",
 	"imgsrc" : "",
     "desc" : "增加木屬性隊員護盾300一回合",
     "condition_type" : "all",

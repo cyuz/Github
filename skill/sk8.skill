@@ -1,6 +1,6 @@
 ﻿{
 	"id" : "sk8",
-	"skillName" : "sk8",
+	"skillName" : "超療癒",
 	"imgsrc" : "",
     "desc" : "一回合內，水屬性隊員回復力6倍",
     "condition_type" : "all",
