@@ -25,6 +25,8 @@ var Game = function() {
 	 * skill
 	 */
 	var skyDownRate = 1;
+    
+    var stageMissionID;
 
 	function init() {
 
@@ -46,6 +48,7 @@ var Game = function() {
 	}
 
 	function setMission(missionId) {
+        stageMissionID = missionId;
 		var missionData = MissionData.getData(missionId);
 		ballProbabilityPolicy = [];
 		for (var key in missionData.ballProbabilityPolicy) {
@@ -59,11 +62,53 @@ var Game = function() {
 		Result.setMonster(missionData.mosterLayer);
 	}
 
+	function setStrategy(missionId) {
+		var missionData = MissionData.getData(missionId);
+        if(missionData != undefined)
+        {
+            ballProbabilityPolicy = [];
+            for (var key in missionData.ballProbabilityPolicy) {
+                var value = missionData.ballProbabilityPolicy[key];
+                for (var index = 0; index < value; index++) {
+                    ballProbabilityPolicy.push(key);
+                }
+            }
+            
+            
+            //reset all current ball;
+            var balls = $('.ball');
+            balls.each(function(){
+                var ball = $(this);
+                var ballData = getRandomBall();
+                resetBallData(ball, ballData);
+            
+            
+            })            
+            
+            
+        }
+        else
+        {
+            console.log("missionId not defined : " + missionId);
+        }        
+	}    
+    
+    
+    function resetToStageStrategy()
+    {
+        setStrategy(stageMissionID);
+    }
+    
+    
+    
+    
 	function gameToWait() {
 		arriveCount = 0;
 		combo = 0;
 
 		Monster.homing();
+        
+        resetToStageStrategy();
 
 		gameState = STATE_WAIT;
 
@@ -217,6 +262,13 @@ var Game = function() {
 		$(ball).data("id", ballData.id);
 		$(ball).append(img);
 	}
+    
+    function resetBallData(ball, ballData) {
+        $(ball).find("img")[0].className = ballData.css;
+		$(ball).find("img")[0].src = "image/" + ballData.image;
+		$(ball).data("id", ballData.id);
+	}
+    
 
 	function ballRun() {
 		$(".down").css('top', '+=3px');
@@ -412,7 +464,8 @@ var Game = function() {
 		"setRole" : setRole,
 		"pause" : gamePause,
 		"resume" : gameResume,
-		"roundInit" : gameToWait
+		"roundInit" : gameToWait,
+        "setStrategy" : setStrategy
 	}
 
 }();
