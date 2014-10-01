@@ -588,8 +588,9 @@ var RoleFunc = function() {
 					}
 					this.addBuffIcon("energy_buff_text.png", effectOperator + effectValue);
 					break;
-				case "hp":
-					break;
+                case "hp":
+                    RoleFunc.takeSkillEffect(effectType, effectOperator, effectValue);
+                    break;                
 			}
 		}
 
