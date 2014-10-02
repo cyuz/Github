@@ -1,11 +1,11 @@
 ﻿{
 	"id" : "a4",
-	"name" : "a4",
+	"name" : "小砲灰",
 	"isMonster" : true,
 	"index" : 0,
 	"cardPic" : "",
 	"fightPic" : "a4.png",
-	"hp" : 200000,
+	"hp" : 60000,
 	"atk" : 12000,
 	"heal" : 0,
 	"shield" : 0,

@@ -3,6 +3,10 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Disconnect Link</title>
+		<meta http-equiv="cache-control" content="no-cache">
+		<meta http-equiv="pragma" content="no-cache">
+		<meta http-equiv="expires" content="0">
+
 		<link rel="stylesheet" type="text/css" href="css/main.css">
 		<link rel="stylesheet" type="text/css" href="css/team.css">
 		<link rel="stylesheet" type="text/css" href="css/game.css">
@@ -52,7 +56,15 @@
 				<img id="missionYellow" class="missionYellow missionPic" src="image/m_y.png" />
 				<img id="missionGreen" class="missionGreen missionPic" src="image/m_g.png" />
 			</div>
-			f <div id="teamView" class="view teamView"></div>
+			f
+			<div id="teamView" class="view teamView">
+				<select id="difficulty" class="difficulty">
+					<option value="1" selected>簡單</option>
+					<option value="2">普通</option>
+					<option value="3">困難</option>
+					<option value="4">地獄</option>
+				</select>
+			</div>
 			<div id="gameView" class="view gameView">
 				<div id="monsterBloodDiv" class="monsterBloodDiv">
 					<div id="monsterBlood" class="monsterBlood"></div>
@@ -82,13 +94,12 @@
 					<img src="image/bonus.png" />
 				</div>
 				<div id="resultView" class="resultView">
-					<div id="victory" class="victory">
+					<div id="victory" class="resultPic">
 						<img src="image/victory.png" />
 					</div>
-					<div id="defeat" class="defeat">
+					<div id="defeat" class="resultPic">
 						<img src="image/defeat.png" />
 					</div>
-					<div id="resultText" class="resultText"></div>
 					<div id="confirmBtn" class="confirmBtn"></div>
 				</div>
 				<div id="useSkillConfirm" class="useSkillConfirm">

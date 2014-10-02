@@ -1,0 +1,15 @@
+﻿{
+	"id" : "psk36",
+	"skillName" : "希望的種子",
+	"imgsrc" : "",
+    "desc" : "選我上場，我給你希望的種子，血量高於15000時，強化bonus珠子大幅增加出現機率",
+    "condition_type" : "selfhp",
+    "condition_operator" : ">=",
+    "condition_value" : 15000,
+    "effect_type" : "strategy",
+    "effect_operator" : "*",
+    "effect_value" : "big1",
+    "target_type" : "self",
+    "target_color" : "all",
+    "target_race" : "all"
+}

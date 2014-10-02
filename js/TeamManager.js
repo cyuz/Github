@@ -36,69 +36,66 @@ var TeamManager = function() {
 		//roleImg.setAttribute("ondragstart", "TeamManager.drag(event)");
 		//selectedRolesDiv[0].setAttribute("ondrop", "TeamManager.drop(event)");
 		//selectedRolesDiv[0].setAttribute("ondragover", "TeamManager.allowDrop(event)");
-        $( "#selected_role_0" ).droppable({
-            drop: function( event, ui ) {
-                whenJqueryDropped($(this), ui.draggable[0]);
-          }
-        });
-        
-        
-        
+		$("#selected_role_0").droppable({
+			drop : function(event, ui) {
+				whenJqueryDropped($(this), ui.draggable[0]);
+			}
+		});
 
 		selectedRolesDiv[1] = createDiv($("#teamView")[0], "selected_role_1", ["selected_role", "selected_role_1", "transparent_green"]);
 		var roleImg = createImg(selectedRolesDiv[1], "selected_role_1_img", undefined, ["selected_icon_role"]);
 		//roleImg.setAttribute("ondragstart", "TeamManager.drag(event)");
 		//selectedRolesDiv[1].setAttribute("ondrop", "TeamManager.drop(event)");
 		//selectedRolesDiv[1].setAttribute("ondragover", "TeamManager.allowDrop(event)");
-        $( "#selected_role_1" ).droppable({
-            drop: function( event, ui ) {
-                whenJqueryDropped($(this), ui.draggable[0]);
-          }
-        });        
+		$("#selected_role_1").droppable({
+			drop : function(event, ui) {
+				whenJqueryDropped($(this), ui.draggable[0]);
+			}
+		});
 
 		selectedRolesDiv[2] = createDiv($("#teamView")[0], "selected_role_2", ["selected_role", "selected_role_2", "transparent_green"]);
 		var roleImg = createImg(selectedRolesDiv[2], "selected_role_2_img", undefined, ["selected_icon_role"]);
 		//roleImg.setAttribute("ondragstart", "TeamManager.drag(event)");
 		//selectedRolesDiv[2].setAttribute("ondrop", "TeamManager.drop(event)");
 		//selectedRolesDiv[2].setAttribute("ondragover", "TeamManager.allowDrop(event)");
-        $( "#selected_role_2" ).droppable({
-            drop: function( event, ui ) {
-                whenJqueryDropped($(this), ui.draggable[0]);
-          }
-        });        
+		$("#selected_role_2").droppable({
+			drop : function(event, ui) {
+				whenJqueryDropped($(this), ui.draggable[0]);
+			}
+		});
 
 		selectedRolesDiv[3] = createDiv($("#teamView")[0], "selected_role_3", ["selected_role", "selected_role_3", "transparent_green"]);
 		var roleImg = createImg(selectedRolesDiv[3], "selected_role_3_img", undefined, ["selected_icon_role"]);
 		//roleImg.setAttribute("ondragstart", "TeamManager.drag(event)");
 		//selectedRolesDiv[3].setAttribute("ondrop", "TeamManager.drop(event)");
 		//selectedRolesDiv[3].setAttribute("ondragover", "TeamManager.allowDrop(event)");
-        $( "#selected_role_3" ).droppable({
-            drop: function( event, ui ) {
-                whenJqueryDropped($(this), ui.draggable[0]);
-          }
-        });        
+		$("#selected_role_3").droppable({
+			drop : function(event, ui) {
+				whenJqueryDropped($(this), ui.draggable[0]);
+			}
+		});
 
 		selectedRolesDiv[4] = createDiv($("#teamView")[0], "selected_role_4", ["selected_role", "selected_role_4", "transparent_green"]);
 		var roleImg = createImg(selectedRolesDiv[4], "selected_role_4_img", undefined, ["selected_icon_role"]);
 		//roleImg.setAttribute("ondragstart", "TeamManager.drag(event)");
 		//selectedRolesDiv[4].setAttribute("ondrop", "TeamManager.drop(event)");
 		//selectedRolesDiv[4].setAttribute("ondragover", "TeamManager.allowDrop(event)");
-        $( "#selected_role_4" ).droppable({
-            drop: function( event, ui ) {
-                whenJqueryDropped($(this), ui.draggable[0]);
-          }
-        });        
+		$("#selected_role_4").droppable({
+			drop : function(event, ui) {
+				whenJqueryDropped($(this), ui.draggable[0]);
+			}
+		});
 
 		selectedRolesDiv[5] = createDiv($("#teamView")[0], "selected_role_5", ["selected_role", "selected_role_5", "transparent_green"]);
 		var roleImg = createImg(selectedRolesDiv[5], "selected_role_5_img", undefined, ["selected_icon_role"]);
 		//roleImg.setAttribute("ondragstart", "TeamManager.drag(event)");
 		//selectedRolesDiv[5].setAttribute("ondrop", "TeamManager.drop(event)");
 		//selectedRolesDiv[5].setAttribute("ondragover", "TeamManager.allowDrop(event)");
-        $( "#selected_role_5" ).droppable({
-            drop: function( event, ui ) {
-                whenJqueryDropped($(this), ui.draggable[0]);
-          }
-        });        
+		$("#selected_role_5").droppable({
+			drop : function(event, ui) {
+				whenJqueryDropped($(this), ui.draggable[0]);
+			}
+		});
 
 		var teamRolesViewDiv = createDiv($("#teamView")[0], "role_area", ["role_area", "transparent_green"]);
 
@@ -130,6 +127,7 @@ var TeamManager = function() {
 			alert("not all role selected");
 		} else {
 			console.log("start " + role_0_id + " " + role_1_id + " " + role_2_id + " " + role_3_id + " " + role_4_id + " " + role_5_id);
+			Monster.nextLayer();
 			Game.setRole([role_0_id, role_1_id, role_2_id, role_3_id, role_4_id, role_5_id]);
 			Game.roundInit();
 			Main.toGameView();
@@ -150,30 +148,28 @@ var TeamManager = function() {
 		console.log(ev.target.id);
 	}
 
-    
-    function whenJqueryDropped(targetDivs, srcImg)
-    {
-        var targetImgId = targetDivs.find("img")[0].id;
-        targetDivs.find("img")[0].src = srcImg.src;
-        targetDivs.find("img")[0].setAttribute("draggable", false); 
-        
+	function whenJqueryDropped(targetDivs, srcImg) {
+		var targetImgId = targetDivs.find("img")[0].id;
+		targetDivs.find("img")[0].src = srcImg.src;
+		targetDivs.find("img")[0].setAttribute("draggable", false);
+
 		var oldImgId = selectedRolesArray[targetImgId];
 		if (oldImgId != undefined) {
 			console.log("old:" + oldImgId);
 			var oldImg = document.getElementById(oldImgId);
 			//oldImg.setAttribute("draggable", true);
-            $("#"+oldImg.id).draggable('enable');
+			$("#" + oldImg.id).draggable('enable');
 			oldImg.style.opacity = "1";
 		}
 		//srcImg.setAttribute("draggable", false);
-         $("#"+srcImg.id).draggable('disable');
+		$("#" + srcImg.id).draggable('disable');
 		srcImg.style.opacity = "0.5";
 		selectedRolesArray[targetImgId] = srcImg.id;
-		console.log(targetImgId + ":" + srcImg.id);        
-    }
-    
+		console.log(targetImgId + ":" + srcImg.id);
+	}
+
 	function drop(ev) {
-    //jscript version
+		//jscript version
 		ev.preventDefault();
 		var data = ev.dataTransfer.getData("text");
 		var srcImg = document.getElementById(data);
@@ -215,11 +211,11 @@ var TeamManager = function() {
 
 		var roleImg = createImg(roleViewDiv, imgId, imgSrc, ["icon_role"]);
 		roleImg.setAttribute("draggable", false);
-        $("#"+imgId).draggable(
-            {
-                helper: function() { return $(this).clone().appendTo('body').show(); }
-            }
-        );
+		$("#" + imgId).draggable({
+			helper : function() {
+				return $(this).clone().appendTo('body').show();
+			}
+		});
 		//roleImg.setAttribute("ondragstart", "TeamManager.drag(event)");
 		roleImg.onclick = showTips;
 		return roleViewDiv;

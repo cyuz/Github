@@ -1,11 +1,11 @@
 ﻿{
 	"id" : "a5",
-	"name" : "a5",
+	"name" : "小砲灰",
 	"isMonster" : true,
 	"index" : 0,
 	"cardPic" : "",
 	"fightPic" : "a5.png",
-	"hp" : 200000,
+	"hp" : 60000,
 	"atk" : 12000,
 	"heal" : 0,
 	"shield" : 0,

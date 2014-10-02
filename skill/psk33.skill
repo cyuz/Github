@@ -1,0 +1,15 @@
+﻿{
+	"id" : "psk33",
+	"skillName" : "冰晶結晶",
+	"imgsrc" : "",
+    "desc" : "隊伍內有魔法類隊員4位或以上時，每回合回復1500血量",
+    "condition_type" : "2",
+    "condition_operator" : ">=",
+    "condition_value" : 4,
+    "effect_type" : "hp",
+    "effect_operator" : "+",
+    "effect_value" : 1500,
+    "target_type" : "self",
+    "target_color" : "all",
+    "target_race" : "all"
+}

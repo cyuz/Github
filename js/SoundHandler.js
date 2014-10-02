@@ -8,6 +8,7 @@ var SoundHandler = function() {
 				s_eatBall = loadSound("eatBall");
 				s_hit = loadSound("hit");
 				s_monsterHit = loadSound("monsterHit");
+				s_skill = loadSound("skill");
 
 				playGeneralSound();
 			}
@@ -27,7 +28,7 @@ var SoundHandler = function() {
 
 	function playfightSound() {
 		s_fightSound.play({
-			volume : 50,
+			volume : 20,
 			onfinish : playfightSound
 		});
 	}
@@ -45,7 +46,7 @@ var SoundHandler = function() {
 	function eatBall() {
 		if (s_eatBall) {
 			s_eatBall.play({
-				volume : 20
+				volume : 30
 			});
 		}
 	}
@@ -53,7 +54,7 @@ var SoundHandler = function() {
 	function monsterHit() {
 		if (s_monsterHit) {
 			s_monsterHit.play({
-				volume : 15
+				volume : 50
 			});
 		}
 	}
@@ -61,7 +62,15 @@ var SoundHandler = function() {
 	function hit() {
 		if (s_hit) {
 			s_hit.play({
-				volume : 10
+				volume : 15
+			});
+		}
+	}
+
+	function skill() {
+		if (s_skill) {
+			s_skill.play({
+				volume : 100
 			});
 		}
 	}
@@ -74,7 +83,8 @@ var SoundHandler = function() {
 		"stopfightSound" : stopfightSound,
 		"eatBall" : eatBall,
 		"monsterHit" : monsterHit,
-		"hit" : hit
+		"hit" : hit,
+		"skill" : skill
 	}
 
 }();

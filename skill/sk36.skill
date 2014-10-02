@@ -1,0 +1,15 @@
+﻿{
+	"id" : "sk36",
+	"skillName" : "一直玩一直玩一直玩",
+	"imgsrc" : "",
+    "desc" : "一直玩一直玩一直玩，一回合內，增加自身回復力500",
+    "condition_type" : "all",
+    "condition_operator" : "",
+    "condition_value" : "",
+    "effect_type" : "heal",
+    "effect_operator" : "+",
+    "effect_value" : 500,
+    "target_type" : "itself",
+    "target_color" : "all",
+    "target_race" : "all"
+}

@@ -132,7 +132,7 @@
 	visibility: hidden;
 }
 .resultView {
-	background-image: url("../image/cardTipsBg.png");
+	background-image: url("../image/resultBg.png");
 	position: absolute;
 	top: 0px;
 	left: 0px;
@@ -140,30 +140,22 @@
 	height: 930px;
 	z-index: 100;
 }
-.victory {
+.resultPic {
 	position: absolute;
-	top: 220px;
-}
-.defeat {
-	position: absolute;
-	top: 220px;
+	top: 144px;
+	left: 151px;
 }
 .confirmBtn {
+	background-image: url('../image/continue.png');
 	position: absolute;
-	height: 30px;
-	width: 75px;
-	top: 465px;
-	left: 447px;
+	height: 32px;
+	width: 124px;
+	top: 591px;
+	left: 258px;
 	cursor: pointer;
 }
-.resultText {
-	color: #FF0000;
-	font-size: 12pt;
-	position: absolute;
-	height: 40px;
-	width: 272px;
-	top: 480px;
-	left: 110px;
+.confirmBtn:hover {
+	background-image: url('../image/continue_over.png');
 }
 .monster_skill_icon {
 	position: absolute;

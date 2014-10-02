@@ -19,13 +19,14 @@
 	position:relative;
 	border-radius:6px;
 	margin-top:4px;
-	display:inline-block
+	display:inline-block;
+	cursor:pointer;
 }
 .energybox {
 	width:0px;
 	height:10px;
 	left:5px;
-	top:80px;
+	top:72px;
 	position:absolute;
 	border-radius:6px;
 	margin-top:4px;
@@ -111,8 +112,7 @@
 	width:600px;
 	height:100px;
 	position:relative;
-	border-radius:6px;
-	margin-top:4px;
+	top:0px;
 }
 .transparent {
 	background-color:transparent;
@@ -148,23 +148,31 @@
 	background-color:#989898;
 }
 .transparent_green {
-
-	/*background-color:rgba(0,200,0,0.5);*/
-
 }
 .role_img {
+	position:absolute;
 	left:0px;
 	top:0px;
-	position:absolute;
+}
+.fightRoleImg {
+	left:10px;
+	top:5px;
 }
 .role_img_bk {
 	left:0px;
 	top:0px;
 	position:absolute;
 	width:90px;
-	height:75px;
-	border-radius:6px;
-	margin-top:4px;
+	height:90px;
+	-moz-box-shadow:0 0 5px #fff;
+	-webkit-box-shadow:inset 0 0 100px #000;
+	-moz-box-shadow:inset 0 0 100px #000;
+	box-shadow:inset 0 0 100px #000;
+}
+.role_img_bk.light {
+	-webkit-box-shadow:inset 0 0 70px #FFF;
+	-moz-box-shadow:inset 0 0 70px #FFF;
+	box-shadow:inset 0 0 70px #FFF;
 }
 .orb_icon {
 	position:absolute;

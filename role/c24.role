@@ -7,7 +7,7 @@
 	"fightPic" : "c24.png",
 	"hp" : 2861,
 	"atk" : 1033,
-	"heal" : 458,
+	"heal" : 558,
 	"shield" : 3,
 	"color" : "blue",
 	"race" : "2",

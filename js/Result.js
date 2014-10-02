@@ -1,6 +1,5 @@
 var Result = function() {
-
-	var monsterName;
+	var isVictory = false;
 
 	function init() {
 		$("#confirmBtn").click(confirmToMissionView);
@@ -8,22 +7,14 @@ var Result = function() {
 	}
 
 	function showVictory() {
-		$("#resultText").text("");
-		$("#resultText").append(monsterName + "：臣亮言：先帝創業未半，而中道崩殂；今天下三分，益州疲敝，此誠危急存亡之秋也。然侍衛之臣，不懈於內；忠志之士，忘身於外者：蓋追先帝之殊遇，欲報之于陛下也。誠宜開張聖聽，以光先帝遺德，恢弘志士之氣");
+		isVictory = true;
 		$("#victory").show();
 		$("#defeat").hide();
 		showResultView();
 	}
 
 	function showDefeat() {
-		$("#resultText").text("");
-		$("#resultText").append(monsterName + "：GGGGGGGGGGG</br>");
-		$("#resultText").append(monsterName + "：GGGGGG</br>");
-		$("#resultText").append(monsterName + "：嗨～肉腳你們好阿！</br>");
-		$("#resultText").append(monsterName + "：GGGGGGG</br>");
-		$("#resultText").append(monsterName + "：GGGGGGGGG</br>");
-		$("#resultText").append(monsterName + "：玩得不錯</br>");
-		$("#resultText").append(monsterName + "：GGGGGGininder</br>");
+		isVictory = false;
 		$("#defeat").show();
 		$("#victory").hide();
 		showResultView();
@@ -45,19 +36,13 @@ var Result = function() {
 
 	function confirmToMissionView() {
 		hideResultView();
-		Main.toMissionView();
-	}
-
-	function setMonster(layer) {
-		var monster = RoleData.getData(layer[layer.length - 1]);
-		monsterName = monster.name;
+		Main.toMissionView(isVictory);
 	}
 
 	return {
 		"init" : init,
 		"showVictory" : showVictory,
-		"showDefeat" : showDefeat,
-		"setMonster" : setMonster
+		"showDefeat" : showDefeat
 	}
 
 }();

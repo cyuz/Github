@@ -2,14 +2,14 @@
 	"id" : "bsk2",
 	"skillName" : "大地之氣",
 	"imgsrc" : "",
-    "desc" : "每受到一次攻擊，增加玩家全體隊員回復力5",
+    "desc" : "每受到一次攻擊，恢復自身血量4000",
     "condition_type" : "all",
     "condition_operator" : "",
     "condition_value" : "",
-    "effect_type" : "heal",
+    "effect_type" : "hp",
     "effect_operator" : "+",
-    "effect_value" : 5,
-    "target_type" : "enemy",
+    "effect_value" : 4000,
+    "target_type" : "self",
     "target_color" : "all",
     "target_race" : "all"
 }

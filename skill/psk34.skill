@@ -1,0 +1,15 @@
+﻿{
+	"id" : "psk34",
+	"skillName" : "勇往直前",
+	"imgsrc" : "",
+    "desc" : "隊伍內格鬥類隊員為3位或以下時，每回合減少當前血量20%",
+    "condition_type" : "1",
+    "condition_operator" : "<",
+    "condition_value" : 4,
+    "effect_type" : "hp",
+    "effect_operator" : "*",
+    "effect_value" : 0.8,
+    "target_type" : "self",
+    "target_color" : "all",
+    "target_race" : "all"
+}

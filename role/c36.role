@@ -1,0 +1,16 @@
+﻿{
+	"id" : "c36",
+	"name" : "剩魰",
+	"isMonster" : false,
+	"index" : 35,
+	"cardPic" : "c36.png",
+	"fightPic" : "c36.png",
+	"hp" : 6890,
+	"atk" : 1426,
+	"heal" : 224,
+	"shield" : 95,
+	"color" : "blue",
+	"race" : "3",
+	"skill" : "sk36",
+	"pSkill" : "psk36"
+}

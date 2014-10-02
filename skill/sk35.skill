@@ -1,0 +1,15 @@
+﻿{
+	"id" : "sk35",
+	"skillName" : "妖狐靈怒",
+	"imgsrc" : "",
+    "desc" : "對敵人造成100000點傷害",
+    "condition_type" : "all",
+    "condition_operator" : "",
+    "condition_value" : "",
+    "effect_type" : "hp",
+    "effect_operator" : "-",
+    "effect_value" : 100000,
+    "target_type" : "enemy",
+    "target_color" : "all",
+    "target_race" : "all"
+}

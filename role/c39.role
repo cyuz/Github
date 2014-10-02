@@ -1,0 +1,16 @@
+﻿{
+	"id" : "c39",
+	"name" : "鳳王",
+	"isMonster" : false,
+	"index" : 38,
+	"cardPic" : "c39.png",
+	"fightPic" : "c39.png",
+	"hp" : 4002,
+	"atk" : 1933,
+	"heal" : 85,
+	"shield" : 301,
+	"color" : "red",
+	"race" : "3",
+	"skill" : "sk39",
+	"pSkill" : "psk39"
+}

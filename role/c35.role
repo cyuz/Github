@@ -1,0 +1,16 @@
+﻿{
+	"id" : "c35",
+	"name" : "青草狐",
+	"isMonster" : false,
+	"index" : 34,
+	"cardPic" : "c35.png",
+	"fightPic" : "c35.png",
+	"hp" : 4401,
+	"atk" : 1126,
+	"heal" : 90,
+	"shield" : 585,
+	"color" : "green",
+	"race" : "3",
+	"skill" : "sk35",
+	"pSkill" : "psk35"
+}

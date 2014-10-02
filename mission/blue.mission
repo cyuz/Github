@@ -1,0 +1,17 @@
+﻿{
+	"id" : "blue",
+	"name" : "水",
+	"des" : "",
+	"mosterLayer" : ["a3"],
+	"ballProbabilityPolicy" : {
+		"fireI":20,
+		"fireII":10,
+		"fireIII":5,
+		"waterI":80,
+		"waterII":40,
+		"waterIII":20,
+		"woodI":20,
+		"woodII":10,
+		"woodIII":5
+	}
+}

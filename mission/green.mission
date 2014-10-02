@@ -1,0 +1,17 @@
+﻿{
+	"id" : "green",
+	"name" : "木",
+	"des" : "",
+	"mosterLayer" : ["a3"],
+	"ballProbabilityPolicy" : {
+		"fireI":20,
+		"fireII":10,
+		"fireIII":5,
+		"waterI":20,
+		"waterII":10,
+		"waterIII":5,
+		"woodI":80,
+		"woodII":40,
+		"woodIII":20
+	}
+}

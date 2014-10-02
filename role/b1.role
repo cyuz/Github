@@ -5,7 +5,7 @@
 	"index" : 0,
 	"cardPic" : "bm1.png",
 	"fightPic" : "b1.png",
-	"hp" : 1000000,
+	"hp" : 500000,
 	"atk" : 16000,
 	"heal" : 0,
 	"shield" : 0,

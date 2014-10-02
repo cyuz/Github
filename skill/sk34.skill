@@ -1,0 +1,15 @@
+﻿{
+	"id" : "sk34",
+	"skillName" : "大舌比較強",
+	"imgsrc" : "",
+    "desc" : "一回合內，全體隊員攻擊力4倍",
+    "condition_type" : "all",
+    "condition_operator" : "",
+    "condition_value" : "",
+    "effect_type" : "atk",
+    "effect_operator" : "*",
+    "effect_value" : 4,
+    "target_type" : "self",
+    "target_color" : "all",
+    "target_race" : "all"
+}

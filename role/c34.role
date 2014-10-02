@@ -1,0 +1,16 @@
+﻿{
+	"id" : "c34",
+	"name" : "大舌頭",
+	"isMonster" : false,
+	"index" : 33,
+	"cardPic" : "c34.png",
+	"fightPic" : "c34.png",
+	"hp" : 3861,
+	"atk" : 1626,
+	"heal" : 127,
+	"shield" : 105,
+	"color" : "red",
+	"race" : "1",
+	"skill" : "sk34",
+	"pSkill" : "psk34"
+}

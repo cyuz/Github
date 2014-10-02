@@ -1,11 +1,11 @@
 ﻿{
 	"id" : "a1",
-	"name" : "a1",
+	"name" : "金捷",
 	"isMonster" : true,
 	"index" : 0,
 	"cardPic" : "",
 	"fightPic" : "a1.png",
-	"hp" : 200000,
+	"hp" : 60000,
 	"atk" : 12000,
 	"heal" : 0,
 	"shield" : 0,

@@ -1,0 +1,15 @@
+﻿{
+	"id" : "psk39",
+	"skillName" : "火之鼓舞",
+	"imgsrc" : "",
+    "desc" : "隊伍內火屬性隊員為4位或以下時，火屬性隊員攻擊力1.5倍",
+    "condition_type" : "red",
+    "condition_operator" : "<",
+    "condition_value" : 5,
+    "effect_type" : "atk",
+    "effect_operator" : "*",
+    "effect_value" : 1.5,
+    "target_type" : "self",
+    "target_color" : "red",
+    "target_race" : "all"
+}

@@ -1,5 +1,5 @@
 var SkillData = function() {
-	var MAX_COUNT = 72;
+	var MAX_COUNT = 92;
 	var list = {}
 	var completeCount = 0;
 
@@ -8,10 +8,16 @@ var SkillData = function() {
 		loadData("bpsk2.skill");
 		loadData("bpsk3.skill");
 		loadData("bpsk4.skill");
+		loadData("bpsk5.skill");
+		loadData("bpsk6.skill");
+		loadData("bpsk7.skill");
+
 		loadData("bsk1.skill");
 		loadData("bsk2.skill");
 		loadData("bsk3.skill");
 		loadData("bsk4.skill");
+		loadData("bsk5.skill");
+
 		loadData("psk1.skill");
 		loadData("psk2.skill");
 		loadData("psk3.skill");
@@ -44,6 +50,15 @@ var SkillData = function() {
 		loadData("psk30.skill");
 		loadData("psk31.skill");
 		loadData("psk32.skill");
+		loadData("psk33.skill");
+		loadData("psk34.skill");
+		loadData("psk35.skill");
+		loadData("psk36.skill");
+		loadData("psk37.skill");
+		loadData("psk38.skill");
+		loadData("psk39.skill");
+		loadData("psk40.skill");
+
 		loadData("sk1.skill");
 		loadData("sk2.skill");
 		loadData("sk3.skill");
@@ -76,6 +91,14 @@ var SkillData = function() {
 		loadData("sk30.skill");
 		loadData("sk31.skill");
 		loadData("sk32.skill");
+		loadData("sk33.skill");
+		loadData("sk34.skill");
+		loadData("sk35.skill");
+		loadData("sk36.skill");
+		loadData("sk37.skill");
+		loadData("sk38.skill");
+		loadData("sk39.skill");
+		loadData("sk40.skill");
 	}
 
 	function loadData(fileName) {

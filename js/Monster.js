@@ -33,12 +33,21 @@ var Monster = function() {
 		}
 	}
 
+	var difficultyMap = {
+		1 : 0.8,
+		2 : 1,
+		3 : 1.2,
+		4 : 1.5
+	}
+
 	var skillEffectCount = 0;
 
 	var waitSkillEffect = false;
 
 	var curLayer = -1;
 	var curMonsterLayer = 0;
+
+	var m_difficulty = 1;
 
 	var updatetl = new TimelineLite({
 		autoRemoveChildren : true
@@ -47,7 +56,6 @@ var Monster = function() {
 	function setMonster(monsterLayer) {
 		curLayer = -1;
 		curMonsterLayer = monsterLayer;
-		nextLayer();
 	}
 
 	function nextLayer() {
@@ -57,17 +65,18 @@ var Monster = function() {
 			Result.showVictory();
 			return;
 		}
-
 		setMonsterData(curMonsterLayer[curLayer]);
 	}
 
 	function setMonsterData(id) {
+		m_difficulty = difficultyMap[$("#difficulty").val()];
+
 		monster = RoleData.getData(id);
-		maxHp = monster.hp;
-		curHp = monster.hp;
+		maxHp = monster.hp * m_difficulty;
+		curHp = monster.hp * m_difficulty;
 		color = monster.color;
 		race = monster.race;
-		atk = monster.atk;
+		atk = monster.atk * m_difficulty;
 		skill = monster.skill;
 		pSkill = monster.pSkill;
 
@@ -159,7 +168,7 @@ var Monster = function() {
 			repeat : 1,
 			yoyo : true
 		});
-		
+
 		SoundHandler.hit();
 
 		activeSkillEffect();
@@ -167,9 +176,9 @@ var Monster = function() {
 		var colorCoefficient = curColorMap[color];
 		damage *= colorCoefficient;
 
-        changeMonsterHp(-damage);
+		changeMonsterHp(-damage);
 
-        healPlayerHp(health, shield);
+		healPlayerHp(health, shield);
 	}
 
 	function getFinalAtk() {
@@ -204,14 +213,13 @@ var Monster = function() {
 			yoyo : true,
 
 		});
-		
+
 		SoundHandler.monsterHit();
 
-        damagePlayerHp(getFinalAtk());
+		damagePlayerHp(getFinalAtk(), true);
 	}
-    
-    function healPlayerHp(health, shield)
-    {
+
+	function healPlayerHp(health, shield) {
 		p_curHp += health;
 		if (p_curHp > p_maxHp) {
 			p_curHp = p_maxHp;
@@ -222,11 +230,10 @@ var Monster = function() {
 		if (p_shield > p_maxHp * 2) {
 			p_shield = p_maxHp * 2;
 		}
-		playPlayerShieldAni(0, 0.5);  
-    }
-    
-    function damagePlayerHp(damage)
-    {
+		playPlayerShieldAni(0, 0.5);
+	}
+
+	function damagePlayerHp(damage, afterAttack) {
 		var remainShield = p_shield - damage;
 		var bloodDelay = 0;
 		if (remainShield < 0) {
@@ -244,21 +251,24 @@ var Monster = function() {
 		}
 
 		playPlayerShieldAni(0.3, 0.3);
-		playPlayerBloodAni(0.3 + bloodDelay, 0.3, checkPlayerHp);     
-    }
-    
-    function changeMonsterHp(changeValue)
-    {
+
+		if (afterAttack) {
+			playPlayerBloodAni(0.3 + bloodDelay, 0.3, checkPlayerHpAndNextRound);
+		} else {
+			playPlayerBloodAni(0.3 + bloodDelay, 0.3, checkPlayerHp);
+		}
+	}
+
+	function changeMonsterHp(changeValue) {
 		curHp += changeValue;
 		if (curHp > maxHp) {
 			curHp = maxHp;
 		}
-        if(curHp < 0)
-        {
-            curHp = 0;
-        }
-		playMonsterBloodAni(0.5);     
-    }    
+		if (curHp < 0) {
+			curHp = 0;
+		}
+		playMonsterBloodAni(0.5);
+	}
 
 	function checkMonsterIsLive() {
 		if (curHp <= 0) {
@@ -297,7 +307,7 @@ var Monster = function() {
 		});
 	}
 
-	function checkPlayerHp() {
+	function checkPlayerHpAndNextRound() {
 		if (p_curHp <= 0) {
 			Result.showDefeat();
 			return;
@@ -305,6 +315,12 @@ var Monster = function() {
 		p_shield = 0;
 		playPlayerShieldAni(0, 0);
 		Game.roundInit();
+	}
+
+	function checkPlayerHp() {
+		if (p_curHp <= 0) {
+			Result.showDefeat();
+		}
 	}
 
 	function homing() {
@@ -360,10 +376,10 @@ var Monster = function() {
 				} else if (effectOperator == "-") {
 					changeMonsterHp(-effectValue);
 				} else if (effectOperator == "*") {
-                    var newValue = Math.round(curHp * effectValue);                    
-                    changeMonsterHp(newValue - curHp);                
+					var newValue = Math.round(curHp * effectValue);
+					changeMonsterHp(newValue - curHp);
 				}
-				break;                 
+				break;
 		}
 	}
 
@@ -373,8 +389,8 @@ var Monster = function() {
 	}
 
 	function clearState() {
-		var atkAdd = 0;
-		var atkMul = [1];
+		atkAdd = 0;
+		atkMul = [1];
 	}
 
 	function activePasiiveSkillEffect() {
@@ -467,7 +483,7 @@ var Monster = function() {
 	}
 
 	function skillAnimation(skillID) {
-		addSkillIcon("skill_text.png", "", skillID);
+		//addSkillIcon("skill_text.png", "", skillID);
 	}
 
 	return {
@@ -483,9 +499,9 @@ var Monster = function() {
 		"roundStart" : roundStart,
 		"skillAnimation" : skillAnimation,
 		"checkMonsterIsLive" : checkMonsterIsLive,
-        "healPlayerHp" : healPlayerHp,
-        "damagePlayerHp" : damagePlayerHp        
+		"healPlayerHp" : healPlayerHp,
+		"damagePlayerHp" : damagePlayerHp,
+		"nextLayer" : nextLayer
 	}
-
 }();
 

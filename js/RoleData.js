@@ -1,10 +1,24 @@
 var RoleData = function() {
-	var MAX_COUNT = 44;
+	var MAX_COUNT = 52;
 	var list = {}
 	var playerList = {}
 	var completeCount = 0;
 
 	function init() {
+		loadData("a1.role");
+		loadData("a2.role");
+		loadData("a3.role");
+		loadData("a4.role");
+		loadData("a5.role");
+		loadData("a6.role");
+		loadData("a7.role");
+		loadData("a8.role");
+
+		loadData("b1.role");
+		loadData("b2.role");
+		loadData("b3.role");
+		loadData("b4.role");
+
 		loadData("c1.role");
 		loadData("c2.role");
 		loadData("c3.role");
@@ -37,18 +51,14 @@ var RoleData = function() {
 		loadData("c30.role");
 		loadData("c31.role");
 		loadData("c32.role");
-		loadData("b1.role");
-		loadData("b2.role");
-		loadData("b3.role");
-		loadData("b4.role");
-		loadData("a1.role");
-		loadData("a2.role");
-		loadData("a3.role");
-		loadData("a4.role");
-		loadData("a5.role");
-		loadData("a6.role");
-		loadData("a7.role");
-		loadData("a8.role");
+		loadData("c33.role");
+		loadData("c34.role");
+		loadData("c35.role");
+		loadData("c36.role");
+		loadData("c37.role");
+		loadData("c38.role");
+		loadData("c39.role");
+		loadData("c40.role");
 	}
 
 	function loadData(fileName) {

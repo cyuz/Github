@@ -2,7 +2,7 @@
 	"id" : "sk3",
 	"skillName" : "小小的天有大大的夢想",
 	"imgsrc" : "",
-    "desc" : "一回合內，護盾2倍",
+    "desc" : "一回合內，全體隊員護盾2倍",
     "condition_type" : "all",
     "condition_operator" : "",
     "condition_value" : "",

@@ -1,6 +1,6 @@
 ﻿{
 	"id" : "bpsk2",
-	"skillName" : "<b>吸吸樂<b/>",
+	"skillName" : "<b>中毒<b/>",
 	"imgsrc" : "",
     "desc" : "玩家血量低於8000時，玩家全體隊員回復力降至60%",
     "condition_type" : "enemyhp",

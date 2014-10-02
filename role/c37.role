@@ -1,0 +1,16 @@
+﻿{
+	"id" : "c37",
+	"name" : "蚵丕",
+	"isMonster" : false,
+	"index" : 36,
+	"cardPic" : "c37.png",
+	"fightPic" : "c37.png",
+	"hp" : 3721,
+	"atk" : 1444,
+	"heal" : 168,
+	"shield" : 255,
+	"color" : "green",
+	"race" : "2",
+	"skill" : "sk37",
+	"pSkill" : "psk37"
+}

@@ -1,0 +1,15 @@
+﻿{
+	"id" : "psk38",
+	"skillName" : "水之風暴",
+	"imgsrc" : "",
+    "desc" : "隊伍內水屬性隊員為4位或以下時，水屬性隊員攻擊力1.5倍",
+    "condition_type" : "bule",
+    "condition_operator" : "<",
+    "condition_value" : 5,
+    "effect_type" : "atk",
+    "effect_operator" : "*",
+    "effect_value" : 1.5,
+    "target_type" : "self",
+    "target_color" : "blue",
+    "target_race" : "all"
+}

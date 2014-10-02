@@ -1,4 +1,11 @@
 var Main = function() {
+	var rewardMap = {
+		1 : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+		2 : [11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+		3 : [21, 22, 23, 24, 25, 26, 27, 28, 29, 30],
+		4 : [31, 32, 33, 34, 35, 36, 37, 38, 39, 40]
+	}
+
 	$(document).ready(init);
 
 	function init() {
@@ -65,7 +72,7 @@ var Main = function() {
 		toTeamView();
 	}
 
-	function toMissionView() {
+	function toMissionView(giveNewcard) {
 		TweenMax.to([$("#missionView"), $("#guideMission")], 0.5, {
 			css : {
 				alpha : 1,
@@ -86,6 +93,17 @@ var Main = function() {
 		});
 		SoundHandler.stopfightSound();
 		SoundHandler.playGeneralSound();
+
+		if (giveNewcard) {
+			getNewCard();
+		}
+	}
+
+	function getNewCard() {
+		var rewardList = rewardMap[$("#difficulty").val()];
+		var rewardIndex = Math.random() * rewardList.length >> 0;
+		var rewardId = rewardList[rewardIndex];
+		CardTips.setRole("c" + rewardId);
 	}
 
 	function toTeamView() {

@@ -1,0 +1,16 @@
+﻿{
+	"id" : "c38",
+	"name" : "路奇亞",
+	"isMonster" : false,
+	"index" : 37,
+	"cardPic" : "c38.png",
+	"fightPic" : "c38.png",
+	"hp" : 4601,
+	"atk" : 1822,
+	"heal" : 366,
+	"shield" : 124,
+	"color" : "blue",
+	"race" : "1",
+	"skill" : "sk38",
+	"pSkill" : "psk38"
+}

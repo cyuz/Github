@@ -1,0 +1,17 @@
+﻿{
+	"id" : "big2",
+	"name" : "大珠子",
+	"des" : "",
+	"mosterLayer" : ["a3"],
+	"ballProbabilityPolicy" : {
+		"fireI":10,
+		"fireII":10,
+		"fireIII":40,
+		"waterI":10,
+		"waterII":10,
+		"waterIII":40,
+		"woodI":10,
+		"woodII":10,
+		"woodIII":40
+	}
+}

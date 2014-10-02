@@ -1,6 +1,6 @@
 ﻿{
 	"id" : "sk32",
-	"skillName" : "唉唷！",
+	"skillName" : "吼唷！",
 	"imgsrc" : "",
     "desc" : "增加自身攻擊力1500一回合",
     "condition_type" : "all",

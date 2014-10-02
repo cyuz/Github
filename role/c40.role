@@ -1,0 +1,16 @@
+﻿{
+	"id" : "c40",
+	"name" : "雪拉比",
+	"isMonster" : false,
+	"index" : 39,
+	"cardPic" : "c40.png",
+	"fightPic" : "c40.png",
+	"hp" : 5151,
+	"atk" : 1526,
+	"heal" : 188,
+	"shield" : 197,
+	"color" : "green",
+	"race" : "2",
+	"skill" : "sk40",
+	"pSkill" : "psk40"
+}

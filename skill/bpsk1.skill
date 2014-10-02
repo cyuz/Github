@@ -5,7 +5,7 @@
     "desc" : "血量低於50%時，攻擊力2倍",
     "condition_type" : "selfhp",
     "condition_operator" : "<",
-    "condition_value" : "500000",
+    "condition_value" : "250000",
     "effect_type" : "atk",
     "effect_operator" : "*",
     "effect_value" : 2,

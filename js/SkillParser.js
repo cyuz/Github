@@ -75,10 +75,6 @@ var SkillParser = function() {
         {
             return [unit];
         }
-        else if(data.effect_type == "strategy")
-        {
-            return [Game];
-        }
         else if(data.target_type == "all")
         {
             var temp = attacker.filterSkillTarget(data.effect_type, data.target_color, data.target_race);
@@ -97,6 +93,29 @@ var SkillParser = function() {
     }
     
     
+    function generateSkillEffect(skillID)
+    {
+        var data = SkillData.getData(skillID);
+        if(data == undefined)
+        {
+            return false;
+        }
+
+        switch(data.condition_type)
+        {
+            case "atk":
+                break;
+            case "shield":
+                break;
+            case "heal":
+                break;
+            case "energy":
+                break;
+        }
+        
+        return false;
+    }
+    
     function takeSkillEffect(skillID, targets)
     {
         var data = SkillData.getData(skillID);
@@ -105,16 +124,9 @@ var SkillParser = function() {
             return;
         }
         
-        if(data.effect_type == "strategy")
+        for(var i=0;i<targets.length;i++)
         {
-            Game.setStrategy(data.effect_value);
-        }
-        else
-        {
-            for(var i=0;i<targets.length;i++)
-            {
-                targets[i].takeSkillEffect(data.effect_type, data.effect_operator, data.effect_value);
-            }
+            targets[i].takeSkillEffect(data.effect_type, data.effect_operator, data.effect_value);
         }
     }
     

@@ -1,0 +1,16 @@
+﻿{
+	"id" : "c33",
+	"name" : "冰晶鳥",
+	"isMonster" : false,
+	"index" : 32,
+	"cardPic" : "c33.png",
+	"fightPic" : "c33.png",
+	"hp" : 4107,
+	"atk" : 1455,
+	"heal" : 435,
+	"shield" : 165,
+	"color" : "blue",
+	"race" : "2",
+	"skill" : "sk33",
+	"pSkill" : "psk33"
+}

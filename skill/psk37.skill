@@ -1,0 +1,15 @@
+﻿{
+	"id" : "psk37",
+	"skillName" : "台大開刀房",
+	"imgsrc" : "",
+    "desc" : "台大開刀房，血量低於5000時，可恢復5000血量",
+    "condition_type" : "selfhp",
+    "condition_operator" : "<",
+    "condition_value" : 5000,
+    "effect_type" : "hp",
+    "effect_operator" : "+",
+    "effect_value" : 5000,
+    "target_type" : "self",
+    "target_color" : "all",
+    "target_race" : "all"
+}

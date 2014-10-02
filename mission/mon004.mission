@@ -1,16 +1,16 @@
 ﻿{
 	"id" : "mon004",
-	"name" : "中路單挑",
+	"name" : "終極挑戰-四大天王",
 	"des" : "",
-	"mosterLayer" : ["a1","a2","a3","b4"],
+	"mosterLayer" : ["b1","b2","b3","b4"],
 	"ballProbabilityPolicy" : {
-		"fireI":30,
+		"fireI":20,
 		"fireII":10,
 		"fireIII":5,
-		"waterI":30,
+		"waterI":20,
 		"waterII":10,
 		"waterIII":5,
-		"woodI":30,
+		"woodI":20,
 		"woodII":10,
 		"woodIII":5
 	}

@@ -1,0 +1,15 @@
+﻿{
+	"id" : "psk35",
+	"skillName" : "妖狐氣息",
+	"imgsrc" : "",
+    "desc" : "血量15000以上時，對自身造成1500點傷害",
+    "condition_type" : "selfhp",
+    "condition_operator" : ">=",
+    "condition_value" : 15000,
+    "effect_type" : "hp",
+    "effect_operator" : "-",
+    "effect_value" : 1500,
+    "target_type" : "self",
+    "target_color" : "all",
+    "target_race" : "all"
+}

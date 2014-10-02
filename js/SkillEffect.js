@@ -24,6 +24,7 @@ var SkillEffect = function() {
 	}
 
 	function showView(id) {
+		SoundHandler.skill();
 		var role = RoleData.getData(id);
 		$("#skillEffectRoleImg").attr("src", "image/" + role.fightPic);
 		var skill = SkillData.getData(role.skill);

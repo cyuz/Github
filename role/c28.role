@@ -8,7 +8,7 @@
 	"hp" : 6033,
 	"atk" : 1304,
 	"heal" : 75,
-	"shield" : 136,
+	"shield" : 336,
 	"color" : "green",
 	"race" : "1",
 	"skill" : "sk28",

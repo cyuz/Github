@@ -1,11 +1,11 @@
 ﻿{
 	"id" : "a6",
-	"name" : "a6",
+	"name" : "小沙包",
 	"isMonster" : true,
 	"index" : 0,
 	"cardPic" : "",
 	"fightPic" : "a6.png",
-	"hp" : 200000,
+	"hp" : 60000,
 	"atk" : 12000,
 	"heal" : 0,
 	"shield" : 0,

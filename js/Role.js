@@ -2,7 +2,7 @@ var RoleFunc = function() {
 
 	const ROLE_COUNT = 6;
 	const MAX_ENERGY = 500;
-	const SKILL_COST = 2;
+	const SKILL_COST = 500;
 	const ENERGY_SIZE = 70;
 	const LEFT_CENTER_X = "0px";
 	const RIGHT_CENTER_X = "530px";
@@ -86,7 +86,7 @@ var RoleFunc = function() {
 		var characterImg = document.createElement('img');
 		divIdName = 'role_img';
 		characterImg.setAttribute('id', divIdName);
-		characterImg.className = "role_img";
+		characterImg.className = "role_img fightRoleImg";
 		characterdiv.appendChild(characterImg);
 
 		return characterdiv;
@@ -96,6 +96,10 @@ var RoleFunc = function() {
 		char_roles[posIndex].acceptOrb(orb);
 	}
 	var askActivePlayerSkill = function(posIndex) {
+		if (!Game.gameStateIsWait()) {
+			return;
+		}
+
 		if (char_roles[posIndex].energy >= SKILL_COST) {
 			var desc = SkillParser.getSkillDesc(char_roles[posIndex].skill);
 			var callBack = undefined;
@@ -332,6 +336,13 @@ var RoleFunc = function() {
 			if (this.energy < 0) {
 				this.energy = 0;
 			}
+
+			if (this.energy >= SKILL_COST) {
+				$(this.rold_bk).addClass("light");
+			} else {
+				$(this.rold_bk).removeClass("light");
+			}
+
 			this.updateEnergyDisplay()
 		}
 
@@ -768,14 +779,14 @@ var RoleFunc = function() {
 				if (effectOperator == "+") {
 					Monster.healPlayerHp(effectValue, 0);
 				} else if (effectOperator == "-") {
-					Monster.damagePlayerHp(effectValue);
+					Monster.damagePlayerHp(effectValue, false);
 				} else if (effectOperator == "*") {
 					var newValue = Math.round(Monster.getPlayerHp() * effectValue);
 					var diffValue = newValue - Monster.getPlayerHp();
 					if (diffValue > 0) {
 						Monster.healPlayerHp(diffValue, 0);
 					} else if (diffValue <= 0) {
-						Monster.damagePlayerHp(diffValue);
+						Monster.damagePlayerHp(diffValue, false);
 					}
 				}
 				break;
