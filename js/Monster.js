@@ -375,6 +375,8 @@ var Monster = function() {
 					changeMonsterHp(effectValue);
 				} else if (effectOperator == "-") {
 					changeMonsterHp(-effectValue);
+                    //skill direct check
+                    checkMonsterIsLive();
 				} else if (effectOperator == "*") {
 					var newValue = Math.round(curHp * effectValue);
 					changeMonsterHp(newValue - curHp);
