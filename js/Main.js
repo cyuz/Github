@@ -31,8 +31,9 @@ var Main = function() {
 	function gameReady() {
 		SoundHandler.init();
 		Game.init();
+        CookiesAdapter.init();
 		TeamManager.init();
-		TeamManager.createTeamRolesFromRoleData();
+        TeamManager.createTeamRolesFromData();
 
 		CardTips.init();
 
@@ -69,6 +70,7 @@ var Main = function() {
 		var m = $(e.currentTarget).data("mission");
 		Game.setMission(m);
 		TeamManager.setMission(m);
+        TeamManager.createTeamRolesFromData();
 		toTeamView();
 	}
 

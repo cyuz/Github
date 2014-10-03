@@ -267,14 +267,22 @@ var TeamManager = function() {
 		//        $("#playerMoney > #value")[0].innerHTML = playerMoney;
 	}
 
-	function createTeamRoles(role_array) {
-		var temp = $(".viewport > .overview");
+	function createTeamRoles(roleArray) {
+		var temp = $("#teamView > #role_area > .viewport > .overview");
 
 		temp.empty();
 		imgidroleidmap.length = 0;
 
-		for (var i = 0; i < role_array.length; i++) {
-			var data = RoleData.getData(role_array[i]);
+        roleArray.sort(function(a,b)
+        {
+            var dataA = RoleData.getData(a);
+            var dataB = RoleData.getData(b);
+            return dataA.index - dataB.index;
+        }
+        );
+        
+		for (var i = 0; i < roleArray.length; i++) {
+			var data = RoleData.getData(roleArray[i]);
 
 			createRoleView(temp[0], data);
 
@@ -286,26 +294,29 @@ var TeamManager = function() {
 	}
 
 	function createTeamRolesFromRoleData() {
-		var temp = $("#teamView > #role_area > .viewport > .overview");
 
-		temp.empty();
-		imgidroleidmap.length = 0;
-
-		var role_array = RoleData.playerList;
-		for (var entry in role_array) {
-
-			var data = role_array[entry];
-
-			createRoleView(temp[0], data);
-
-			var imgId = "role_" + data.id + "_img";
-			imgidroleidmap[imgId] = data.id;
+        var roleArray = [];
+        
+		var roleDataAray = RoleData.playerList;
+		for (var entry in roleDataAray) {
+            roleArray.push(entry);
 		}
 
-		$('#role_area').tinyscrollbar();
-
+        createTeamRoles(roleArray);
 	}
+    
+	function createTeamRolesFromCookies() {
 
+        var roleArray = CookiesAdapter.getRoles();
+        
+        createTeamRoles(roleArray);
+	}    
+    
+
+    function createTeamRolesFromData() {
+        createTeamRolesFromCookies();     
+    }
+    
 	function setMission(missionID) {
 
 		var stageNameDiv = $("#teamView > #stageDataDiv > #stagename")[0];
@@ -332,8 +343,8 @@ var TeamManager = function() {
 		"start" : start,
 		"back" : back,
 		"createTeamRoles" : createTeamRoles,
-		"createTeamRolesFromRoleData" : createTeamRolesFromRoleData,
-		"setMission" : setMission
+		"setMission" : setMission,
+        "createTeamRolesFromData" : createTeamRolesFromData
 	}
 
 }();
