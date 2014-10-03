@@ -12,7 +12,22 @@ body {
 	left: 50%;
 }
 
+.coverView {
+	position: absolute;
+	top: -320px;
+	left: -320px;
+}
+
+.coverView img {
+	position: absolute;
+	width: 640px;
+	height: 640px;
+	top: 0px;
+	left: 0px;
+}
+
 .view {
+	display: none;
 	position: absolute;
 	width: 640px;
 	height: 930px;
@@ -89,6 +104,7 @@ body {
 }
 
 .guide {
+	display: none;
 	position: absolute;
 	left: 320px;
 	top: -450px;

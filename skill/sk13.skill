@@ -2,7 +2,7 @@
 	"id" : "sk13",
 	"skillName" : "冷凍的沉默",
 	"imgsrc" : "",
-    "desc" : "增加木屬性隊員攻擊力3000一回合",
+    "desc" : "增加木屬性隊員200能量",
     "condition_type" : "all",
     "condition_operator" : "",
     "condition_value" : "",

@@ -1,9 +1,9 @@
 var Main = function() {
 	var rewardMap = {
-		1 : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-		2 : [11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
-		3 : [21, 22, 23, 24, 25, 26, 27, 28, 29, 30],
-		4 : [31, 32, 33, 34, 35, 36, 37, 38, 39, 40]
+		1 : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18],
+		2 : [19, 20, 21, 22, 23, 24],
+		3 : [25, 26, 27, 28, 29, 30, 31, 32],
+		4 : [33, 34, 35, 36, 37, 38, 39, 40]
 	}
 
 	$(document).ready(init);
@@ -31,9 +31,9 @@ var Main = function() {
 	function gameReady() {
 		SoundHandler.init();
 		Game.init();
-        CookiesAdapter.init();
+		CookiesAdapter.init();
 		TeamManager.init();
-        TeamManager.createTeamRolesFromData();
+		TeamManager.createTeamRolesFromData();
 
 		CardTips.init();
 
@@ -48,29 +48,30 @@ var Main = function() {
 
 		$("#missionGreen").data("mission", "mon002");
 		$("#missionGreen").click(goMission);
-
-		//toMissionView();
-		TweenMax.to([$("#teamView"), $("#guideTeam")], 0, {
+		TweenMax.to([$("#missionView"), $("#guideMission")], 0, {
 			css : {
 				alpha : 0,
 				display : 'none'
 			}
 		});
-		TweenMax.to([$("#gameView"), $("#guideGame")], 0, {
+		setTimeout(loadingEnd, 1500);
+	}
+
+	function loadingEnd() {
+		TweenMax.to($("#coverView"), 0.5, {
 			css : {
 				alpha : 0,
 				display : 'none'
 			}
 		});
-
-		//Game.roundInit();
+		toMissionView();
 	}
 
 	function goMission(e) {
 		var m = $(e.currentTarget).data("mission");
 		Game.setMission(m);
 		TeamManager.setMission(m);
-        TeamManager.createTeamRolesFromData();
+		TeamManager.createTeamRolesFromData();
 		toTeamView();
 	}
 
@@ -105,6 +106,8 @@ var Main = function() {
 		var rewardList = rewardMap[$("#difficulty").val()];
 		var rewardIndex = Math.random() * rewardList.length >> 0;
 		var rewardId = rewardList[rewardIndex];
+		//CookiesAdapter.set
+		CookiesAdapter.enableRole("c" + rewardId);
 		CardTips.setRole("c" + rewardId);
 	}
 

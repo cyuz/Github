@@ -37,7 +37,7 @@ var Monster = function() {
 		1 : 0.8,
 		2 : 1,
 		3 : 1.2,
-		4 : 1.5
+		4 : 1.4
 	}
 
 	var skillEffectCount = 0;
