@@ -156,14 +156,9 @@ var TeamManager = function() {
 		var oldImgId = selectedRolesArray[targetImgId];
 		if (oldImgId != undefined) {
 			console.log("old:" + oldImgId);
-			var oldImg = document.getElementById(oldImgId);
-			//oldImg.setAttribute("draggable", true);
-			$("#" + oldImg.id).draggable('enable');
-			oldImg.style.opacity = "1";
+            enableRoleViewJQueryDrag(oldImgId)
 		}
-		//srcImg.setAttribute("draggable", false);
-		$("#" + srcImg.id).draggable('disable');
-		srcImg.style.opacity = "0.5";
+        disableRoleViewJQueryDrag(srcImg.id);
 		selectedRolesArray[targetImgId] = srcImg.id;
 		console.log(targetImgId + ":" + srcImg.id);
 	}
@@ -211,11 +206,12 @@ var TeamManager = function() {
 
 		var roleImg = createImg(roleViewDiv, imgId, imgSrc, ["icon_role"]);
 		roleImg.setAttribute("draggable", false);
-		$("#" + imgId).draggable({
+		$(roleImg).draggable({
 			helper : function() {
 				return $(this).clone().appendTo('body').show();
 			}
 		});
+        
 		//roleImg.setAttribute("ondragstart", "TeamManager.drag(event)");
 		roleImg.onclick = showTips;
 		return roleViewDiv;
@@ -289,9 +285,44 @@ var TeamManager = function() {
 			var imgId = "role_" + data.id + "_img";
 			imgidroleidmap[imgId] = data.id;
 		}
+        
+		var role_0_id = selectedRolesArray["selected_role_0_img"];
+		var role_1_id = selectedRolesArray["selected_role_1_img"];
+		var role_2_id = selectedRolesArray["selected_role_2_img"];
+		var role_3_id = selectedRolesArray["selected_role_3_img"];
+		var role_4_id = selectedRolesArray["selected_role_4_img"];
+		var role_5_id = selectedRolesArray["selected_role_5_img"];
+        disableRoleViewJQueryDrag(role_0_id);
+        disableRoleViewJQueryDrag(role_1_id);
+        disableRoleViewJQueryDrag(role_2_id);
+        disableRoleViewJQueryDrag(role_3_id);
+        disableRoleViewJQueryDrag(role_4_id);
+        disableRoleViewJQueryDrag(role_5_id);
+        
+        
+        
 
 		$('#role_area').tinyscrollbar();
 	}
+    
+    function enableRoleViewJQueryDrag(id)
+    {
+        if(id)
+        {
+            $("#" + id).draggable('enable');
+            $("#" + id).css("opacity", "1");
+        }         
+    }    
+    
+    function disableRoleViewJQueryDrag(id)
+    {
+        if(id)
+        {
+            $("#" + id).draggable('disable');
+            $("#" + id).css("opacity", "0.5");
+        }         
+    }
+    
 
 	function createTeamRolesFromRoleData() {
 
